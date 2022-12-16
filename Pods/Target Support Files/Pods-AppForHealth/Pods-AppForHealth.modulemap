@@ -1,0 +1,6 @@
+framework module Pods_AppForHealth {
+  umbrella header "Pods-AppForHealth-umbrella.h"
+
+  export *
+  module * { export * }
+}

@@ -10,6 +10,7 @@ import UIKit
 
 
 final class SplashScreenPresenter {
+    let vc = LaunchScreen()
     private var splashWindow: UIWindow? = {
         let splashWindow = UIWindow(frame: UIScreen.main.bounds)
         splashWindow.windowLevel = UIWindow.Level.alert + 1
@@ -27,7 +28,7 @@ final class SplashScreenPresenter {
             (self.splashWindow?.rootViewController as? LaunchScreen)?.set(progress: percent)
         }
     }
-
+    
     func dismiss() {
         UIView.animate(withDuration: 0.25) {
             self.splashWindow?.alpha = 0.0

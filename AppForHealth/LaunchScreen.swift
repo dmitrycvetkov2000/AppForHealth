@@ -15,6 +15,9 @@ class LaunchScreen: UIViewController {
     var mainPicture = UIImageView()
     var textPicture = UILabel()
     
+
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         print("LaunchScreen()")
@@ -31,9 +34,37 @@ class LaunchScreen: UIViewController {
         
         createProgressLabelConstraint()
         createProgressViewConstraint()
-          
+        
+        
+        view.addSubview(spinner)
+        spinner.startAnimation(delay: 0.04, replicates: 20)
+
+    }
+
+    
+    private lazy var spinner: CustomSpinnerSimple = {
+            let spinner = CustomSpinnerSimple(squareLength: 100)
+            return spinner
+        }()
+    
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+
+    }
+
+}
+class Core {
+    static let shared = Core()
+    func isNewUser() -> Bool {
+        return !UserDefaults.standard.bool(forKey: "IsNewUser")
+    }
+    func setIsNotNewUser() {
+        UserDefaults.standard.set(true, forKey: "IsNewUser")
     }
 }
+
+
 extension LaunchScreen {
     func createProgressLabel(_ label: UILabel){
         percentLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -94,6 +125,7 @@ extension LaunchScreen {
         //textPicture.sizeToFit()
         textPicture.textAlignment = .center
         textPicture.text = "Здоровье"
+        textPicture.textColor = #colorLiteral(red: 0, green: 0.3431890011, blue: 0, alpha: 1)
         self.view.addSubview(textPicture)
     }
 
