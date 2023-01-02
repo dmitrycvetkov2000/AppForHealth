@@ -10,6 +10,7 @@ import  UIKit
 
 protocol MainRouterProtocol: AnyObject {
     func openFirstScreen()
+    func openRecipes()
 }
 
 class MainRouter: MainRouterProtocol {
@@ -20,6 +21,13 @@ class MainRouter: MainRouterProtocol {
     func openFirstScreen() {
         let vc = AuthorizationModuleBuilder.build()
         vc.modalPresentationStyle = .fullScreen
+        viewController?.present(vc, animated: true)
+    }
+    
+    func openRecipes() {
+        let vc = RecipesModuleBuilder.build()
+        vc.modalPresentationStyle = .fullScreen
+        print("EEEEERRRRRR")
         viewController?.present(vc, animated: true)
     }
 }

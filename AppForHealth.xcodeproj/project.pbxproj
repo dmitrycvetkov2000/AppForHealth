@@ -18,6 +18,20 @@
 		0A3CA84C293E4F2400EDBFF9 /* AppForHealthUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3CA84B293E4F2400EDBFF9 /* AppForHealthUITestsLaunchTests.swift */; };
 		0A3CA859293E5C7500EDBFF9 /* SplashScreenPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3CA858293E5C7500EDBFF9 /* SplashScreenPresenter.swift */; };
 		0A3CA85B293E61D900EDBFF9 /* LaunchScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3CA85A293E61D900EDBFF9 /* LaunchScreen.swift */; };
+		0A7D6BB7294E685D00E50542 /* FirebaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7D6BB6294E685D00E50542 /* FirebaseService.swift */; };
+		0A7D6BBA294E80AE00E50542 /* ParametrsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7D6BB9294E80AE00E50542 /* ParametrsVC.swift */; };
+		0A7D6BBC294E812300E50542 /* ParametrsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7D6BBB294E812300E50542 /* ParametrsPresenter.swift */; };
+		0A7D6BBE294E821A00E50542 /* ParametrsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7D6BBD294E821A00E50542 /* ParametrsRouter.swift */; };
+		0A7D6BC0294E829800E50542 /* ParametrsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7D6BBF294E829800E50542 /* ParametrsInteractor.swift */; };
+		0A7D6BC2294E82F500E50542 /* ParametrsModuleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7D6BC1294E82F500E50542 /* ParametrsModuleBuilder.swift */; };
+		0A7D6BC5294FD98500E50542 /* Person+CoreDataProperties copy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7D6BC3294FD98500E50542 /* Person+CoreDataProperties copy.swift */; };
+		0A7D6BC6294FD98500E50542 /* Person+CoreDataClass copy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7D6BC4294FD98500E50542 /* Person+CoreDataClass copy.swift */; };
+		0A7D6BC8294FDC9D00E50542 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7D6BC7294FDC9D00E50542 /* CoreDataManager.swift */; };
+		0A7D6BCB294FE24700E50542 /* ResultVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7D6BCA294FE24700E50542 /* ResultVC.swift */; };
+		0A7D6BCD294FE2D600E50542 /* ResultPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7D6BCC294FE2D600E50542 /* ResultPresenter.swift */; };
+		0A7D6BCF294FE3CD00E50542 /* ResultRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7D6BCE294FE3CD00E50542 /* ResultRouter.swift */; };
+		0A7D6BD1294FE45700E50542 /* ResultInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7D6BD0294FE45700E50542 /* ResultInteractor.swift */; };
+		0A7D6BD3294FE4B000E50542 /* ResultModuleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7D6BD2294FE4B000E50542 /* ResultModuleBuilder.swift */; };
 		0A9F2AB3294A044C004662F7 /* AuthorizationPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9F2AB2294A044C004662F7 /* AuthorizationPresenter.swift */; };
 		0A9F2AB5294A05C7004662F7 /* AuthorizationRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9F2AB4294A05C7004662F7 /* AuthorizationRouter.swift */; };
 		0A9F2AB7294A0638004662F7 /* AuthorizationInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9F2AB6294A0638004662F7 /* AuthorizationInteractor.swift */; };
@@ -25,6 +39,19 @@
 		0A9F2ABB294A0DA2004662F7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9F2ABA294A0DA2004662F7 /* SceneDelegate.swift */; };
 		0A9F2ABE294A6963004662F7 /* ConstrainsOfAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9F2ABD294A6963004662F7 /* ConstrainsOfAuth.swift */; };
 		0A9F2AC0294A6FBE004662F7 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0A9F2ABF294A6FBE004662F7 /* GoogleService-Info.plist */; };
+		0AC71116295D268900BD18EA /* ModelOfDataForCollectionViewRecipes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AC71115295D268900BD18EA /* ModelOfDataForCollectionViewRecipes.swift */; };
+		0AC71118295D274C00BD18EA /* MyCollectionViewCellForRecipes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AC71117295D274C00BD18EA /* MyCollectionViewCellForRecipes.swift */; };
+		0AC7111A295D2B0D00BD18EA /* HelperForRecipes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AC71119295D2B0D00BD18EA /* HelperForRecipes.swift */; };
+		0AD0613F295BC62C00B67453 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD0613E295BC62C00B67453 /* Helper.swift */; };
+		0AD06141295BC67C00B67453 /* MyCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD06140295BC67C00B67453 /* MyCollectionViewCell.swift */; };
+		0AD06143295BC6B500B67453 /* ModelOfDataForCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD06142295BC6B500B67453 /* ModelOfDataForCollectionView.swift */; };
+		0AD06146295BED9E00B67453 /* RecipesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD06145295BED9E00B67453 /* RecipesVC.swift */; };
+		0AD06148295BEE1B00B67453 /* RecipesPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD06147295BEE1B00B67453 /* RecipesPresenter.swift */; };
+		0AD0614A295BEEB400B67453 /* RecipesRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD06149295BEEB400B67453 /* RecipesRouter.swift */; };
+		0AD0614C295BEF0F00B67453 /* RecipesInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD0614B295BEF0F00B67453 /* RecipesInteractor.swift */; };
+		0AD0614E295BEF8600B67453 /* RecipesModuleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD0614D295BEF8600B67453 /* RecipesModuleBuilder.swift */; };
+		0AD06150295CB5CC00B67453 /* ApiManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD0614F295CB5CC00B67453 /* ApiManager.swift */; };
+		0AD06154295CC86C00B67453 /* Recipes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD06153295CC86C00B67453 /* Recipes.swift */; };
 		0AE52FBF294AA77F00915663 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AE52FBE294AA77F00915663 /* MainViewController.swift */; };
 		0AE52FC1294AA82D00915663 /* MainPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AE52FC0294AA82D00915663 /* MainPresenter.swift */; };
 		0AE52FC3294AA8ED00915663 /* MainRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AE52FC2294AA8ED00915663 /* MainRouter.swift */; };
@@ -75,6 +102,20 @@
 		0A3CA84B293E4F2400EDBFF9 /* AppForHealthUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppForHealthUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		0A3CA858293E5C7500EDBFF9 /* SplashScreenPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreenPresenter.swift; sourceTree = "<group>"; };
 		0A3CA85A293E61D900EDBFF9 /* LaunchScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchScreen.swift; sourceTree = "<group>"; };
+		0A7D6BB6294E685D00E50542 /* FirebaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseService.swift; sourceTree = "<group>"; };
+		0A7D6BB9294E80AE00E50542 /* ParametrsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParametrsVC.swift; sourceTree = "<group>"; };
+		0A7D6BBB294E812300E50542 /* ParametrsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParametrsPresenter.swift; sourceTree = "<group>"; };
+		0A7D6BBD294E821A00E50542 /* ParametrsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParametrsRouter.swift; sourceTree = "<group>"; };
+		0A7D6BBF294E829800E50542 /* ParametrsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParametrsInteractor.swift; sourceTree = "<group>"; };
+		0A7D6BC1294E82F500E50542 /* ParametrsModuleBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParametrsModuleBuilder.swift; sourceTree = "<group>"; };
+		0A7D6BC3294FD98500E50542 /* Person+CoreDataProperties copy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Person+CoreDataProperties copy.swift"; sourceTree = "<group>"; };
+		0A7D6BC4294FD98500E50542 /* Person+CoreDataClass copy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Person+CoreDataClass copy.swift"; sourceTree = "<group>"; };
+		0A7D6BC7294FDC9D00E50542 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
+		0A7D6BCA294FE24700E50542 /* ResultVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultVC.swift; sourceTree = "<group>"; };
+		0A7D6BCC294FE2D600E50542 /* ResultPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultPresenter.swift; sourceTree = "<group>"; };
+		0A7D6BCE294FE3CD00E50542 /* ResultRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultRouter.swift; sourceTree = "<group>"; };
+		0A7D6BD0294FE45700E50542 /* ResultInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultInteractor.swift; sourceTree = "<group>"; };
+		0A7D6BD2294FE4B000E50542 /* ResultModuleBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultModuleBuilder.swift; sourceTree = "<group>"; };
 		0A9F2AB2294A044C004662F7 /* AuthorizationPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationPresenter.swift; sourceTree = "<group>"; };
 		0A9F2AB4294A05C7004662F7 /* AuthorizationRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationRouter.swift; sourceTree = "<group>"; };
 		0A9F2AB6294A0638004662F7 /* AuthorizationInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationInteractor.swift; sourceTree = "<group>"; };
@@ -82,6 +123,19 @@
 		0A9F2ABA294A0DA2004662F7 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		0A9F2ABD294A6963004662F7 /* ConstrainsOfAuth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstrainsOfAuth.swift; sourceTree = "<group>"; };
 		0A9F2ABF294A6FBE004662F7 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		0AC71115295D268900BD18EA /* ModelOfDataForCollectionViewRecipes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelOfDataForCollectionViewRecipes.swift; sourceTree = "<group>"; };
+		0AC71117295D274C00BD18EA /* MyCollectionViewCellForRecipes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCollectionViewCellForRecipes.swift; sourceTree = "<group>"; };
+		0AC71119295D2B0D00BD18EA /* HelperForRecipes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelperForRecipes.swift; sourceTree = "<group>"; };
+		0AD0613E295BC62C00B67453 /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
+		0AD06140295BC67C00B67453 /* MyCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCollectionViewCell.swift; sourceTree = "<group>"; };
+		0AD06142295BC6B500B67453 /* ModelOfDataForCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelOfDataForCollectionView.swift; sourceTree = "<group>"; };
+		0AD06145295BED9E00B67453 /* RecipesVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipesVC.swift; sourceTree = "<group>"; };
+		0AD06147295BEE1B00B67453 /* RecipesPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipesPresenter.swift; sourceTree = "<group>"; };
+		0AD06149295BEEB400B67453 /* RecipesRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipesRouter.swift; sourceTree = "<group>"; };
+		0AD0614B295BEF0F00B67453 /* RecipesInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipesInteractor.swift; sourceTree = "<group>"; };
+		0AD0614D295BEF8600B67453 /* RecipesModuleBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipesModuleBuilder.swift; sourceTree = "<group>"; };
+		0AD0614F295CB5CC00B67453 /* ApiManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiManager.swift; sourceTree = "<group>"; };
+		0AD06153295CC86C00B67453 /* Recipes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recipes.swift; sourceTree = "<group>"; };
 		0AE52FBE294AA77F00915663 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		0AE52FC0294AA82D00915663 /* MainPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPresenter.swift; sourceTree = "<group>"; };
 		0AE52FC2294AA8ED00915663 /* MainRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainRouter.swift; sourceTree = "<group>"; };
@@ -154,6 +208,8 @@
 		0A0F0C212948AC6300666ECF /* API */ = {
 			isa = PBXGroup;
 			children = (
+				0AD06152295CB60E00B67453 /* Models */,
+				0AD06151295CB60200B67453 /* Services */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -181,6 +237,8 @@
 		0A3CA819293E4F2000EDBFF9 = {
 			isa = PBXGroup;
 			children = (
+				0A7D6BC3294FD98500E50542 /* Person+CoreDataProperties copy.swift */,
+				0A7D6BC4294FD98500E50542 /* Person+CoreDataClass copy.swift */,
 				0A3CA824293E4F2000EDBFF9 /* AppForHealth */,
 				0A3CA83E293E4F2400EDBFF9 /* AppForHealthTests */,
 				0A3CA848293E4F2400EDBFF9 /* AppForHealthUITests */,
@@ -203,6 +261,9 @@
 		0A3CA824293E4F2000EDBFF9 /* AppForHealth */ = {
 			isa = PBXGroup;
 			children = (
+				0AD06144295BED6700B67453 /* Recipes */,
+				0A7D6BC9294FE22B00E50542 /* ResultScreen */,
+				0A7D6BB8294E808500E50542 /* Parametrs */,
 				0AE52FCA294BBF3700915663 /* OnBoardModule */,
 				0AE52FBD294AA73F00915663 /* MainModule */,
 				0A0F0C222948ACD100666ECF /* Authorization */,
@@ -215,6 +276,7 @@
 				0A3CA85A293E61D900EDBFF9 /* LaunchScreen.swift */,
 				0A3CA82E293E4F2000EDBFF9 /* AppForHealth.xcdatamodeld */,
 				0AE52FD5294BF5B400915663 /* CustomSpinnerSimple.swift */,
+				0A7D6BC7294FDC9D00E50542 /* CoreDataManager.swift */,
 			);
 			path = AppForHealth;
 			sourceTree = "<group>";
@@ -236,12 +298,68 @@
 			path = AppForHealthUITests;
 			sourceTree = "<group>";
 		};
+		0A7D6BB8294E808500E50542 /* Parametrs */ = {
+			isa = PBXGroup;
+			children = (
+				0A7D6BB9294E80AE00E50542 /* ParametrsVC.swift */,
+				0A7D6BBB294E812300E50542 /* ParametrsPresenter.swift */,
+				0A7D6BBD294E821A00E50542 /* ParametrsRouter.swift */,
+				0A7D6BBF294E829800E50542 /* ParametrsInteractor.swift */,
+				0A7D6BC1294E82F500E50542 /* ParametrsModuleBuilder.swift */,
+			);
+			path = Parametrs;
+			sourceTree = "<group>";
+		};
+		0A7D6BC9294FE22B00E50542 /* ResultScreen */ = {
+			isa = PBXGroup;
+			children = (
+				0A7D6BCA294FE24700E50542 /* ResultVC.swift */,
+				0A7D6BCC294FE2D600E50542 /* ResultPresenter.swift */,
+				0A7D6BCE294FE3CD00E50542 /* ResultRouter.swift */,
+				0A7D6BD0294FE45700E50542 /* ResultInteractor.swift */,
+				0A7D6BD2294FE4B000E50542 /* ResultModuleBuilder.swift */,
+			);
+			path = ResultScreen;
+			sourceTree = "<group>";
+		};
 		0A9F2ABC294A6946004662F7 /* Constrains */ = {
 			isa = PBXGroup;
 			children = (
 				0A9F2ABD294A6963004662F7 /* ConstrainsOfAuth.swift */,
 			);
 			path = Constrains;
+			sourceTree = "<group>";
+		};
+		0AD06144295BED6700B67453 /* Recipes */ = {
+			isa = PBXGroup;
+			children = (
+				0AD06145295BED9E00B67453 /* RecipesVC.swift */,
+				0AD06147295BEE1B00B67453 /* RecipesPresenter.swift */,
+				0AD06149295BEEB400B67453 /* RecipesRouter.swift */,
+				0AD0614B295BEF0F00B67453 /* RecipesInteractor.swift */,
+				0AD0614D295BEF8600B67453 /* RecipesModuleBuilder.swift */,
+				0AC71115295D268900BD18EA /* ModelOfDataForCollectionViewRecipes.swift */,
+				0AC71117295D274C00BD18EA /* MyCollectionViewCellForRecipes.swift */,
+				0AC71119295D2B0D00BD18EA /* HelperForRecipes.swift */,
+			);
+			path = Recipes;
+			sourceTree = "<group>";
+		};
+		0AD06151295CB60200B67453 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				0A7D6BB6294E685D00E50542 /* FirebaseService.swift */,
+				0AD0614F295CB5CC00B67453 /* ApiManager.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		0AD06152295CB60E00B67453 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				0AD06153295CC86C00B67453 /* Recipes.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		0AE52FBD294AA73F00915663 /* MainModule */ = {
@@ -252,6 +370,9 @@
 				0AE52FC2294AA8ED00915663 /* MainRouter.swift */,
 				0AE52FC4294AA94100915663 /* MainInteractor.swift */,
 				0AE52FC6294AA9A400915663 /* MainModuleBuilder.swift */,
+				0AD0613E295BC62C00B67453 /* Helper.swift */,
+				0AD06140295BC67C00B67453 /* MyCollectionViewCell.swift */,
+				0AD06142295BC6B500B67453 /* ModelOfDataForCollectionView.swift */,
 			);
 			path = MainModule;
 			sourceTree = "<group>";
@@ -532,27 +653,54 @@
 			buildActionMask = 2147483647;
 			files = (
 				0A9F2AB9294A06D4004662F7 /* AuthorizationModuleBuilder.swift in Sources */,
+				0A7D6BCB294FE24700E50542 /* ResultVC.swift in Sources */,
+				0A7D6BC5294FD98500E50542 /* Person+CoreDataProperties copy.swift in Sources */,
 				0AE52FC3294AA8ED00915663 /* MainRouter.swift in Sources */,
 				0A9F2AB5294A05C7004662F7 /* AuthorizationRouter.swift in Sources */,
+				0AD0614C295BEF0F00B67453 /* RecipesInteractor.swift in Sources */,
 				0A9F2AB3294A044C004662F7 /* AuthorizationPresenter.swift in Sources */,
+				0AD06146295BED9E00B67453 /* RecipesVC.swift in Sources */,
+				0A7D6BBA294E80AE00E50542 /* ParametrsVC.swift in Sources */,
+				0A7D6BC6294FD98500E50542 /* Person+CoreDataClass copy.swift in Sources */,
 				0AE52FCC294BBF6100915663 /* OnboardVC.swift in Sources */,
 				0AE52FC7294AA9A400915663 /* MainModuleBuilder.swift in Sources */,
 				0AE52FBF294AA77F00915663 /* MainViewController.swift in Sources */,
+				0AD06143295BC6B500B67453 /* ModelOfDataForCollectionView.swift in Sources */,
 				0AE52FD4294BC1D900915663 /* OnboardModuleBuilder.swift in Sources */,
+				0A7D6BC8294FDC9D00E50542 /* CoreDataManager.swift in Sources */,
+				0A7D6BC0294E829800E50542 /* ParametrsInteractor.swift in Sources */,
 				0AE52FD2294BC18500915663 /* OnboardInteractor.swift in Sources */,
+				0A7D6BD1294FE45700E50542 /* ResultInteractor.swift in Sources */,
+				0AD06154295CC86C00B67453 /* Recipes.swift in Sources */,
+				0A7D6BD3294FE4B000E50542 /* ResultModuleBuilder.swift in Sources */,
 				0AE52FD6294BF5B400915663 /* CustomSpinnerSimple.swift in Sources */,
+				0A7D6BB7294E685D00E50542 /* FirebaseService.swift in Sources */,
 				0A3CA859293E5C7500EDBFF9 /* SplashScreenPresenter.swift in Sources */,
 				0AE52FD0294BC0C800915663 /* OnboardRouter.swift in Sources */,
 				0A3CA82A293E4F2000EDBFF9 /* ViewController.swift in Sources */,
+				0A7D6BCD294FE2D600E50542 /* ResultPresenter.swift in Sources */,
 				0AE52FC1294AA82D00915663 /* MainPresenter.swift in Sources */,
+				0AD0613F295BC62C00B67453 /* Helper.swift in Sources */,
+				0AC7111A295D2B0D00BD18EA /* HelperForRecipes.swift in Sources */,
 				0AE52FC5294AA94100915663 /* MainInteractor.swift in Sources */,
+				0AC71118295D274C00BD18EA /* MyCollectionViewCellForRecipes.swift in Sources */,
 				0A9F2ABB294A0DA2004662F7 /* SceneDelegate.swift in Sources */,
+				0A7D6BC2294E82F500E50542 /* ParametrsModuleBuilder.swift in Sources */,
+				0A7D6BBE294E821A00E50542 /* ParametrsRouter.swift in Sources */,
 				0A9F2AB7294A0638004662F7 /* AuthorizationInteractor.swift in Sources */,
 				0A9F2ABE294A6963004662F7 /* ConstrainsOfAuth.swift in Sources */,
 				0A3CA826293E4F2000EDBFF9 /* AppDelegate.swift in Sources */,
 				0AE52FCE294BBFF700915663 /* OnboardPresenter.swift in Sources */,
+				0A7D6BBC294E812300E50542 /* ParametrsPresenter.swift in Sources */,
+				0AD06150295CB5CC00B67453 /* ApiManager.swift in Sources */,
+				0AD06141295BC67C00B67453 /* MyCollectionViewCell.swift in Sources */,
+				0AD06148295BEE1B00B67453 /* RecipesPresenter.swift in Sources */,
+				0AC71116295D268900BD18EA /* ModelOfDataForCollectionViewRecipes.swift in Sources */,
 				0A3CA85B293E61D900EDBFF9 /* LaunchScreen.swift in Sources */,
 				0A3CA830293E4F2000EDBFF9 /* AppForHealth.xcdatamodeld in Sources */,
+				0AD0614E295BEF8600B67453 /* RecipesModuleBuilder.swift in Sources */,
+				0AD0614A295BEEB400B67453 /* RecipesRouter.swift in Sources */,
+				0A7D6BCF294FE3CD00E50542 /* ResultRouter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

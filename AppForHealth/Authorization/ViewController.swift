@@ -6,7 +6,7 @@
 //
 
 import UIKit
-import Firebase
+//import Firebase
 
 protocol AuthorizationViewProtocol: AnyObject {
     func showDate(date: String)
@@ -79,9 +79,6 @@ class ViewController: UIViewController {
 }
 
 
-
-
-
 extension ViewController: AuthorizationViewProtocol {
     func showDate(date: String) {
         DispatchQueue.main.async {
@@ -105,17 +102,9 @@ extension ViewController: UITextFieldDelegate {
         
         if(signup) {
             if(!name.isEmpty && !email.isEmpty && !password.isEmpty) {
-                Auth.auth().createUser(withEmail: email, password: password) { result, error in
-                    if error == nil {
-                        if let result = result {
-                            print(result.user.uid)
-                            let ref = Database.database().reference().child("users")
-                            ref.child(result.user.uid).updateChildValues(["name" : name, "email" : email])
-                            //Переход на другой экран нужно сделать
-                            self.presenter?.didTapDoneButton()
-                        }
-                    }
-                }
+                
+                presenter?.didRegistration(name: name, email: email, password: password, presenter: self.presenter)
+                
             } else {
                 if textField == nameTextField {
                     emailTextField.becomeFirstResponder()
@@ -129,12 +118,7 @@ extension ViewController: UITextFieldDelegate {
             }
         } else {
             if(!email.isEmpty && !password.isEmpty) {
-                Auth.auth().signIn(withEmail: email, password: password) { result, error in
-                    if error == nil {
-                        //Переход на другой экран нужно сделать
-                        self.presenter?.didTapDoneButton()
-                    }
-                }
+                presenter?.didEntrance(email: email, password: password, presenter: self.presenter)
             }
         }
         return true

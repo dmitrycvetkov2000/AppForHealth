@@ -9,8 +9,15 @@ import Foundation
 
 protocol AuthorizationPresenterProtocol: AnyObject {
     func viewDidLoaded()
+    
+    
     func didTapDoneButton()
+    func didTapDoneButtonFromRegistration()
+    
     func didLoad(date: String?)
+    
+    func didRegistration(name: String, email: String, password: String, presenter: AuthorizationPresenterProtocol?)
+    func didEntrance(email: String, password: String, presenter: AuthorizationPresenterProtocol?)
 }
 
 class AuthorizationPresenter {
@@ -25,10 +32,18 @@ class AuthorizationPresenter {
 }
 
 extension AuthorizationPresenter: AuthorizationPresenterProtocol {
+
     func didTapDoneButton() {
         router.openMain()
     }
-    
+    func didTapDoneButtonFromRegistration() {
+        if interactor.checkCoreDataIsEmpty() {
+            router.openParametrsScreen()
+        } else {
+            router.openMain()
+        }
+        
+    }
     
     func viewDidLoaded() {
         interactor.loadDate()
@@ -36,5 +51,13 @@ extension AuthorizationPresenter: AuthorizationPresenterProtocol {
     
     func didLoad(date: String?) {
         view?.showDate(date: date ?? "No data")
+    }
+    
+    func didRegistration(name: String, email: String, password: String, presenter: AuthorizationPresenterProtocol?) {
+        interactor.registration(name: name, email: email, password: password, presenter: self)
+    }
+    
+    func didEntrance(email: String, password: String, presenter: AuthorizationPresenterProtocol?) {
+        interactor.entranceInAcc(email: email, password: password, presenter: self)
     }
 }

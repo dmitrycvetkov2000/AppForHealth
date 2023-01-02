@@ -36,8 +36,8 @@ class LaunchScreen: UIViewController {
         createProgressViewConstraint()
         
         
-        view.addSubview(spinner)
-        spinner.startAnimation(delay: 0.04, replicates: 20)
+        //view.addSubview(spinner)
+        //spinner.startAnimation(delay: 0.04, replicates: 20)
 
     }
 

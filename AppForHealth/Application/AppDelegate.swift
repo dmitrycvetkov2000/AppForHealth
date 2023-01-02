@@ -29,12 +29,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         DispatchQueue.global().async { // Делаем какую-либо работу
             FirebaseApp.configure()
 
-            for i in 0...1000000 {
-                print(i*i)
-                if i % 10000 == 0 {
-                    self.splashPresenter.notify(percent: Float(i) / 1000000.0)
-                }
-            }
+//            for i in 0...1000000 {
+//                print(i*i)
+//                if i % 10000 == 0 {
+//                    self.splashPresenter.notify(percent: Float(i) / 1000000.0)
+//                }
+//            }
             
             DispatchQueue.main.async {
                 if Core.shared.isNewUser() {
@@ -48,17 +48,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     }
                 } else {
                     DispatchQueue.main.async {
+                        
+                        if CoreDataManager.instance.isEmptyCoreData() {
+                            let vc = ParametrsModuleBuilder.build()
+                            window.rootViewController = vc
+                            window.makeKeyAndVisible()
+                        } else {
+                            let vc = MainModuleBuilder.build()
+                            window.rootViewController = vc
+                            window.makeKeyAndVisible()
+                        }
+                        
                         Auth.auth().addStateDidChangeListener { auth, user in
                             if user == nil { // Если пользователь вышел или не зарегистрирован
                                 let vc = AuthorizationModuleBuilder.build()
-                                
                                 window.rootViewController = vc
                                 window.makeKeyAndVisible()
-                            } else {
-                                let vc = MainModuleBuilder.build()
-                                
-                                window.rootViewController = vc
-                                window.makeKeyAndVisible()
+
                             }
                         }
                     }
@@ -94,50 +100,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        // Use this method to release any resources that were specific to the discarded scenes, as they will not return.
 //    }
 
-    // MARK: - Core Data stack
-
-    lazy var persistentContainer: NSPersistentContainer = {
-        /*
-         The persistent container for the application. This implementation
-         creates and returns a container, having loaded the store for the
-         application to it. This property is optional since there are legitimate
-         error conditions that could cause the creation of the store to fail.
-        */
-        let container = NSPersistentContainer(name: "AppForHealth")
-        container.loadPersistentStores(completionHandler: { (storeDescription, error) in
-            if let error = error as NSError? {
-                // Replace this implementation with code to handle the error appropriately.
-                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-                 
-                /*
-                 Typical reasons for an error here include:
-                 * The parent directory does not exist, cannot be created, or disallows writing.
-                 * The persistent store is not accessible, due to permissions or data protection when the device is locked.
-                 * The device is out of space.
-                 * The store could not be migrated to the current model version.
-                 Check the error message to determine what the actual problem was.
-                 */
-                fatalError("Unresolved error \(error), \(error.userInfo)")
-            }
-        })
-        return container
-    }()
-
-    // MARK: - Core Data Saving support
-
-    func saveContext () {
-        let context = persistentContainer.viewContext
-        if context.hasChanges {
-            do {
-                try context.save()
-            } catch {
-                // Replace this implementation with code to handle the error appropriately.
-                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-                let nserror = error as NSError
-                fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
-            }
-        }
-    }
+    
 
 }
 
