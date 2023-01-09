@@ -36,13 +36,19 @@ class ResultVC: UIViewController {
     lazy var bmr: Double? =  nil
     lazy var numberOfWater: Int? = nil
     
+    lazy var imt: Float? = nil
+    lazy var squareOfHeight: Int16? = nil
+    lazy var squareOfHeightDel: Float? = nil
+    
     enum IMT {
         case lightWeight, normal, excessWeight, obesity
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        createLabelResult(labelResult)
+        //createLabelResult(labelResult)
+        presenter?.viewDidLoaded(vc: self, labelResult: labelResult)
+        
         createIMTLabel(imtResultLabel)
         
         createCaloriesLabel(caloriesLabel)
@@ -116,150 +122,308 @@ class ResultVC: UIViewController {
         } catch {
             print(error)
         }
+        //DispatchQueue.main.async {
+            print("age = \(Int16(self.age ?? 0))")
+            print("gender = \(self.gender)")
+            print("height = \(Int16(self.height ?? 0))")
+            print("weight = \(Int16(self.weight ?? 0))")
         
-        let imt = Float(Int(weight ?? 0) / (Int(height ?? 0) * Int(height ?? 0)) / 1000)
-        print("imt = \(imt)")
+        squareOfHeight = Int16(self.height ?? 0) * Int16(self.height ?? 0)
+        print("squareOfHeight = \(squareOfHeight ?? 0)")
         
-        if gender == "Мужчина" && age ?? 0 < 65{
-            switch true {
-            case imt <= 18.5:
-                print("Легкий вес \(IMT.lightWeight)")
-                imtResultLabel.text = "ИМТ: Недовес"
-                break
-            case imt > 18.5 && imt <= 24.9:
-                print("Нормальный вес \(IMT.normal)")
-                imtResultLabel.text = "ИМТ: В норме"
-                break
-            case imt > 24.9 && imt <= 29.9:
-                print("Избыточный вес \(IMT.excessWeight)")
-                imtResultLabel.text = "ИМТ: Избыточный вес"
-                break
-            case imt > 29.9:
-                print("Ожирение \(IMT.obesity)")
-                imtResultLabel.text = "ИМТ: Ожирение"
-                break
-            default:
-                print("NO")
-                imtResultLabel.text = "ИМТ: Не выявлен"
+        squareOfHeightDel = Float(self.weight ?? 0) / Float(squareOfHeight ?? 0)
+        print("squareOfHeightDel = \(squareOfHeightDel)")
+        
+        
+            
+        imt = Float((squareOfHeightDel ?? 0) * 10000.0)
+            print("imt = \(imt)")
+            
+            if self.gender! == "Мужчина" && self.age ?? 0 < 65 {
+                switch true {
+                case imt ?? 0 <= 18.5:
+                    print("Легкий вес \(IMT.lightWeight)")
+                    self.imtResultLabel.text = "ИМТ: Недовес"
+                    break
+                case imt ?? 0 > 18.5 && imt ?? 0 <= 24.9:
+                    print("Нормальный вес \(IMT.normal)")
+                    self.imtResultLabel.text = "ИМТ: В норме"
+                    break
+                case imt ?? 0 > 24.9 && imt ?? 0 <= 29.9:
+                    print("Избыточный вес \(IMT.excessWeight)")
+                    self.imtResultLabel.text = "ИМТ: Избыточный вес"
+                    break
+                case imt ?? 0 > 29.9:
+                    print("Ожирение \(IMT.obesity)")
+                    self.imtResultLabel.text = "ИМТ: Ожирение"
+                    break
+                default:
+                    print("NO")
+                    self.imtResultLabel.text = "ИМТ: Не выявлен"
+                }
             }
-        }
-        
-        if gender == "Мужчина" && age ?? 0 >= 65 && age ?? 0 < 74{
-            switch true {
-            case imt <= 22:
-                print("Легкий вес \(IMT.lightWeight)")
-                imtResultLabel.text = "ИМТ: Недовес"
-                break
-            case imt > 22 && imt <= 26.9:
-                print("Нормальный вес \(IMT.normal)")
-                imtResultLabel.text = "ИМТ: В норме"
-                break
-            case imt > 26.9 && imt <= 29.9:
-                print("Избыточный вес \(IMT.excessWeight)")
-                imtResultLabel.text = "ИМТ: Избыточный вес"
-                break
-            case imt > 29.9:
-                print("Ожирение \(IMT.obesity)")
-                imtResultLabel.text = "ИМТ: Ожирение"
-                break
-            default:
-                print("Не выявлен")
+            
+            if self.gender == "Мужчина" && self.age ?? 0 >= 65 && self.age ?? 0 < 74{
+                switch true {
+                case imt ?? 0 <= 22:
+                    print("Легкий вес \(IMT.lightWeight)")
+                    self.imtResultLabel.text = "ИМТ: Недовес"
+                    break
+                case imt ?? 0 > 22 && imt ?? 0 <= 26.9:
+                    print("Нормальный вес \(IMT.normal)")
+                    self.imtResultLabel.text = "ИМТ: В норме"
+                    break
+                case imt ?? 0 > 26.9 && imt ?? 0 <= 29.9:
+                    print("Избыточный вес \(IMT.excessWeight)")
+                    self.imtResultLabel.text = "ИМТ: Избыточный вес"
+                    break
+                case imt ?? 0 > 29.9:
+                    print("Ожирение \(IMT.obesity)")
+                    self.imtResultLabel.text = "ИМТ: Ожирение"
+                    break
+                default:
+                    print("Не выявлен")
+                }
             }
-        }
-        
-        if gender == "Мужчина" && age ?? 0 >= 75{
-            switch true {
-            case imt <= 23:
-                print("Легкий вес \(IMT.lightWeight)")
-                imtResultLabel.text = "ИМТ: Недовес"
-                break
-            case imt > 23 && imt <= 27.9:
-                print("Нормальный вес \(IMT.normal)")
-                imtResultLabel.text = "ИМТ: В норме"
-                break
-            case imt > 27.9 && imt <= 29.9:
-                print("Избыточный вес \(IMT.excessWeight)")
-                imtResultLabel.text = "ИМТ: Избыточный вес"
-                break
-            case imt > 29.9:
-                print("Ожирение \(IMT.obesity)")
-                imtResultLabel.text = "ИМТ: Ожирение"
-                break
-            default:
-                print("Не выявлен")
+            
+            if self.gender == "Мужчина" && self.age ?? 0 >= 75{
+                switch true {
+                case imt ?? 0 <= 23:
+                    print("Легкий вес \(IMT.lightWeight)")
+                    self.imtResultLabel.text = "ИМТ: Недовес"
+                    break
+                case imt ?? 0 > 23 && imt ?? 0 <= 27.9:
+                    print("Нормальный вес \(IMT.normal)")
+                    self.imtResultLabel.text = "ИМТ: В норме"
+                    break
+                case imt ?? 0 > 27.9 && imt ?? 0 <= 29.9:
+                    print("Избыточный вес \(IMT.excessWeight)")
+                    self.imtResultLabel.text = "ИМТ: Избыточный вес"
+                    break
+                case imt ?? 0 > 29.9:
+                    print("Ожирение \(IMT.obesity)")
+                    self.imtResultLabel.text = "ИМТ: Ожирение"
+                    break
+                default:
+                    print("Не выявлен")
+                }
             }
-        }
-        
-        
-        
-        if gender == "Женщина" && age ?? 0 < 65{
-            switch true {
-            case imt <= 17:
-                print("Легкий вес \(IMT.lightWeight)")
-                imtResultLabel.text = "ИМТ: Недовес"
-                break
-            case imt > 17 && imt <= 24.2:
-                print("Нормальный вес \(IMT.normal)")
-                imtResultLabel.text = "ИМТ: В норме"
-                break
-            case imt > 24.2 && imt <= 29.2:
-                print("Избыточный вес \(IMT.excessWeight)")
-                imtResultLabel.text = "ИМТ: Избыточный вес"
-                break
-            case imt > 29.2:
-                print("Ожирение \(IMT.obesity)")
-                imtResultLabel.text = "ИМТ: Ожирение"
-                break
-            default:
-                print("Не выявлен")
+            
+            
+            
+            if self.gender == "Женщина" && self.age ?? 0 < 65{
+                switch true {
+                case imt ?? 0 <= 17:
+                    print("Легкий вес \(IMT.lightWeight)")
+                    self.imtResultLabel.text = "ИМТ: Недовес"
+                    break
+                case imt ?? 0 > 17 && imt ?? 0 <= 24.2:
+                    print("Нормальный вес \(IMT.normal)")
+                    self.imtResultLabel.text = "ИМТ: В норме"
+                    break
+                case imt ?? 0 > 24.2 && imt ?? 0 <= 29.2:
+                    print("Избыточный вес \(IMT.excessWeight)")
+                    self.imtResultLabel.text = "ИМТ: Избыточный вес"
+                    break
+                case imt ?? 0 > 29.2:
+                    print("Ожирение \(IMT.obesity)")
+                    self.imtResultLabel.text = "ИМТ: Ожирение"
+                    break
+                default:
+                    print("Не выявлен")
+                }
             }
-        }
-        
-        if gender == "Женщина" && age ?? 0 >= 65 && age ?? 0 < 74{
-            switch true {
-            case imt <= 21.4:
-                print("Легкий вес \(IMT.lightWeight)")
-                imtResultLabel.text = "ИМТ: Недовес"
-                break
-            case imt > 21.4 && imt <= 26:
-                print("Нормальный вес \(IMT.normal)")
-                imtResultLabel.text = "ИМТ: В норме"
-                break
-            case imt > 26 && imt <= 29.3:
-                print("Избыточный вес \(IMT.excessWeight)")
-                imtResultLabel.text = "ИМТ: Избыточный вес"
-                break
-            case imt > 29.3:
-                print("Ожирение \(IMT.obesity)")
-                imtResultLabel.text = "ИМТ: Ожирение"
-                break
-            default:
-                print("Не выявлен")
+            
+            if self.gender == "Женщина" && self.age ?? 0 >= 65 && self.age ?? 0 < 74{
+                switch true {
+                case imt ?? 0 <= 21.4:
+                    print("Легкий вес \(IMT.lightWeight)")
+                    self.imtResultLabel.text = "ИМТ: Недовес"
+                    break
+                case imt ?? 0 > 21.4 && imt ?? 0 <= 26:
+                    print("Нормальный вес \(IMT.normal)")
+                    self.imtResultLabel.text = "ИМТ: В норме"
+                    break
+                case imt ?? 0 > 26 && imt ?? 0 <= 29.3:
+                    print("Избыточный вес \(IMT.excessWeight)")
+                    self.imtResultLabel.text = "ИМТ: Избыточный вес"
+                    break
+                case imt ?? 0 > 29.3:
+                    print("Ожирение \(IMT.obesity)")
+                    self.imtResultLabel.text = "ИМТ: Ожирение"
+                    break
+                default:
+                    print("Не выявлен")
+                }
             }
-        }
-        
-        if gender == "Женщина" && age ?? 0 >= 75{
-            switch true {
-            case imt <= 22.6:
-                print("Легкий вес \(IMT.lightWeight)")
-                imtResultLabel.text = "ИМТ: Недовес"
-                break
-            case imt > 22.6 && imt <= 27.4:
-                print("Нормальный вес \(IMT.normal)")
-                imtResultLabel.text = "ИМТ: В норме"
-                break
-            case imt > 27.4 && imt <= 29.6:
-                print("Избыточный вес \(IMT.excessWeight)")
-                imtResultLabel.text = "ИМТ: Избыточный вес"
-                break
-            case imt > 29.6:
-                print("Ожирение \(IMT.obesity)")
-                imtResultLabel.text = "ИМТ: Ожирение"
-                break
-            default:
-                print("Не выявлен")
+            
+            if self.gender == "Женщина" && self.age ?? 0 >= 75{
+                switch true {
+                case imt ?? 0 <= 22.6:
+                    print("Легкий вес \(IMT.lightWeight)")
+                    self.imtResultLabel.text = "ИМТ: Недовес"
+                    break
+                case imt ?? 0 > 22.6 && imt ?? 0 <= 27.4:
+                    print("Нормальный вес \(IMT.normal)")
+                    self.imtResultLabel.text = "ИМТ: В норме"
+                    break
+                case imt ?? 0 > 27.4 && imt ?? 0 <= 29.6:
+                    print("Избыточный вес \(IMT.excessWeight)")
+                    self.imtResultLabel.text = "ИМТ: Избыточный вес"
+                    break
+                case imt ?? 0 > 29.6:
+                    print("Ожирение \(IMT.obesity)")
+                    self.imtResultLabel.text = "ИМТ: Ожирение"
+                    break
+                default:
+                    print("Не выявлен")
+                }
             }
-        }
+
+        //}
+//        let imt = Float(Int(weight ?? 0) / (Int(height ?? 0) * Int(height ?? 0)) / 1000)
+//        print("imt = \(imt)")
+//
+//        if gender == "Мужчина" && age ?? 0 < 65 {
+//            switch false {
+//            case imt <= 18.5:
+//                print("Легкий вес \(IMT.lightWeight)")
+//                imtResultLabel.text = "ИМТ: Недовес"
+//                break
+//            case imt > 18.5 && imt <= 24.9:
+//                print("Нормальный вес \(IMT.normal)")
+//                imtResultLabel.text = "ИМТ: В норме"
+//                break
+//            case imt > 24.9 && imt <= 29.9:
+//                print("Избыточный вес \(IMT.excessWeight)")
+//                imtResultLabel.text = "ИМТ: Избыточный вес"
+//                break
+//            case imt > 29.9:
+//                print("Ожирение \(IMT.obesity)")
+//                imtResultLabel.text = "ИМТ: Ожирение"
+//                break
+//            default:
+//                print("NO")
+//                imtResultLabel.text = "ИМТ: Не выявлен"
+//            }
+//        }
+//
+//        if gender == "Мужчина" && age ?? 0 >= 65 && age ?? 0 < 74{
+//            switch true {
+//            case imt <= 22:
+//                print("Легкий вес \(IMT.lightWeight)")
+//                imtResultLabel.text = "ИМТ: Недовес"
+//                break
+//            case imt > 22 && imt <= 26.9:
+//                print("Нормальный вес \(IMT.normal)")
+//                imtResultLabel.text = "ИМТ: В норме"
+//                break
+//            case imt > 26.9 && imt <= 29.9:
+//                print("Избыточный вес \(IMT.excessWeight)")
+//                imtResultLabel.text = "ИМТ: Избыточный вес"
+//                break
+//            case imt > 29.9:
+//                print("Ожирение \(IMT.obesity)")
+//                imtResultLabel.text = "ИМТ: Ожирение"
+//                break
+//            default:
+//                print("Не выявлен")
+//            }
+//        }
+//
+//        if gender == "Мужчина" && age ?? 0 >= 75{
+//            switch true {
+//            case imt <= 23:
+//                print("Легкий вес \(IMT.lightWeight)")
+//                imtResultLabel.text = "ИМТ: Недовес"
+//                break
+//            case imt > 23 && imt <= 27.9:
+//                print("Нормальный вес \(IMT.normal)")
+//                imtResultLabel.text = "ИМТ: В норме"
+//                break
+//            case imt > 27.9 && imt <= 29.9:
+//                print("Избыточный вес \(IMT.excessWeight)")
+//                imtResultLabel.text = "ИМТ: Избыточный вес"
+//                break
+//            case imt > 29.9:
+//                print("Ожирение \(IMT.obesity)")
+//                imtResultLabel.text = "ИМТ: Ожирение"
+//                break
+//            default:
+//                print("Не выявлен")
+//            }
+//        }
+//
+//
+//
+//        if gender == "Женщина" && age ?? 0 < 65{
+//            switch true {
+//            case imt <= 17:
+//                print("Легкий вес \(IMT.lightWeight)")
+//                imtResultLabel.text = "ИМТ: Недовес"
+//                break
+//            case imt > 17 && imt <= 24.2:
+//                print("Нормальный вес \(IMT.normal)")
+//                imtResultLabel.text = "ИМТ: В норме"
+//                break
+//            case imt > 24.2 && imt <= 29.2:
+//                print("Избыточный вес \(IMT.excessWeight)")
+//                imtResultLabel.text = "ИМТ: Избыточный вес"
+//                break
+//            case imt > 29.2:
+//                print("Ожирение \(IMT.obesity)")
+//                imtResultLabel.text = "ИМТ: Ожирение"
+//                break
+//            default:
+//                print("Не выявлен")
+//            }
+//        }
+//
+//        if gender == "Женщина" && age ?? 0 >= 65 && age ?? 0 < 74{
+//            switch true {
+//            case imt <= 21.4:
+//                print("Легкий вес \(IMT.lightWeight)")
+//                imtResultLabel.text = "ИМТ: Недовес"
+//                break
+//            case imt > 21.4 && imt <= 26:
+//                print("Нормальный вес \(IMT.normal)")
+//                imtResultLabel.text = "ИМТ: В норме"
+//                break
+//            case imt > 26 && imt <= 29.3:
+//                print("Избыточный вес \(IMT.excessWeight)")
+//                imtResultLabel.text = "ИМТ: Избыточный вес"
+//                break
+//            case imt > 29.3:
+//                print("Ожирение \(IMT.obesity)")
+//                imtResultLabel.text = "ИМТ: Ожирение"
+//                break
+//            default:
+//                print("Не выявлен")
+//            }
+//        }
+//
+//        if gender == "Женщина" && age ?? 0 >= 75{
+//            switch true {
+//            case imt <= 22.6:
+//                print("Легкий вес \(IMT.lightWeight)")
+//                imtResultLabel.text = "ИМТ: Недовес"
+//                break
+//            case imt > 22.6 && imt <= 27.4:
+//                print("Нормальный вес \(IMT.normal)")
+//                imtResultLabel.text = "ИМТ: В норме"
+//                break
+//            case imt > 27.4 && imt <= 29.6:
+//                print("Избыточный вес \(IMT.excessWeight)")
+//                imtResultLabel.text = "ИМТ: Избыточный вес"
+//                break
+//            case imt > 29.6:
+//                print("Ожирение \(IMT.obesity)")
+//                imtResultLabel.text = "ИМТ: Ожирение"
+//                break
+//            default:
+//                print("Не выявлен")
+//            }
+//        }
 
     }
     @objc func goMainAndStart() {
@@ -273,23 +437,23 @@ class ResultVC: UIViewController {
 
 extension ResultVC: ResultVCProtocol {
     
-    func createLabelResult(_ label: UILabel) {
-        label.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(label)
-        
-        label.font = UIFont(name: "Vasek", size: 1000)
-        label.numberOfLines = 1
-        label.adjustsFontSizeToFitWidth = true
-        
-        label.textAlignment = .left
-        label.textColor = .white
-        label.text = "Ваши параметры"
-        
-        label.topAnchor.constraint(equalTo: view.topAnchor, constant: 30).isActive = true
-        label.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 10).isActive = true
-        label.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -10).isActive = true
-        label.heightAnchor.constraint(equalToConstant: 80).isActive = true
-    }
+//    func createLabelResult(_ label: UILabel) {
+//        label.translatesAutoresizingMaskIntoConstraints = false
+//        view.addSubview(label)
+//
+//        label.font = UIFont(name: "Vasek", size: 1000)
+//        label.numberOfLines = 1
+//        label.adjustsFontSizeToFitWidth = true
+//
+//        label.textAlignment = .left
+//        label.textColor = .white
+//        label.text = "Ваши параметры"
+//
+//        label.topAnchor.constraint(equalTo: view.topAnchor, constant: 30).isActive = true
+//        label.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 10).isActive = true
+//        label.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -10).isActive = true
+//        label.heightAnchor.constraint(equalToConstant: 80).isActive = true
+//    }
     
     func createIMTLabel(_ label: UILabel) {
         label.translatesAutoresizingMaskIntoConstraints = false

@@ -9,7 +9,7 @@ import UIKit
 //import Firebase
 
 protocol AuthorizationViewProtocol: AnyObject {
-    func showDate(date: String)
+    //func showDate(date: String)
 }
 
 class ViewController: UIViewController {
@@ -80,21 +80,21 @@ class ViewController: UIViewController {
 
 
 extension ViewController: AuthorizationViewProtocol {
-    func showDate(date: String) {
-        DispatchQueue.main.async {
-            //self.createLabel(self.dateLabel)
-            //self.dateLabel.text = date
-            //self.constrains.createDateLabelConstraints(self.dateLabel, self.view)
-        }
-    }
+//    func showDate(date: String) {
+//        DispatchQueue.main.async {
+//            //self.createLabel(self.dateLabel)
+//            //self.dateLabel.text = date
+//            //self.constrains.createDateLabelConstraints(self.dateLabel, self.view)
+//        }
+//    }
 }
 
 extension ViewController: UITextFieldDelegate {
-    func showAlert() {
-        let alert = UIAlertController(title: "Ошибка", message: "Заполните все поля", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Ок", style: .default))
-        present(alert, animated: true, completion: nil)
-    }
+//    func showAlert() {
+//        let alert = UIAlertController(title: "Ошибка", message: "Заполните все поля", preferredStyle: .alert)
+//        alert.addAction(UIAlertAction(title: "Ок", style: .default))
+//        present(alert, animated: true, completion: nil)
+//    }
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         let name = nameTextField.text!
         let email = emailTextField.text!
@@ -113,7 +113,7 @@ extension ViewController: UITextFieldDelegate {
                     passwordTextField.becomeFirstResponder()
                 }
                 if textField == passwordTextField {
-                    showAlert()
+                    presenter?.showAlert(vc: self)
                 }
             }
         } else {

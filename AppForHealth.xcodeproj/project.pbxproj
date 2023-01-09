@@ -32,6 +32,11 @@
 		0A7D6BCF294FE3CD00E50542 /* ResultRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7D6BCE294FE3CD00E50542 /* ResultRouter.swift */; };
 		0A7D6BD1294FE45700E50542 /* ResultInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7D6BD0294FE45700E50542 /* ResultInteractor.swift */; };
 		0A7D6BD3294FE4B000E50542 /* ResultModuleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7D6BD2294FE4B000E50542 /* ResultModuleBuilder.swift */; };
+		0A7F0BCB296B511900327875 /* WaterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7F0BCA296B511900327875 /* WaterVC.swift */; };
+		0A7F0BCD296B522600327875 /* WaterPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7F0BCC296B522600327875 /* WaterPresenter.swift */; };
+		0A7F0BCF296B52FE00327875 /* WaterRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7F0BCE296B52FE00327875 /* WaterRouter.swift */; };
+		0A7F0BD1296B536300327875 /* WaterInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7F0BD0296B536300327875 /* WaterInteractor.swift */; };
+		0A7F0BD3296B53C300327875 /* WaterModuleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7F0BD2296B53C300327875 /* WaterModuleBuilder.swift */; };
 		0A9F2AB3294A044C004662F7 /* AuthorizationPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9F2AB2294A044C004662F7 /* AuthorizationPresenter.swift */; };
 		0A9F2AB5294A05C7004662F7 /* AuthorizationRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9F2AB4294A05C7004662F7 /* AuthorizationRouter.swift */; };
 		0A9F2AB7294A0638004662F7 /* AuthorizationInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9F2AB6294A0638004662F7 /* AuthorizationInteractor.swift */; };
@@ -116,6 +121,11 @@
 		0A7D6BCE294FE3CD00E50542 /* ResultRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultRouter.swift; sourceTree = "<group>"; };
 		0A7D6BD0294FE45700E50542 /* ResultInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultInteractor.swift; sourceTree = "<group>"; };
 		0A7D6BD2294FE4B000E50542 /* ResultModuleBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultModuleBuilder.swift; sourceTree = "<group>"; };
+		0A7F0BCA296B511900327875 /* WaterVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaterVC.swift; sourceTree = "<group>"; };
+		0A7F0BCC296B522600327875 /* WaterPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaterPresenter.swift; sourceTree = "<group>"; };
+		0A7F0BCE296B52FE00327875 /* WaterRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaterRouter.swift; sourceTree = "<group>"; };
+		0A7F0BD0296B536300327875 /* WaterInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaterInteractor.swift; sourceTree = "<group>"; };
+		0A7F0BD2296B53C300327875 /* WaterModuleBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaterModuleBuilder.swift; sourceTree = "<group>"; };
 		0A9F2AB2294A044C004662F7 /* AuthorizationPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationPresenter.swift; sourceTree = "<group>"; };
 		0A9F2AB4294A05C7004662F7 /* AuthorizationRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationRouter.swift; sourceTree = "<group>"; };
 		0A9F2AB6294A0638004662F7 /* AuthorizationInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationInteractor.swift; sourceTree = "<group>"; };
@@ -261,6 +271,7 @@
 		0A3CA824293E4F2000EDBFF9 /* AppForHealth */ = {
 			isa = PBXGroup;
 			children = (
+				0A7F0BC9296B50F900327875 /* Water */,
 				0AD06144295BED6700B67453 /* Recipes */,
 				0A7D6BC9294FE22B00E50542 /* ResultScreen */,
 				0A7D6BB8294E808500E50542 /* Parametrs */,
@@ -320,6 +331,18 @@
 				0A7D6BD2294FE4B000E50542 /* ResultModuleBuilder.swift */,
 			);
 			path = ResultScreen;
+			sourceTree = "<group>";
+		};
+		0A7F0BC9296B50F900327875 /* Water */ = {
+			isa = PBXGroup;
+			children = (
+				0A7F0BCA296B511900327875 /* WaterVC.swift */,
+				0A7F0BCC296B522600327875 /* WaterPresenter.swift */,
+				0A7F0BCE296B52FE00327875 /* WaterRouter.swift */,
+				0A7F0BD0296B536300327875 /* WaterInteractor.swift */,
+				0A7F0BD2296B53C300327875 /* WaterModuleBuilder.swift */,
+			);
+			path = Water;
 			sourceTree = "<group>";
 		};
 		0A9F2ABC294A6946004662F7 /* Constrains */ = {
@@ -663,7 +686,9 @@
 				0A7D6BBA294E80AE00E50542 /* ParametrsVC.swift in Sources */,
 				0A7D6BC6294FD98500E50542 /* Person+CoreDataClass copy.swift in Sources */,
 				0AE52FCC294BBF6100915663 /* OnboardVC.swift in Sources */,
+				0A7F0BD3296B53C300327875 /* WaterModuleBuilder.swift in Sources */,
 				0AE52FC7294AA9A400915663 /* MainModuleBuilder.swift in Sources */,
+				0A7F0BCB296B511900327875 /* WaterVC.swift in Sources */,
 				0AE52FBF294AA77F00915663 /* MainViewController.swift in Sources */,
 				0AD06143295BC6B500B67453 /* ModelOfDataForCollectionView.swift in Sources */,
 				0AE52FD4294BC1D900915663 /* OnboardModuleBuilder.swift in Sources */,
@@ -683,8 +708,10 @@
 				0AD0613F295BC62C00B67453 /* Helper.swift in Sources */,
 				0AC7111A295D2B0D00BD18EA /* HelperForRecipes.swift in Sources */,
 				0AE52FC5294AA94100915663 /* MainInteractor.swift in Sources */,
+				0A7F0BCF296B52FE00327875 /* WaterRouter.swift in Sources */,
 				0AC71118295D274C00BD18EA /* MyCollectionViewCellForRecipes.swift in Sources */,
 				0A9F2ABB294A0DA2004662F7 /* SceneDelegate.swift in Sources */,
+				0A7F0BCD296B522600327875 /* WaterPresenter.swift in Sources */,
 				0A7D6BC2294E82F500E50542 /* ParametrsModuleBuilder.swift in Sources */,
 				0A7D6BBE294E821A00E50542 /* ParametrsRouter.swift in Sources */,
 				0A9F2AB7294A0638004662F7 /* AuthorizationInteractor.swift in Sources */,
@@ -700,6 +727,7 @@
 				0A3CA830293E4F2000EDBFF9 /* AppForHealth.xcdatamodeld in Sources */,
 				0AD0614E295BEF8600B67453 /* RecipesModuleBuilder.swift in Sources */,
 				0AD0614A295BEEB400B67453 /* RecipesRouter.swift in Sources */,
+				0A7F0BD1296B536300327875 /* WaterInteractor.swift in Sources */,
 				0A7D6BCF294FE3CD00E50542 /* ResultRouter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

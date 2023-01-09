@@ -5,7 +5,7 @@
 //  Created by Дмитрий Цветков on 14.12.2022.
 //
 
-import Foundation
+import UIKit
 
 protocol AuthorizationPresenterProtocol: AnyObject {
     func viewDidLoaded()
@@ -18,6 +18,8 @@ protocol AuthorizationPresenterProtocol: AnyObject {
     
     func didRegistration(name: String, email: String, password: String, presenter: AuthorizationPresenterProtocol?)
     func didEntrance(email: String, password: String, presenter: AuthorizationPresenterProtocol?)
+    
+    func showAlert(vc: UIViewController)
 }
 
 class AuthorizationPresenter {
@@ -50,7 +52,7 @@ extension AuthorizationPresenter: AuthorizationPresenterProtocol {
     }
     
     func didLoad(date: String?) {
-        view?.showDate(date: date ?? "No data")
+        //view?.showDate(date: date ?? "No data")
     }
     
     func didRegistration(name: String, email: String, password: String, presenter: AuthorizationPresenterProtocol?) {
@@ -59,5 +61,11 @@ extension AuthorizationPresenter: AuthorizationPresenterProtocol {
     
     func didEntrance(email: String, password: String, presenter: AuthorizationPresenterProtocol?) {
         interactor.entranceInAcc(email: email, password: password, presenter: self)
+    }
+    
+    func showAlert(vc: UIViewController) {
+        let alert = UIAlertController(title: "Ошибка", message: "Заполните все поля", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Ок", style: .default))
+        vc.present(alert, animated: true, completion: nil)
     }
 }

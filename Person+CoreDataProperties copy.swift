@@ -22,5 +22,6 @@ extension Person {
     @NSManaged public var height: Int16
     @NSManaged public var levelOfActivity: String?
     @NSManaged public var goal: String?
+    @NSManaged public var numberOfWater: Int16
 
 }

@@ -9,7 +9,7 @@ import UIKit
 import CoreData
 
 protocol ParametrsInteractorProtocol: AnyObject {
-    func writeParametersToBD(ageTextField: UITextField, gender: String, goal: String, heightTextField: UITextField, levelOfActivity: String, weightTextField: UITextField)
+    func writeParametersToBD(ageTextField: UITextField, gender: String, goal: String, heightTextField: UITextField, levelOfActivity: String, weightTextField: UITextField) -> String
 }
 
 
@@ -17,7 +17,7 @@ class ParametrsInteractor: ParametrsInteractorProtocol {
     
     weak var presenter: ParametrsPresenterProtocol?
     
-    func writeParametersToBD(ageTextField: UITextField, gender: String, goal: String, heightTextField: UITextField, levelOfActivity: String, weightTextField: UITextField) {
+    func writeParametersToBD(ageTextField: UITextField, gender: String, goal: String, heightTextField: UITextField, levelOfActivity: String, weightTextField: UITextField) -> String {
         let managedObject = Person()
         
         //managedObject.age = age
@@ -60,5 +60,6 @@ class ParametrsInteractor: ParametrsInteractorProtocol {
         }
         
         //presenter?.didTappedSaveButton()
+        return gender!
     }
 }

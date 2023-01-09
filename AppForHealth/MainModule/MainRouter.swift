@@ -11,6 +11,7 @@ import  UIKit
 protocol MainRouterProtocol: AnyObject {
     func openFirstScreen()
     func openRecipes()
+    func openWater()
 }
 
 class MainRouter: MainRouterProtocol {
@@ -26,7 +27,14 @@ class MainRouter: MainRouterProtocol {
     
     func openRecipes() {
         let vc = RecipesModuleBuilder.build()
-        vc.modalPresentationStyle = .fullScreen
+        vc.modalPresentationStyle = .popover
+        print("EEEEERRRRRR")
+        viewController?.present(vc, animated: true)
+    }
+    
+    func openWater() {
+        let vc = WaterModuleBuilder.build()
+        vc.modalPresentationStyle = .popover
         print("EEEEERRRRRR")
         viewController?.present(vc, animated: true)
     }

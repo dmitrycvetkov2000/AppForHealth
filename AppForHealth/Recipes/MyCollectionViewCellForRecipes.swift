@@ -65,7 +65,7 @@ class MyCollectionViewCellForRecipes: UICollectionViewCell {
         labelForIngredients.text = ingredients
         
     }
-    
+    // .scaleAspectFill
     func setImage(url: String) {
                     
             if let url = URL(string: url) {
@@ -75,7 +75,7 @@ class MyCollectionViewCellForRecipes: UICollectionViewCell {
 
                  DispatchQueue.main.async {
                      self.image.image = UIImage(data: imageData)
-                     self.image.contentMode = .scaleAspectFill
+                     self.image.contentMode = .scaleToFill
                  }
                }.resume()
              }
@@ -83,7 +83,7 @@ class MyCollectionViewCellForRecipes: UICollectionViewCell {
     
     func setLabelCalories(calories: Double) {
         //labelForIngredients.textInsets = UIEdgeInsets(top: 0, left: 4, bottom: 0, right: 0)
-        labelForCalories.backgroundColor = .black
+        labelForCalories.backgroundColor = .white
         labelForCalories.font = UIFont(name: "Vasek", size: 1000)
         labelForCalories.numberOfLines = 1
         labelForCalories.adjustsFontSizeToFitWidth = true
@@ -99,10 +99,10 @@ class MyCollectionViewCellForRecipes: UICollectionViewCell {
     func setConstrainsForImage() {
         image.translatesAutoresizingMaskIntoConstraints = false
         
-        image.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 100).isActive = true
+        image.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 0).isActive = true
         image.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -230).isActive = true
         image.topAnchor.constraint(equalTo: self.topAnchor, constant: 100).isActive = true
-        image.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -100).isActive = true
+        image.rightAnchor.constraint(equalTo: self.rightAnchor, constant: 0).isActive = true
     }
     
     func setConstrainsForNameLabel() {

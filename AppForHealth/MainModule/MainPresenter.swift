@@ -13,6 +13,7 @@ protocol MainPresenterProtocol: AnyObject {
     func didExit()
     
     func didTapRecipesButton()
+    func didTapWaterButton()
 }
 
 class MainPresenter {
@@ -41,6 +42,10 @@ extension MainPresenter: MainPresenterProtocol {
     func didTapRecipesButton() {
         print("Presenter BBBBBBB")
         router.openRecipes()
+    }
+    
+    func didTapWaterButton() {
+        router.openWater()
     }
     
 }

@@ -23,8 +23,9 @@ extension OnboardVC: OnboardVCProtocol {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .brown
-        createImage()
+//        view.backgroundColor = .brown
+//        createImage()
+        presenter?.viewDidLoaded(viewOfOnboard: viewOfOnboard, vc: self)
             
     }
     
@@ -96,14 +97,14 @@ extension OnboardVC: OnboardVCProtocol {
     }
 
     
-    func createImage() {
-        viewOfOnboard.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(viewOfOnboard)
-        
-        
-        viewOfOnboard.rightAnchor.constraint(equalTo: view.rightAnchor, constant: 0).isActive = true
-        viewOfOnboard.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 0).isActive = true
-        viewOfOnboard.topAnchor.constraint(equalTo: view.topAnchor, constant: 0).isActive = true
-        viewOfOnboard.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0).isActive = true
-    }
+//    func createImage(view: UIView) {
+//        viewOfOnboard.translatesAutoresizingMaskIntoConstraints = false
+//        view.addSubview(viewOfOnboard)
+//        
+//        
+//        viewOfOnboard.rightAnchor.constraint(equalTo: view.rightAnchor, constant: 0).isActive = true
+//        viewOfOnboard.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 0).isActive = true
+//        viewOfOnboard.topAnchor.constraint(equalTo: view.topAnchor, constant: 0).isActive = true
+//        viewOfOnboard.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0).isActive = true
+//    }
 }
