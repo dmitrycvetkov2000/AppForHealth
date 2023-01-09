@@ -142,6 +142,9 @@ extension MainViewController: UICollectionViewDelegate {
         if indexPath.row == 1 {
             presenter?.didTapWaterButton()
         }
+        if indexPath.row == 2 {
+            presenter?.didTapSettingsButton()
+        }
         
     }
 }

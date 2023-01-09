@@ -14,6 +14,11 @@ class HelperForRecipes: NSObject {
     var model = ModelOfDataForCollectionViewRecipes()
     
     weak var viewController: RecipesVC?
+    
+//    private lazy var spinner: CustomSpinnerSimple = {
+//            let spinner = CustomSpinnerSimple(squareLength: 100)
+//            return spinner
+//        }()
 }
 
 
@@ -34,7 +39,7 @@ extension HelperForRecipes: UICollectionViewDataSource {
         }
         if model.imageOfFoodUrl.count > indexPath.item {
             if let imageUrl = model.imageOfFoodUrl[indexPath.item] {
-                    cell?.setImage(url: imageUrl)
+                cell?.setImage(url: imageUrl)
             }
         }
         if model.calories.count > indexPath.item {

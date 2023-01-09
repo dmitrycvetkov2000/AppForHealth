@@ -49,11 +49,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 } else {
                     DispatchQueue.main.async {
                         
-                        if CoreDataManager.instance.isEmptyCoreData() {
+                        if CoreDataManager.instance.isEmptyCoreData() && (Auth.auth().currentUser != nil) {
                             let vc = ParametrsModuleBuilder.build()
                             window.rootViewController = vc
                             window.makeKeyAndVisible()
-                        } else {
+                        } else if !CoreDataManager.instance.isEmptyCoreData() && (Auth.auth().currentUser != nil) {
                             let vc = MainModuleBuilder.build()
                             window.rootViewController = vc
                             window.makeKeyAndVisible()

@@ -9,7 +9,7 @@ import Foundation
 
 struct ModelOfDataForCollectionView {
 
-    let image: [String?] = ["Рецепты", "Вода"]
-    var name: [String?] = ["Рецепты", "Вода"]
-    let number: [String?] = ["1", "2"]
+    let image: [String?] = ["Рецепты", "Вода", "Настройки"]
+    var name: [String?] = ["Рецепты", "Вода", "Настройки"]
+    let number: [String?] = ["1", "2", "3"]
 }

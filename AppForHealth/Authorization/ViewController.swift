@@ -15,6 +15,18 @@ protocol AuthorizationViewProtocol: AnyObject {
 class ViewController: UIViewController {
     var presenter: AuthorizationPresenterProtocol?
     
+    let blurEffect = UIBlurEffect(style: UIBlurEffect.Style.dark)
+    
+    private lazy var blurEffectView: UIVisualEffectView = {
+        let blurView = UIVisualEffectView(effect: blurEffect)
+        return blurView
+    }()
+    
+    private lazy var spinner: CustomSpinnerSimple = {
+            let spinner = CustomSpinnerSimple(squareLength: 100)
+            return spinner
+        }()
+    
     var signup: Bool = true {
         willSet {
             if newValue {
@@ -51,7 +63,6 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         presenter?.viewDidLoaded()
-        
         
         nameTextField.delegate = self
         emailTextField.delegate = self
@@ -103,7 +114,12 @@ extension ViewController: UITextFieldDelegate {
         if(signup) {
             if(!name.isEmpty && !email.isEmpty && !password.isEmpty) {
                 
-                presenter?.didRegistration(name: name, email: email, password: password, presenter: self.presenter)
+                if password.count < 6 {
+                    presenter?.showAlertForParol(vc: self)
+                } else {
+                    presenter?.showSpinnerAndBlackoutScreen(vc: self, spinner: spinner, blurEffectView: blurEffectView)
+                    presenter?.didRegistration(name: name, email: email, password: password, presenter: self.presenter, vc: self, spinner: spinner, blurEffectView: blurEffectView)
+                }
                 
             } else {
                 if textField == nameTextField {

@@ -23,31 +23,49 @@ class RecipesVC: UIViewController {
     
     var stroke = [String]()
     
+
+    private lazy var spinner: CustomSpinnerSimple = {
+            let spinner = CustomSpinnerSimple(squareLength: 100)
+            return spinner
+        }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .magenta
         
         print("SSSSSSSSS")
+//        DispatchQueue.main.async {
+//            //self.view.addSubview(self.spinner)
+//            self.view.bringSubviewToFront(self.spinner)
+//            self.spinner.startAnimation(delay: 0.04, replicates: 20)
+//        }
         ApiManager.shared.getInfo { recipes in
             
  
             for j in 0..<(recipes.hits?.count ?? 0) {
                 for i in 0..<(recipes.hits?[j].recipe?.ingredients?.count ?? 0) {
-                    print(recipes.hits?[j].recipe?.ingredients?[i].text)
-                    self.stroke.insert((recipes.hits?[j].recipe?.ingredients?[i].text ?? "Null"), at: j)
+                    //print(recipes.hits?[j].recipe?.ingredients?[i].text)
+                    if i == 0 {
+                        self.stroke.insert((recipes.hits?[j].recipe?.ingredients?[i].text ?? "Null"), at: j)
+                    } else {
+                        self.stroke[j].append((", \(recipes.hits?[j].recipe?.ingredients?[i].text ?? "Null")" ))
+                    }
                 }
+                print("RRRRRREEEE \(self.stroke[j])")
                 self.strIng.insert(self.stroke[j], at: j)
                 self.helper.model.ingredients.insert(self.strIng[j], at: j)
                 
                 self.helper.model.nameOfFood.insert(recipes.hits?[j].recipe?.label, at: j)
                 
-                self.helper.model.calories.insert(recipes.hits?[j].recipe?.calories, at: j)
+                self.helper.model.calories.insert(Int(recipes.hits?[j].recipe?.calories ?? 0), at: j)
                 
                 self.helper.model.imageOfFoodUrl.insert(recipes.hits?[j].recipe?.image, at: j)
             }
             
             DispatchQueue.main.async {
                 self.setCollectView()
+//                self.view.bringSubviewToFront(self.spinner)
+//                self.spinner.startAnimation(delay: 0.04, replicates: 20)
             }
             
         }

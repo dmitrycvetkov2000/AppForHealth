@@ -12,6 +12,7 @@ protocol MainRouterProtocol: AnyObject {
     func openFirstScreen()
     func openRecipes()
     func openWater()
+    func openSettings()
 }
 
 class MainRouter: MainRouterProtocol {
@@ -34,6 +35,13 @@ class MainRouter: MainRouterProtocol {
     
     func openWater() {
         let vc = WaterModuleBuilder.build()
+        vc.modalPresentationStyle = .popover
+        print("EEEEERRRRRR")
+        viewController?.present(vc, animated: true)
+    }
+    
+    func openSettings() {
+        let vc = SettingModuleBuilder.build()
         vc.modalPresentationStyle = .popover
         print("EEEEERRRRRR")
         viewController?.present(vc, animated: true)

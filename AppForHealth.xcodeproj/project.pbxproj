@@ -37,6 +37,11 @@
 		0A7F0BCF296B52FE00327875 /* WaterRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7F0BCE296B52FE00327875 /* WaterRouter.swift */; };
 		0A7F0BD1296B536300327875 /* WaterInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7F0BD0296B536300327875 /* WaterInteractor.swift */; };
 		0A7F0BD3296B53C300327875 /* WaterModuleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7F0BD2296B53C300327875 /* WaterModuleBuilder.swift */; };
+		0A7F0BD9296C467B00327875 /* SettingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7F0BD8296C467B00327875 /* SettingVC.swift */; };
+		0A7F0BDB296C46F000327875 /* SettingPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7F0BDA296C46F000327875 /* SettingPresenter.swift */; };
+		0A7F0BDD296C478300327875 /* SettingRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7F0BDC296C478300327875 /* SettingRouter.swift */; };
+		0A7F0BDF296C47E400327875 /* SettingInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7F0BDE296C47E400327875 /* SettingInteractor.swift */; };
+		0A7F0BE1296C484800327875 /* SettingModuleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7F0BE0296C484800327875 /* SettingModuleBuilder.swift */; };
 		0A9F2AB3294A044C004662F7 /* AuthorizationPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9F2AB2294A044C004662F7 /* AuthorizationPresenter.swift */; };
 		0A9F2AB5294A05C7004662F7 /* AuthorizationRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9F2AB4294A05C7004662F7 /* AuthorizationRouter.swift */; };
 		0A9F2AB7294A0638004662F7 /* AuthorizationInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9F2AB6294A0638004662F7 /* AuthorizationInteractor.swift */; };
@@ -126,6 +131,11 @@
 		0A7F0BCE296B52FE00327875 /* WaterRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaterRouter.swift; sourceTree = "<group>"; };
 		0A7F0BD0296B536300327875 /* WaterInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaterInteractor.swift; sourceTree = "<group>"; };
 		0A7F0BD2296B53C300327875 /* WaterModuleBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaterModuleBuilder.swift; sourceTree = "<group>"; };
+		0A7F0BD8296C467B00327875 /* SettingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingVC.swift; sourceTree = "<group>"; };
+		0A7F0BDA296C46F000327875 /* SettingPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingPresenter.swift; sourceTree = "<group>"; };
+		0A7F0BDC296C478300327875 /* SettingRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingRouter.swift; sourceTree = "<group>"; };
+		0A7F0BDE296C47E400327875 /* SettingInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingInteractor.swift; sourceTree = "<group>"; };
+		0A7F0BE0296C484800327875 /* SettingModuleBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingModuleBuilder.swift; sourceTree = "<group>"; };
 		0A9F2AB2294A044C004662F7 /* AuthorizationPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationPresenter.swift; sourceTree = "<group>"; };
 		0A9F2AB4294A05C7004662F7 /* AuthorizationRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationRouter.swift; sourceTree = "<group>"; };
 		0A9F2AB6294A0638004662F7 /* AuthorizationInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationInteractor.swift; sourceTree = "<group>"; };
@@ -271,6 +281,7 @@
 		0A3CA824293E4F2000EDBFF9 /* AppForHealth */ = {
 			isa = PBXGroup;
 			children = (
+				0A7F0BD7296C466400327875 /* Settings */,
 				0A7F0BC9296B50F900327875 /* Water */,
 				0AD06144295BED6700B67453 /* Recipes */,
 				0A7D6BC9294FE22B00E50542 /* ResultScreen */,
@@ -343,6 +354,18 @@
 				0A7F0BD2296B53C300327875 /* WaterModuleBuilder.swift */,
 			);
 			path = Water;
+			sourceTree = "<group>";
+		};
+		0A7F0BD7296C466400327875 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				0A7F0BD8296C467B00327875 /* SettingVC.swift */,
+				0A7F0BDA296C46F000327875 /* SettingPresenter.swift */,
+				0A7F0BDC296C478300327875 /* SettingRouter.swift */,
+				0A7F0BDE296C47E400327875 /* SettingInteractor.swift */,
+				0A7F0BE0296C484800327875 /* SettingModuleBuilder.swift */,
+			);
+			path = Settings;
 			sourceTree = "<group>";
 		};
 		0A9F2ABC294A6946004662F7 /* Constrains */ = {
@@ -675,6 +698,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0A7F0BDD296C478300327875 /* SettingRouter.swift in Sources */,
 				0A9F2AB9294A06D4004662F7 /* AuthorizationModuleBuilder.swift in Sources */,
 				0A7D6BCB294FE24700E50542 /* ResultVC.swift in Sources */,
 				0A7D6BC5294FD98500E50542 /* Person+CoreDataProperties copy.swift in Sources */,
@@ -682,6 +706,8 @@
 				0A9F2AB5294A05C7004662F7 /* AuthorizationRouter.swift in Sources */,
 				0AD0614C295BEF0F00B67453 /* RecipesInteractor.swift in Sources */,
 				0A9F2AB3294A044C004662F7 /* AuthorizationPresenter.swift in Sources */,
+				0A7F0BDB296C46F000327875 /* SettingPresenter.swift in Sources */,
+				0A7F0BD9296C467B00327875 /* SettingVC.swift in Sources */,
 				0AD06146295BED9E00B67453 /* RecipesVC.swift in Sources */,
 				0A7D6BBA294E80AE00E50542 /* ParametrsVC.swift in Sources */,
 				0A7D6BC6294FD98500E50542 /* Person+CoreDataClass copy.swift in Sources */,
@@ -699,6 +725,7 @@
 				0AD06154295CC86C00B67453 /* Recipes.swift in Sources */,
 				0A7D6BD3294FE4B000E50542 /* ResultModuleBuilder.swift in Sources */,
 				0AE52FD6294BF5B400915663 /* CustomSpinnerSimple.swift in Sources */,
+				0A7F0BE1296C484800327875 /* SettingModuleBuilder.swift in Sources */,
 				0A7D6BB7294E685D00E50542 /* FirebaseService.swift in Sources */,
 				0A3CA859293E5C7500EDBFF9 /* SplashScreenPresenter.swift in Sources */,
 				0AE52FD0294BC0C800915663 /* OnboardRouter.swift in Sources */,
@@ -721,6 +748,7 @@
 				0A7D6BBC294E812300E50542 /* ParametrsPresenter.swift in Sources */,
 				0AD06150295CB5CC00B67453 /* ApiManager.swift in Sources */,
 				0AD06141295BC67C00B67453 /* MyCollectionViewCell.swift in Sources */,
+				0A7F0BDF296C47E400327875 /* SettingInteractor.swift in Sources */,
 				0AD06148295BEE1B00B67453 /* RecipesPresenter.swift in Sources */,
 				0AC71116295D268900BD18EA /* ModelOfDataForCollectionViewRecipes.swift in Sources */,
 				0A3CA85B293E61D900EDBFF9 /* LaunchScreen.swift in Sources */,

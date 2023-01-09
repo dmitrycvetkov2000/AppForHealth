@@ -9,11 +9,11 @@ import Foundation
 import Firebase
 
 class FirebaseService {
-    func signOutFromAcc(presenter: MainPresenterProtocol?) {
+    func signOutFromAcc(presenter: SettingPresenterProtocol?) {
         do {
             try Auth.auth().signOut()
             DispatchQueue.main.async {
-                presenter?.didTapExitButton()
+                presenter?.didTapOnExitButton()
                 print("SSSSSS")
             }
             
@@ -23,7 +23,13 @@ class FirebaseService {
     }
     
     
-    func registration(name: String, email: String, password: String, presenter: AuthorizationPresenterProtocol?) {
+    func registration(name: String, email: String, password: String, presenter: AuthorizationPresenterProtocol?, vc: UIViewController, spinner: CustomSpinnerSimple, blurEffectView: UIVisualEffectView) {
+        //let blurEffectView = UIVisualEffectView(effect: blurEffect)
+        
+        let alert = UIAlertController(title: "Ошибка регистрации", message: "Проверьте корректность email адреса или интернет соединения", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Ок", style: .default))
+        
+        
         Auth.auth().createUser(withEmail: email, password: password) { result, error in
             if error == nil {
                 if let result = result {
@@ -33,7 +39,17 @@ class FirebaseService {
                     //Переход на другой экран нужно сделать
                     presenter?.didTapDoneButtonFromRegistration()
                 }
+            } else {
+                
+                blurEffectView.isHidden = true
+                spinner.stopAnimation()
+                spinner.isHidden = true
+                
+                vc.present(alert, animated: true, completion: nil)
+                print("SSSSSSUUUULKKKKAKAKA")
+                print(error)
             }
+            
         }
     }
     

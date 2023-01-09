@@ -9,11 +9,12 @@ import Foundation
 
 protocol MainPresenterProtocol: AnyObject {
     func viewDidLoad()
-    func didTapExitButton()
-    func didExit()
+    //func didTapExitButton()
+    //func didExit()
     
     func didTapRecipesButton()
     func didTapWaterButton()
+    func didTapSettingsButton()
 }
 
 class MainPresenter {
@@ -31,13 +32,13 @@ extension MainPresenter: MainPresenterProtocol {
     func viewDidLoad() {
         
     }
-    func didTapExitButton() {
-        router.openFirstScreen()
-    }
-    
-    func didExit() {
-        interactor.signOut()
-    }
+//    func didTapExitButton() {
+//        router.openFirstScreen()
+//    }
+//
+//    func didExit() {
+//        interactor.signOut()
+//    }
     
     func didTapRecipesButton() {
         print("Presenter BBBBBBB")
@@ -46,6 +47,10 @@ extension MainPresenter: MainPresenterProtocol {
     
     func didTapWaterButton() {
         router.openWater()
+    }
+    
+    func didTapSettingsButton() {
+        router.openSettings()
     }
     
 }

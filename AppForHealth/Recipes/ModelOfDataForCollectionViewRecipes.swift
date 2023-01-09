@@ -11,6 +11,6 @@ class ModelOfDataForCollectionViewRecipes {
     var imageOfFoodUrl = [String?]()
     
     var nameOfFood = [String?]()
-    var calories = [Double?]()
+    var calories = [Int?]()
     var ingredients = [String?]()
 }

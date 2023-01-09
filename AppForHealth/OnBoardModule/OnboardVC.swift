@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Firebase
 
 protocol OnboardVCProtocol: AnyObject {
     
@@ -25,7 +26,20 @@ extension OnboardVC: OnboardVCProtocol {
         super.viewDidLoad()
 //        view.backgroundColor = .brown
 //        createImage()
+        
+        
+        // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//        do {
+//          try Auth.auth().signOut()
+//        } catch let signOutError as NSError {
+//          print ("Error signing out: %@", signOutError)
+//        }
+        
+        //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        
         presenter?.viewDidLoaded(viewOfOnboard: viewOfOnboard, vc: self)
+        
+        print("SSSSSSSSSS AAAAAA  \(Auth.auth().currentUser)")
             
     }
     
