@@ -134,7 +134,8 @@ extension ViewController: UITextFieldDelegate {
             }
         } else {
             if(!email.isEmpty && !password.isEmpty) {
-                presenter?.didEntrance(email: email, password: password, presenter: self.presenter)
+                presenter?.showSpinnerAndBlackoutScreen(vc: self, spinner: spinner, blurEffectView: blurEffectView)
+                presenter?.didEntrance(email: email, password: password, presenter: self.presenter, vc: self, spinner: spinner, blurEffectView: blurEffectView)
             }
         }
         return true

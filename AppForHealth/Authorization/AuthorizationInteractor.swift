@@ -13,7 +13,7 @@ protocol AuthorizationInteractorProtocol: AnyObject {
     
     func registration(name: String, email: String, password: String, presenter: AuthorizationPresenterProtocol?, vc: UIViewController, spinner: CustomSpinnerSimple, blurEffectView: UIVisualEffectView)
     
-    func entranceInAcc(email: String, password: String, presenter: AuthorizationPresenterProtocol?)
+    func entranceInAcc(email: String, password: String, presenter: AuthorizationPresenterProtocol?, vc: UIViewController, spinner: CustomSpinnerSimple, blurEffectView: UIVisualEffectView)
     
     func checkCoreDataIsEmpty() -> Bool
 }
@@ -32,8 +32,8 @@ class AuthorizationInteractor: AuthorizationInteractorProtocol {
         firebaseService.registration(name: name, email: email, password: password, presenter: presenter, vc: vc, spinner: spinner, blurEffectView: blurEffectView)
     }
     
-    func entranceInAcc(email: String, password: String, presenter: AuthorizationPresenterProtocol?) {
-        firebaseService.entrance(email: email, password: password, presenter: presenter)
+    func entranceInAcc(email: String, password: String, presenter: AuthorizationPresenterProtocol?, vc: UIViewController, spinner: CustomSpinnerSimple, blurEffectView: UIVisualEffectView) {
+        firebaseService.entrance(email: email, password: password, presenter: presenter, vc: vc, spinner: spinner, blurEffectView: blurEffectView)
     }
     
     func checkCoreDataIsEmpty() -> Bool {

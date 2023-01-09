@@ -17,7 +17,7 @@ protocol AuthorizationPresenterProtocol: AnyObject {
     func didLoad(date: String?)
     
     func didRegistration(name: String, email: String, password: String, presenter: AuthorizationPresenterProtocol?, vc: UIViewController, spinner: CustomSpinnerSimple, blurEffectView: UIVisualEffectView)
-    func didEntrance(email: String, password: String, presenter: AuthorizationPresenterProtocol?)
+    func didEntrance(email: String, password: String, presenter: AuthorizationPresenterProtocol?, vc: UIViewController, spinner: CustomSpinnerSimple, blurEffectView: UIVisualEffectView)
     
     func showAlert(vc: UIViewController)
     func showSpinnerAndBlackoutScreen(vc: UIViewController, spinner: CustomSpinnerSimple, blurEffectView: UIVisualEffectView)
@@ -63,8 +63,8 @@ extension AuthorizationPresenter: AuthorizationPresenterProtocol {
         interactor.registration(name: name, email: email, password: password, presenter: self, vc: vc, spinner: spinner, blurEffectView: blurEffectView)
     }
     
-    func didEntrance(email: String, password: String, presenter: AuthorizationPresenterProtocol?) {
-        interactor.entranceInAcc(email: email, password: password, presenter: self)
+    func didEntrance(email: String, password: String, presenter: AuthorizationPresenterProtocol?, vc: UIViewController, spinner: CustomSpinnerSimple, blurEffectView: UIVisualEffectView) {
+        interactor.entranceInAcc(email: email, password: password, presenter: self, vc: vc, spinner: spinner, blurEffectView: blurEffectView)
     }
     
     func showAlert(vc: UIViewController) {
