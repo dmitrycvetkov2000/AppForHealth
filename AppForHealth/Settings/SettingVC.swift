@@ -22,8 +22,6 @@ class SettingVC: UIViewController {
         view.backgroundColor = .white
         createButtonForExit(buttonForExit)
         createConstraintsForButtonForExit(buttonForExit)
-        
-        
     }
     
     @objc func exitAction() {

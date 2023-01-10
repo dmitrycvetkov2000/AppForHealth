@@ -15,8 +15,6 @@ class LaunchScreen: UIViewController {
     var mainPicture = UIImageView()
     var textPicture = UILabel()
     
-
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,10 +33,6 @@ class LaunchScreen: UIViewController {
         createProgressLabelConstraint()
         createProgressViewConstraint()
         
-        
-        //view.addSubview(spinner)
-        //spinner.startAnimation(delay: 0.04, replicates: 20)
-
     }
 
     
@@ -71,7 +65,7 @@ extension LaunchScreen {
         percentLabel.textColor = .white
         percentLabel.textAlignment = .left
         percentLabel.text = "0%"
-        //percentLabel.adjustsFontSizeToFitWidth = true
+        
         self.view.addSubview(percentLabel)
     }
     
@@ -94,7 +88,6 @@ extension LaunchScreen {
     func createProgressLabelConstraint(){
         percentLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         percentLabel.topAnchor.constraint(equalTo: textPicture.bottomAnchor, constant: 120).isActive = true
-        //percentLabel.bottomAnchor.constraint(equalTo: progressLine.topAnchor, constant: -8).isActive = true
         percentLabel.heightAnchor.constraint(equalToConstant: 30).isActive = true
     }
     
@@ -104,7 +97,6 @@ extension LaunchScreen {
         progressLine.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 90).isActive = true
         progressLine.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -90).isActive = true
         progressLine.heightAnchor.constraint(equalToConstant: 16).isActive = true
-        //progressLine.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -130).isActive = true
         progressLine.topAnchor.constraint(equalTo: percentLabel.bottomAnchor, constant: 0).isActive = true
     }
     
@@ -118,11 +110,9 @@ extension LaunchScreen {
     func createTextLabel(_ label: UILabel){
         textPicture.translatesAutoresizingMaskIntoConstraints = false
         
-        
         textPicture.font = UIFont(name: "Vasek", size: 1000)
         textPicture.numberOfLines = 1
         textPicture.adjustsFontSizeToFitWidth = true
-        //textPicture.sizeToFit()
         textPicture.textAlignment = .center
         textPicture.text = "Здоровье"
         textPicture.textColor = #colorLiteral(red: 0, green: 0.3431890011, blue: 0, alpha: 1)
@@ -137,9 +127,7 @@ extension LaunchScreen {
     }
     
 
-
     func createTextLabelConstraint(){
-        //textPicture.bottomAnchor.constraint(equalTo: percentLabel.topAnchor, constant: -126).isActive = true
         textPicture.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 75).isActive = true
         textPicture.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -75).isActive = true
         textPicture.topAnchor.constraint(equalTo: mainPicture.bottomAnchor, constant: -80).isActive = true

@@ -6,8 +6,6 @@
 //
 
 import UIKit
-import CoreData
-
 
 protocol WaterVCProtocol: AnyObject {
     
@@ -23,11 +21,6 @@ class WaterVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         presenter?.viewDidLoaded()
-//        presenter?.createLabelNumberOfWater(labelNumberOfWater, self)
-//        presenter?.createLabelNumberOfWaterConstraints(labelNumberOfWater, self)
-//        presenter?.createButtonForWater(buttonIncWater, self)
-//        createLabelNumberOfWater(labelNumberOfWater)
-//        createLabelNumberOfWaterConstraints(labelNumberOfWater)
         createButtonForWater(buttonIncWater, self)
         
         view.backgroundColor = .blue
@@ -38,14 +31,11 @@ class WaterVC: UIViewController {
         createLabelNumberOfWater(labelNumberOfWater)
         createLabelNumberOfWaterConstraints(labelNumberOfWater)
     }
-    
-    
 }
 
 extension WaterVC: WaterVCProtocol {
     func createLabelNumberOfWater(_ label: UILabel) {
-        
-        
+    
         view.addSubview(label)
         
         label.font = UIFont(name: "Vasek", size: 1000)
@@ -55,17 +45,7 @@ extension WaterVC: WaterVCProtocol {
         label.textAlignment = .center
         label.textColor = .white
         
-        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Person")
-        do {
-            let results = try CoreDataManager.instance.context.fetch(fetchRequest)
-            for result in results as! [Person] {
-                numberML = result.numberOfWater
-            }
-        } catch {
-            print(error)
-        }
-        
-        label.text = "\(numberML) мл"
+        label.text = "\(presenter?.countingTheAmountOfWater() ?? 0) мл"
         
     }
     func createLabelNumberOfWaterConstraints(_ label: UILabel) {
@@ -91,19 +71,11 @@ extension WaterVC: WaterVCProtocol {
         button.centerYAnchor.constraint(equalTo: vc.view.centerYAnchor).isActive = true
         button.widthAnchor.constraint(equalToConstant: 200).isActive = true
         button.heightAnchor.constraint(equalToConstant: 100).isActive = true
-        
-//        button.topAnchor.constraint(equalTo: vc.view.topAnchor, constant: 10).isActive = true
-//        button.leftAnchor.constraint(equalTo: vc.view.leftAnchor, constant: 10).isActive = true
-//        button.rightAnchor.constraint(equalTo: vc.view.rightAnchor, constant: -10).isActive = true
-//        button.heightAnchor.constraint(equalToConstant: 62).isActive = true
-        
-        
+    
     }
     func incWater() -> Int16 {
         numberML += 100
         labelNumberOfWater.text = "\(numberML) мл"
-        
-        
         return numberML
     }
     
@@ -111,8 +83,6 @@ extension WaterVC: WaterVCProtocol {
         let managedObject = Person()
         
         incWater()
-//        numberML += 100
-//        labelNumberOfWater.text = "\(numberML) мл"
         
         managedObject.numberOfWater = numberML
         

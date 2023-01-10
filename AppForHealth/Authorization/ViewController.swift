@@ -6,10 +6,9 @@
 //
 
 import UIKit
-//import Firebase
 
 protocol AuthorizationViewProtocol: AnyObject {
-    //func showDate(date: String)
+
 }
 
 class ViewController: UIViewController {
@@ -45,10 +44,6 @@ class ViewController: UIViewController {
     
     let constrains = ConstrainsOfAuth()
     
-    
-    
-    //var dateLabel = UILabel()
-    
     var registrationLabel = UILabel()
     var otherLabel = UILabel()
     
@@ -68,7 +63,6 @@ class ViewController: UIViewController {
         emailTextField.delegate = self
         passwordTextField.delegate = self
         
-        print("ViewController()")
         self.view.backgroundColor = #colorLiteral(red: 0.1960784346, green: 0.3411764801, blue: 0.1019607857, alpha: 1)
         
         createLabel(registrationLabel)
@@ -91,21 +85,10 @@ class ViewController: UIViewController {
 
 
 extension ViewController: AuthorizationViewProtocol {
-//    func showDate(date: String) {
-//        DispatchQueue.main.async {
-//            //self.createLabel(self.dateLabel)
-//            //self.dateLabel.text = date
-//            //self.constrains.createDateLabelConstraints(self.dateLabel, self.view)
-//        }
-//    }
+
 }
 
 extension ViewController: UITextFieldDelegate {
-//    func showAlert() {
-//        let alert = UIAlertController(title: "Ошибка", message: "Заполните все поля", preferredStyle: .alert)
-//        alert.addAction(UIAlertAction(title: "Ок", style: .default))
-//        present(alert, animated: true, completion: nil)
-//    }
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         let name = nameTextField.text!
         let email = emailTextField.text!

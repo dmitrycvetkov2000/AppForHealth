@@ -14,7 +14,6 @@ class FirebaseService {
             try Auth.auth().signOut()
             DispatchQueue.main.async {
                 presenter?.didTapOnExitButton()
-                print("SSSSSS")
             }
             
         } catch {
@@ -24,7 +23,6 @@ class FirebaseService {
     
     
     func registration(name: String, email: String, password: String, presenter: AuthorizationPresenterProtocol?, vc: UIViewController, spinner: CustomSpinnerSimple, blurEffectView: UIVisualEffectView) {
-        //let blurEffectView = UIVisualEffectView(effect: blurEffect)
         
         let alert = UIAlertController(title: "Ошибка регистрации", message: "Проверьте корректность email адреса или интернет соединения", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Ок", style: .default))
@@ -36,7 +34,7 @@ class FirebaseService {
                     print(result.user.uid)
                     let ref = Database.database().reference().child("users")
                     ref.child(result.user.uid).updateChildValues(["name" : name, "email" : email])
-                    //Переход на другой экран нужно сделать
+                    //Переход на другой экран
                     presenter?.didTapDoneButtonFromRegistration()
                 }
             } else {
@@ -46,7 +44,6 @@ class FirebaseService {
                 spinner.isHidden = true
                 
                 vc.present(alert, animated: true, completion: nil)
-                print("SSSSSSUUUULKKKKAKAKA")
                 print(error)
             }
             
@@ -61,7 +58,7 @@ class FirebaseService {
         Auth.auth().signIn(withEmail: email, password: password) { result, error in
             if error == nil {
                 print("Выполняется вход")
-                //Переход на другой экран нужно сделать
+                //Переход на другой экран 
                 presenter?.didTapDoneButton()
             } else {
                 blurEffectView.isHidden = true

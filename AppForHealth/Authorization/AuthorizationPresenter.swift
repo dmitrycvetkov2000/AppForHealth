@@ -10,11 +10,8 @@ import UIKit
 protocol AuthorizationPresenterProtocol: AnyObject {
     func viewDidLoaded()
     
-    
     func didTapDoneButton()
     func didTapDoneButtonFromRegistration()
-    
-    func didLoad(date: String?)
     
     func didRegistration(name: String, email: String, password: String, presenter: AuthorizationPresenterProtocol?, vc: UIViewController, spinner: CustomSpinnerSimple, blurEffectView: UIVisualEffectView)
     func didEntrance(email: String, password: String, presenter: AuthorizationPresenterProtocol?, vc: UIViewController, spinner: CustomSpinnerSimple, blurEffectView: UIVisualEffectView)
@@ -51,12 +48,9 @@ extension AuthorizationPresenter: AuthorizationPresenterProtocol {
     }
     
     func viewDidLoaded() {
-        interactor.loadDate()
+
     }
-    
-    func didLoad(date: String?) {
-        //view?.showDate(date: date ?? "No data")
-    }
+
     
     func didRegistration(name: String, email: String, password: String, presenter: AuthorizationPresenterProtocol?, vc: UIViewController, spinner: CustomSpinnerSimple, blurEffectView: UIVisualEffectView) {
         
@@ -74,8 +68,6 @@ extension AuthorizationPresenter: AuthorizationPresenterProtocol {
     }
     
     func showSpinnerAndBlackoutScreen(vc: UIViewController, spinner: CustomSpinnerSimple, blurEffectView: UIVisualEffectView) {
-//        let blurEffect = UIBlurEffect(style: UIBlurEffect.Style.dark)
-        //let blurEffectView = UIVisualEffectView(effect: blurEffect)
         blurEffectView.alpha = 0.8
         blurEffectView.frame = vc.view.bounds
         blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]

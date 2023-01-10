@@ -15,7 +15,6 @@ class ResultRouter: ResultRouterProtocol {
     weak var viewController: ResultVC?
     
     func openMain() {
-        print("openMainopenMainopenMainopenMainopenMainopenMainopenMainopenMain")
         let vc = MainModuleBuilder.build()
         vc.modalPresentationStyle = .fullScreen
         viewController?.present(vc, animated: true)

@@ -29,21 +29,18 @@ class MainRouter: MainRouterProtocol {
     func openRecipes() {
         let vc = RecipesModuleBuilder.build()
         vc.modalPresentationStyle = .popover
-        print("EEEEERRRRRR")
         viewController?.present(vc, animated: true)
     }
     
     func openWater() {
         let vc = WaterModuleBuilder.build()
         vc.modalPresentationStyle = .popover
-        print("EEEEERRRRRR")
         viewController?.present(vc, animated: true)
     }
     
     func openSettings() {
         let vc = SettingModuleBuilder.build()
         vc.modalPresentationStyle = .popover
-        print("EEEEERRRRRR")
         viewController?.present(vc, animated: true)
     }
 }

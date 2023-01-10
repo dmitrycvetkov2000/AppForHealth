@@ -6,9 +6,12 @@
 //
 
 import UIKit
+import CoreData
 
 protocol WaterPresenterProtocol: AnyObject {
     func viewDidLoaded()
+    
+    func countingTheAmountOfWater() -> Int
     
 }
 
@@ -30,51 +33,18 @@ extension WaterPresenter: WaterPresenterProtocol {
         
     }
     
-    
-//    func createLabelNumberOfWater(_ label: UILabel, _ vc: UIViewController) {
-//        
-//        
-//        vc.view.addSubview(label)
-//        
-//        label.font = UIFont(name: "Vasek", size: 1000)
-//        label.numberOfLines = 1
-//        label.adjustsFontSizeToFitWidth = true
-//        
-//        label.textAlignment = .left
-//        label.textColor = .white
-//        label.text = "0"
-//        
-//    }
-//    
-//    func createLabelNumberOfWaterConstraints(_ label: UILabel, _ vc: UIViewController) {
-//        label.translatesAutoresizingMaskIntoConstraints = false
-//        
-//        label.topAnchor.constraint(equalTo: vc.view.topAnchor, constant: 10).isActive = true
-//        label.leftAnchor.constraint(equalTo: vc.view.leftAnchor, constant: 10).isActive = true
-//        label.rightAnchor.constraint(equalTo: vc.view.rightAnchor, constant: -10).isActive = true
-//        label.heightAnchor.constraint(equalToConstant: 62).isActive = true
-//    }
-//    
-//    func createButtonForWater(_ button: UIButton, _ vc: UIViewController) {
-//        button.translatesAutoresizingMaskIntoConstraints = false
-//        vc.view.addSubview(button)
-//        
-//        button.backgroundColor = .green
-//        
-//        button.setTitle("Выпил стакан воды", for: .normal)
-//        button.setTitleColor(.white, for: .normal)
-//        button.addTarget(self, action: <#T##Selector#>, for: <#T##UIControl.Event#>)
-//        
-//        button.centerXAnchor.constraint(equalTo: vc.view.centerXAnchor).isActive = true
-//        button.centerYAnchor.constraint(equalTo: vc.view.centerYAnchor).isActive = true
-//        button.widthAnchor.constraint(equalToConstant: 200).isActive = true
-//        button.heightAnchor.constraint(equalToConstant: 100).isActive = true
-//        
-////        button.topAnchor.constraint(equalTo: vc.view.topAnchor, constant: 10).isActive = true
-////        button.leftAnchor.constraint(equalTo: vc.view.leftAnchor, constant: 10).isActive = true
-////        button.rightAnchor.constraint(equalTo: vc.view.rightAnchor, constant: -10).isActive = true
-////        button.heightAnchor.constraint(equalToConstant: 62).isActive = true
-//        
-//        
-//    }
+    func countingTheAmountOfWater() -> Int {
+        var numberML: Int16? = 0
+        
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Person")
+        do {
+            let results = try CoreDataManager.instance.context.fetch(fetchRequest)
+            for result in results as! [Person] {
+                numberML = result.numberOfWater
+            }
+        } catch {
+            print(error)
+        }
+        return Int(numberML ?? 0)
+    }
 }

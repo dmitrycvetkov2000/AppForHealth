@@ -9,7 +9,6 @@ import Foundation
 import UIKit
 
 protocol AuthorizationInteractorProtocol: AnyObject {
-    func loadDate()
     
     func registration(name: String, email: String, password: String, presenter: AuthorizationPresenterProtocol?, vc: UIViewController, spinner: CustomSpinnerSimple, blurEffectView: UIVisualEffectView)
     
@@ -24,9 +23,6 @@ class AuthorizationInteractor: AuthorizationInteractorProtocol {
     
     let firebaseService = FirebaseService()
     
-    func loadDate() {
-        self.presenter?.didLoad(date: "21.20.2922")
-    }
     
     func registration(name: String, email: String, password: String, presenter: AuthorizationPresenterProtocol?, vc: UIViewController, spinner: CustomSpinnerSimple, blurEffectView: UIVisualEffectView) {
         firebaseService.registration(name: name, email: email, password: password, presenter: presenter, vc: vc, spinner: spinner, blurEffectView: blurEffectView)

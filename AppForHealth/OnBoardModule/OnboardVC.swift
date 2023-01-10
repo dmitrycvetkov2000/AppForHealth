@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import Firebase
 
 protocol OnboardVCProtocol: AnyObject {
     
@@ -24,28 +23,11 @@ extension OnboardVC: OnboardVCProtocol {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        view.backgroundColor = .brown
-//        createImage()
-        
-        
-        // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-//        do {
-//          try Auth.auth().signOut()
-//        } catch let signOutError as NSError {
-//          print ("Error signing out: %@", signOutError)
-//        }
-        
-        //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-        
         presenter?.viewDidLoaded(viewOfOnboard: viewOfOnboard, vc: self)
-        
-        print("SSSSSSSSSS AAAAAA  \(Auth.auth().currentUser)")
-            
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-
         self.configure()
     }
     
@@ -54,13 +36,6 @@ extension OnboardVC: OnboardVCProtocol {
         viewOfOnboard.addSubview(scrollView)
         
         let titles = ["Welcome", "Second", "Third"]
-//        let label = UILabel(frame: CGRect(x: 10, y: 10, width: 60, height: 120))
-//        label.textAlignment = .center
-//        label.font = UIFont(name: "Vasek", size: 1000)
-//        label.numberOfLines = 1
-//        label.adjustsFontSizeToFitWidth = true
-//        view.addSubview(label)
-//        label.text = "Govno"
         
         for x in 0..<3 {
             let pageView = UIView(frame: CGRect(x: CGFloat(x) * viewOfOnboard.frame.size.width, y: 0, width: viewOfOnboard.frame.size.width, height: viewOfOnboard.frame.size.height))
@@ -91,7 +66,6 @@ extension OnboardVC: OnboardVCProtocol {
             button.addTarget(self, action: #selector(didTapButton(_ :)), for: .touchUpInside)
             button.tag = x + 1
             pageView.addSubview(button)
-            print("TTTTTTTTTT")
             
         }
         
@@ -100,8 +74,6 @@ extension OnboardVC: OnboardVCProtocol {
     }
     @objc func didTapButton(_ button: UIButton) {
         guard button.tag < 3 else {
-            //dissmiss
-            //appDelegate?.window.
             Core.shared.setIsNotNewUser()
             presenter?.didTappedLastButton()
             return
@@ -109,16 +81,4 @@ extension OnboardVC: OnboardVCProtocol {
         scrollView.setContentOffset(CGPoint(x: viewOfOnboard.frame.size.width * CGFloat(button.tag), y: 0), animated: true)
         //scroll to the next page
     }
-
-    
-//    func createImage(view: UIView) {
-//        viewOfOnboard.translatesAutoresizingMaskIntoConstraints = false
-//        view.addSubview(viewOfOnboard)
-//        
-//        
-//        viewOfOnboard.rightAnchor.constraint(equalTo: view.rightAnchor, constant: 0).isActive = true
-//        viewOfOnboard.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 0).isActive = true
-//        viewOfOnboard.topAnchor.constraint(equalTo: view.topAnchor, constant: 0).isActive = true
-//        viewOfOnboard.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0).isActive = true
-//    }
 }

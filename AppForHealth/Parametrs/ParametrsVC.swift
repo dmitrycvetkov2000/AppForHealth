@@ -6,7 +6,6 @@
 //
 
 import UIKit
-//import CoreData
 
 protocol ParametrsVCProtocol: AnyObject {
     
@@ -14,7 +13,6 @@ protocol ParametrsVCProtocol: AnyObject {
 
 class ParametrsVC: UIViewController {
     var presenter: ParametrsPresenterProtocol?
-    
     
     lazy var gender: String? = nil
     
@@ -25,9 +23,6 @@ class ParametrsVC: UIViewController {
     lazy var levelOfActivity: String? = nil
     
     lazy var goal: String? = nil
-    
-    
-    
     
     var labelParametry = UILabel()
     
@@ -63,17 +58,12 @@ class ParametrsVC: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .red
         
-        print("OOOOOOOOOOOOO VC DOWNLOADED")
-        
         createLabelParametry(labelParametry)
         createFirstStackView(firstStackView, button1: menButton, button2: womanButton)
         
         createSecondStackView(secondStackView, textFieldAge: ageTextField, textFieldWeight: weightTextField, textFieldHeight: heightTextField)
         
         createLevelOfActivityLabel(levelOfActivityLabel)
-        //createDescriptionLabelOfActivity(descriptionLebelOfActivity)
-        
-        //createThirdStackView(thirdStackView, label1: levelOfActivityLabel, label2: descriptionLebelOfActivity)
         
         createThourthStackView(fourthStackView, button1: lowButtonActivity, button2: middleButtonActivity, button3: highButtonActivity)
         
@@ -82,12 +72,7 @@ class ParametrsVC: UIViewController {
         createFiveStackView(fiveStackView, button1: loseWeightButton, button2: normalButton, button3: hainWeight)
         
         createSaveButton(saveButton)
-        
-        
-
-        
-        
-        
+           
     }
     
 
@@ -102,9 +87,7 @@ class ParametrsVC: UIViewController {
         gender = "Женщина"
     }
     
-    
-    
-    
+
     @objc func tapOnLowActivityButton() {
         lowButtonActivity.backgroundColor = .white
         middleButtonActivity.backgroundColor = .clear
@@ -126,7 +109,6 @@ class ParametrsVC: UIViewController {
         
         levelOfActivity = "Высокий"
     }
-    
     
     
     @objc func tapONLoseWeightButton() {
@@ -157,15 +139,9 @@ class ParametrsVC: UIViewController {
     @objc func tapOnSaveButton() {
         
         presenter?.didTappedSaveButton(ageTextField: ageTextField, gender: gender ?? "Unknown", goal: goal ?? "Unknown", heightTextField: heightTextField, levelOfActivity: levelOfActivity ?? "Unknown", weightTextField: weightTextField)
-        
-        // Сохранить состояние для базы данных после удаления
-        //appDelegate.saveContext()
-        
-    }
-    
-    
-}
 
+    }
+}
 
 extension ParametrsVC: ParametrsVCProtocol {
     func createLabelParametry(_ label: UILabel) {
@@ -218,11 +194,9 @@ extension ParametrsVC: ParametrsVCProtocol {
         stackView.topAnchor.constraint(equalTo: labelParametry.bottomAnchor, constant: 40).isActive = true
         stackView.heightAnchor.constraint(equalToConstant: 44).isActive = true
         
-        //button1.widthAnchor.constraint(equalToConstant: 20).isActive = true
         button1.heightAnchor.constraint(equalToConstant: 20).isActive = true
         button1.leftAnchor.constraint(equalTo: stackView.leftAnchor, constant: 0).isActive = true
         
-        //button2.widthAnchor.constraint(equalToConstant: 20).isActive = true
         button2.heightAnchor.constraint(equalToConstant: 20).isActive = true
         button2.rightAnchor.constraint(equalTo: stackView.rightAnchor, constant: 0).isActive = true
         
@@ -261,7 +235,6 @@ extension ParametrsVC: ParametrsVCProtocol {
         textFieldAge.leftAnchor.constraint(equalTo: stackView.leftAnchor, constant: 0).isActive = true
         
         textFieldWeight.heightAnchor.constraint(equalToConstant: 20).isActive = true
-        //textFieldWeight.leftAnchor.constraint(equalTo: stackView.leftAnchor, constant: 0).isActive = true
         
         textFieldHeight.heightAnchor.constraint(equalToConstant: 20).isActive = true
         textFieldHeight.rightAnchor.constraint(equalTo: stackView.rightAnchor, constant: 0).isActive = true
@@ -286,69 +259,7 @@ extension ParametrsVC: ParametrsVCProtocol {
         labelOfActivity.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 10).isActive = true
         labelOfActivity.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -10).isActive = true
     }
-    
-//    func createDescriptionLabelOfActivity(_ descriptionLabel: UILabel) {
-//        descriptionLabel.translatesAutoresizingMaskIntoConstraints = false
-//
-//        view.addSubview(descriptionLabel)
-//
-//        descriptionLabel.textColor = .white
-//        descriptionLabel.textAlignment = .left
-//
-//        descriptionLabel.font = UIFont(name: "Vasek", size: 10000)
-//        descriptionLabel.numberOfLines = 0
-//        descriptionLabel.adjustsFontSizeToFitWidth = true
-//        descriptionLabel.text = "kdkdskskskskskskammamamakamakalkakakaakakakakakakakakakakamaamma amamamamamamamamama здесь будет разный текст"
-//
-//        descriptionLabel.topAnchor.constraint(equalTo: levelOfActivityLabel.bottomAnchor, constant: 0).isActive = true
-//        descriptionLabel.heightAnchor.constraint(equalToConstant: 200).isActive = true
-//        descriptionLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 10).isActive = true
-//        descriptionLabel.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -10).isActive = true
-//    }
-    
-//    func createThirdStackView(_ stackView: UIStackView, label1: UILabel, label2: UILabel) {
-//        stackView.translatesAutoresizingMaskIntoConstraints = false
-//        label1.translatesAutoresizingMaskIntoConstraints = false
-//        label2.translatesAutoresizingMaskIntoConstraints = false
-//
-//        view.addSubview(stackView)
-//        stackView.addArrangedSubview(label1)
-//        stackView.addArrangedSubview(label2)
-//        stackView.axis = .vertical
-//        stackView.spacing = 10
-//
-//        label1.textColor = .white
-//        label2.textColor = .white
-//
-//        label1.textAlignment = .left
-//        label2.textAlignment = .left
-//
-//        label1.font = UIFont(name: "Vasek", size: 1000)
-//        label1.numberOfLines = 1
-//        label1.adjustsFontSizeToFitWidth = true
-//        label1.text = "Уровень активности"
-//
-//        label2.font = UIFont(name: "Vasek", size: 1000)
-//        label2.numberOfLines = 0
-//        label2.adjustsFontSizeToFitWidth = true
-//        label2.text = "kdkdskskskskskskammamamakamakalkakakaakakakakakakakakakakamaamma amamamamamamamamama здесь будет разный текст"
-//
-//        stackView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 10).isActive = true
-//        stackView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -10).isActive = true
-//        stackView.topAnchor.constraint(equalTo: secondStackView.bottomAnchor, constant: 40).isActive = true
-//        stackView.heightAnchor.constraint(equalToConstant: 200).isActive = true
-//
-//        label1.topAnchor.constraint(equalTo: stackView.topAnchor, constant: 0).isActive = true
-//        label1.heightAnchor.constraint(equalToConstant: 68).isActive = true
-//        label1.leftAnchor.constraint(equalTo: stackView.leftAnchor, constant: 0).isActive = true
-//        label1.rightAnchor.constraint(equalTo: stackView.rightAnchor, constant: 0).isActive = true
-//
-//        label2.leftAnchor.constraint(equalTo: stackView.leftAnchor, constant: 10).isActive = true
-//        label2.rightAnchor.constraint(equalTo: stackView.rightAnchor, constant: -10).isActive = true
-//        label2.heightAnchor.constraint(equalToConstant: 126).isActive = true
-//        //label2.topAnchor.constraint(equalTo: label1.bottomAnchor, constant: 0).isActive = true
-////        label2.bottomAnchor.constraint(equalTo: stackView.bottomAnchor, constant: 0).isActive = true
-//    }
+
     
     func createThourthStackView(_ stackView: UIStackView, button1: UIButton, button2: UIButton, button3: UIButton) {
         stackView.translatesAutoresizingMaskIntoConstraints = false
@@ -469,7 +380,6 @@ extension ParametrsVC: ParametrsVCProtocol {
         
         button.addTarget(self, action: #selector(tapOnSaveButton), for: .touchUpInside)
         
-        //button.topAnchor.constraint(equalTo: fiveStackView.bottomAnchor, constant: 44).isActive = true
         button.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -10).isActive = true
         button.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 20).isActive = true
         button.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -20).isActive = true

@@ -14,11 +14,7 @@ class HelperForRecipes: NSObject {
     var model = ModelOfDataForCollectionViewRecipes()
     
     weak var viewController: RecipesVC?
-    
-//    private lazy var spinner: CustomSpinnerSimple = {
-//            let spinner = CustomSpinnerSimple(squareLength: 100)
-//            return spinner
-//        }()
+
 }
 
 
@@ -31,7 +27,7 @@ extension HelperForRecipes: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: identifier, for: indexPath) as? MyCollectionViewCellForRecipes
-        if model.ingredients.count ?? 0 > indexPath.item {
+        if model.ingredients.count > indexPath.item {
             cell?.setLabelIngredients(ingredients: model.ingredients[indexPath.item] ?? "")
         }
         if model.nameOfFood.count > indexPath.item {
@@ -45,7 +41,6 @@ extension HelperForRecipes: UICollectionViewDataSource {
         if model.calories.count > indexPath.item {
             cell?.setLabelCalories(calories: model.calories[indexPath.item] ?? 0)
         }
-        
         
         cell?.backgroundColor = .clear
         return cell ?? UICollectionViewCell()

@@ -39,12 +39,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             DispatchQueue.main.async {
                 if Core.shared.isNewUser() {
                     DispatchQueue.main.async {
-                        
                             let vc = OnboardModuleBuilder.build()
 
                             window.rootViewController = vc
                             window.makeKeyAndVisible()
-                        //Core.shared.setIsNotNewUser()
                     }
                 } else {
                     DispatchQueue.main.async {

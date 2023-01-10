@@ -12,7 +12,6 @@ protocol ParametrsInteractorProtocol: AnyObject {
     func writeParametersToBD(ageTextField: UITextField, gender: String, goal: String, heightTextField: UITextField, levelOfActivity: String, weightTextField: UITextField) -> String
 }
 
-
 class ParametrsInteractor: ParametrsInteractorProtocol {
     
     weak var presenter: ParametrsPresenterProtocol?
@@ -20,7 +19,6 @@ class ParametrsInteractor: ParametrsInteractorProtocol {
     func writeParametersToBD(ageTextField: UITextField, gender: String, goal: String, heightTextField: UITextField, levelOfActivity: String, weightTextField: UITextField) -> String {
         let managedObject = Person()
         
-        //managedObject.age = age
         managedObject.age = Int16(ageTextField.text ?? "0") ?? 0
         managedObject.gender = gender
         managedObject.goal = goal
@@ -58,8 +56,7 @@ class ParametrsInteractor: ParametrsInteractorProtocol {
         } catch {
             print(error)
         }
-        
-        //presenter?.didTappedSaveButton()
+
         return gender!
     }
 }

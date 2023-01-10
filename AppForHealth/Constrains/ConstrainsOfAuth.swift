@@ -25,7 +25,6 @@ class ConstrainsOfAuth {
         stackView.topAnchor.constraint(equalTo: registrationLabel.bottomAnchor, constant: 20).isActive = true
         stackView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 10).isActive = true
         stackView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -10).isActive = true
-        //stackView.heightAnchor.constraint(equalToConstant: 200).isActive = true
     }
     
     func createTextFieldsConstraint(nameTextField: UITextField, emailField: UITextField, passwordField: UITextField) {

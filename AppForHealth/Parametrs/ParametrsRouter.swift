@@ -12,7 +12,6 @@ protocol ParametrsRouterProtocol: AnyObject {
 }
 
 class ParametrsRouter: ParametrsRouterProtocol {
-    
     weak var viewController: ParametrsVC?
     
     func openResults() {

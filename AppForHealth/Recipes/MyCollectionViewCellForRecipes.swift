@@ -37,18 +37,13 @@ class MyCollectionViewCellForRecipes: UICollectionViewCell {
     
     func setLabelForName(name: String) {
         
-        //labelForName.adjustsFontSizeToFitWidth = true
-        
         labelForName.font = UIFont(name: "Vasek", size: 1000)
         labelForName.numberOfLines = 1
         labelForName.adjustsFontSizeToFitWidth = true
         
-        //labelForName.adjustsFontSizeToFitWidth = true
-        //labelForName.numberOfLines = 1
         labelForName.textAlignment = .center
         labelForName.text = name
         
-        //labelForName.font =
         labelForName.textColor = #colorLiteral(red: 0.8078431487, green: 0.02745098062, blue: 0.3333333433, alpha: 1)
     }
     
@@ -67,39 +62,24 @@ class MyCollectionViewCellForRecipes: UICollectionViewCell {
     }
     // .scaleAspectFill
     func setImage(url: String) {
-//        DispatchQueue.main.async {
-//            vc.view.addSubview(spinner)
-//            vc.view.bringSubviewToFront(spinner)
-//            spinner.startAnimation(delay: 0.04, replicates: 20)
-//        }
+
             if let url = URL(string: url) {
                URLSession.shared.dataTask(with: url) { (data, response, error) in
  
                    
                  // Error handling...
-//                   if error != nil {
-//                       spinner.stopAnimation()
-//                       spinner.isHidden = true
-//                   }
                    
-                 guard let imageData = data else {
-//                     spinner.stopAnimation()
-//                     spinner.isHidden = true
-                     return
-                 }
+                 guard let imageData = data else { return }
 
                  DispatchQueue.main.async {
                      self.image.image = UIImage(data: imageData)
                      self.image.contentMode = .scaleToFill
-//                     spinner.stopAnimation()
-//                     spinner.isHidden = true
                  }
                }.resume()
              }
     }
     
     func setLabelCalories(calories: Int) {
-        //labelForIngredients.textInsets = UIEdgeInsets(top: 0, left: 4, bottom: 0, right: 0)
         labelForCalories.backgroundColor = .white
         labelForCalories.font = UIFont(name: "Vasek", size: 1000)
         labelForCalories.numberOfLines = 1

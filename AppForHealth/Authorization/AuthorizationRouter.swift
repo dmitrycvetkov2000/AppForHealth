@@ -24,8 +24,6 @@ class AuthorizationRouter: AuthorizationRouterProtocol {
     func openParametrsScreen() {
         let vc = ParametrsModuleBuilder.build()
         vc.modalPresentationStyle = .fullScreen
-        
-        print("ttttttttttt openParametrsScreen(")
         viewController?.present(vc, animated: true)
     }
     

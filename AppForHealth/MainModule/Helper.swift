@@ -26,9 +26,6 @@ extension Helper: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: identifier, for: indexPath) as? MyCollectionViewCell
-//        if model.number.count > indexPath.item {
-//            cell?.setLabelForNumber(number: model.number[indexPath.item] ?? "")
-//        }
         if model.name.count > indexPath.item {
             cell?.setLabelForName(name: model.name[indexPath.item] ?? "")
         }
