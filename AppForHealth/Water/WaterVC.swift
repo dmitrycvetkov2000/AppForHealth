@@ -73,7 +73,7 @@ extension WaterVC: WaterVCProtocol {
         button.heightAnchor.constraint(equalToConstant: 100).isActive = true
     
     }
-    func incWater() -> Int16 {
+    @discardableResult func incWater() -> Int16 {
         numberML += 100
         labelNumberOfWater.text = "\(numberML) мл"
         return numberML

@@ -8,6 +8,7 @@
 import XCTest
 @testable import AppForHealth
 import CoreData
+import Firebase
 
 final class AppForHealthTests: XCTestCase {
     
@@ -15,36 +16,52 @@ final class AppForHealthTests: XCTestCase {
     var parametrsInteractor = ParametrsInteractor()
     
     var resultVC = ResultVC()
+    var resultInteractor = ResultInteractor()
+    
+    var settingVC = SettingVC()
+    var settingInteractor = SettingInteractor()
+
     var water = WaterVC()
     
-    func testActions1() {
+    
+    func testActions1ForResultModule() {
         // Given
+        
+        let managedObject = Person()
+        managedObject.gender = "Мужчина"
+        managedObject.weight = 100
+
+        CoreDataManager.instance.saveContext()
         resultVC.gender = "Мужчина"
         resultVC.weight = 100
-        
+
         // When
-        let result = resultVC.calculateNumberOfWater()
-        
+        let result = resultInteractor.calculateNumberOfWater()
+
         // Then
-        
+
         XCTAssertEqual(3500, result)
-        
-        
-        
+
+
+
         // Given
+        managedObject.gender = "Женщина"
+        managedObject.weight = 100
+        CoreDataManager.instance.saveContext()
+        
         resultVC.gender = "Женщина"
         resultVC.weight = 100
-        
+
         // When
-        
-        let result2 = resultVC.calculateNumberOfWater()
-        
+
+        let result2 = resultInteractor.calculateNumberOfWater()
+
         // Then
-        
+
         XCTAssertEqual(3100, result2)
     }
     
-    func testActions2() {
+    func testActions2ForResultModule() {
         // Given
         resultVC.gender = "Мужчина"
         resultVC.weight = 100
@@ -52,15 +69,35 @@ final class AppForHealthTests: XCTestCase {
         resultVC.age = 20
         resultVC.activity = "Низкий"
         
+        
+        let managedObject = Person()
+        managedObject.gender = "Мужчина"
+        managedObject.weight = 100
+        managedObject.height = 180
+        managedObject.age = 20
+        managedObject.activity = "Низкий"
+        CoreDataManager.instance.saveContext()
+
         // When
-        let result = resultVC.culculationCalories()
+        let result = resultInteractor.culculationCalories()
+
+        // Then
+
+        XCTAssertEqual(2178, result)
+    }
+    func testActions1ForSettingsModule() {
+        // Given
+        water.numberML = 200
+        
+        // When
+        let result = settingInteractor.signOut()
         
         // Then
         
-        XCTAssertEqual(2614.0319999999997, result)
+        XCTAssertEqual(true, result)
     }
     
-    func testActions3() {
+    func testActions1ForWaterModule() {
         // Given
         water.numberML = 200
         
@@ -72,7 +109,7 @@ final class AppForHealthTests: XCTestCase {
         XCTAssertEqual(300, result)
     }
     
-    func testActions4() {
+    func testActions1ForParametrsModule() {
         // Given
         parametrsVC.gender = "Мужчина"
 

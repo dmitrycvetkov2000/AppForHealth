@@ -8,7 +8,7 @@
 import Foundation
 
 protocol SettingInteractorProtocol: AnyObject {
-    func signOut()
+    func signOut() -> Bool
 }
 
 class SettingInteractor: SettingInteractorProtocol {
@@ -16,7 +16,8 @@ class SettingInteractor: SettingInteractorProtocol {
     
     let firebaseService = FirebaseService()
     
-    func signOut() {
+    func signOut() -> Bool {
         firebaseService.signOutFromAcc(presenter: presenter)
+        return true
     }
 }

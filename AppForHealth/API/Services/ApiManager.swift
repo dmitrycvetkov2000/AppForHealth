@@ -28,6 +28,7 @@ class ApiManager {
     func getInfo(completion: @escaping (Recipes) -> Void) {
         let url = ApiType.getRecipes.url
         
+        
         URLSession.shared.dataTask(with: url) { data, response, error in
             guard error == nil else { return }
             

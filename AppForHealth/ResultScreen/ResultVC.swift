@@ -24,6 +24,7 @@ class ResultVC: UIViewController {
     var okButton = UIButton()
     
     
+    
     lazy var age: Int16? = nil
     lazy var gender: String? = nil
     lazy var height: Int16? = nil
@@ -38,6 +39,7 @@ class ResultVC: UIViewController {
     lazy var imt: Float? = nil
     lazy var squareOfHeight: Int16? = nil
     lazy var squareOfHeightDel: Float? = nil
+    
     
     
     override func viewDidLoad() {
@@ -71,7 +73,7 @@ extension ResultVC: ResultVCProtocol {
         
         label.textAlignment = .left
         label.textColor = .white
-        presenter?.culculationIMT(imtResultLabel: imtResultLabel)
+        presenter?.showIMT(imtResultLabel: imtResultLabel)
         
         label.topAnchor.constraint(equalTo: labelResult.bottomAnchor, constant: 10).isActive = true
         label.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 10).isActive = true
@@ -89,7 +91,7 @@ extension ResultVC: ResultVCProtocol {
         
         label.textAlignment = .left
         label.textColor = .white
-        label.text = String("Предложенное количество калорий: \(presenter?.culculationCalories() ?? 0)")
+        label.text = String("Предложенное количество калорий: \(presenter?.showCalories() ?? 0)")
         
         label.topAnchor.constraint(equalTo: imtResultLabel.bottomAnchor, constant: 10).isActive = true
         label.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 10).isActive = true
@@ -107,7 +109,7 @@ extension ResultVC: ResultVCProtocol {
         
         label.textAlignment = .left
         label.textColor = .white
-        label.text = String("Нужно пить: \(presenter?.calculateNumberOfWater() ?? 0) мл воды в день")
+        label.text = String("Нужно пить: \(presenter?.showWater() ?? 0) мл воды в день")
         
         label.topAnchor.constraint(equalTo: caloriesLabel.bottomAnchor, constant: 10).isActive = true
         label.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 10).isActive = true
@@ -130,4 +132,6 @@ extension ResultVC: ResultVCProtocol {
         button.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -10).isActive = true
         button.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0).isActive = true
     }
+    
+
 }

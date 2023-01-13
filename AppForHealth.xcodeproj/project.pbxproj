@@ -46,7 +46,6 @@
 		0A9F2AB5294A05C7004662F7 /* AuthorizationRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9F2AB4294A05C7004662F7 /* AuthorizationRouter.swift */; };
 		0A9F2AB7294A0638004662F7 /* AuthorizationInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9F2AB6294A0638004662F7 /* AuthorizationInteractor.swift */; };
 		0A9F2AB9294A06D4004662F7 /* AuthorizationModuleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9F2AB8294A06D4004662F7 /* AuthorizationModuleBuilder.swift */; };
-		0A9F2ABB294A0DA2004662F7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9F2ABA294A0DA2004662F7 /* SceneDelegate.swift */; };
 		0A9F2ABE294A6963004662F7 /* ConstrainsOfAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9F2ABD294A6963004662F7 /* ConstrainsOfAuth.swift */; };
 		0A9F2AC0294A6FBE004662F7 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0A9F2ABF294A6FBE004662F7 /* GoogleService-Info.plist */; };
 		0AC71116295D268900BD18EA /* ModelOfDataForCollectionViewRecipes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AC71115295D268900BD18EA /* ModelOfDataForCollectionViewRecipes.swift */; };
@@ -140,7 +139,6 @@
 		0A9F2AB4294A05C7004662F7 /* AuthorizationRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationRouter.swift; sourceTree = "<group>"; };
 		0A9F2AB6294A0638004662F7 /* AuthorizationInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationInteractor.swift; sourceTree = "<group>"; };
 		0A9F2AB8294A06D4004662F7 /* AuthorizationModuleBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationModuleBuilder.swift; sourceTree = "<group>"; };
-		0A9F2ABA294A0DA2004662F7 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		0A9F2ABD294A6963004662F7 /* ConstrainsOfAuth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstrainsOfAuth.swift; sourceTree = "<group>"; };
 		0A9F2ABF294A6FBE004662F7 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		0AC71115295D268900BD18EA /* ModelOfDataForCollectionViewRecipes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelOfDataForCollectionViewRecipes.swift; sourceTree = "<group>"; };
@@ -209,7 +207,6 @@
 			isa = PBXGroup;
 			children = (
 				0A3CA825293E4F2000EDBFF9 /* AppDelegate.swift */,
-				0A9F2ABA294A0DA2004662F7 /* SceneDelegate.swift */,
 			);
 			path = Application;
 			sourceTree = "<group>";
@@ -737,7 +734,6 @@
 				0AE52FC5294AA94100915663 /* MainInteractor.swift in Sources */,
 				0A7F0BCF296B52FE00327875 /* WaterRouter.swift in Sources */,
 				0AC71118295D274C00BD18EA /* MyCollectionViewCellForRecipes.swift in Sources */,
-				0A9F2ABB294A0DA2004662F7 /* SceneDelegate.swift in Sources */,
 				0A7F0BCD296B522600327875 /* WaterPresenter.swift in Sources */,
 				0A7D6BC2294E82F500E50542 /* ParametrsModuleBuilder.swift in Sources */,
 				0A7D6BBE294E821A00E50542 /* ParametrsRouter.swift in Sources */,

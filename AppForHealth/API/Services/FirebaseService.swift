@@ -53,6 +53,7 @@ class FirebaseService {
     
     func entrance(email: String, password: String, presenter: AuthorizationPresenterProtocol?, vc: UIViewController, spinner: CustomSpinnerSimple, blurEffectView: UIVisualEffectView) {
         
+        
         let alert = UIAlertController(title: "Ошибка входа", message: "Проверьте корректность введенных данных или интернет-соединения", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Ок", style: .default))
         Auth.auth().signIn(withEmail: email, password: password) { result, error in
