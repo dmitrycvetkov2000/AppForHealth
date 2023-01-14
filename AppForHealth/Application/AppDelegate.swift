@@ -30,12 +30,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         DispatchQueue.global().async { // Делаем какую-либо работу
             FirebaseApp.configure()
 
-//            for i in 0...1000000 {
-//                print(i*i)
-//                if i % 10000 == 0 {
-//                    self.splashPresenter.notify(percent: Float(i) / 1000000.0)
-//                }
-//            }
+            for i in 0...1000000 {
+                print(i*i)
+                if i % 10000 == 0 {
+                    self.splashPresenter.notify(percent: Float(i) / 1000000.0)
+                }
+            }
             
             DispatchQueue.main.async {
                 if Core.shared.isNewUser() {

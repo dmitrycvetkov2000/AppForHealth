@@ -11,8 +11,13 @@ protocol SettingPresenterProtocol: AnyObject {
     func didTapOnExitButton()
     func didExit()
     
+    func didTapOnSaveButton(gender: String, age: String, weight: String, height: String, levelOfActivity: String, goal: String)
     
-    func viewDidLoaded()
+    func settingValues(mas: inout [String])
+    
+    func viewDidLoaded(mas: inout [String])
+    
+    func showAlert()
 }
 
 class SettingPresenter {
@@ -27,6 +32,10 @@ class SettingPresenter {
 }
 
 extension SettingPresenter: SettingPresenterProtocol {
+    func showAlert() {
+        view?.showAlertAboutSave()
+    }
+    
     func didTapOnExitButton() {
         router.openFirstScreen()
     }
@@ -35,9 +44,19 @@ extension SettingPresenter: SettingPresenterProtocol {
         interactor.signOut()
     }
     
+    func didTapOnSaveButton(gender: String, age: String, weight: String, height: String, levelOfActivity: String, goal: String) {
+        interactor.writeParametrsInBD(gender: gender, age: age, weight: weight, height: height, levelOfActivity: levelOfActivity, goal: goal)
+    }
     
-    func viewDidLoaded() {
+    func settingValues(mas: inout [String]) {
+        interactor.extractionFromBD(mas: &mas)
+    }
+    
+    
+    func viewDidLoaded(mas: inout [String]) {
 
+        view?.settingValuesFromBD(mas: &mas)
+        
         view?.addScrollView()
         view?.addLabelForGender()
         view?.addStackViewForGender()
@@ -54,7 +73,7 @@ extension SettingPresenter: SettingPresenterProtocol {
         view?.createButtonForExit()
         view?.createConstraintsForButtonForExit()
         
-        
+        view?.createButtonForSave()
         
     }
 }
