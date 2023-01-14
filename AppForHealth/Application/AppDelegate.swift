@@ -15,8 +15,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     
     private let splashPresenter = SplashScreenPresenter()
-
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        
         
         splashPresenter.present()
         let window = UIWindow()
@@ -29,12 +30,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         DispatchQueue.global().async { // Делаем какую-либо работу
             FirebaseApp.configure()
 
-            for i in 0...1000000 {
-                print(i*i)
-                if i % 10000 == 0 {
-                    self.splashPresenter.notify(percent: Float(i) / 1000000.0)
-                }
-            }
+//            for i in 0...1000000 {
+//                print(i*i)
+//                if i % 10000 == 0 {
+//                    self.splashPresenter.notify(percent: Float(i) / 1000000.0)
+//                }
+//            }
             
             DispatchQueue.main.async {
                 if Core.shared.isNewUser() {
@@ -70,8 +71,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 self.splashPresenter.dismiss()
             }
         }
- 
-
         self.window = window
         return true
     }

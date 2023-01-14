@@ -10,6 +10,9 @@ import Foundation
 protocol SettingPresenterProtocol: AnyObject {
     func didTapOnExitButton()
     func didExit()
+    
+    
+    func viewDidLoaded()
 }
 
 class SettingPresenter {
@@ -30,5 +33,28 @@ extension SettingPresenter: SettingPresenterProtocol {
     
     func didExit() {
         interactor.signOut()
+    }
+    
+    
+    func viewDidLoaded() {
+
+        view?.addScrollView()
+        view?.addLabelForGender()
+        view?.addStackViewForGender()
+        
+        view?.createLabelForAgeHeightAndWeight()
+        view?.createStackViewForAgeHeightAndWeightTextFields()
+        
+        view?.createLabelOfActivity()
+        view?.createStackViewForActivity()
+        
+        view?.createLabelForGoal()
+        view?.createStackViewForGoal()
+        
+        view?.createButtonForExit()
+        view?.createConstraintsForButtonForExit()
+        
+        
+        
     }
 }
