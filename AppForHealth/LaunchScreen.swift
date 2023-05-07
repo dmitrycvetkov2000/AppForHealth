@@ -51,10 +51,10 @@ class LaunchScreen: UIViewController {
 class Core {
     static let shared = Core()
     func isNewUser() -> Bool {
-        return !UserDefaults.standard.bool(forKey: "IsNewUser")
+        return !UserDefaults.standard.bool(forKey: StatusOfUser.isNewUser.rawValue)
     }
     func setIsNotNewUser() {
-        UserDefaults.standard.set(true, forKey: "IsNewUser")
+        UserDefaults.standard.set(true, forKey: StatusOfUser.isNewUser.rawValue)
     }
 }
 
