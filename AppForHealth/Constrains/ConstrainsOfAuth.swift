@@ -18,7 +18,6 @@ class ConstrainsOfAuth {
         label.topAnchor.constraint(equalTo: view.topAnchor, constant: 50).isActive = true
         label.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 10).isActive = true
         label.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -10).isActive = true
-        label.heightAnchor.constraint(equalToConstant: 70).isActive = true
     }
     
     func createStackViewConstraints(_ stackView: UIStackView, _ view: UIView, registrationLabel: UILabel) {
@@ -40,7 +39,7 @@ class ConstrainsOfAuth {
     func createOtherLabelConstraints(_ label: UILabel, _ view: UIView, stackViewForEntry: UIStackView) {
         label.topAnchor.constraint(equalTo: stackViewForEntry.bottomAnchor, constant: 10).isActive = true
         label.widthAnchor.constraint(equalToConstant: 260).isActive = true
-        label.heightAnchor.constraint(equalToConstant: 30).isActive = true
+        label.heightAnchor.constraint(equalToConstant: 34).isActive = true
         label.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
     }
     
