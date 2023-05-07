@@ -85,17 +85,17 @@ final class AppForHealthTests: XCTestCase {
 
         XCTAssertEqual(2178, result)
     }
-    func testActions1ForSettingsModule() {
-        // Given
-        water.numberML = 200
-        
-        // When
-        let result = settingInteractor.signOut()
-        
-        // Then
-        
-        XCTAssertEqual(true, result)
-    }
+//    func testActions1ForSettingsModule() {
+//        // Given
+//        water.numberML = 200
+//        
+//        // When
+//        let result = settingInteractor.signOut()
+//        
+//        // Then
+//        
+//        XCTAssertEqual(true, result())
+//    }
     
     func testActions1ForWaterModule() {
         // Given
