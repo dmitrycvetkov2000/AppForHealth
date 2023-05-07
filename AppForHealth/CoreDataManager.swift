@@ -29,7 +29,7 @@ class CoreDataManager {
             let results = try CoreDataManager.instance.context.fetch(fetchRequest)
             
             for result in results as! [Person] {
-                print("В базе данных  \(result.age), \(result.gender), \(result.goal), \(result.height), \(result.levelOfActivity), \(result.weight)")
+                print("В базе данных:  Возраст - \(result.age), Пол - \(String(describing: result.gender)), Цель - \(String(describing: result.goal)), Рост - \(result.height), Активность - \(String(describing: result.levelOfActivity)), Вес - \(result.weight), Рек воды - \(result.reccomendWater), Рек ккал - \(result.reccomendCcal)")
             }
             
             if results.isEmpty {
@@ -48,7 +48,6 @@ class CoreDataManager {
     }
     
     // MARK: - Core Data stack
-
     lazy var persistentContainer: NSPersistentContainer = {
         let container = NSPersistentContainer(name: "AppForHealth")
         container.loadPersistentStores(completionHandler: { (storeDescription, error) in
@@ -60,7 +59,6 @@ class CoreDataManager {
     }()
 
     // MARK: - Core Data Saving support
-
     func saveContext () {
         let context = persistentContainer.viewContext
         if context.hasChanges {
@@ -70,6 +68,47 @@ class CoreDataManager {
                 let nserror = error as NSError
                 fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
             }
+        }
+    }
+    
+    func getElementFromBD<T>(find: String) -> T? {
+        var searchElement: T? = nil
+        
+        var intValue: Int16? = nil
+        var dict: [String: Int16]? = nil
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Person")
+        do {
+            let results = try CoreDataManager.instance.context.fetch(fetchRequest)
+            for result in results as! [Person] {
+                searchElement = result.value(forKey: find) as? T
+                intValue = result.value(forKey: find) as? Int16
+                dict = result.value(forKey: find) as? [String: Int16]
+                
+                if let searchElement = searchElement {
+                    return searchElement
+                }
+                if let dict = dict {
+                    searchElement = dict as? T
+                    return searchElement
+                } else if let intValue = intValue {
+                    searchElement = intValue as? T
+                    return searchElement
+                }
+            }
+        } catch {
+            print(error)
+        }
+        return searchElement
+    }
+    func insert<T: NSManagedObject>(object: T) {
+        let context = persistentContainer.viewContext
+        
+        context.insert(object)
+        
+        do {
+            try context.save()
+        } catch let error as NSError {
+            print("Could not save. \(error), \(error.userInfo)")
         }
     }
 }
