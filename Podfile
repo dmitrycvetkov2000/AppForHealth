@@ -8,6 +8,11 @@ target 'AppForHealth' do
   pod 'Firebase/Auth'
   pod 'Firebase/Database'
 
+  pod 'SnapKit'
+  pod 'RealmSwift'
+
+pod 'Charts'
+
   # Pods for AppForHealth
 
   target 'AppForHealthTests' do

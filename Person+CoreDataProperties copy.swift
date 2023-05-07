@@ -23,6 +23,8 @@ extension Person {
     @NSManaged public var levelOfActivity: String?
     @NSManaged public var goal: String?
     @NSManaged public var numberOfWater: Int16
-    @NSManaged public var activity: String
-
+    @NSManaged public var reccomendCcal: Int16
+    @NSManaged public var reccomendWater: Int16
+    @NSManaged public var imt: String
+    @NSManaged public var date: [String: Int16]?
 }

@@ -33,7 +33,6 @@ class ResultPresenter {
         self.router = router
         self.interactor = interactor
     }
-    
 }
 
 extension ResultPresenter: ResultPresenterProtocol {
@@ -74,9 +73,6 @@ extension ResultPresenter: ResultPresenterProtocol {
     func showWater() -> Int {
         return interactor.calculateNumberOfWater()
     }
-    
-
-
     
     func testTest() -> String {
         return "Hello"

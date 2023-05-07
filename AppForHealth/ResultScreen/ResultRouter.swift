@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 protocol ResultRouterProtocol: AnyObject {
     func openMain()
@@ -15,7 +16,8 @@ class ResultRouter: ResultRouterProtocol {
     weak var viewController: ResultVC?
     
     func openMain() {
-        let vc = MainModuleBuilder.build()
+        
+        let vc = MainTabBarModuleBuilder.build(usingNavigationFactory: NavigationBuilder.build)
         vc.modalPresentationStyle = .fullScreen
         viewController?.present(vc, animated: true)
     }

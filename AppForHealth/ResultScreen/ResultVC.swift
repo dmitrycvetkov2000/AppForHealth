@@ -16,6 +16,8 @@ class ResultVC: UIViewController {
     
     var labelResult = UILabel()
     var imtResultLabel = UILabel()
+    
+    var percentOfFatLabel = UILabel()
      
     var caloriesLabel = UILabel()
     
@@ -44,10 +46,12 @@ class ResultVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        view.backgroundColor = .brown
         presenter?.viewDidLoaded(vc: self, labelResult: labelResult)
         
         createIMTLabel(imtResultLabel)
+        
+        crateFatLabel(percentOfFatLabel)
         
         createCaloriesLabel(caloriesLabel)
         
@@ -81,6 +85,23 @@ extension ResultVC: ResultVCProtocol {
         label.heightAnchor.constraint(equalToConstant: 62).isActive = true
     }
     
+    func crateFatLabel(_ label: UILabel) {
+        label.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(label)
+        
+        label.font = UIFont(name: "Vasek", size: 1000)
+        label.numberOfLines = 1
+        label.adjustsFontSizeToFitWidth = true
+        
+        label.textAlignment = .left
+        label.textColor = .white
+        
+        label.topAnchor.constraint(equalTo: imtResultLabel.bottomAnchor, constant: 10).isActive = true
+        label.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 10).isActive = true
+        label.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -10).isActive = true
+        label.heightAnchor.constraint(equalToConstant: 62).isActive = true
+    }
+    
     func createCaloriesLabel(_ label: UILabel) {
         label.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(label)
@@ -93,7 +114,7 @@ extension ResultVC: ResultVCProtocol {
         label.textColor = .white
         label.text = String("Предложенное количество калорий: \(presenter?.showCalories() ?? 0)")
         
-        label.topAnchor.constraint(equalTo: imtResultLabel.bottomAnchor, constant: 10).isActive = true
+        label.topAnchor.constraint(equalTo: percentOfFatLabel.bottomAnchor, constant: 10).isActive = true
         label.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 10).isActive = true
         label.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -10).isActive = true
         label.heightAnchor.constraint(equalToConstant: 62).isActive = true
@@ -132,6 +153,4 @@ extension ResultVC: ResultVCProtocol {
         button.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -10).isActive = true
         button.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0).isActive = true
     }
-    
-
 }
