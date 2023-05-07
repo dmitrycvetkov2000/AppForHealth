@@ -9,38 +9,41 @@ import Foundation
 import  UIKit
 
 protocol MainRouterProtocol: AnyObject {
-    func openFirstScreen()
     func openRecipes()
     func openWater()
-    func openSettings()
+    func openTrain()
+    func openCcal()
+    func openMap()
+    func openSetting()
 }
 
-class MainRouter: MainRouterProtocol {
-    var handler: UIViewController?
-    
+class MainRouter {
     weak var viewController: MainViewController?
-    
-    func openFirstScreen() {
-        let vc = AuthorizationModuleBuilder.build()
-        vc.modalPresentationStyle = .fullScreen
-        viewController?.present(vc, animated: true)
-    }
-    
+}
+
+extension MainRouter: MainRouterProtocol {
     func openRecipes() {
-        let vc = RecipesModuleBuilder.build()
-        vc.modalPresentationStyle = .popover
+        let vc = RecipesModuleBuilder.build(usingNavigationFactory: NavigationBuilder.build)
         viewController?.present(vc, animated: true)
     }
-    
     func openWater() {
-        let vc = WaterModuleBuilder.build()
-        vc.modalPresentationStyle = .popover
+        let vc = WaterModuleBuilder.build(usingNavigationFactory: NavigationBuilder.build)
         viewController?.present(vc, animated: true)
     }
-    
-    func openSettings() {
-        let vc = SettingModuleBuilder.build()
-        vc.modalPresentationStyle = .popover
+    func openTrain() {
+        let vc = TrainModuleBuilder.build(usingNavigationFactory: NavigationBuilder.build)
+        viewController?.present(vc, animated: true)
+    }
+    func openCcal() {
+        let vc = CaloriesModuleBuilder.build(usingNavigationFactory: NavigationBuilder.build)
+        viewController?.present(vc, animated: true)
+    }
+    func openMap() {
+        let vc = MapModuleBuilder.build(usingNavigationFactory: NavigationBuilder.build)
+        viewController?.present(vc, animated: true)
+    }
+    func openSetting() {
+        let vc = SettingModuleBuilder.build(usingNavigationFactory: NavigationBuilder.build)
         viewController?.present(vc, animated: true)
     }
 }
