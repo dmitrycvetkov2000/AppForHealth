@@ -8,22 +8,41 @@
 import UIKit
 
 protocol WaterVCProtocol: AnyObject {
+    func configureNavigationItems()
     
+    func createViewForAnimation()
+    
+    func createMainPartOfCup() -> CAShapeLayer
+    func createBackPartOfCup() -> CAShapeLayer
+    func createHandlePartOfCup() -> CAShapeLayer
+    
+    func setupCup()
+    
+    func startAnimation()
 }
 
 class WaterVC: UIViewController {
     var presenter: WaterPresenterProtocol?
-    var labelNumberOfWater = UILabel()
-    var buttonIncWater = UIButton()
+
+    let leftButton = UIButton()
     
-    var numberML: Int16 = 0
+    var labelNumberOfWater = LabelTitle()
+    var buttonIncWater = MiniButton()
+    
+    var viewForAnimation = UIView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        presenter?.viewDidLoaded()
+        view.backgroundColor = .brown
+        presenter?.configureNavigationItems()
+        presenter?.getCurDate()
         createButtonForWater(buttonIncWater, self)
-        
-        view.backgroundColor = .blue
+        presenter?.showViewForAnimation()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -31,39 +50,154 @@ class WaterVC: UIViewController {
         createLabelNumberOfWater(labelNumberOfWater)
         createLabelNumberOfWaterConstraints(labelNumberOfWater)
     }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        presenter?.setupCup()
+    }
 }
 
 extension WaterVC: WaterVCProtocol {
+    func configureNavigationItems() {
+        leftButton.translatesAutoresizingMaskIntoConstraints = false
+        leftButton.clipsToBounds = true
+        leftButton.widthAnchor.constraint(equalToConstant: 61).isActive = true
+        leftButton.heightAnchor.constraint(equalToConstant: 61).isActive = true
+        leftButton.layer.cornerRadius = 0.5 * leftButton.bounds.size.width
+        
+        leftButton.setBackgroundImage(UIImage(systemName: "arrow.backward.circle.fill"), for: .normal)
+        leftButton.tintColor = .tabBarMainColor
+        leftButton.addTarget(self, action: #selector(openMain), for: .touchUpInside)
+        
+        let leftBarButtonItem = UIBarButtonItem(customView: leftButton)
+        navigationItem.leftBarButtonItem = leftBarButtonItem
+    }
+    @objc func openMain() {
+        presenter?.didTapLeftButton()
+    }
+    
     func createLabelNumberOfWater(_ label: UILabel) {
     
         view.addSubview(label)
         
-        label.font = UIFont(name: "Vasek", size: 1000)
-        label.numberOfLines = 1
-        label.adjustsFontSizeToFitWidth = true
-        
-        label.textAlignment = .center
-        label.textColor = .white
-        
-        label.text = "\(presenter?.countingTheAmountOfWater() ?? 0) мл"
-        
+        label.text = "\(presenter?.countingTheAmountOfWater() ?? 0) " + "мл".localized()
     }
     func createLabelNumberOfWaterConstraints(_ label: UILabel) {
         label.translatesAutoresizingMaskIntoConstraints = false
         
-        label.topAnchor.constraint(equalTo: view.topAnchor, constant: 10).isActive = true
+        label.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 0).isActive = true
         label.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 10).isActive = true
         label.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -10).isActive = true
-        label.heightAnchor.constraint(equalToConstant: 62).isActive = true
+    }
+    
+    func createViewForAnimation() {
+        
+        viewForAnimation.translatesAutoresizingMaskIntoConstraints = false
+        
+        view.addSubview(viewForAnimation)
+    
+        viewForAnimation.backgroundColor = .clear
+        
+        NSLayoutConstraint.activate([
+            viewForAnimation.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            viewForAnimation.topAnchor.constraint(equalTo: buttonIncWater.bottomAnchor, constant: 40),
+            viewForAnimation.heightAnchor.constraint(equalToConstant: 160),
+            viewForAnimation.widthAnchor.constraint(equalToConstant: 160)
+        ])
+    }
+    
+    func setupCup() {
+        let main = presenter?.getMainPartOfCup() ?? CAShapeLayer()
+        let handle = presenter?.getHandlePartOfCup() ?? CAShapeLayer()
+        let back = presenter?.getBackPartOfCup() ?? CAShapeLayer()
+        
+        viewForAnimation.layer.addSublayer(main)
+        viewForAnimation.layer.addSublayer(handle)
+        viewForAnimation.layer.addSublayer(back)
+    }
+    
+    func createMainPartOfCup() -> CAShapeLayer {
+        let widthView = viewForAnimation.frame.width
+        let heightView = viewForAnimation.frame.height
+        
+        let mainShape = CAShapeLayer()
+        mainShape.frame = viewForAnimation.bounds
+        
+        let path = UIBezierPath()
+        path.move(to: CGPoint(x: 0, y: heightView))
+        path.addQuadCurve(to: CGPoint(x: widthView, y: heightView), controlPoint: CGPoint(x: widthView / 2, y: heightView + 18))
+        path.addLine(to: CGPoint(x: widthView, y: 0))
+        path.addQuadCurve(to: CGPoint(x: 0, y: 0), controlPoint: CGPoint(x: widthView / 2, y: 16))
+        path.addLine(to: CGPoint(x: 0, y: heightView))
+        
+        path.close()
+        
+        mainShape.fillColor = UIColor.black.cgColor
+        mainShape.strokeColor = UIColor.black.cgColor
+        mainShape.path = path.cgPath
+        
+        return mainShape
+    }
+    
+    func createBackPartOfCup() -> CAShapeLayer {
+        let widthView = viewForAnimation.frame.width
+        
+        let backShape = CAShapeLayer()
+        backShape.frame = viewForAnimation.bounds
+        
+        let path = UIBezierPath()
+        path.move(to: CGPoint(x: widthView, y: 0))
+        path.addQuadCurve(to: CGPoint(x: 0, y: 0), controlPoint: CGPoint(x: widthView / 2, y: 16))
+        path.addCurve(to: CGPoint(x: widthView, y: 0), controlPoint1: CGPoint(x: 30, y: -20), controlPoint2: CGPoint(x: widthView - 30, y: -20))
+        
+        path.close()
+        
+        backShape.fillColor = UIColor.white.cgColor
+        backShape.strokeColor = UIColor.black.cgColor
+        backShape.path = path.cgPath
+        
+        return backShape
+    }
+    
+    func createHandlePartOfCup() -> CAShapeLayer {
+        let widthView = viewForAnimation.frame.width
+        let heightView = viewForAnimation.frame.height
+        
+        let handleShape = CAShapeLayer()
+        handleShape.frame = viewForAnimation.bounds
+        
+        let path = UIBezierPath()
+        path.move(to: CGPoint(x: widthView, y: 40))
+        path.addCurve(to: CGPoint(x: widthView, y: heightView - 40), controlPoint1: CGPoint(x: widthView + 40, y: 40), controlPoint2: CGPoint(x: widthView + 40, y: heightView - 40))
+        path.addLine(to: CGPoint(x: widthView, y: heightView - 20))
+        path.addCurve(to: CGPoint(x: widthView, y: 20), controlPoint1: CGPoint(x: widthView + 56, y: heightView - 40), controlPoint2: CGPoint(x: widthView + 56, y: 40))
+        
+        path.close()
+        
+        handleShape.fillColor = UIColor.black.cgColor
+        handleShape.strokeColor = UIColor.black.cgColor
+        handleShape.path = path.cgPath
+        
+        return handleShape
+    }
+    
+    func startAnimation() {
+        let animation = CABasicAnimation(keyPath: "transform.rotation.z")
+
+        animation.duration = 2
+        animation.autoreverses = true
+        animation.toValue = -Double.pi / 4
+
+        viewForAnimation.layer.add(animation, forKey: nil)
     }
     
     func createButtonForWater(_ button: UIButton, _ vc: UIViewController) {
         button.translatesAutoresizingMaskIntoConstraints = false
         vc.view.addSubview(button)
         
-        button.backgroundColor = .green
+        button.backgroundColor = .blue
         
-        button.setTitle("Выпил стакан воды", for: .normal)
+        button.setTitle("Выпил стакан воды".localized(), for: .normal)
         button.setTitleColor(.white, for: .normal)
         button.addTarget(self, action: #selector(tapWaterButton), for: .touchUpInside)
         
@@ -73,21 +207,10 @@ extension WaterVC: WaterVCProtocol {
         button.heightAnchor.constraint(equalToConstant: 100).isActive = true
     
     }
-    @discardableResult func incWater() -> Int16 {
-        numberML += 100
-        labelNumberOfWater.text = "\(numberML) мл"
-        return numberML
-    }
     
     @objc func tapWaterButton() {
-        let managedObject = Person()
-        
-        incWater()
-        
-        managedObject.numberOfWater = numberML
-        
-        CoreDataManager.instance.saveContext()
-        
+        presenter?.saveDataAndIncWater(label: labelNumberOfWater)
+        presenter?.startAnimation()
     }
     
 }

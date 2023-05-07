@@ -8,10 +8,13 @@
 import Foundation
 
 protocol WaterRouterProtocol: AnyObject {
-    
+    func openMain()
 }
 
 class WaterRouter: WaterRouterProtocol {
     weak var viewController: WaterVC?
     
+    func openMain() {
+        viewController?.dismiss(animated: true)
+    }
 }

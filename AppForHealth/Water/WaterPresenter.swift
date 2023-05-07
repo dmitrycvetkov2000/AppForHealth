@@ -6,13 +6,30 @@
 //
 
 import UIKit
-import CoreData
+//import CoreData
 
 protocol WaterPresenterProtocol: AnyObject {
     func viewDidLoaded()
     
-    func countingTheAmountOfWater() -> Int
+    func configureNavigationItems()
     
+    func countingTheAmountOfWater() -> Int16?
+    
+    func showViewForAnimation()
+    
+    func setupCup()
+    
+    func getMainPartOfCup() -> CAShapeLayer
+    func getBackPartOfCup() -> CAShapeLayer
+    func getHandlePartOfCup() -> CAShapeLayer
+    
+    func startAnimation()
+    
+    func saveDataAndIncWater(label: UILabel)
+    
+    func getCurDate()
+    
+    func didTapLeftButton()
 }
 
 class WaterPresenter {
@@ -25,7 +42,6 @@ class WaterPresenter {
         self.router = router
         self.interactor = interactor
     }
-    
 }
 
 extension WaterPresenter: WaterPresenterProtocol {
@@ -33,18 +49,47 @@ extension WaterPresenter: WaterPresenterProtocol {
         
     }
     
-    func countingTheAmountOfWater() -> Int {
-        var numberML: Int16? = 0
-        
-        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Person")
-        do {
-            let results = try CoreDataManager.instance.context.fetch(fetchRequest)
-            for result in results as! [Person] {
-                numberML = result.numberOfWater
-            }
-        } catch {
-            print(error)
-        }
-        return Int(numberML ?? 0)
+    func countingTheAmountOfWater() -> Int16? {
+        return interactor.countingNumberML()
+    }
+    
+    func showViewForAnimation() {
+        view?.createViewForAnimation()
+    }
+    
+    func getMainPartOfCup() -> CAShapeLayer {
+        view?.createMainPartOfCup() ?? CAShapeLayer()
+    }
+    
+    func getBackPartOfCup() -> CAShapeLayer {
+        view?.createBackPartOfCup() ?? CAShapeLayer()
+    }
+    
+    func getHandlePartOfCup() -> CAShapeLayer {
+        view?.createHandlePartOfCup() ?? CAShapeLayer()
+    }
+    
+    func setupCup() {
+        view?.setupCup()
+    }
+    
+    func startAnimation() {
+        view?.startAnimation()
+    }
+    
+    func saveDataAndIncWater(label: UILabel) {
+        interactor.saveData(label: label)
+    }
+
+    func getCurDate() {
+        interactor.getCurDate()
+    }
+    
+    func configureNavigationItems() {
+        view?.configureNavigationItems()
+    }
+    
+    func didTapLeftButton() {
+        router.openMain()
     }
 }

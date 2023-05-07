@@ -9,7 +9,7 @@ import UIKit
 
 class WaterModuleBuilder: UIViewController {
     
-    static func build() -> WaterVC {
+    static func build(usingNavigationFactory factory: NavigationFactory) -> UINavigationController {
         let interactor = WaterInteractor()
         let router = WaterRouter()
         let presenter = WaterPresenter(interactor: interactor, router: router)
@@ -18,7 +18,6 @@ class WaterModuleBuilder: UIViewController {
         presenter.view = viewController
         interactor.presenter = presenter
         router.viewController = viewController
-        return viewController
+        return factory(viewController)
     }
-    
 }
