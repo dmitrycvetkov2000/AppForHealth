@@ -8,7 +8,8 @@
 import UIKit
 
 protocol ParametrsVCProtocol: AnyObject {
-    
+    func setTapRecognizer()
+    func createViewForHello()
 }
 
 class ParametrsVC: UIViewController {
@@ -24,40 +25,42 @@ class ParametrsVC: UIViewController {
     
     lazy var goal: String? = nil
     
-    var labelParametry = UILabel()
+    var labelParametry = LabelTitle()
     
     var firstStackView = UIStackView()
-    var menButton = UIButton()
-    var womanButton = UIButton()
-    
+    var menButton = MiniButton()
+    var womanButton = MiniButton()
     
     var secondStackView = UIStackView()
-    var ageTextField = UITextField()
-    var weightTextField = UITextField()
-    var heightTextField = UITextField()
+    var ageTextField = MyTextField()
+    var weightTextField = MyTextField()
+    var heightTextField = MyTextField()
     
-    var levelOfActivityLabel = UILabel()
-    
+    var levelOfActivityLabel = JustText()
     
     var fourthStackView = UIStackView()
-    var lowButtonActivity = UIButton()
-    var middleButtonActivity = UIButton()
-    var highButtonActivity = UIButton()
+    var lowButtonActivity = MiniButton()
+    var middleButtonActivity = MiniButton()
+    var highButtonActivity = MiniButton()
     
-    var goalLabel = UILabel()
+    var goalLabel = JustText()
     
     var fiveStackView = UIStackView()
-    var loseWeightButton = UIButton()
-    var normalButton = UIButton()
-    var hainWeight = UIButton()
+    var loseWeightButton = MiniButton()
+    var normalButton = MiniButton()
+    var hainWeight = MiniButton()
     
-    var saveButton = UIButton()
+    var saveButton = MainButton()
     
+    var tapRecognizer: UITapGestureRecognizer?
+    
+    var nameForUser: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .red
+        view.backgroundColor = .brown
         
+        presenter?.setTapRecognizer()
         createLabelParametry(labelParametry)
         createFirstStackView(firstStackView, button1: menButton, button2: womanButton)
         
@@ -72,74 +75,106 @@ class ParametrsVC: UIViewController {
         createFiveStackView(fiveStackView, button1: loseWeightButton, button2: normalButton, button3: hainWeight)
         
         createSaveButton(saveButton)
-           
     }
-    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        presenter?.createViewForHello()
+    }
 
     @objc func tapOnMenButton() {
-        womanButton.backgroundColor = .gray
-        menButton.backgroundColor = .black
-        gender = "Мужчина"
+        womanButton.backgroundColor = .noActiveColor
+        menButton.backgroundColor = .activeColor
+        womanButton.layer.borderColor = UIColor.forMiniButtonBorderNoActive.cgColor
+        menButton.layer.borderColor = UIColor.forMiniButtonBorder.cgColor
+        gender = Genders.man.rawValue
     }
     @objc func tapOnWomanButton() {
-        menButton.backgroundColor = .gray
-        womanButton.backgroundColor = .black
-        gender = "Женщина"
+        menButton.backgroundColor = .noActiveColor
+        womanButton.backgroundColor = .activeColor
+        womanButton.layer.borderColor = UIColor.forMiniButtonBorder.cgColor
+        menButton.layer.borderColor = UIColor.forMiniButtonBorderNoActive.cgColor
+        gender = Genders.woman.rawValue
     }
     
 
     @objc func tapOnLowActivityButton() {
-        lowButtonActivity.backgroundColor = .white
-        middleButtonActivity.backgroundColor = .clear
-        highButtonActivity.backgroundColor = .clear
+        lowButtonActivity.backgroundColor = .activeColor
+        middleButtonActivity.backgroundColor = .noActiveColor
+        highButtonActivity.backgroundColor = .noActiveColor
         
-        levelOfActivity = "Низкий"
+        lowButtonActivity.layer.borderColor = UIColor.forMiniButtonBorder.cgColor
+        middleButtonActivity.layer.borderColor = UIColor.forMiniButtonBorderNoActive.cgColor
+        highButtonActivity.layer.borderColor = UIColor.forMiniButtonBorderNoActive.cgColor
+        
+        levelOfActivity = LevelOfActivityEnum.low.rawValue
     }
     @objc func tapOnMiddleActivityButton() {
-        lowButtonActivity.backgroundColor = .clear
-        middleButtonActivity.backgroundColor = .white
-        highButtonActivity.backgroundColor = .clear
+        lowButtonActivity.backgroundColor = .noActiveColor
+        middleButtonActivity.backgroundColor = .activeColor
+        highButtonActivity.backgroundColor = .noActiveColor
         
-        levelOfActivity = "Средний"
+        lowButtonActivity.layer.borderColor = UIColor.forMiniButtonBorderNoActive.cgColor
+        middleButtonActivity.layer.borderColor = UIColor.forMiniButtonBorder.cgColor
+        highButtonActivity.layer.borderColor = UIColor.forMiniButtonBorderNoActive.cgColor
+        
+        levelOfActivity = LevelOfActivityEnum.middle.rawValue
     }
     @objc func tapOnHighActivityButton() {
-        lowButtonActivity.backgroundColor = .clear
-        middleButtonActivity.backgroundColor = .clear
-        highButtonActivity.backgroundColor = .white
+        lowButtonActivity.backgroundColor = .noActiveColor
+        middleButtonActivity.backgroundColor = .noActiveColor
+        highButtonActivity.backgroundColor = .activeColor
         
-        levelOfActivity = "Высокий"
+        lowButtonActivity.layer.borderColor = UIColor.forMiniButtonBorderNoActive.cgColor
+        middleButtonActivity.layer.borderColor = UIColor.forMiniButtonBorderNoActive.cgColor
+        highButtonActivity.layer.borderColor = UIColor.forMiniButtonBorder.cgColor
+        
+        levelOfActivity = LevelOfActivityEnum.hight.rawValue
     }
     
     
     @objc func tapONLoseWeightButton() {
-        loseWeightButton.backgroundColor = .black
-        loseWeightButton.setTitleColor(.white, for: .normal)
-        normalButton.backgroundColor = .gray
-        hainWeight.backgroundColor = .gray
+        loseWeightButton.backgroundColor = .activeColor
+        normalButton.backgroundColor = .noActiveColor
+        hainWeight.backgroundColor = .noActiveColor
         
-        goal = "Похудеть"
+        loseWeightButton.layer.borderColor = UIColor.forMiniButtonBorder.cgColor
+        normalButton.layer.borderColor = UIColor.forMiniButtonBorderNoActive.cgColor
+        hainWeight.layer.borderColor = UIColor.forMiniButtonBorderNoActive.cgColor
+        
+        goal = Goals.leaveWeight.rawValue
     }
     @objc func tapONNormalWeightButton() {
-        loseWeightButton.backgroundColor = .gray
-        normalButton.backgroundColor = .black
-        normalButton.setTitleColor(.white, for: .normal)
-        hainWeight.backgroundColor = .gray
+        loseWeightButton.backgroundColor = .noActiveColor
+        normalButton.backgroundColor = .activeColor
+        hainWeight.backgroundColor = .noActiveColor
         
-        goal = "Норма"
+        loseWeightButton.layer.borderColor = UIColor.forMiniButtonBorderNoActive.cgColor
+        normalButton.layer.borderColor = UIColor.forMiniButtonBorder.cgColor
+        hainWeight.layer.borderColor = UIColor.forMiniButtonBorderNoActive.cgColor
+        
+        goal = Goals.norma.rawValue
     }
     @objc func tapONGainWeightButton() {
-        loseWeightButton.backgroundColor = .gray
-        normalButton.backgroundColor = .gray
-        hainWeight.backgroundColor = .black
-        hainWeight.setTitleColor(.white, for: .normal)
+        loseWeightButton.backgroundColor = .noActiveColor
+        normalButton.backgroundColor = .noActiveColor
+        hainWeight.backgroundColor = .activeColor
         
-        goal = "Набрать"
+        loseWeightButton.layer.borderColor = UIColor.forMiniButtonBorderNoActive.cgColor
+        normalButton.layer.borderColor = UIColor.forMiniButtonBorderNoActive.cgColor
+        hainWeight.layer.borderColor = UIColor.forMiniButtonBorder.cgColor
+
+        
+        goal = Goals.weightUp.rawValue
     }
     
     @objc func tapOnSaveButton() {
-        
-        presenter?.didTappedSaveButton(ageTextField: ageTextField, gender: gender ?? "Unknown", goal: goal ?? "Unknown", heightTextField: heightTextField, levelOfActivity: levelOfActivity ?? "Unknown", weightTextField: weightTextField)
-
+        if let ageText = Int(ageTextField.text ?? ""), let gender = gender, let goal = goal, let height = Int(heightTextField.text ?? ""), let levelOfActivity = levelOfActivity, let weight = Int(weightTextField.text ?? "") {
+            presenter?.didTappedSaveButton(age: String(ageText), gender: gender, goal: goal, height: String(height), levelOfActivity: levelOfActivity, weight: String(weight))
+        } else {
+            let alert = UIAlertController(title: "Ошибка".localized(), message: "Проверьте корректность введенных данных".localized(), preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Ок".localized(), style: .default))
+            self.present(alert, animated: true, completion: nil)
+        }
     }
 }
 
@@ -147,19 +182,12 @@ extension ParametrsVC: ParametrsVCProtocol {
     func createLabelParametry(_ label: UILabel) {
         label.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(label)
-        
-        label.font = UIFont(name: "Vasek", size: 1000)
-        label.numberOfLines = 1
-        label.adjustsFontSizeToFitWidth = true
-        
-        label.textAlignment = .left
-        label.textColor = .white
+
         label.text = "Ваши параметры"
         
-        label.topAnchor.constraint(equalTo: view.topAnchor, constant: 30).isActive = true
+        label.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20).isActive = true
         label.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 10).isActive = true
         label.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -10).isActive = true
-        label.heightAnchor.constraint(equalToConstant: 80).isActive = true
     }
     
     func createFirstStackView(_ stackView: UIStackView, button1: UIButton, button2: UIButton) {
@@ -175,23 +203,15 @@ extension ParametrsVC: ParametrsVCProtocol {
         stackView.spacing = 20
         stackView.axis = .horizontal
         
-        button1.backgroundColor = .gray
-        button2.backgroundColor = .gray
-        
         button1.setTitle("Мужчина", for: .normal)
         button2.setTitle("Женщина", for: .normal)
-        button1.setTitleColor(.white, for: .normal)
-        button2.setTitleColor(.white, for: .normal)
-        
         
         button1.addTarget(self, action: #selector(tapOnMenButton), for: .touchUpInside)
         button2.addTarget(self, action: #selector(tapOnWomanButton), for: .touchUpInside)
         
-        
-        
         stackView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 10).isActive = true
         stackView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -10).isActive = true
-        stackView.topAnchor.constraint(equalTo: labelParametry.bottomAnchor, constant: 40).isActive = true
+        stackView.topAnchor.constraint(equalTo: labelParametry.bottomAnchor, constant: 20).isActive = true
         stackView.heightAnchor.constraint(equalToConstant: 44).isActive = true
         
         button1.heightAnchor.constraint(equalToConstant: 20).isActive = true
@@ -203,7 +223,7 @@ extension ParametrsVC: ParametrsVCProtocol {
         button1.widthAnchor.constraint(equalTo: button2.widthAnchor).isActive = true
     }
     
-    func createSecondStackView(_ stackView: UIStackView, textFieldAge: UITextField, textFieldWeight: UITextField, textFieldHeight: UITextField) {
+    func createSecondStackView(_ stackView: UIStackView, textFieldAge: MyTextField, textFieldWeight: MyTextField, textFieldHeight: MyTextField) {
         stackView.translatesAutoresizingMaskIntoConstraints = false
         textFieldAge.translatesAutoresizingMaskIntoConstraints = false
         textFieldWeight.translatesAutoresizingMaskIntoConstraints = false
@@ -214,22 +234,35 @@ extension ParametrsVC: ParametrsVCProtocol {
         stackView.addArrangedSubview(textFieldWeight)
         stackView.addArrangedSubview(textFieldHeight)
         
+        textFieldAge.delegate = self
+        textFieldWeight.delegate = self
+        textFieldHeight.delegate = self
+        
         stackView.spacing = 20
         stackView.axis = .horizontal
         
-        textFieldAge.placeholder = "Возраст"
-        textFieldWeight.placeholder = "Вес"
-        textFieldHeight.placeholder = "Рост"
+        textFieldAge.attributedPlaceholder = NSAttributedString(
+            string: "Возраст".localized(),
+            attributes: [NSAttributedString.Key.foregroundColor: #colorLiteral(red: 0.6783986092, green: 0.7456328273, blue: 0.6901838183, alpha: 1)]
+        )
+        textFieldWeight.attributedPlaceholder = NSAttributedString(
+            string: "Вес".localized(),
+            attributes: [NSAttributedString.Key.foregroundColor: #colorLiteral(red: 0.6783986092, green: 0.7456328273, blue: 0.6901838183, alpha: 1)]
+        )
+        textFieldHeight.attributedPlaceholder = NSAttributedString(
+            string: "Рост".localized(),
+            attributes: [NSAttributedString.Key.foregroundColor: #colorLiteral(red: 0.6783986092, green: 0.7456328273, blue: 0.6901838183, alpha: 1)]
+        )
         
-        textFieldAge.backgroundColor = .white
-        textFieldWeight.backgroundColor = .white
-        textFieldHeight.backgroundColor = .white
+        
+        textFieldAge.keyboardType = .numbersAndPunctuation
+        textFieldWeight.keyboardType = .numbersAndPunctuation
+        textFieldHeight.keyboardType = .numbersAndPunctuation
         
         stackView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 10).isActive = true
         stackView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -10).isActive = true
         stackView.topAnchor.constraint(equalTo: firstStackView.bottomAnchor, constant: 40).isActive = true
         stackView.heightAnchor.constraint(equalToConstant: 44).isActive = true
-        
         
         textFieldAge.heightAnchor.constraint(equalToConstant: 20).isActive = true
         textFieldAge.leftAnchor.constraint(equalTo: stackView.leftAnchor, constant: 0).isActive = true
@@ -237,31 +270,23 @@ extension ParametrsVC: ParametrsVCProtocol {
         textFieldWeight.heightAnchor.constraint(equalToConstant: 20).isActive = true
         
         textFieldHeight.heightAnchor.constraint(equalToConstant: 20).isActive = true
-        textFieldHeight.rightAnchor.constraint(equalTo: stackView.rightAnchor, constant: 0).isActive = true
         
         textFieldAge.widthAnchor.constraint(equalTo: textFieldHeight.widthAnchor).isActive = true
         textFieldWeight.widthAnchor.constraint(equalTo: textFieldAge.widthAnchor).isActive = true
     }
     
-    func createLevelOfActivityLabel(_ labelOfActivity: UILabel) {
+    func createLevelOfActivityLabel(_ labelOfActivity: JustText) {
         labelOfActivity.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(labelOfActivity)
-        labelOfActivity.textColor = .white
-        labelOfActivity.textAlignment = .left
-        
-        labelOfActivity.font = UIFont(name: "Vasek", size: 1000)
-        labelOfActivity.numberOfLines = 1
-        labelOfActivity.adjustsFontSizeToFitWidth = true
+
         labelOfActivity.text = "Уровень активности"
         
-        labelOfActivity.topAnchor.constraint(equalTo: secondStackView.bottomAnchor, constant: 0).isActive = true
-        labelOfActivity.heightAnchor.constraint(equalToConstant: 68).isActive = true
+        labelOfActivity.topAnchor.constraint(equalTo: secondStackView.bottomAnchor, constant: 40).isActive = true
         labelOfActivity.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 10).isActive = true
         labelOfActivity.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -10).isActive = true
     }
 
-    
-    func createThourthStackView(_ stackView: UIStackView, button1: UIButton, button2: UIButton, button3: UIButton) {
+    func createThourthStackView(_ stackView: UIStackView, button1: MiniButton, button2: MiniButton, button3: MiniButton) {
         stackView.translatesAutoresizingMaskIntoConstraints = false
         button1.translatesAutoresizingMaskIntoConstraints = false
         button2.translatesAutoresizingMaskIntoConstraints = false
@@ -274,17 +299,9 @@ extension ParametrsVC: ParametrsVCProtocol {
         stackView.axis = .horizontal
         stackView.spacing = 10
         
-        button1.backgroundColor = .clear
-        button2.backgroundColor = .clear
-        button3.backgroundColor = .clear
-        
         button1.setTitle("Низкий", for: .normal)
         button2.setTitle("Средний", for: .normal)
         button3.setTitle("Высокий", for: .normal)
-        
-        button1.setTitleColor(.black, for: .normal)
-        button2.setTitleColor(.black, for: .normal)
-        button3.setTitleColor(.black, for: .normal)
         
         button1.addTarget(self, action: #selector(tapOnLowActivityButton), for: .touchUpInside)
         button2.addTarget(self, action: #selector(tapOnMiddleActivityButton), for: .touchUpInside)
@@ -292,7 +309,7 @@ extension ParametrsVC: ParametrsVCProtocol {
         
         stackView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 10).isActive = true
         stackView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -10).isActive = true
-        stackView.topAnchor.constraint(equalTo: levelOfActivityLabel.bottomAnchor, constant: 20).isActive = true
+        stackView.topAnchor.constraint(equalTo: levelOfActivityLabel.bottomAnchor, constant: 0).isActive = true
         stackView.heightAnchor.constraint(equalToConstant: 60).isActive = true
         
         button1.heightAnchor.constraint(equalToConstant: 20).isActive = true
@@ -307,25 +324,18 @@ extension ParametrsVC: ParametrsVCProtocol {
         button2.widthAnchor.constraint(equalTo: button1.widthAnchor).isActive = true
     }
     
-    func createGoalLabel(_ label: UILabel) {
+    func createGoalLabel(_ label: JustText) {
         label.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(label)
-        
-        label.font = UIFont(name: "Vasek", size: 1000)
-        label.numberOfLines = 1
-        label.adjustsFontSizeToFitWidth = true
+
         label.text = "Цель"
         
-        label.textAlignment = .left
-        label.textColor = .white
-        
-        label.topAnchor.constraint(equalTo: fourthStackView.bottomAnchor, constant: 20).isActive = true
+        label.topAnchor.constraint(equalTo: fourthStackView.bottomAnchor, constant: 40).isActive = true
         label.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 10).isActive = true
         label.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -10).isActive = true
-        label.heightAnchor.constraint(equalToConstant: 68).isActive = true
     }
     
-    func createFiveStackView(_ stackView: UIStackView, button1: UIButton, button2: UIButton, button3: UIButton) {
+    func createFiveStackView(_ stackView: UIStackView, button1: MiniButton, button2: MiniButton, button3: MiniButton) {
         stackView.translatesAutoresizingMaskIntoConstraints = false
         button1.translatesAutoresizingMaskIntoConstraints = false
         button2.translatesAutoresizingMaskIntoConstraints = false
@@ -338,17 +348,9 @@ extension ParametrsVC: ParametrsVCProtocol {
         stackView.axis = .horizontal
         stackView.spacing = 10
         
-        button1.backgroundColor = .white
-        button2.backgroundColor = .white
-        button3.backgroundColor = .white
-        
         button1.setTitle("Похудеть", for: .normal)
         button2.setTitle("Норма", for: .normal)
         button3.setTitle("Набрать", for: .normal)
-        
-        button1.setTitleColor(.black, for: .normal)
-        button2.setTitleColor(.black, for: .normal)
-        button3.setTitleColor(.black, for: .normal)
         
         button1.addTarget(self, action: #selector(tapONLoseWeightButton), for: .touchUpInside)
         button2.addTarget(self, action: #selector(tapONNormalWeightButton), for: .touchUpInside)
@@ -356,7 +358,7 @@ extension ParametrsVC: ParametrsVCProtocol {
         
         stackView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 10).isActive = true
         stackView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -10).isActive = true
-        stackView.topAnchor.constraint(equalTo: goalLabel.bottomAnchor, constant: 10).isActive = true
+        stackView.topAnchor.constraint(equalTo: goalLabel.bottomAnchor, constant: 0).isActive = true
         stackView.heightAnchor.constraint(equalToConstant: 60).isActive = true
         
         button1.heightAnchor.constraint(equalToConstant: 20).isActive = true
@@ -375,17 +377,89 @@ extension ParametrsVC: ParametrsVCProtocol {
         button.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(button)
         
-        button.backgroundColor = .black
         button.setTitle("Сохранить", for: .normal)
         
         button.addTarget(self, action: #selector(tapOnSaveButton), for: .touchUpInside)
         
-        button.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -10).isActive = true
+        button.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -10).isActive = true
         button.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 20).isActive = true
         button.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -20).isActive = true
         button.heightAnchor.constraint(equalToConstant: 60).isActive = true
     }
     
+    // MARK: - Gestures
+    func setTapRecognizer() {
+        tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(tapGesture))
+        view.addGestureRecognizer(tapRecognizer!)
+    }
+    @objc func tapGesture() {
+        view.endEditing(true)
+    }
+    
+// MARK: - ViewForHello
+    func createViewForHello() {
+        RealmManager.instance.fillUserRealm()
+        if let users = RealmManager.instance.userRealm {
+            for user in users {
+                nameForUser = user.nameOfUser
+            }
+        }
+        
+        if let nameOfUser = nameForUser {
+            let viewForName = UIView()
+            let label = LabelTitle()
+            viewForName.translatesAutoresizingMaskIntoConstraints = false
+            label.translatesAutoresizingMaskIntoConstraints = false
+            
+            view.addSubview(viewForName)
+            viewForName.addSubview(label)
+            
+            viewForName.backgroundColor = .tabBarMainColor
+            viewForName.clipsToBounds = true
+            viewForName.layer.cornerRadius = 20
+            viewForName.alpha = 0
+            
+            label.adjustsFontSizeToFitWidth = true
+            label.numberOfLines = 2
+            label.text = "Здравствуйте," + " \(nameOfUser)"
+            label.textColor = .forJustText
+            
+            NSLayoutConstraint.activate([
+                viewForName.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 30),
+                viewForName.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -30),
+                viewForName.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
+                viewForName.heightAnchor.constraint(equalToConstant: 150),
+                
+                label.leftAnchor.constraint(equalTo: viewForName.leftAnchor, constant: 20),
+                label.rightAnchor.constraint(equalTo: viewForName.rightAnchor, constant: -20),
+                label.centerYAnchor.constraint(equalTo: viewForName.centerYAnchor)
+            ])
+
+            UIView.animate(withDuration: 2.5) {
+                viewForName.alpha = 1.0
+            }
+
+            DispatchQueue.main.asyncAfter(deadline: .now() + 3.5) {
+                    UIView.animate(withDuration: 2.5) {
+                        viewForName.alpha = 0.0
+                    }
+                
+                DispatchQueue.main.asyncAfter(deadline: .now() + 10) {
+                    viewForName.layer.removeAllAnimations()
+                    viewForName.removeFromSuperview()
+                }
+            }
+        }
+    }
 }
 
+extension ParametrsVC: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
+}
 

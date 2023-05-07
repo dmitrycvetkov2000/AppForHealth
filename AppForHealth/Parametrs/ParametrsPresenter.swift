@@ -8,7 +8,10 @@
 import UIKit
 
 protocol ParametrsPresenterProtocol: AnyObject {
-    func didTappedSaveButton(ageTextField: UITextField, gender: String, goal: String, heightTextField: UITextField, levelOfActivity: String, weightTextField: UITextField)
+    func didTappedSaveButton(age: String, gender: String, goal: String, height: String, levelOfActivity: String, weight: String)
+    func setTapRecognizer()
+    
+    func createViewForHello()
 }
 
 class ParametrsPresenter {
@@ -24,9 +27,24 @@ class ParametrsPresenter {
 }
 
 extension ParametrsPresenter: ParametrsPresenterProtocol {
-    func didTappedSaveButton(ageTextField: UITextField, gender: String, goal: String, heightTextField: UITextField, levelOfActivity: String, weightTextField: UITextField) {
-        interactor.writeParametersToBD(ageTextField: ageTextField, gender: gender, goal: goal, heightTextField: heightTextField, levelOfActivity: levelOfActivity, weightTextField: weightTextField)
-        router.openResults()
+    func didTappedSaveButton(age: String, gender: String, goal: String, height: String, levelOfActivity: String, weight: String) {
+        interactor.writeParametersToBD(age: age, gender: gender, goal: goal, height: height, levelOfActivity: levelOfActivity, weight: weight)
+        
+        interactor.calculateAndSaveNumberOfWater()
+        interactor.culculationAndSaveIMT()
+        interactor.culculationCalories()
+        
+        interactor.saveAllResults()
+        
+        router.openMain()
+    }
+    
+    func setTapRecognizer() {
+        view?.setTapRecognizer()
+    }
+    
+    func createViewForHello() {
+        view?.createViewForHello()
     }
     
 }

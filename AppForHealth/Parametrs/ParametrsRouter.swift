@@ -8,14 +8,14 @@
 import Foundation
 
 protocol ParametrsRouterProtocol: AnyObject {
-    func openResults()
+    func openMain()
 }
 
 class ParametrsRouter: ParametrsRouterProtocol {
     weak var viewController: ParametrsVC?
     
-    func openResults() {
-        let vc = ResultModuleBuilder.build()
+    func openMain() {
+        let vc = MainTabBarModuleBuilder.build(usingNavigationFactory: NavigationBuilder.build)
         vc.modalPresentationStyle = .fullScreen
         viewController?.present(vc, animated: true)
     }
