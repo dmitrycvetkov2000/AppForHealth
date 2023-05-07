@@ -8,17 +8,18 @@
 import UIKit
 
 protocol SettingVCProtocol: AnyObject {
+    func configureNavifationItems()
+    
+    func setupLayout()
     
     func createButtonForExit()
     func createConstraintsForButtonForExit()
-    
-    func addScrollView()
     
     func addLabelForGender()
     
     func addStackViewForGender()
     
-    func createLabelForAgeHeightAndWeight()
+    func createLabelForAgeHeightWeightAndWaist()
     
     func createStackViewForAgeHeightAndWeightTextFields()
     
@@ -32,51 +33,45 @@ protocol SettingVCProtocol: AnyObject {
     
     func createButtonForSave()
     
-    func settingValuesFromBD(mas: inout [String])
-    
     func showAlertAboutSave()
-    
 }
 
 class SettingVC: UIViewController {
     var presenter: SettingPresenterProtocol?
     
-    var buttonForExit = UIButton()
-    var buttonForSave = UIButton()
+    var buttonForSave = MainButton()
+    var buttonForExit = MainButton()
     
     var scrollView = UIScrollView()
     var contentView = UIView()
     
-    var labelForGender = UILabel()
+    var labelForGender = JustText()
     
     var stackViewForGender = UIStackView()
-    var manButton = UIButton()
-    var womanButton = UIButton()
+    var manButton = MiniButton()
+    var womanButton = MiniButton()
     
-    
-    var labelForAgeHeightAndWeight = UILabel()
+    var labelForAgeHeightAndWeight = JustText()
     
     var stackViewForAgeWeightHeightTextField = UIStackView()
     
-    var ageTextField = UITextField()
-    var weightTextField = UITextField()
-    var heightTextField = UITextField()
+    var ageTextField = MyTextField()
+    var weightTextField = MyTextField()
+    var heightTextField = MyTextField()
     
-    
-    var labelOfActivity = UILabel()
+    var labelOfActivity = JustText()
     
     var stackViewForActivity = UIStackView()
-    var lowActivity = UIButton()
-    var middleActivity = UIButton()
-    var hightActivity = UIButton()
+    var lowActivity = MiniButton()
+    var middleActivity = MiniButton()
+    var hightActivity = MiniButton()
     
-    var labelForGoal = UILabel()
+    var labelForGoal = JustText()
     
     var stackViewForGoal = UIStackView()
-    var loseWeightButton = UIButton()
-    var saveWeightButton = UIButton()
-    var gainWeightButton = UIButton()
-    
+    var loseWeightButton = MiniButton()
+    var saveWeightButton = MiniButton()
+    var gainWeightButton = MiniButton()
     
     var gender: String = ""
     var age: Int? = 0
@@ -85,142 +80,142 @@ class SettingVC: UIViewController {
     var levelOfActivity: String = ""
     var goal: String = ""
     
-    var mas: [String] = []
-    
-    
+    var tapRecognizer: UITapGestureRecognizer?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        view.backgroundColor = .white
-
-        presenter?.viewDidLoaded(mas: &mas)
-        
+        view.backgroundColor = .brown
+        setTapRecognizer()
+        presenter?.viewDidLoaded()
     }
     
     @objc func exitAction() {
         presenter?.didExit()
     }
-    
     @objc func saveAction() {
         presenter?.didTapOnSaveButton(gender: self.gender, age: ageTextField.text ?? "0", weight: weightTextField.text ?? "0", height: heightTextField.text ?? "0", levelOfActivity: self.levelOfActivity, goal: self.goal)
     }
-    
-    
     @objc func tapOnMenButton() {
-        womanButton.backgroundColor = .gray
-        manButton.backgroundColor = .black
-        gender = "Мужчина"
+        womanButton.backgroundColor = .noActiveColor
+        manButton.backgroundColor = .activeColor
+        gender = Genders.man.rawValue
     }
     @objc func tapOnWomanButton() {
-        manButton.backgroundColor = .gray
-        womanButton.backgroundColor = .black
-        gender = "Женщина"
+        manButton.backgroundColor = .noActiveColor
+        womanButton.backgroundColor = .activeColor
+        gender = Genders.woman.rawValue
     }
-    
-    
     @objc func tapOnlowActivityButton() {
-        lowActivity.backgroundColor = .black
-        middleActivity.backgroundColor = .gray
-        hightActivity.backgroundColor = .gray
-        levelOfActivity = "Низкий"
+        lowActivity.backgroundColor = .activeColor
+        middleActivity.backgroundColor = .noActiveColor
+        hightActivity.backgroundColor = .noActiveColor
+        levelOfActivity = LevelOfActivityEnum.low.rawValue
     }
     @objc func tapOnmiddleActivityButton() {
-        lowActivity.backgroundColor = .gray
-        middleActivity.backgroundColor = .black
-        hightActivity.backgroundColor = .gray
-        levelOfActivity = "Средний"
+        lowActivity.backgroundColor = .noActiveColor
+        middleActivity.backgroundColor = .activeColor
+        hightActivity.backgroundColor = .noActiveColor
+        levelOfActivity = LevelOfActivityEnum.middle.rawValue
     }
     @objc func tapOnhightActivityButton() {
-        lowActivity.backgroundColor = .gray
-        middleActivity.backgroundColor = .gray
-        hightActivity.backgroundColor = .black
-        levelOfActivity = "Высокий"
+        lowActivity.backgroundColor = .noActiveColor
+        middleActivity.backgroundColor = .noActiveColor
+        hightActivity.backgroundColor = .activeColor
+        levelOfActivity = LevelOfActivityEnum.hight.rawValue
     }
-    
-    
-    
     @objc func tapOnLoseWeightButton() {
-        loseWeightButton.backgroundColor = .black
-        loseWeightButton.setTitleColor(.white, for: .normal)
-        saveWeightButton.backgroundColor = .gray
-        gainWeightButton.backgroundColor = .gray
-        goal = "Похудеть"
+        loseWeightButton.backgroundColor = .activeColor
+        saveWeightButton.backgroundColor = .noActiveColor
+        gainWeightButton.backgroundColor = .noActiveColor
+        goal = Goals.leaveWeight.rawValue
     }
     @objc func tapOnSaveWeightButton() {
-        loseWeightButton.backgroundColor = .gray
-        saveWeightButton.backgroundColor = .black
-        saveWeightButton.setTitleColor(.white, for: .normal)
-        gainWeightButton.backgroundColor = .gray
-        goal = "Норма"
+        loseWeightButton.backgroundColor = .noActiveColor
+        saveWeightButton.backgroundColor = .activeColor
+        gainWeightButton.backgroundColor = .noActiveColor
+        goal = Goals.norma.rawValue
     }
     @objc func tapOnGainWeightButton() {
-        loseWeightButton.backgroundColor = .gray
-        saveWeightButton.backgroundColor = .gray
-        gainWeightButton.backgroundColor = .black
-        gainWeightButton.setTitleColor(.white, for: .normal)
-        goal = "Набрать"
+        loseWeightButton.backgroundColor = .noActiveColor
+        saveWeightButton.backgroundColor = .noActiveColor
+        gainWeightButton.backgroundColor = .activeColor
+        goal = Goals.weightUp.rawValue
     }
 }
 
 extension SettingVC: SettingVCProtocol {
-    
-    func addScrollView() {
-        scrollView.translatesAutoresizingMaskIntoConstraints = false
-        contentView.translatesAutoresizingMaskIntoConstraints = false
+    func configureNavifationItems() {
+        let leftButton = UIButton()
+
+        leftButton.clipsToBounds = true
+        leftButton.widthAnchor.constraint(equalToConstant: 61).isActive = true
+        leftButton.heightAnchor.constraint(equalToConstant: 61).isActive = true
+        leftButton.layer.cornerRadius = 0.5 * leftButton.bounds.size.width
         
+        leftButton.setBackgroundImage(UIImage(systemName: "arrow.backward.circle.fill"), for: .normal)
+        leftButton.tintColor = .tabBarMainColor
+        leftButton.addTarget(self, action: #selector(comeback), for: .touchUpInside)
+        
+        let leftBarButtonItem = UIBarButtonItem(customView: leftButton)
+        navigationItem.leftBarButtonItem = leftBarButtonItem
+        
+        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        navigationController?.navigationBar.shadowImage = UIImage()
+    }
+    
+    @objc func comeback() {
+        presenter?.didTapOnBackButton()
+    }
+    
+    func setupLayout() {
+        createScrollView()
+        createContentView()
+        prepareScrollView()
+    }
+    
+    func createScrollView() {
+        scrollView.showsVerticalScrollIndicator = true
+        scrollView.alwaysBounceVertical = true
+    }
+    func createContentView() {
+        //contentView.backgroundColor = .yellow
+    }
+    func prepareScrollView() {
         view.addSubview(scrollView)
         scrollView.addSubview(contentView)
         
-        
-        scrollView.backgroundColor = .brown
-        contentView.backgroundColor = .yellow
-        
-        
-        scrollView.topAnchor.constraint(equalTo: view.topAnchor, constant: 0).isActive = true
-        scrollView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 0).isActive = true
-        scrollView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: 0).isActive = true
-        scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0).isActive = true
-        
-        
-        contentView.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 0).isActive = true
-        contentView.leftAnchor.constraint(equalTo: scrollView.leftAnchor, constant: 0).isActive = true
-        contentView.rightAnchor.constraint(equalTo: scrollView.rightAnchor, constant: 0).isActive = true
-        contentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: 0).isActive = true
-        
-        contentView.widthAnchor.constraint(equalTo: scrollView.widthAnchor).isActive = true
-        contentView.heightAnchor.constraint(equalToConstant: 2000).isActive = true
-
+        scrollView.snp.makeConstraints { make in
+            make.top.equalTo(view.safeAreaLayoutGuide)
+            make.left.right.equalToSuperview()
+            make.bottom.equalToSuperview()
+        }
+        contentView.snp.makeConstraints { make in
+            make.top.equalTo(scrollView.snp.top)
+            make.left.equalTo(scrollView.snp.left)
+            make.right.equalTo(scrollView.snp.right)
+            make.bottom.equalTo(scrollView.snp.bottom)
+            
+            make.height.equalTo(scrollView.snp.height).inset(-100)
+            make.width.equalTo(scrollView.snp.width)
+        }
     }
     
     func addLabelForGender() {
         labelForGender.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(labelForGender)
-        
-        labelForGender.font = UIFont(name: "Vasek", size: 1000)
-        labelForGender.numberOfLines = 1
-        labelForGender.adjustsFontSizeToFitWidth = true
-        
-        labelForGender.textAlignment = .center
-        labelForGender.text = "Ваш пол"
-        
-        labelForGender.textColor = #colorLiteral(red: 0.8078431487, green: 0.02745098062, blue: 0.3333333433, alpha: 1)
-        
-        
-        labelForGender.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
-        labelForGender.topAnchor.constraint(equalTo: contentView.topAnchor).isActive = true
-        labelForGender.widthAnchor.constraint(equalTo: contentView.widthAnchor).isActive = true
-        labelForGender.heightAnchor.constraint(equalToConstant: 60).isActive = true
-        
 
+        labelForGender.text = "Ваш пол".localized()
+        
+        labelForGender.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 20).isActive = true
+        labelForGender.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -20).isActive = true
+        labelForGender.topAnchor.constraint(equalTo: contentView.topAnchor).isActive = true
     }
     
     func addStackViewForGender() {
         stackViewForGender.translatesAutoresizingMaskIntoConstraints = false
         manButton.translatesAutoresizingMaskIntoConstraints = false
         womanButton.translatesAutoresizingMaskIntoConstraints = false
-        
-        
+    
         contentView.addSubview(stackViewForGender)
         
         stackViewForGender.addArrangedSubview(manButton)
@@ -228,58 +223,43 @@ extension SettingVC: SettingVCProtocol {
         
         stackViewForGender.spacing = 20
         stackViewForGender.axis = .horizontal
-        
-        manButton.backgroundColor = .gray
-        womanButton.backgroundColor = .gray
-        
-        manButton.setTitle("Мужчина", for: .normal)
-        womanButton.setTitle("Женщина", for: .normal)
-        manButton.setTitleColor(.white, for: .normal)
-        womanButton.setTitleColor(.white, for: .normal)
+
+        manButton.setTitle("Мужчина".localized(), for: .normal)
+        womanButton.setTitle("Женщина".localized(), for: .normal)
         
         DispatchQueue.main.async {
-            if self.mas[0] == "Мужчина" {
-                self.gender = "Мужчина"
-                self.manButton.backgroundColor = .black
-            }
-            if self.mas[0] == "Женщина" {
-                self.gender = "Женщина"
-                self.womanButton.backgroundColor = .black
+            let curGender: String? = self.presenter?.getElement(elementName: "gender")
+            if let curGender = curGender {
+                if curGender == Genders.man.rawValue {
+                    self.gender = Genders.man.rawValue
+                    self.manButton.backgroundColor = .activeColor
+                }
+                if curGender == Genders.woman.rawValue {
+                    self.gender = Genders.woman.rawValue
+                    self.womanButton.backgroundColor = .activeColor
+                }
             }
         }
-        
         manButton.addTarget(self, action: #selector(tapOnMenButton), for: .touchUpInside)
         womanButton.addTarget(self, action: #selector(tapOnWomanButton), for: .touchUpInside)
         
-        
         stackViewForGender.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
-        stackViewForGender.topAnchor.constraint(equalTo: labelForGender.bottomAnchor, constant: 10).isActive = true
-        stackViewForGender.widthAnchor.constraint(equalTo: contentView.widthAnchor).isActive = true
+        stackViewForGender.topAnchor.constraint(equalTo: labelForGender.bottomAnchor, constant: 0).isActive = true
+        stackViewForGender.widthAnchor.constraint(equalTo: contentView.widthAnchor, constant: -20).isActive = true
         stackViewForGender.heightAnchor.constraint(equalToConstant: 60).isActive = true
         
-
         manButton.widthAnchor.constraint(equalTo: womanButton.widthAnchor).isActive = true
-        
     }
     
-    func createLabelForAgeHeightAndWeight() {
+    func createLabelForAgeHeightWeightAndWaist() {
         labelForAgeHeightAndWeight.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(labelForAgeHeightAndWeight)
+
+        labelForAgeHeightAndWeight.text = "Ваш возраст, вес, рост".localized()
         
-        labelForAgeHeightAndWeight.font = UIFont(name: "Vasek", size: 1000)
-        labelForAgeHeightAndWeight.numberOfLines = 1
-        labelForAgeHeightAndWeight.adjustsFontSizeToFitWidth = true
-        
-        labelForAgeHeightAndWeight.textAlignment = .center
-        labelForAgeHeightAndWeight.text = "Ваш возраст, вес и рост"
-        
-        labelForAgeHeightAndWeight.textColor = #colorLiteral(red: 0.8078431487, green: 0.02745098062, blue: 0.3333333433, alpha: 1)
-        
-        
-        labelForAgeHeightAndWeight.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
+        labelForAgeHeightAndWeight.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 20).isActive = true
+        labelForAgeHeightAndWeight.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -20).isActive = true
         labelForAgeHeightAndWeight.topAnchor.constraint(equalTo: stackViewForGender.bottomAnchor, constant: 20).isActive = true
-        labelForAgeHeightAndWeight.widthAnchor.constraint(equalTo: contentView.widthAnchor).isActive = true
-        labelForAgeHeightAndWeight.heightAnchor.constraint(equalToConstant: 60).isActive = true
     }
     
     func createStackViewForAgeHeightAndWeightTextFields() {
@@ -290,6 +270,10 @@ extension SettingVC: SettingVCProtocol {
         heightTextField.translatesAutoresizingMaskIntoConstraints = false
         
         contentView.addSubview(stackViewForAgeWeightHeightTextField)
+        
+        ageTextField.delegate = self
+        weightTextField.delegate = self
+        heightTextField.delegate = self
         
         stackViewForAgeWeightHeightTextField.addArrangedSubview(ageTextField)
         stackViewForAgeWeightHeightTextField.addArrangedSubview(weightTextField)
@@ -302,45 +286,51 @@ extension SettingVC: SettingVCProtocol {
         weightTextField.borderStyle = .roundedRect
         heightTextField.borderStyle = .roundedRect
         
-        ageTextField.placeholder = "Возраст"
-        weightTextField.placeholder = "Вес"
-        heightTextField.placeholder = "Рост"
+        ageTextField.attributedPlaceholder = NSAttributedString(
+            string: "Возраст".localized(),
+            attributes: [NSAttributedString.Key.foregroundColor: #colorLiteral(red: 0.6783986092, green: 0.7456328273, blue: 0.6901838183, alpha: 1)]
+        )
+        weightTextField.attributedPlaceholder = NSAttributedString(
+            string: "Вес".localized(),
+            attributes: [NSAttributedString.Key.foregroundColor: #colorLiteral(red: 0.6783986092, green: 0.7456328273, blue: 0.6901838183, alpha: 1)]
+        )
+        heightTextField.attributedPlaceholder = NSAttributedString(
+            string: "Рост".localized(),
+            attributes: [NSAttributedString.Key.foregroundColor: #colorLiteral(red: 0.6783986092, green: 0.7456328273, blue: 0.6901838183, alpha: 1)]
+        )
+        
+        ageTextField.keyboardType = .numbersAndPunctuation
+        weightTextField.keyboardType = .numbersAndPunctuation
+        heightTextField.keyboardType = .numbersAndPunctuation
         
         DispatchQueue.main.async {
-            self.ageTextField.text = self.mas[1]
-            self.weightTextField.text = self.mas[2]
-            self.heightTextField.text = self.mas[3]
+            let age: Int16? = self.presenter?.getElement(elementName: "age")
+            let weight: Int16? = self.presenter?.getElement(elementName: "weight")
+            let height: Int16? = self.presenter?.getElement(elementName: "height")
+
+            self.ageTextField.text = String(age ?? 0)
+            self.weightTextField.text = String(weight ?? 0)
+            self.heightTextField.text = String(height ?? 0)
         }
         
         stackViewForAgeWeightHeightTextField.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
-        stackViewForAgeWeightHeightTextField.topAnchor.constraint(equalTo: labelForAgeHeightAndWeight.bottomAnchor, constant: 10).isActive = true
+        stackViewForAgeWeightHeightTextField.topAnchor.constraint(equalTo: labelForAgeHeightAndWeight.bottomAnchor, constant: 0).isActive = true
         stackViewForAgeWeightHeightTextField.widthAnchor.constraint(equalTo: contentView.widthAnchor, constant: -20).isActive = true
-        stackViewForAgeWeightHeightTextField.heightAnchor.constraint(equalToConstant: 60).isActive = true
+        stackViewForAgeWeightHeightTextField.heightAnchor.constraint(equalToConstant: 44).isActive = true
         
-
         ageTextField.widthAnchor.constraint(equalTo: weightTextField.widthAnchor).isActive = true
         heightTextField.widthAnchor.constraint(equalTo: ageTextField.widthAnchor).isActive = true
-        
     }
     
     func createLabelOfActivity() {
         labelOfActivity.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(labelOfActivity)
+
+        labelOfActivity.text = "Ваш уровень активности".localized()
         
-        labelOfActivity.font = UIFont(name: "Vasek", size: 1000)
-        labelOfActivity.numberOfLines = 1
-        labelOfActivity.adjustsFontSizeToFitWidth = true
-        
-        labelOfActivity.textAlignment = .center
-        labelOfActivity.text = "Ваш уровень активности"
-        
-        labelOfActivity.textColor = #colorLiteral(red: 0.8078431487, green: 0.02745098062, blue: 0.3333333433, alpha: 1)
-        
-        
-        labelOfActivity.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
+        labelOfActivity.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 20).isActive = true
+        labelOfActivity.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -20).isActive = true
         labelOfActivity.topAnchor.constraint(equalTo: stackViewForAgeWeightHeightTextField.bottomAnchor, constant: 20).isActive = true
-        labelOfActivity.widthAnchor.constraint(equalTo: contentView.widthAnchor).isActive = true
-        labelOfActivity.heightAnchor.constraint(equalToConstant: 60).isActive = true
     }
     
     func createStackViewForActivity() {
@@ -358,30 +348,29 @@ extension SettingVC: SettingVCProtocol {
         stackViewForActivity.spacing = 20
         stackViewForActivity.axis = .horizontal
         
-        lowActivity.setTitle("Низкий", for: .normal)
-        middleActivity.setTitle("Средний", for: .normal)
-        hightActivity.setTitle("Высокий", for: .normal)
-        
-        lowActivity.backgroundColor = .gray
-        middleActivity.backgroundColor = .gray
-        hightActivity.backgroundColor = .gray
+        lowActivity.setTitle("Низкий".localized(), for: .normal)
+        middleActivity.setTitle("Средний".localized(), for: .normal)
+        hightActivity.setTitle("Высокий".localized(), for: .normal)
         
         DispatchQueue.main.async {
-            switch self.mas[4] {
-            case "Низкий":
-                self.lowActivity.backgroundColor = .black
-                self.levelOfActivity = "Низкий"
-                break
-            case "Средний":
-                self.middleActivity.backgroundColor = .black
-                self.levelOfActivity = "Средний"
-                break
-            case "Высокий":
-                self.hightActivity.backgroundColor = .black
-                self.levelOfActivity = "Высокий"
-                break
-            default:
-                print("")
+            let curActivity: String? = self.presenter?.getElement(elementName: "levelOfActivity")
+            if let curActivity = curActivity {
+                switch curActivity {
+                case LevelOfActivityEnum.low.rawValue:
+                    self.lowActivity.backgroundColor = .activeColor
+                    self.levelOfActivity = LevelOfActivityEnum.low.rawValue
+                    break
+                case LevelOfActivityEnum.middle.rawValue:
+                    self.middleActivity.backgroundColor = .activeColor
+                    self.levelOfActivity = LevelOfActivityEnum.middle.rawValue
+                    break
+                case LevelOfActivityEnum.hight.rawValue:
+                    self.hightActivity.backgroundColor = .activeColor
+                    self.levelOfActivity = LevelOfActivityEnum.hight.rawValue
+                    break
+                default:
+                    print("")
+                }
             }
         }
         
@@ -389,13 +378,11 @@ extension SettingVC: SettingVCProtocol {
         middleActivity.addTarget(self, action: #selector(tapOnmiddleActivityButton), for: .touchUpInside)
         hightActivity.addTarget(self, action: #selector(tapOnhightActivityButton), for: .touchUpInside)
                 
-        
         stackViewForActivity.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
-        stackViewForActivity.topAnchor.constraint(equalTo: labelOfActivity.bottomAnchor, constant: 10).isActive = true
+        stackViewForActivity.topAnchor.constraint(equalTo: labelOfActivity.bottomAnchor, constant: 0).isActive = true
         stackViewForActivity.widthAnchor.constraint(equalTo: contentView.widthAnchor, constant: -20).isActive = true
         stackViewForActivity.heightAnchor.constraint(equalToConstant: 60).isActive = true
         
-
         lowActivity.widthAnchor.constraint(equalTo: middleActivity.widthAnchor).isActive = true
         hightActivity.widthAnchor.constraint(equalTo: lowActivity.widthAnchor).isActive = true
     }
@@ -403,21 +390,12 @@ extension SettingVC: SettingVCProtocol {
     func createLabelForGoal() {
         labelForGoal.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(labelForGoal)
+
+        labelForGoal.text = "Ваша цель".localized()
         
-        labelForGoal.font = UIFont(name: "Vasek", size: 1000)
-        labelForGoal.numberOfLines = 1
-        labelForGoal.adjustsFontSizeToFitWidth = true
-        
-        labelForGoal.textAlignment = .center
-        labelForGoal.text = "Ваша цель"
-        
-        labelForGoal.textColor = #colorLiteral(red: 0.8078431487, green: 0.02745098062, blue: 0.3333333433, alpha: 1)
-        
-        
-        labelForGoal.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
+        labelForGoal.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 20).isActive = true
+        labelForGoal.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -20).isActive = true
         labelForGoal.topAnchor.constraint(equalTo: stackViewForActivity.bottomAnchor, constant: 20).isActive = true
-        labelForGoal.widthAnchor.constraint(equalTo: contentView.widthAnchor).isActive = true
-        labelForGoal.heightAnchor.constraint(equalToConstant: 60).isActive = true
     }
     
     func createStackViewForGoal() {
@@ -435,30 +413,29 @@ extension SettingVC: SettingVCProtocol {
         stackViewForGoal.spacing = 20
         stackViewForGoal.axis = .horizontal
         
-        loseWeightButton.setTitle("Похудеть", for: .normal)
-        saveWeightButton.setTitle("Поддерживать вес", for: .normal)
-        gainWeightButton.setTitle("Набрать вес", for: .normal)
+        loseWeightButton.setTitle("Похудеть".localized(), for: .normal)
+        saveWeightButton.setTitle("Норма".localized(), for: .normal)
+        gainWeightButton.setTitle("Набрать вес".localized(), for: .normal)
         
         saveWeightButton.titleLabel?.adjustsFontSizeToFitWidth = true
         
-        loseWeightButton.backgroundColor = .gray
-        saveWeightButton.backgroundColor = .gray
-        gainWeightButton.backgroundColor = .gray
-        
         DispatchQueue.main.async {
-            switch self.mas[5] {
-            case "Похудеть":
-                self.loseWeightButton.backgroundColor = .black
-                self.goal = "Похудеть"
-            case "Норма":
-                self.saveWeightButton.backgroundColor = .black
-                self.goal = "Норма"
-            case "Набрать":
-                self.gainWeightButton.backgroundColor = .black
-                self.goal = "Набрать"
-                
-            default:
-                print("")
+            let curGoal: String? = self.presenter?.getElement(elementName: "goal")
+            if let curGoal = curGoal {
+                switch curGoal {
+                case Goals.leaveWeight.rawValue:
+                    self.loseWeightButton.backgroundColor = .activeColor
+                    self.goal = Goals.leaveWeight.rawValue
+                case Goals.norma.rawValue:
+                    self.saveWeightButton.backgroundColor = .activeColor
+                    self.goal = Goals.norma.rawValue
+                case Goals.weightUp.rawValue:
+                    self.gainWeightButton.backgroundColor = .activeColor
+                    self.goal = Goals.weightUp.rawValue
+                    
+                default:
+                    print("")
+                }
             }
         }
         
@@ -466,23 +443,22 @@ extension SettingVC: SettingVCProtocol {
         saveWeightButton.addTarget(self, action: #selector(tapOnSaveWeightButton), for: .touchUpInside)
         gainWeightButton.addTarget(self, action: #selector(tapOnGainWeightButton), for: .touchUpInside)
                 
-        
         stackViewForGoal.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
-        stackViewForGoal.topAnchor.constraint(equalTo: labelForGoal.bottomAnchor, constant: 10).isActive = true
+        stackViewForGoal.topAnchor.constraint(equalTo: labelForGoal.bottomAnchor, constant: 0).isActive = true
         stackViewForGoal.widthAnchor.constraint(equalTo: contentView.widthAnchor, constant: -20).isActive = true
         stackViewForGoal.heightAnchor.constraint(equalToConstant: 60).isActive = true
         
-
         loseWeightButton.widthAnchor.constraint(equalTo: saveWeightButton.widthAnchor).isActive = true
         gainWeightButton.widthAnchor.constraint(equalTo: loseWeightButton.widthAnchor).isActive = true
     }
     
     func createButtonForExit() {
-        contentView.addSubview(buttonForExit)
+        view.addSubview(buttonForExit)
         
-        buttonForExit.setTitle("Выйти из аккаунта", for: .normal)
-        buttonForExit.setTitleColor(.red, for: .normal)
-        buttonForExit.backgroundColor = .blue
+        buttonForExit.setTitle("Выйти из аккаунта".localized(), for: .normal)
+        buttonForExit.setTitleColor(.white, for: .normal)
+        buttonForExit.backgroundColor = .red
+        buttonForExit.layer.borderColor = #colorLiteral(red: 0.3127223253, green: 0, blue: 0.04685305804, alpha: 1)
         
         buttonForExit.addTarget(self, action: #selector(exitAction), for: .touchUpInside)
     }
@@ -490,37 +466,50 @@ extension SettingVC: SettingVCProtocol {
     func createConstraintsForButtonForExit() {
         buttonForExit.translatesAutoresizingMaskIntoConstraints = false
         
-        buttonForExit.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
-        buttonForExit.topAnchor.constraint(equalTo: stackViewForGoal.bottomAnchor, constant: 50).isActive = true
-        buttonForExit.widthAnchor.constraint(equalTo: contentView.widthAnchor).isActive = true
+        buttonForExit.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -20).isActive = true
         buttonForExit.heightAnchor.constraint(equalToConstant: 60).isActive = true
-        
+        buttonForExit.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -60).isActive = true
+        buttonForExit.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 60).isActive = true
     }
-    
+
     func createButtonForSave() {
         buttonForSave.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(buttonForSave)
         
-        buttonForSave.setTitle("Сохранить", for: .normal)
-        buttonForSave.setTitleColor(.red, for: .normal)
-        buttonForSave.backgroundColor = .green
+        buttonForSave.setTitle("Сохранить".localized(), for: .normal)
         
         buttonForSave.addTarget(self, action: #selector(saveAction), for: .touchUpInside)
         
-        buttonForSave.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0).isActive = true
+        buttonForSave.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 20).isActive = true
+        buttonForSave.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -20).isActive = true
+        buttonForSave.topAnchor.constraint(equalTo: stackViewForGoal.bottomAnchor, constant: 50).isActive = true
         buttonForSave.heightAnchor.constraint(equalToConstant: 60).isActive = true
-        buttonForSave.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -20).isActive = true
-        buttonForSave.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 20).isActive = true
     
-    }
-    
-    func settingValuesFromBD(mas: inout [String]) {
-            presenter?.settingValues(mas: &mas)
     }
     
     func showAlertAboutSave() {
-        let alert = UIAlertController(title: "Сохранение в базу данных", message: "Успешно", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Ок", style: .default))
+        let alert = UIAlertController(title: "Сохранение в базу данных".localized(), message: "Успешно".localized(), preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Ок".localized(), style: .default))
         self.present(alert, animated: true, completion: nil)
+    }
+    
+    // MARK: - Gestures
+    func setTapRecognizer() {
+        tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(tapGesture))
+        view.addGestureRecognizer(tapRecognizer!)
+    }
+    @objc func tapGesture() {
+        view.endEditing(true)
+    }
+}
+
+// MARK: - TextFieldsDelegate
+extension SettingVC: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
     }
 }

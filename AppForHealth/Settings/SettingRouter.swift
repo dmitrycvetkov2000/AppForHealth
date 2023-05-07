@@ -9,6 +9,7 @@ import Foundation
 
 protocol SettingRouterProtocol: AnyObject {
     func openFirstScreen()
+    func openMain()
 }
 
 class SettingRouter: SettingRouterProtocol {
@@ -18,5 +19,9 @@ class SettingRouter: SettingRouterProtocol {
         let vc = AuthorizationModuleBuilder.build()
         vc.modalPresentationStyle = .fullScreen
         viewController?.present(vc, animated: true)
+    }
+    
+    func openMain() {
+        viewController?.dismiss(animated: true)
     }
 }

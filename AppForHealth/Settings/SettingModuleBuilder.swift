@@ -9,7 +9,7 @@ import UIKit
 
 class SettingModuleBuilder: UIViewController {
     
-    static func build() -> SettingVC {
+    static func build(usingNavigationFactory factory: NavigationFactory) -> UINavigationController {
         let interactor = SettingInteractor()
         let router = SettingRouter()
         let presenter = SettingPresenter(interactor: interactor, router: router)
@@ -18,7 +18,6 @@ class SettingModuleBuilder: UIViewController {
         presenter.view = viewController
         interactor.presenter = presenter
         router.viewController = viewController
-        return viewController
+        return factory(viewController)
     }
-    
 }
