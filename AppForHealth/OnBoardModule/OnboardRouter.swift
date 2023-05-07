@@ -13,12 +13,11 @@ protocol OnboardRouterProtocol: AnyObject {
 
 class OnboardRouter: OnboardRouterProtocol {
     
-    weak var viewController: OnboardVC?
+    weak var viewController: OnboardPageVC?
     
     func openAuthorization() {
         let vc = AuthorizationModuleBuilder.build()
         vc.modalPresentationStyle = .fullScreen
         viewController?.present(vc, animated: true)
     }
-    
 }

@@ -1,84 +1,88 @@
+////
+////  OnboardVC.swift
+////  AppForHealth
+////
+////  Created by Дмитрий Цветков on 15.12.2022.
+////
 //
-//  OnboardVC.swift
-//  AppForHealth
-//
-//  Created by Дмитрий Цветков on 15.12.2022.
-//
-
 import UIKit
 
-protocol OnboardVCProtocol: AnyObject {
-    
-}
 class OnboardVC: UIViewController {
-    var presenter: OnboardPresenterProtocol?
     
-    var viewOfOnboard = UIView()
+    let labelForTitle = LabelTitle()
     
-    let scrollView = UIScrollView()
-}
-
-extension OnboardVC: OnboardVCProtocol {
-
+    let labelForText = JustText()
+    
+    let imageView = UIImageView()
+    
+    let button = MainButton()
+    
+    lazy var subView: [UIView] = [self.labelForTitle, self.labelForText, self.imageView, self.button]
+    
+    init(helper: OnboardHelper) {
+        super.init(nibName: nil, bundle: nil)
+        
+        view.backgroundColor = .brown
+        edgesForExtendedLayout = []
+        
+        labelForTitle.text = helper.title
+        labelForText.text = helper.text
+        imageView.image = helper.image
+        imageView.contentMode = .scaleAspectFit
+        
+        button.setTitle(helper.buttonTitle, for: .normal)
+        
+        for view in subView { self.view.addSubview(view) }
+        
+        setConstrainsForLabelTitle()
+        setConstrainsForTextLabel()
+        setConstrainsForButton()
+        setConstrainsForImageView()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    func setConstrainsForLabelTitle() {
+        labelForTitle.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            labelForTitle.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 20),
+            labelForTitle.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -20),
+            labelForTitle.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10)
+        ])
+    }
+    
+    func setConstrainsForTextLabel() {
+        labelForText.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            labelForText.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 20),
+            labelForText.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -20),
+            labelForText.topAnchor.constraint(equalTo: labelForTitle.bottomAnchor, constant: 2)
+        ])
+    }
+    
+    func setConstrainsForButton() {
+        button.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            button.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 20),
+            button.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -20),
+            button.heightAnchor.constraint(equalToConstant: 50),
+            button.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -10)
+        ])
+    }
+    
+    func setConstrainsForImageView() {
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            imageView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 20),
+            imageView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -20),
+            imageView.topAnchor.constraint(equalTo: labelForText.bottomAnchor, constant: 0),
+            imageView.bottomAnchor.constraint(equalTo: button.topAnchor, constant: -20)
+        ])
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        presenter?.viewDidLoaded(viewOfOnboard: viewOfOnboard, vc: self)
-    }
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        self.configure()
-    }
-    
-    private func configure() {
-        scrollView.frame = viewOfOnboard.bounds
-        viewOfOnboard.addSubview(scrollView)
-        
-        let titles = ["Welcome", "Second", "Third"]
-        
-        for x in 0..<3 {
-            let pageView = UIView(frame: CGRect(x: CGFloat(x) * viewOfOnboard.frame.size.width, y: 0, width: viewOfOnboard.frame.size.width, height: viewOfOnboard.frame.size.height))
-            scrollView.addSubview(pageView)
-
-            let label = UILabel(frame: CGRect(x: 10, y: 10, width: pageView.frame.size.width - 20, height: 120))
-            let imageView = UIImageView(frame: CGRect(x: 10, y: 10 + 120 + 10, width: pageView.frame.size.width - 20, height: pageView.frame.size.height - 60 - 130 - 15))
-            let button = UIButton(frame: CGRect(x: 10, y: pageView.frame.size.height - 60, width: pageView.frame.size.width - 20, height: 50))
-
-            label.textAlignment = .center
-            label.font = UIFont(name: "Vasek", size: 32)
-            label.numberOfLines = 1
-            label.adjustsFontSizeToFitWidth = true
-
-            pageView.addSubview(label)
-            label.text = titles[x]
-
-            imageView.contentMode = .scaleAspectFit
-            imageView.image = UIImage(named: "welcome_\(x+1)")
-            pageView.addSubview(imageView)
-
-            button.setTitleColor(.white, for: .normal)
-            button.backgroundColor = .black
-            button.setTitle("Продолжить", for: .normal)
-            if x == 2 {
-                button.setTitle("Начать", for: .normal)
-            }
-            button.addTarget(self, action: #selector(didTapButton(_ :)), for: .touchUpInside)
-            button.tag = x + 1
-            pageView.addSubview(button)
-            
-        }
-        
-        scrollView.contentSize = CGSize(width: viewOfOnboard.frame.size.width * 3, height: 0)
-        scrollView.isPagingEnabled = true
-    }
-    @objc func didTapButton(_ button: UIButton) {
-        guard button.tag < 3 else {
-            Core.shared.setIsNotNewUser()
-            presenter?.didTappedLastButton()
-            return
-        }
-        scrollView.setContentOffset(CGPoint(x: viewOfOnboard.frame.size.width * CGFloat(button.tag), y: 0), animated: true)
-        //scroll to the next page
     }
 }

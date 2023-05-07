@@ -9,11 +9,11 @@ import UIKit
 
 class OnboardModuleBuilder: UIViewController {
     
-    static func build() -> OnboardVC {
+    static func build() -> UIViewController {
         let interactor = OnboardInteractor()
         let router = OnboardRouter()
         let presenter = OnboardPresenter(interactor: interactor, router: router)
-        let viewController = OnboardVC()
+        let viewController = OnboardPageVC()
         viewController.presenter = presenter
         presenter.view = viewController
         interactor.presenter = presenter

@@ -15,5 +15,4 @@ class OnboardInteractor: OnboardInteractorProtocol {
     
     weak var presenter: OnboardPresenterProtocol?
     
-
 }
