@@ -5,6 +5,8 @@
 	<key>UIAppFonts</key>
 	<array>
 		<string>Vasek.ttf</string>
+		<string>RubikBubbles-Regular.ttf</string>
+		<string>FiraSans-Bold.ttf</string>
 	</array>
 </dict>
 </plist>
