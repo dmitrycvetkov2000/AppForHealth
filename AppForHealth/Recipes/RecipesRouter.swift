@@ -8,9 +8,13 @@
 import Foundation
 
 protocol RecipesRouterProtocol: AnyObject {
-    
+    func openMain()
 }
 
 class RecipesRouter: RecipesRouterProtocol {
     weak var viewController: RecipesVC?
+    
+    func openMain() {
+        viewController?.dismiss(animated: true)
+    }
 }

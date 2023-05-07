@@ -14,7 +14,11 @@ class HelperForRecipes: NSObject {
     var model = ModelOfDataForCollectionViewRecipes()
     
     weak var viewController: RecipesVC?
-
+    
+    lazy var spinnerOnView: CustomSpinnerSimple = {
+        let spinner = CustomSpinnerSimple(squareLength: 100)
+        return spinner
+    }()
 }
 
 
@@ -34,15 +38,20 @@ extension HelperForRecipes: UICollectionViewDataSource {
             cell?.setLabelForName(name: model.nameOfFood[indexPath.item] ?? "")
         }
         if model.imageOfFoodUrl.count > indexPath.item {
+            cell?.addSubview(spinnerOnView)
+            spinnerOnView.startAnimation(delay: 0.04, replicates: 20)
             if let imageUrl = model.imageOfFoodUrl[indexPath.item] {
-                cell?.setImage(url: imageUrl)
+                cell?.setImage(url: imageUrl, completion: { [weak self] in
+                    self?.spinnerOnView.stopAnimation()
+                    self?.spinnerOnView.removeFromSuperview()
+                })
             }
         }
         if model.calories.count > indexPath.item {
             cell?.setLabelCalories(calories: model.calories[indexPath.item] ?? 0)
         }
         
-        cell?.backgroundColor = .clear
+        cell?.backgroundColor = .brown
         return cell ?? UICollectionViewCell()
     }
 }

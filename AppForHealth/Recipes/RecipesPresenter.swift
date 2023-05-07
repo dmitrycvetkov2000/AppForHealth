@@ -8,7 +8,12 @@
 import Foundation
 
 protocol RecipesPresenterProtocol: AnyObject {
+    func setNavigationItems()
+    func didTapLeftButton()
     
+    func setBlurEffect()
+    func setSpinnerAndStart()
+    func removeSpinnerAndBlurEffect()
 }
 
 class RecipesPresenter {
@@ -23,5 +28,23 @@ class RecipesPresenter {
 }
 
 extension RecipesPresenter: RecipesPresenterProtocol {
+    func setNavigationItems() {
+        view?.configureNavigationItems()
+    }
     
+    func didTapLeftButton() {
+        router.openMain()
+    }
+    
+    func setBlurEffect() {
+        view?.setBlurEffect()
+    }
+    
+    func setSpinnerAndStart() {
+        view?.setSpinnerAndStart()
+    }
+    
+    func removeSpinnerAndBlurEffect() {
+        view?.removeSpinnerAndBlurEffect()
+    }
 }

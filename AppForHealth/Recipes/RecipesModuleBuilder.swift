@@ -9,7 +9,7 @@ import UIKit
 
 class RecipesModuleBuilder: UIViewController {
     
-    static func build() -> RecipesVC {
+    static func build(usingNavigationFactory factory: NavigationFactory) -> UINavigationController {
         let interactor = RecipesInteractor()
         let router = RecipesRouter()
         let presenter = RecipesPresenter(interactor: interactor, router: router)
@@ -18,6 +18,6 @@ class RecipesModuleBuilder: UIViewController {
         presenter.view = viewController
         interactor.presenter = presenter
         router.viewController = viewController
-        return viewController
+        return factory(viewController)
     }
 }
