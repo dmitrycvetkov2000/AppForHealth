@@ -8,7 +8,7 @@
 import UIKit
 
 protocol AuthorizationViewProtocol: AnyObject {
-
+    func setTapRecognizer()
 }
 
 class ViewController: UIViewController {
@@ -29,41 +29,44 @@ class ViewController: UIViewController {
     var signup: Bool = true {
         willSet {
             if newValue {
-                registrationLabel.text = "Регистрация"
+                registrationLabel.text = "Регистрация".localized()
                 nameTextField.isHidden = false
-                buttonForEnter.setTitle("Вход", for: .normal)
-                otherLabel.text = "У вас уже есть аккаунт?"
+                buttonForEnter.setTitle("Вход".localized(), for: .normal)
+                otherLabel.text = "У вас уже есть аккаунт?".localized()
             } else {
-                registrationLabel.text = "Вход"
+                registrationLabel.text = "Вход".localized()
                 nameTextField.isHidden = true
-                buttonForEnter.setTitle("Регистрация", for: .normal)
-                otherLabel.text = "У вас нет аккаунта?"
+                buttonForEnter.setTitle("Регистрация".localized(), for: .normal)
+                otherLabel.text = "У вас нет аккаунта?".localized()
             }
         }
     }
     
     let constrains = ConstrainsOfAuth()
     
-    var registrationLabel = UILabel()
-    var otherLabel = UILabel()
+    var registrationLabel = LabelTitle()
+    var otherLabel = JustText()
     
     
     var stackViewForEntry = UIStackView()
-    var nameTextField = UITextField()
-    var emailTextField = UITextField()
-    var passwordTextField = UITextField()
+    var nameTextField = MyTextField()
+    var emailTextField = MyTextField()
+    var passwordTextField = MyTextField()
     
     var buttonForEnter = UIButton()
+    
+    var tapRecognizer: UITapGestureRecognizer?
 
     override func viewDidLoad() {
         super.viewDidLoad()
         presenter?.viewDidLoaded()
+        presenter?.setTapRecognizer()
         
         nameTextField.delegate = self
         emailTextField.delegate = self
         passwordTextField.delegate = self
         
-        self.view.backgroundColor = #colorLiteral(red: 0.1960784346, green: 0.3411764801, blue: 0.1019607857, alpha: 1)
+        self.view.backgroundColor = .brown
         
         createLabel(registrationLabel)
         constrains.createRegistrationLabelConstrains(registrationLabel, view)
@@ -129,13 +132,9 @@ extension ViewController {
     func createLabel(_ label: UILabel) {
         label.translatesAutoresizingMaskIntoConstraints = false
         if label == registrationLabel {
-            label.font = UIFont(name: "Vasek", size: 1000)
-            label.numberOfLines = 1
             label.adjustsFontSizeToFitWidth = true
             
-            label.text = "Регистрация"
-            
-            label.textAlignment = .center
+            label.text = "Регистрация".localized()
         }
         view.addSubview(label)
     }
@@ -155,28 +154,30 @@ extension ViewController {
         
         
         nameTextField.attributedPlaceholder = NSAttributedString(
-            string: "Введите имя",
+            string: "Введите имя".localized(),
             attributes: [NSAttributedString.Key.foregroundColor: #colorLiteral(red: 0.6783986092, green: 0.7456328273, blue: 0.6901838183, alpha: 1)]
         )
         emailTextField.attributedPlaceholder = NSAttributedString(
-            string: "Введите email",
+            string: "Введите email".localized(),
             attributes: [NSAttributedString.Key.foregroundColor: #colorLiteral(red: 0.6783986092, green: 0.7456328273, blue: 0.6901838183, alpha: 1)]
         )
         passwordTextField.attributedPlaceholder = NSAttributedString(
-            string: "Введите пароль",
+            string: "Введите пароль".localized(),
             attributes: [NSAttributedString.Key.foregroundColor: #colorLiteral(red: 0.6783986092, green: 0.7456328273, blue: 0.6901838183, alpha: 1)]
         )
         
+        //emailTextField.keyboardType = .emailAddress //////?
+        
         nameTextField.returnKeyType = .continue
         emailTextField.returnKeyType = .continue
+        emailTextField.autocapitalizationType = .none
         passwordTextField.returnKeyType = .done
         nameTextField.textContentType = .name
         emailTextField.textContentType = .emailAddress
         passwordTextField.textContentType = .password
+        passwordTextField.autocapitalizationType = .none
         
         passwordTextField.isSecureTextEntry = true
-        
-        emailTextField.keyboardType = .emailAddress
         
         nameTextField.autocorrectionType = .no
         emailTextField.autocorrectionType = .no
@@ -194,36 +195,26 @@ extension ViewController {
         passwordTextField.leftViewMode = UITextField.ViewMode.always
         passwordTextField.leftView = spacerView3
         
-        
-        nameTextField.backgroundColor = #colorLiteral(red: 0.4380294085, green: 0.3144482672, blue: 0.7371886373, alpha: 1)
-        emailTextField.backgroundColor = #colorLiteral(red: 0.4380294085, green: 0.3144482672, blue: 0.7371886373, alpha: 1)
-        passwordTextField.backgroundColor = #colorLiteral(red: 0.4380294085, green: 0.3144482672, blue: 0.7371886373, alpha: 1)
-        
         stackViewForEntry.addArrangedSubview(nameTextField)
         stackViewForEntry.addArrangedSubview(emailTextField)
         stackViewForEntry.addArrangedSubview(passwordTextField)
         
-        
         view.addSubview(stackViewForEntry)
     }
-
     
     func createOtherLabel() {
         otherLabel.translatesAutoresizingMaskIntoConstraints = false
-        otherLabel.font = UIFont(name: "Vasek", size: 1000)
         otherLabel.numberOfLines = 1
         otherLabel.adjustsFontSizeToFitWidth = true
         otherLabel.textAlignment = .center
-        otherLabel.text = "У вас уже есть аккаунт?"
+        otherLabel.text = "У вас уже есть аккаунт?".localized()
         view.addSubview(otherLabel)
-        
     }
 
-    
     func createButtonForEnter() {
         buttonForEnter.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(buttonForEnter)
-        buttonForEnter.setTitle("Войти", for: .normal)
+        buttonForEnter.setTitle("Войти".localized(), for: .normal)
         buttonForEnter.setTitleColor(.black, for: .normal)
         
         buttonForEnter.backgroundColor = .clear
@@ -233,6 +224,15 @@ extension ViewController {
     }
     @objc func onButtonTapped(){
         signup = !signup
+    }
+ 
+// MARK: - Gestures
+    func setTapRecognizer() {
+        tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(tapGesture))
+        view.addGestureRecognizer(tapRecognizer!)
+    }
+    @objc func tapGesture() {
+        view.endEditing(true)
     }
 }
 

@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 protocol AuthorizationRouterProtocol: AnyObject {
     func openMain()
@@ -16,7 +17,7 @@ class AuthorizationRouter: AuthorizationRouterProtocol {
     weak var viewController: ViewController?
     
     func openMain() {
-        let vc = MainModuleBuilder.build()
+        let vc = MainTabBarModuleBuilder.build(usingNavigationFactory: NavigationBuilder.build)
         vc.modalPresentationStyle = .fullScreen
         viewController?.present(vc, animated: true)
     }

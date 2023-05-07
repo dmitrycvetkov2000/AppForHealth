@@ -20,6 +20,10 @@ protocol AuthorizationPresenterProtocol: AnyObject {
     func showSpinnerAndBlackoutScreen(vc: UIViewController, spinner: CustomSpinnerSimple, blurEffectView: UIVisualEffectView)
     
     func showAlertForParol(vc: UIViewController)
+    
+    func setTapRecognizer()
+    
+    func saveNameForUser(name: String)
 }
 
 class AuthorizationPresenter {
@@ -50,7 +54,15 @@ extension AuthorizationPresenter: AuthorizationPresenterProtocol {
     func viewDidLoaded() {
 
     }
+    
+    func saveNameForUser(name: String) {
+        let realm = RealmManager.instance.realm
 
+        let nameOfUser = UserRealm(value: [name])
+        try! realm.write {
+            realm.add(nameOfUser)
+        }
+    }
     
     func didRegistration(name: String, email: String, password: String, presenter: AuthorizationPresenterProtocol?, vc: UIViewController, spinner: CustomSpinnerSimple, blurEffectView: UIVisualEffectView) {
         
@@ -62,8 +74,8 @@ extension AuthorizationPresenter: AuthorizationPresenterProtocol {
     }
     
     func showAlert(vc: UIViewController) {
-        let alert = UIAlertController(title: "Ошибка", message: "Заполните все поля", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Ок", style: .default))
+        let alert = UIAlertController(title: "Ошибка".localized(), message: "Заполните все поля".localized(), preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Ок".localized(), style: .default))
         vc.present(alert, animated: true, completion: nil)
     }
     
@@ -77,8 +89,12 @@ extension AuthorizationPresenter: AuthorizationPresenterProtocol {
     }
     
     func showAlertForParol(vc: UIViewController) {
-        let alert = UIAlertController(title: "Ошибка", message: "Пароль должен содержать не менее 6 символов", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Ок", style: .default))
+        let alert = UIAlertController(title: "Ошибка".localized(), message: "Пароль должен содержать не менее 6 символов".localized(), preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Ок".localized(), style: .default))
         vc.present(alert, animated: true, completion: nil)
+    }
+    
+    func setTapRecognizer() {
+        view?.setTapRecognizer()
     }
 }
