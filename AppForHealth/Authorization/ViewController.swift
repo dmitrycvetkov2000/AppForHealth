@@ -29,14 +29,16 @@ class ViewController: UIViewController {
     var signup: Bool = true {
         willSet {
             if newValue {
+                buttonForEnterOrRegistration.setTitle("Зарегистрироваться", for: .normal)
                 registrationLabel.text = "Регистрация".localized()
                 nameTextField.isHidden = false
-                buttonForEnter.setTitle("Вход".localized(), for: .normal)
+                buttonForChangeView.setTitle("Вход".localized(), for: .normal)
                 otherLabel.text = "У вас уже есть аккаунт?".localized()
             } else {
+                buttonForEnterOrRegistration.setTitle("Войти", for: .normal)
                 registrationLabel.text = "Вход".localized()
                 nameTextField.isHidden = true
-                buttonForEnter.setTitle("Регистрация".localized(), for: .normal)
+                buttonForChangeView.setTitle("Регистрация".localized(), for: .normal)
                 otherLabel.text = "У вас нет аккаунта?".localized()
             }
         }
@@ -53,7 +55,8 @@ class ViewController: UIViewController {
     var emailTextField = MyTextField()
     var passwordTextField = MyTextField()
     
-    var buttonForEnter = UIButton()
+    var buttonForEnterOrRegistration = MainButton()
+    var buttonForChangeView = UIButton()
     
     var tapRecognizer: UITapGestureRecognizer?
 
@@ -76,11 +79,14 @@ class ViewController: UIViewController {
         createStackViewForEntry()
         constrains.createStackViewConstraints(stackViewForEntry, view, registrationLabel: registrationLabel)
         
+        createButtonForEnterOrRegistration()
+        constrains.createBottonForEnterOrRegistrationConstraints(button: buttonForEnterOrRegistration, view, stackViewForEntry: stackViewForEntry)
+        
         createOtherLabel()
-        constrains.createOtherLabelConstraints(otherLabel, view, stackViewForEntry: stackViewForEntry)
+        constrains.createOtherLabelConstraints(otherLabel, view, button: buttonForEnterOrRegistration)
         
         createButtonForEnter()
-        constrains.createButtonConstraints(buttonForEnter, view, otherLabel: otherLabel)
+        constrains.createButtonConstraints(buttonForChangeView, view, otherLabel: otherLabel)
  
     }
 
@@ -88,11 +94,7 @@ class ViewController: UIViewController {
 
 
 extension ViewController: AuthorizationViewProtocol {
-
-}
-
-extension ViewController: UITextFieldDelegate {
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+    func enterOrRegistr(textField: UITextField?) {
         let name = nameTextField.text!
         let email = emailTextField.text!
         let password = passwordTextField.text!
@@ -108,15 +110,20 @@ extension ViewController: UITextFieldDelegate {
                 }
                 
             } else {
-                if textField == nameTextField {
-                    emailTextField.becomeFirstResponder()
+                if textField != nil {
+                    if textField == nameTextField {
+                        emailTextField.becomeFirstResponder()
+                    }
+                    if textField == emailTextField {
+                        passwordTextField.becomeFirstResponder()
+                    }
+                    if textField == passwordTextField {
+                        presenter?.showAlert(vc: self)
+                    }
+                } else {
+                        presenter?.showAlert(vc: self)
                 }
-                if textField == emailTextField {
-                    passwordTextField.becomeFirstResponder()
-                }
-                if textField == passwordTextField {
-                    presenter?.showAlert(vc: self)
-                }
+
             }
         } else {
             if(!email.isEmpty && !password.isEmpty) {
@@ -124,6 +131,14 @@ extension ViewController: UITextFieldDelegate {
                 presenter?.didEntrance(email: email, password: password, presenter: self.presenter, vc: self, spinner: spinner, blurEffectView: blurEffectView)
             }
         }
+    }
+}
+
+
+
+extension ViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        enterOrRegistr(textField: textField)
         return true
     }
 }
@@ -202,6 +217,16 @@ extension ViewController {
         view.addSubview(stackViewForEntry)
     }
     
+    func createButtonForEnterOrRegistration() {
+        buttonForEnterOrRegistration.translatesAutoresizingMaskIntoConstraints = false
+        buttonForEnterOrRegistration.setTitle("Зарегистрироваться", for: .normal)
+        view.addSubview(buttonForEnterOrRegistration)
+        buttonForEnterOrRegistration.addTarget(self, action: #selector(EnterOrRegistr), for: .touchUpInside)
+    }
+    @objc func EnterOrRegistr() {
+        enterOrRegistr(textField: nil)
+    }
+    
     func createOtherLabel() {
         otherLabel.translatesAutoresizingMaskIntoConstraints = false
         otherLabel.numberOfLines = 1
@@ -212,15 +237,14 @@ extension ViewController {
     }
 
     func createButtonForEnter() {
-        buttonForEnter.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(buttonForEnter)
-        buttonForEnter.setTitle("Войти".localized(), for: .normal)
-        buttonForEnter.setTitleColor(.black, for: .normal)
+        buttonForChangeView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(buttonForChangeView)
+        buttonForChangeView.setTitle("Войти".localized(), for: .normal)
+        buttonForChangeView.setTitleColor(.black, for: .normal)
         
-        buttonForEnter.backgroundColor = .clear
+        buttonForChangeView.backgroundColor = .clear
         
-        buttonForEnter.addTarget(self, action: #selector(onButtonTapped), for: .touchUpInside)
-        
+        buttonForChangeView.addTarget(self, action: #selector(onButtonTapped), for: .touchUpInside)
     }
     @objc func onButtonTapped(){
         signup = !signup

@@ -382,6 +382,7 @@
 				0A9F2AB4294A05C7004662F7 /* AuthorizationRouter.swift */,
 				0A9F2AB6294A0638004662F7 /* AuthorizationInteractor.swift */,
 				0A9F2AB8294A06D4004662F7 /* AuthorizationModuleBuilder.swift */,
+				0A9F2ABC294A6946004662F7 /* Constrains */,
 			);
 			path = Authorization;
 			sourceTree = "<group>";
@@ -439,7 +440,6 @@
 				0ADBAB0129E0299E00E03300 /* SecondTabBarModule */,
 				0ADBAB0E29E048DB00E03300 /* ThirdTabBarModule */,
 				0A0F0C222948ACD100666ECF /* Authorization */,
-				0A9F2ABC294A6946004662F7 /* Constrains */,
 				0A0F0C212948AC6300666ECF /* API */,
 				0A0F0C202948AA7200666ECF /* Resources */,
 				0A0F0C1F2948AA4F00666ECF /* Application */,

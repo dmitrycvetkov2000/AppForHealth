@@ -36,8 +36,15 @@ class ConstrainsOfAuth {
         passwordField.heightAnchor.constraint(equalToConstant: 50).isActive = true
     }
     
-    func createOtherLabelConstraints(_ label: UILabel, _ view: UIView, stackViewForEntry: UIStackView) {
-        label.topAnchor.constraint(equalTo: stackViewForEntry.bottomAnchor, constant: 10).isActive = true
+    func createBottonForEnterOrRegistrationConstraints(button: MainButton, _ view: UIView, stackViewForEntry: UIStackView) {
+        button.topAnchor.constraint(equalTo: stackViewForEntry.bottomAnchor, constant: 10).isActive = true
+        button.widthAnchor.constraint(equalToConstant: 260).isActive = true
+        button.heightAnchor.constraint(equalToConstant: 34).isActive = true
+        button.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+    }
+    
+    func createOtherLabelConstraints(_ label: UILabel, _ view: UIView, button: MainButton) {
+        label.topAnchor.constraint(equalTo: button.bottomAnchor, constant: 10).isActive = true
         label.widthAnchor.constraint(equalToConstant: 260).isActive = true
         label.heightAnchor.constraint(equalToConstant: 34).isActive = true
         label.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
