@@ -6,7 +6,7 @@
 //
 
 import UIKit
-
+import UserNotifications
 
 
 protocol OnboardPageVCProtocol: AnyObject {
@@ -75,6 +75,8 @@ class OnboardPageVC: UIPageViewController {
             helper.append(data)
         }
         setTargetsForButton()
+        
+        accesNotifications()
     }
     
     func setImages(i: Int) {
@@ -83,7 +85,49 @@ class OnboardPageVC: UIPageViewController {
 }
 
 extension OnboardPageVC: OnboardPageVCProtocol {
-
+    //MARK: - Notifications
+    func accesNotifications() {
+        let noticCenter = UNUserNotificationCenter.current()
+        noticCenter.requestAuthorization(options: [.alert, .sound]) { granted, error in
+            guard error == nil else { return }
+            if granted {
+                self.sheduleNotification { success in
+                    if success {
+                        print("We send it")
+                    } else {
+                        print("Failed")
+                    }
+                }
+            }
+        }
+    }
+    func sheduleNotification(completion: (Bool) -> ()) {
+        let center = UNUserNotificationCenter.current()
+        center.add(setupRequest(id: "dinner", title: "Время обеда", body: "Не забудьте полезно пообедать", hour: 14, minute: 0))
+        center.add(setupRequest(id: "launch", title: "Время ужина", body: "Не забудьте полезно поужинать", hour: 20, minute: 0))
+    }
+    
+    func setupRequest(id: String, title: String, body: String, hour: Int, minute: Int) -> UNNotificationRequest {
+        removeNotifications(withId: [id])
+        
+        let content = UNMutableNotificationContent()
+        content.title = title
+        content.body = body
+        content.sound = UNNotificationSound.default
+        
+        var dateInfo = DateComponents()
+        dateInfo.hour = 14
+        dateInfo.minute = 0
+        
+        let trigger = UNCalendarNotificationTrigger(dateMatching: dateInfo, repeats: true)
+        let request = UNNotificationRequest(identifier: id, content: content, trigger: trigger)
+        return request
+    }
+    
+    func removeNotifications(withId identifiers: [String]) {
+        let center = UNUserNotificationCenter.current()
+        center.removePendingNotificationRequests(withIdentifiers: identifiers)
+    }
 }
 
 extension OnboardPageVC: UIPageViewControllerDataSource, UIPageViewControllerDelegate {
