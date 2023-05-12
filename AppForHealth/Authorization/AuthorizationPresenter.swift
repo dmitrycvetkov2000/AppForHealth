@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import VK_ios_sdk
 
 protocol AuthorizationPresenterProtocol: AnyObject {
     func viewDidLoaded()
@@ -24,6 +25,10 @@ protocol AuthorizationPresenterProtocol: AnyObject {
     func setTapRecognizer()
     
     func saveNameForUser(name: String)
+    
+    func didTapGoogleButton(vc: ViewController)
+    
+    func didTapVKButton(vc: ViewController, result: VKAuthorizationResult)
 }
 
 class AuthorizationPresenter {
@@ -96,5 +101,13 @@ extension AuthorizationPresenter: AuthorizationPresenterProtocol {
     
     func setTapRecognizer() {
         view?.setTapRecognizer()
+    }
+    
+    func didTapGoogleButton(vc: ViewController) {
+        interactor.registrationGoogle(vc: vc)
+    }
+    
+    func didTapVKButton(vc: ViewController, result: VKAuthorizationResult) {
+        interactor.registrationVK(vc: vc, result: result)
     }
 }

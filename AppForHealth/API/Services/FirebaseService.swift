@@ -7,16 +7,23 @@
 
 import Foundation
 import Firebase
+import GoogleSignIn
+import VK_ios_sdk
 
 class FirebaseService {
     
     func signOutFromAcc(presenter: SettingPresenterProtocol?) {
         do {
             try Auth.auth().signOut()
+            GIDSignIn.sharedInstance.signOut()
+            
+            let url = URL(string: "http://api.vk.com/oauth/logout")!
+            let req = URLRequest(url: url)
+            VKAuthScreen().load(req)
+            
             DispatchQueue.main.async {
                 presenter?.didTapOnExitButton()
             }
-            
         } catch {
             print(error)
         }

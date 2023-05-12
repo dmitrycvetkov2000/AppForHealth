@@ -13,6 +13,10 @@ target 'AppForHealth' do
 
 pod 'Charts'
 
+pod 'GoogleSignIn'
+pod 'AppAuth'
+pod "VK-ios-sdk"
+
   # Pods for AppForHealth
 
   target 'AppForHealthTests' do

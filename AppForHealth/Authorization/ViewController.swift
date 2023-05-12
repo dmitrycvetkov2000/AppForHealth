@@ -6,6 +6,11 @@
 //
 
 import UIKit
+import VK_ios_sdk
+//import GoogleSignIn
+//import FirebaseAuth
+//import VK_ios_sdk
+
 
 protocol AuthorizationViewProtocol: AnyObject {
     func setTapRecognizer()
@@ -29,12 +34,14 @@ class ViewController: UIViewController {
     var signup: Bool = true {
         willSet {
             if newValue {
+                labelForMessengersRegistration.text = "Зарегистрироваться с помощью"
                 buttonForEnterOrRegistration.setTitle("Зарегистрироваться", for: .normal)
                 registrationLabel.text = "Регистрация".localized()
                 nameTextField.isHidden = false
                 buttonForChangeView.setTitle("Вход".localized(), for: .normal)
                 otherLabel.text = "У вас уже есть аккаунт?".localized()
             } else {
+                labelForMessengersRegistration.text = "Войти с помощью"
                 buttonForEnterOrRegistration.setTitle("Войти", for: .normal)
                 registrationLabel.text = "Вход".localized()
                 nameTextField.isHidden = true
@@ -59,7 +66,15 @@ class ViewController: UIViewController {
     var buttonForChangeView = UIButton()
     
     var tapRecognizer: UITapGestureRecognizer?
-
+    
+    var labelForMessengersRegistration = JustText()
+    var StackForButtonsMessenger = UIStackView()
+    var vkButton = UIButton()
+    var googleButton = UIButton()
+    
+    //var vcVKAuthScreen = VKAuthScreen()
+    //let webView = WKWebView()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         presenter?.viewDidLoaded()
@@ -88,6 +103,11 @@ class ViewController: UIViewController {
         createButtonForEnter()
         constrains.createButtonConstraints(buttonForChangeView, view, otherLabel: otherLabel)
  
+        createStackForButtons()
+        
+        createLabelForMessengersRegistration()
+        constrains.createLabelForMessengersRegistration(label: labelForMessengersRegistration, view: view, stack: StackForButtonsMessenger)
+        
     }
 
 }
@@ -250,6 +270,55 @@ extension ViewController {
         signup = !signup
     }
  
+    func createLabelForMessengersRegistration() {
+        labelForMessengersRegistration.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(labelForMessengersRegistration)
+        labelForMessengersRegistration.textAlignment = .center
+        
+        labelForMessengersRegistration.text = "Зарегистрируйтесь с помощью"
+        
+    }
+    func createStackForButtons() {
+        StackForButtonsMessenger.translatesAutoresizingMaskIntoConstraints = false
+        StackForButtonsMessenger.axis = .horizontal
+        StackForButtonsMessenger.spacing = 20
+
+        view.addSubview(StackForButtonsMessenger)
+        
+        StackForButtonsMessenger.addArrangedSubview(vkButton)
+        StackForButtonsMessenger.addArrangedSubview(googleButton)
+        
+        constrains.createStackForButtons(stack: StackForButtonsMessenger, view: view)
+        
+        vkButton.translatesAutoresizingMaskIntoConstraints = false
+        googleButton.translatesAutoresizingMaskIntoConstraints = false
+        
+        let imageVK = UIImage(named: "vk")
+        vkButton.setImage(imageVK, for: .normal)
+        
+        let imageGoogle = UIImage(named: "google")
+        googleButton.setImage(imageGoogle, for: .normal)
+        
+        NSLayoutConstraint.activate([
+            vkButton.widthAnchor.constraint(equalTo: StackForButtonsMessenger.heightAnchor),
+            vkButton.heightAnchor.constraint(equalTo: StackForButtonsMessenger.heightAnchor)
+        ])
+        NSLayoutConstraint.activate([
+            googleButton.widthAnchor.constraint(equalTo: StackForButtonsMessenger.heightAnchor),
+            googleButton.heightAnchor.constraint(equalTo: StackForButtonsMessenger.heightAnchor)
+        ])
+        
+        vkButton.addTarget(self, action: #selector(didTapVK), for: .touchUpInside)
+        googleButton.addTarget(self, action: #selector(didTapGoogle), for: .touchUpInside)
+    }
+    @objc func didTapVK() {
+        let vc = WebVC()
+        self.present(vc, animated: true)
+    }
+    @objc func didTapGoogle() {
+        presenter?.didTapGoogleButton(vc: self)
+    }
+    
 // MARK: - Gestures
     func setTapRecognizer() {
         tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(tapGesture))
@@ -257,6 +326,17 @@ extension ViewController {
     }
     @objc func tapGesture() {
         view.endEditing(true)
+    }
+}
+// MARK: - VKDelegate
+extension ViewController: VKSdkDelegate {
+    func vkSdkAccessAuthorizationFinished(with result: VKAuthorizationResult!) {
+        print("Регистрация закончилась")
+        presenter?.didTapVKButton(vc: self, result: result)
+    }
+    
+    func vkSdkUserAuthorizationFailed() {
+        print("Ошибка регистрации ВК")
     }
 }
 

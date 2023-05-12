@@ -56,4 +56,16 @@ class ConstrainsOfAuth {
         button.widthAnchor.constraint(equalToConstant: 200).isActive = true
         button.heightAnchor.constraint(equalToConstant: 20).isActive = true
     }
+    
+    func createStackForButtons(stack: UIStackView, view: UIView) {
+        stack.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -20).isActive = true
+        stack.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        stack.heightAnchor.constraint(equalToConstant: 40).isActive = true
+    }
+    
+    func createLabelForMessengersRegistration(label: JustText, view: UIView, stack: UIStackView) {
+        label.bottomAnchor.constraint(equalTo: stack.topAnchor, constant: -2).isActive = true
+        label.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -20).isActive = true
+        label.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 20).isActive = true
+    }
 }

@@ -82,6 +82,10 @@
 		0AC71116295D268900BD18EA /* ModelOfDataForCollectionViewRecipes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AC71115295D268900BD18EA /* ModelOfDataForCollectionViewRecipes.swift */; };
 		0AC71118295D274C00BD18EA /* MyCollectionViewCellForRecipes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AC71117295D274C00BD18EA /* MyCollectionViewCellForRecipes.swift */; };
 		0AC7111A295D2B0D00BD18EA /* HelperForRecipes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AC71119295D2B0D00BD18EA /* HelperForRecipes.swift */; };
+		0AD027BB2A0D09B000F02362 /* VKAuthScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD027BA2A0D09B000F02362 /* VKAuthScreen.swift */; };
+		0AD027BD2A0D26D900F02362 /* WebVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD027BC2A0D26D900F02362 /* WebVC.swift */; };
+		0AD027BF2A0D38AD00F02362 /* credentials-2.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0AD027BE2A0D38AD00F02362 /* credentials-2.plist */; };
+		0AD027C12A0D423E00F02362 /* VCForGoogle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD027C02A0D423E00F02362 /* VCForGoogle.swift */; };
 		0AD0613F295BC62C00B67453 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD0613E295BC62C00B67453 /* Helper.swift */; };
 		0AD06141295BC67C00B67453 /* MyCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD06140295BC67C00B67453 /* MyCollectionViewCell.swift */; };
 		0AD06143295BC6B500B67453 /* ModelOfDataForCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD06142295BC6B500B67453 /* ModelOfDataForCollectionView.swift */; };
@@ -247,6 +251,10 @@
 		0AC71115295D268900BD18EA /* ModelOfDataForCollectionViewRecipes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelOfDataForCollectionViewRecipes.swift; sourceTree = "<group>"; };
 		0AC71117295D274C00BD18EA /* MyCollectionViewCellForRecipes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCollectionViewCellForRecipes.swift; sourceTree = "<group>"; };
 		0AC71119295D2B0D00BD18EA /* HelperForRecipes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelperForRecipes.swift; sourceTree = "<group>"; };
+		0AD027BA2A0D09B000F02362 /* VKAuthScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKAuthScreen.swift; sourceTree = "<group>"; };
+		0AD027BC2A0D26D900F02362 /* WebVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebVC.swift; sourceTree = "<group>"; };
+		0AD027BE2A0D38AD00F02362 /* credentials-2.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "credentials-2.plist"; sourceTree = "<group>"; };
+		0AD027C02A0D423E00F02362 /* VCForGoogle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VCForGoogle.swift; sourceTree = "<group>"; };
 		0AD0613E295BC62C00B67453 /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
 		0AD06140295BC67C00B67453 /* MyCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCollectionViewCell.swift; sourceTree = "<group>"; };
 		0AD06142295BC6B500B67453 /* ModelOfDataForCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelOfDataForCollectionView.swift; sourceTree = "<group>"; };
@@ -382,6 +390,9 @@
 				0A9F2AB4294A05C7004662F7 /* AuthorizationRouter.swift */,
 				0A9F2AB6294A0638004662F7 /* AuthorizationInteractor.swift */,
 				0A9F2AB8294A06D4004662F7 /* AuthorizationModuleBuilder.swift */,
+				0AD027BA2A0D09B000F02362 /* VKAuthScreen.swift */,
+				0AD027BC2A0D26D900F02362 /* WebVC.swift */,
+				0AD027C02A0D423E00F02362 /* VCForGoogle.swift */,
 				0A9F2ABC294A6946004662F7 /* Constrains */,
 			);
 			path = Authorization;
@@ -408,6 +419,7 @@
 				0A3CA823293E4F2000EDBFF9 /* Products */,
 				7902A4DF9CA030BC70A4662D /* Pods */,
 				502379E0239CD279B8930721 /* Frameworks */,
+				0AD027BE2A0D38AD00F02362 /* credentials-2.plist */,
 			);
 			sourceTree = "<group>";
 		};
@@ -901,6 +913,7 @@
 				0A3CA835293E4F2400EDBFF9 /* LaunchScreen.storyboard in Resources */,
 				0A3CA832293E4F2400EDBFF9 /* Assets.xcassets in Resources */,
 				0AA2E5C329FF67D1006B3FE8 /* Приседания.mov in Resources */,
+				0AD027BF2A0D38AD00F02362 /* credentials-2.plist in Resources */,
 				0AA2E5C129FF67C5006B3FE8 /* Бёрпи.mov in Resources */,
 				0AA2E5CA29FF696F006B3FE8 /* Localizable.strings in Resources */,
 				0AB8EE242A010C5500FF0E3C /* FiraSans-Bold.ttf in Resources */,
@@ -1045,6 +1058,7 @@
 				0A7D6BCB294FE24700E50542 /* ResultVC.swift in Sources */,
 				0A7D6BC5294FD98500E50542 /* Person+CoreDataProperties copy.swift in Sources */,
 				0ADBAB1629E04A4F00E03300 /* ThirdInteractor.swift in Sources */,
+				0AD027BB2A0D09B000F02362 /* VKAuthScreen.swift in Sources */,
 				0AE52FC3294AA8ED00915663 /* MainRouter.swift in Sources */,
 				0A9F2AB5294A05C7004662F7 /* AuthorizationRouter.swift in Sources */,
 				0AD0614C295BEF0F00B67453 /* RecipesInteractor.swift in Sources */,
@@ -1122,6 +1136,7 @@
 				0ADBAB0729E02ABC00E03300 /* SecondRouter.swift in Sources */,
 				0A9F2ABE294A6963004662F7 /* ConstrainsOfAuth.swift in Sources */,
 				0AFE8DAD29E9825400102258 /* TrainRouter.swift in Sources */,
+				0AD027BD2A0D26D900F02362 /* WebVC.swift in Sources */,
 				0A3CA826293E4F2000EDBFF9 /* AppDelegate.swift in Sources */,
 				0AE52FCE294BBFF700915663 /* OnboardPresenter.swift in Sources */,
 				0AF9519429F3C11800ABF30E /* ChartStringFormatter.swift in Sources */,
@@ -1136,6 +1151,7 @@
 				0AB8EE2A2A02D76300FF0E3C /* MockData.swift in Sources */,
 				0AB8EE332A034CFC00FF0E3C /* ModelOfDataMain.swift in Sources */,
 				0AD06148295BEE1B00B67453 /* RecipesPresenter.swift in Sources */,
+				0AD027C12A0D423E00F02362 /* VCForGoogle.swift in Sources */,
 				0AB8EE312A02F43A00FF0E3C /* CellForMainSection.swift in Sources */,
 				0ADBAB1C29E0718800E03300 /* MapVC.swift in Sources */,
 				0AC71116295D268900BD18EA /* ModelOfDataForCollectionViewRecipes.swift in Sources */,
