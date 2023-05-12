@@ -54,6 +54,7 @@ class CellForButtons: UICollectionViewCell {
     func configurateCell(imageName: String, labelText: String) {
         miniImageView.image = UIImage(named: imageName)
         miniLabel.text = labelText
+        miniLabel.textColor = .black
     }
     
     func setConstraints() {
