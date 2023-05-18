@@ -7,11 +7,21 @@
 
 import UIKit
 
+protocol DataForCollect {
+    var images: [UIImage?] { get set }
+    
+    var nameOfFood: [String?] { get set }
+    
+    var id: [Int?] { get set }
+}
+
 class HelperForRecipes: NSObject {
     
     let identifier = "cellForRecipes"
     
-    var model = ModelOfDataForCollectionViewRecipes()
+    //var model = ModelOfDataForCollectionViewRecipes()
+    
+    var modelForReceipts: DataForCollect? = ModelForReceipts()
     
     weak var viewController: RecipesVC?
     
@@ -25,33 +35,36 @@ class HelperForRecipes: NSObject {
 extension HelperForRecipes: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        model.ingredients.count
+        modelForReceipts?.id.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: identifier, for: indexPath) as? MyCollectionViewCellForRecipes
-        if model.ingredients.count > indexPath.item {
-            cell?.setLabelIngredients(ingredients: model.ingredients[indexPath.item] ?? "")
+//        if modelForDinner.ingredients.count ?? 0 > indexPath.item {
+//            cell?.setLabelIngredients(ingredients: modelForDinner.ingredients[indexPath.item] ?? "")
+//        }
+        if modelForReceipts?.nameOfFood.count ?? 0 > indexPath.item {
+            cell?.setLabelForName(name: modelForReceipts?.nameOfFood[indexPath.item] ?? "")
         }
-        if model.nameOfFood.count > indexPath.item {
-            cell?.setLabelForName(name: model.nameOfFood[indexPath.item] ?? "")
-        }
-        if model.imageOfFoodUrl.count > indexPath.item {
-            cell?.addSubview(spinnerOnView)
-            spinnerOnView.startAnimation(delay: 0.04, replicates: 20)
-            if let imageUrl = model.imageOfFoodUrl[indexPath.item] {
-                cell?.setImage(url: imageUrl, completion: { [weak self] in
-                    self?.spinnerOnView.stopAnimation()
-                    self?.spinnerOnView.removeFromSuperview()
+        if modelForReceipts?.images.count ?? 0 > indexPath.item {
+                //cell?.addSubview(self.spinnerOnView)
+                //self.spinnerOnView.startAnimation(delay: 0.04, replicates: 20)
+            if let image = self.modelForReceipts?.images[indexPath.item] {
+                cell?.setImage(image: image, completion: {
                 })
             }
         }
-        if model.calories.count > indexPath.item {
-            cell?.setLabelCalories(calories: model.calories[indexPath.item] ?? 0)
-        }
+        
+        cell?.setButton(vc: viewController ?? UIViewController(), index: modelForReceipts?.id[indexPath.item] ?? 0)
         
         cell?.backgroundColor = .brown
-        return cell ?? UICollectionViewCell()
+        if indexPath.item == 0 {
+            DispatchQueue.main.async {
+                collectionView.reloadData()
+            }
+        }
+        
+    return cell ?? UICollectionViewCell()
     }
+    
 }

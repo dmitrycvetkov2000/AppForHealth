@@ -14,6 +14,10 @@ protocol RecipesPresenterProtocol: AnyObject {
     func setBlurEffect()
     func setSpinnerAndStart()
     func removeSpinnerAndBlurEffect()
+    
+    func getRequest(helper: HelperForRecipes, type: ApiType)
+    
+    func reloadCollectView()
 }
 
 class RecipesPresenter {
@@ -46,5 +50,13 @@ extension RecipesPresenter: RecipesPresenterProtocol {
     
     func removeSpinnerAndBlurEffect() {
         view?.removeSpinnerAndBlurEffect()
+    }
+    
+    func getRequest(helper: HelperForRecipes, type: ApiType) {
+        interactor.getRequest(helper: helper, type: type)
+    }
+    
+    func reloadCollectView() {
+        view?.reloadCollectView()
     }
 }

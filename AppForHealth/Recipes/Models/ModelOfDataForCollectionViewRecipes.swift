@@ -5,10 +5,11 @@
 //  Created by Дмитрий Цветков on 29.12.2022.
 //
 
-import Foundation
+import UIKit
 
 class ModelOfDataForCollectionViewRecipes {
     var imageOfFoodUrl = [String?]()
+    var images = [UIImage?]()
     
     var nameOfFood = [String?]()
     var calories = [Int?]()

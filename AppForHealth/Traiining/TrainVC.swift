@@ -180,7 +180,7 @@ extension TrainVC: TrainVCProtocol {
         let circularPath = UIBezierPath(arcCenter: center, radius: viewForTimer.frame.height / 2, startAngle: startAngle, endAngle: endAngle, clockwise: false)
         
         shapeLayer.path = circularPath.cgPath
-        shapeLayer.lineWidth = 21
+        shapeLayer.lineWidth = 16
         shapeLayer.fillColor = UIColor.clear.cgColor
         shapeLayer.strokeEnd = 1
         shapeLayer.lineCap = CAShapeLayerLineCap.round
@@ -204,10 +204,10 @@ extension TrainVC: TrainVCProtocol {
         imageView.contentMode = .scaleAspectFit
         
         imageView.snp.makeConstraints { make in
-            make.left.right.equalToSuperview().inset(20)
-            make.top.equalTo(labelForTitle.snp.bottom).inset(-20)
+            make.left.right.equalToSuperview().inset(0)
+            make.top.equalTo(labelForTitle.snp.bottom).inset(0)
             //make.height.lessThanOrEqualTo(300)
-            make.bottom.equalTo(viewForTimer.snp.top).inset(-30)
+            make.bottom.equalTo(viewForTimer.snp.top).inset(0)
         }
     }
     
@@ -215,9 +215,9 @@ extension TrainVC: TrainVCProtocol {
         view.addSubview(viewForVideo)
  
         viewForVideo.snp.makeConstraints { make in
-            make.left.right.equalToSuperview().inset(20)
-            make.top.equalTo(labelForTitle.snp.bottom).inset(-20)
-            make.bottom.equalTo(viewForTimer.snp.top).inset(-30)
+            make.left.right.equalToSuperview().inset(0)
+            make.top.equalTo(labelForTitle.snp.bottom).inset(0)
+            make.bottom.equalTo(viewForTimer.snp.top).inset(0)
         }
     }
     
@@ -265,7 +265,7 @@ extension TrainVC: TrainVCProtocol {
         let shapeLayer = CAShapeLayer()
         
         shapeLayer.path = circularPath.cgPath
-        shapeLayer.lineWidth = 21
+        shapeLayer.lineWidth = 12
         shapeLayer.fillColor = UIColor.clear.cgColor
         shapeLayer.strokeEnd = 1
         shapeLayer.lineCap = CAShapeLayerLineCap.round
@@ -280,8 +280,13 @@ extension TrainVC: TrainVCProtocol {
         
         viewForTimer.snp.makeConstraints { view in
             view.bottom.equalTo(buttonForStartTrain.snp.top).inset(-30)
-            view.left.right.equalToSuperview().inset(40)
-            view.height.equalTo(self.view.snp.width).inset(80)
+            //
+            view.centerX.equalTo(self.view.snp.centerX)
+            view.width.equalTo(100)
+            view.height.equalTo(100)
+            //
+            //view.left.right.equalToSuperview().inset(40)
+            //view.height.equalTo(self.view.snp.width).inset(80)
         }
     }
     

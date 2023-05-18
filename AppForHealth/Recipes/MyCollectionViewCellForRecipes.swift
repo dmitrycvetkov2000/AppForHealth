@@ -10,25 +10,31 @@ import UIKit
 class MyCollectionViewCellForRecipes: UICollectionViewCell {
     
     var labelForName = JustText()
-    var labelForCalories = LabelTitle()
     var image = UIImageView()
-    var labelForIngredients = JustText()
-
+    
+    let viewModelForButton = ButtonWithImageViewModel(title: "Подробнее о рецепте", imageName: "info.circle")
+    let buttonForMoreInformation: ButtonWithImage = {
+        let button = ButtonWithImage(frame: .zero)
+        return button
+    }()
+    
+    var index = 0
+    
+    var vc = UIViewController()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         
         self.backgroundColor = .brown
         
-        self.addSubview(labelForCalories)
         self.addSubview(image)
         self.addSubview(labelForName)
-        self.addSubview(labelForIngredients)
+        self.addSubview(buttonForMoreInformation)
 
+        setConstraintsForMoreInfoButton()
         setConstrainsForImage()
-        setConstrainsForCaloriesLabel()
+
         setConstrainsForNameLabel()
-        setConstrainsForIngredientsLabel()
     }
     
     required init?(coder: NSCoder) {
@@ -37,49 +43,35 @@ class MyCollectionViewCellForRecipes: UICollectionViewCell {
     
     func setLabelForName(name: String) {
         labelForName.textAlignment = .center
-        labelForName.text = name
+        labelForName.text = name        
+    }
+
+    func setImage(image: UIImage, completion: () -> Void) {
+        self.image.image = image
+        self.image.contentMode = .scaleAspectFit
+        completion()
     }
     
-    func setLabelIngredients(ingredients: String) {
-        labelForIngredients.textInsets = UIEdgeInsets(top: 0, left: 4, bottom: 0, right: -4)
-
-        labelForIngredients.adjustsFontSizeToFitWidth = true
-
-        labelForIngredients.backgroundColor = .black
-        labelForIngredients.textColor = .white
+    func setButton(vc: UIViewController, index: Int) {
+        buttonForMoreInformation.configure(with: viewModelForButton)
         
-        labelForIngredients.text = ingredients
+        buttonForMoreInformation.addTarget(self, action: #selector(showMoreAboutReceipts), for: .touchUpInside)
+        self.vc = vc
+        self.index = index
     }
-
-    func setImage(url: String, completion: @escaping () -> Void) {
-        
-        if let url = URL(string: url) {
-            URLSession.shared.dataTask(with: url) { (data, response, error) in
-                // Error handling...
-                guard let imageData = data else { return }
-                
-                DispatchQueue.main.async {
-                    self.image.image = UIImage(data: imageData)
-                    self.image.contentMode = .scaleToFill
-                    completion()
-                }
-            }.resume()
-        }
+    @objc func showMoreAboutReceipts() {
+        let vc = MoreInformationVC()
+        vc.id = self.index
+        vc.imageView = self.image
+        print("index = \(self.index)")
+        self.vc.present(vc, animated: true)
     }
-    
-    func setLabelCalories(calories: Int) {
-        labelForCalories.adjustsFontSizeToFitWidth = true
-        
-        labelForCalories.text = String("\(calories) " + "калорий".localized())
-    }
-
     
     func setConstrainsForImage() {
         image.translatesAutoresizingMaskIntoConstraints = false
         
         image.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 0).isActive = true
-        image.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -230).isActive = true
-        image.topAnchor.constraint(equalTo: labelForCalories.bottomAnchor, constant: 0).isActive = true
+        image.topAnchor.constraint(equalTo: self.buttonForMoreInformation.bottomAnchor, constant: 10).isActive = true
         image.rightAnchor.constraint(equalTo: self.rightAnchor, constant: 0).isActive = true
     }
     
@@ -91,21 +83,13 @@ class MyCollectionViewCellForRecipes: UICollectionViewCell {
         labelForName.topAnchor.constraint(equalTo: image.bottomAnchor, constant: 10).isActive = true
     }
     
-    func setConstrainsForIngredientsLabel() {
-        labelForIngredients.translatesAutoresizingMaskIntoConstraints = false
-
-        labelForIngredients.rightAnchor.constraint(equalTo: self.rightAnchor, constant: 0).isActive = true
-        labelForIngredients.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 0).isActive = true
-        labelForIngredients.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: 0).isActive = true
-        labelForIngredients.topAnchor.constraint(equalTo: labelForName.safeAreaLayoutGuide.bottomAnchor, constant: 0).isActive = true
-    }
-    
-    func setConstrainsForCaloriesLabel() {
-        labelForCalories.translatesAutoresizingMaskIntoConstraints = false
-
-        labelForCalories.rightAnchor.constraint(equalTo: self.rightAnchor, constant: 0).isActive = true
-        labelForCalories.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 0).isActive = true
-        labelForCalories.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: 0).isActive = true
+    func setConstraintsForMoreInfoButton() {
+        buttonForMoreInformation.translatesAutoresizingMaskIntoConstraints = false
+        
+        buttonForMoreInformation.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 20).isActive = true
+        buttonForMoreInformation.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -20).isActive = true
+        buttonForMoreInformation.topAnchor.constraint(equalTo: self.topAnchor, constant: 0).isActive = true
+        buttonForMoreInformation.heightAnchor.constraint(equalToConstant: 40).isActive = true
     }
 }
 

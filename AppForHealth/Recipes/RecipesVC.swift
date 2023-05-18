@@ -13,6 +13,7 @@ protocol RecipesVCProtocol: AnyObject {
     func removeSpinnerAndBlurEffect()
     
     func setSpinnerOnView()
+    func reloadCollectView()
 }
 
 class RecipesVC: UIViewController {
@@ -40,59 +41,104 @@ class RecipesVC: UIViewController {
         return spinner
     }()
     
+    var scrollView = UIScrollView()
+    var stackView = UIStackView()
+    var buttonForDesserts = MiniButton()
+    var buttonForBreakfast = MiniButton()
+    var buttonForLaunch = MiniButton()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         helper.viewController = self
         presenter?.setNavigationItems()
+        
+        createScrollView()
+        
         presenter?.setBlurEffect()
         presenter?.setSpinnerAndStart()
         view.backgroundColor = .brown
-    
-        ApiManager.shared.getInfo { recipes in
-            DispatchQueue.main.async {
-                self.setCollectView()
-                self.presenter?.removeSpinnerAndBlurEffect()
-            }
- 
-            for j in 0..<(recipes.hits?.count ?? 0) {
-                for i in 0..<(recipes.hits?[j].recipe?.ingredients?.count ?? 0) {
-                    if i == 0 {
-                        self.stroke.insert((recipes.hits?[j].recipe?.ingredients?[i].text ?? "Null"), at: j)
-                    } else {
-                        self.stroke[j].append((", \(recipes.hits?[j].recipe?.ingredients?[i].text ?? "Null")" ))
-                    }
-                }
-                self.strIng.insert(self.stroke[j], at: j)
-                self.helper.model.ingredients.insert(self.strIng[j], at: j)
-                
-                self.helper.model.nameOfFood.insert(recipes.hits?[j].recipe?.label, at: j)
-                
-                self.helper.model.calories.insert(Int(recipes.hits?[j].recipe?.calories ?? 0), at: j)
-                
-                self.helper.model.imageOfFoodUrl.insert(recipes.hits?[j].recipe?.image, at: j)
-            }
-        }
+        presenter?.getRequest(helper: helper, type: ApiType.getReceipeForSoup)
     }
-    
+
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        myCollectionView?.frame = view.bounds
-        setCollectView()
+        self.setCollectView()
+    }
+    
+    func createScrollView() {
+        view.addSubview(scrollView)
+        scrollView.addSubview(stackView)
+        scrollView.alwaysBounceHorizontal = true
+        scrollView.showsHorizontalScrollIndicator = false
+        
+        scrollView.frame = CGRect(x: 0, y: navigationController!.navigationBar.frame.maxY * 2, width: view.bounds.width, height: 40)
+        scrollView.contentSize = CGSize(width: view.bounds.width + 60, height: 0)
+        
+        stackView.frame = CGRect(origin: CGPoint(x: 10, y: 0), size: CGSize(width: scrollView.bounds.width + 50, height: 40))
+        
+        stackView.axis = .horizontal
+        stackView.distribution = .fillEqually
+        stackView.spacing = 20
+        
+        addButtonsInStackView(title: "Обеды", button: buttonForBreakfast)
+        addButtonsInStackView(title: "Ужины", button: buttonForLaunch)
+        addButtonsInStackView(title: "Десерты", button: buttonForDesserts)
+        
+        buttonForBreakfast.addTarget(self, action: #selector(changeDataCollectViewBreakfast), for: .touchUpInside)
+        buttonForLaunch.addTarget(self, action: #selector(changeDataCollectViewLaunch), for: .touchUpInside)
+        buttonForDesserts.addTarget(self, action: #selector(changeDataCollectViewDeserts), for: .touchUpInside)
+    }
+    func addButtonsInStackView(title: String, button: UIButton) {
+        button.setTitle(title, for: .normal)
+        buttonForBreakfast.backgroundColor = .activeColor
+        buttonForBreakfast.isUserInteractionEnabled = false
+        stackView.addArrangedSubview(button)
+    }
+    @objc func changeDataCollectViewBreakfast() {
+            print("buttonForBreakfast")
+        presenter?.setBlurEffect()
+        presenter?.setSpinnerAndStart()
+        changeActiveButton(button: buttonForBreakfast)
+        presenter?.getRequest(helper: helper, type: ApiType.getReceipeForSoup)
+    }
+    @objc func changeDataCollectViewLaunch() {
+            print("buttonForLaunch")
+        presenter?.setBlurEffect()
+        presenter?.setSpinnerAndStart()
+        changeActiveButton(button: buttonForLaunch)
+        presenter?.getRequest(helper: helper, type: ApiType.getReceipeForLaunch)
+    }
+    @objc func changeDataCollectViewDeserts() {
+            print("buttonForDesserts")
+        presenter?.setBlurEffect()
+        presenter?.setSpinnerAndStart()
+        changeActiveButton(button: buttonForDesserts)
+        presenter?.getRequest(helper: helper, type: ApiType.getReceipeForDessert)
+    }
+    func changeActiveButton(button: MiniButton) {
+        buttonForBreakfast.backgroundColor = .noActiveColor
+        buttonForBreakfast.isUserInteractionEnabled = true
+        buttonForLaunch.backgroundColor  = .noActiveColor
+        buttonForLaunch.isUserInteractionEnabled = true
+        buttonForDesserts.backgroundColor  = .noActiveColor
+        buttonForDesserts.isUserInteractionEnabled = true
+        
+        button.backgroundColor = .activeColor
+        button.isUserInteractionEnabled = false
     }
     
     func setCollectView() {
-        view.addSubview(myCollectionView ?? UICollectionViewCell())
-        
+        myCollectionView?.removeFromSuperview()
+        myCollectionView = nil
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
         layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-        layout.itemSize = CGSize(width: view.bounds.width, height: view.bounds.height)
-
-        myCollectionView?.backgroundColor = .white
+        layout.itemSize = CGSize(width: view.bounds.width, height: view.bounds.height - scrollView.frame.height)
+        myCollectionView = UICollectionView(frame: CGRect(x: 0, y: scrollView.frame.maxY + 20, width: view.bounds.width, height: view.bounds.height - scrollView.frame.height), collectionViewLayout: layout)
+        view.addSubview(myCollectionView ?? UICollectionView())
+        myCollectionView?.backgroundColor = .clear
         myCollectionView?.register(MyCollectionViewCellForRecipes.self, forCellWithReuseIdentifier: helper.identifier)
         myCollectionView?.dataSource = self.helper
-        
-        myCollectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
     }
 }
 
@@ -136,5 +182,9 @@ extension RecipesVC: RecipesVCProtocol {
     
     func setSpinnerOnView() {
         
+    }
+    
+    func reloadCollectView() {
+        self.myCollectionView?.reloadData()
     }
 }
