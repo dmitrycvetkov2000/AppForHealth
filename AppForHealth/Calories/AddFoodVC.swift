@@ -173,15 +173,13 @@ extension AddFoodVC {
         let formatteddate = formatter.string(from: date as Date)
         let dateNow = formatteddate
         
-        let value = ProductToday(value: [name!, weight!, proteins!, fats!, carb!, ccal!, time, dateNow])
-        try! realm.write {
-                realm.add(value)
-        }
-        
-        if let name = name, let proteins = proteins, let fats = fats, let carb = carb, let ccal = ccal {
-            
+        if let name = name, let proteins = proteins, let fats = fats, let carb = carb, let ccal = ccal, weight != nil, timeTextField.text != "" {
+            let value = ProductToday(value: [name, weight as Any, proteins, fats, carb, ccal, time, dateNow])
+            try! realm.write {
+                    realm.add(value)
+            }
             if !searchObjectsInBD(nameFood: name) {
-                let value = Product(value: [name, proteins, fats, carb, ccal])
+                let value = Product(value: [name, proteins, fats, carb, ccal] as [Any])
                 try! realm.write {
                     realm.add(value)
                 }
@@ -381,14 +379,15 @@ extension AddFoodVC {
         let formatteddate = formatter.string(from: date as Date)
         let dateNow = formatteddate
         
-        let value = ProductToday(value: [name!, weight!, proteins!, fats!, carb!, ccal!, time, dateNow])
-        try! realm.write {
-                realm.add(value)
-        }
+
         
-        if let name = name, let proteins = proteins, let fats = fats, let carb = carb, let ccal = ccal {
+        if let name = name, let proteins = proteins, let fats = fats, let carb = carb, let ccal = ccal, weight != nil, timeTextField.text != "" {
+            let value = ProductToday(value: [name, weight as Any, proteins, fats, carb, ccal, time, dateNow])
+            try! realm.write {
+                    realm.add(value)
+            }
             if !searchObjectsInBD(nameFood: name) {
-                let value = Product(value: [name, proteins, fats, carb, ccal])
+                let value = Product(value: [name, proteins, fats, carb, ccal] as [Any])
                 try! realm.write {
                     realm.add(value)
                 }
