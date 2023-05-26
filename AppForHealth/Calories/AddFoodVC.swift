@@ -334,7 +334,7 @@ extension AddFoodVC {
     func createButtonForCancel() {
         view.addSubview(buttonForCancel)
         buttonForCancel.snp.makeConstraints { make in
-            make.width.height.equalTo(90)
+            make.width.height.equalTo(64)
             make.bottom.equalToSuperview().inset(90)
             make.right.equalToSuperview().inset(20)
         }
@@ -353,7 +353,7 @@ extension AddFoodVC {
     func createButtonForAccept() {
         view.addSubview(buttonForAccept)
         buttonForAccept.snp.makeConstraints { make in
-            make.width.height.equalTo(90)
+            make.width.height.equalTo(64)
             make.bottom.equalTo(buttonForCancel.snp.top).inset(-4)
             make.right.equalToSuperview().inset(16)
         }

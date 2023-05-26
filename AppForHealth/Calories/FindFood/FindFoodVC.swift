@@ -115,7 +115,7 @@ class FindFoodVC: UIViewController {
     func createButtonForAdd() {
         view.addSubview(buttonForAdd)
         buttonForAdd.snp.makeConstraints { make in
-            make.width.height.equalTo(90)
+            make.width.height.equalTo(64)
             make.bottom.equalToSuperview().inset(90)
             make.right.equalToSuperview().inset(20)
         }

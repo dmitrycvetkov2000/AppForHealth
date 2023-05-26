@@ -88,9 +88,7 @@
 		0AC71118295D274C00BD18EA /* MyCollectionViewCellForRecipes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AC71117295D274C00BD18EA /* MyCollectionViewCellForRecipes.swift */; };
 		0AC7111A295D2B0D00BD18EA /* HelperForRecipes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AC71119295D2B0D00BD18EA /* HelperForRecipes.swift */; };
 		0AD027BB2A0D09B000F02362 /* VKAuthScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD027BA2A0D09B000F02362 /* VKAuthScreen.swift */; };
-		0AD027BD2A0D26D900F02362 /* WebVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD027BC2A0D26D900F02362 /* WebVC.swift */; };
 		0AD027BF2A0D38AD00F02362 /* credentials-2.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0AD027BE2A0D38AD00F02362 /* credentials-2.plist */; };
-		0AD027C12A0D423E00F02362 /* VCForGoogle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD027C02A0D423E00F02362 /* VCForGoogle.swift */; };
 		0AD0613F295BC62C00B67453 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD0613E295BC62C00B67453 /* Helper.swift */; };
 		0AD06141295BC67C00B67453 /* MyCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD06140295BC67C00B67453 /* MyCollectionViewCell.swift */; };
 		0AD06143295BC6B500B67453 /* ModelOfDataForCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD06142295BC6B500B67453 /* ModelOfDataForCollectionView.swift */; };
@@ -260,9 +258,7 @@
 		0AC71117295D274C00BD18EA /* MyCollectionViewCellForRecipes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCollectionViewCellForRecipes.swift; sourceTree = "<group>"; };
 		0AC71119295D2B0D00BD18EA /* HelperForRecipes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelperForRecipes.swift; sourceTree = "<group>"; };
 		0AD027BA2A0D09B000F02362 /* VKAuthScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKAuthScreen.swift; sourceTree = "<group>"; };
-		0AD027BC2A0D26D900F02362 /* WebVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebVC.swift; sourceTree = "<group>"; };
 		0AD027BE2A0D38AD00F02362 /* credentials-2.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "credentials-2.plist"; sourceTree = "<group>"; };
-		0AD027C02A0D423E00F02362 /* VCForGoogle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VCForGoogle.swift; sourceTree = "<group>"; };
 		0AD0613E295BC62C00B67453 /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
 		0AD06140295BC67C00B67453 /* MyCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCollectionViewCell.swift; sourceTree = "<group>"; };
 		0AD06142295BC6B500B67453 /* ModelOfDataForCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelOfDataForCollectionView.swift; sourceTree = "<group>"; };
@@ -397,8 +393,6 @@
 				0A9F2AB6294A0638004662F7 /* AuthorizationInteractor.swift */,
 				0A9F2AB8294A06D4004662F7 /* AuthorizationModuleBuilder.swift */,
 				0AD027BA2A0D09B000F02362 /* VKAuthScreen.swift */,
-				0AD027BC2A0D26D900F02362 /* WebVC.swift */,
-				0AD027C02A0D423E00F02362 /* VCForGoogle.swift */,
 				0A9F2ABC294A6946004662F7 /* Constrains */,
 			);
 			path = Authorization;
@@ -1158,7 +1152,6 @@
 				0A1DA6A12A0FA01600091139 /* Receipts.swift in Sources */,
 				0A9F2ABE294A6963004662F7 /* ConstrainsOfAuth.swift in Sources */,
 				0AFE8DAD29E9825400102258 /* TrainRouter.swift in Sources */,
-				0AD027BD2A0D26D900F02362 /* WebVC.swift in Sources */,
 				0A3CA826293E4F2000EDBFF9 /* AppDelegate.swift in Sources */,
 				0AE52FCE294BBFF700915663 /* OnboardPresenter.swift in Sources */,
 				0AF9519429F3C11800ABF30E /* ChartStringFormatter.swift in Sources */,
@@ -1172,7 +1165,6 @@
 				0AB8EE2A2A02D76300FF0E3C /* MockData.swift in Sources */,
 				0AB8EE332A034CFC00FF0E3C /* ModelOfDataMain.swift in Sources */,
 				0AD06148295BEE1B00B67453 /* RecipesPresenter.swift in Sources */,
-				0AD027C12A0D423E00F02362 /* VCForGoogle.swift in Sources */,
 				0AB8EE312A02F43A00FF0E3C /* CellForMainSection.swift in Sources */,
 				0ADBAB1C29E0718800E03300 /* MapVC.swift in Sources */,
 				0A3CA85B293E61D900EDBFF9 /* LaunchScreen.swift in Sources */,
@@ -1308,7 +1300,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -1363,7 +1355,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -1384,9 +1376,11 @@
 				DEVELOPMENT_TEAM = 4N684VBLPX;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = AppForHealth/Resources/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.healthcare-fitness";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Позвольте нам получить доступ к вашему текущему местоположению, чтобы мы могли узнать ваши координаты";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIStatusBarStyle = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1413,9 +1407,11 @@
 				DEVELOPMENT_TEAM = 4N684VBLPX;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = AppForHealth/Resources/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.healthcare-fitness";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Позвольте нам получить доступ к вашему текущему местоположению, чтобы мы могли узнать ваши координаты";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIStatusBarStyle = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (

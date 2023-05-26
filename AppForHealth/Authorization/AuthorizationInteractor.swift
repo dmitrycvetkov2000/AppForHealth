@@ -49,6 +49,7 @@ class AuthorizationInteractor: AuthorizationInteractorProtocol {
 //        sdkInstance?.register(vc)
         guard let idToken = result.token.userId, let accessToken = result.token.accessToken else { return }
         let credential = GoogleAuthProvider.credential(withIDToken: idToken, accessToken: accessToken)
+        //Auth.auth().signIn
         Auth.auth().signIn(with: credential) { (result, error) in
             if error == nil{
                 print(result?.user.uid as Any)

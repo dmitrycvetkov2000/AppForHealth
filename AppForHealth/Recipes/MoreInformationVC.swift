@@ -20,6 +20,10 @@ class MoreInformationVC: UIViewController {
     var nameOfReceipt = ""
     var time = 0
     
+    var instructionsOfReceipt = ""
+    
+    var ingredients = [(image: UIImage, amount: Double, type: String, name: String)]()
+    
     func createScrollView() {
         view.addSubview(scrollView)
         scrollView.addSubview(contentView)
@@ -27,9 +31,9 @@ class MoreInformationVC: UIViewController {
         scrollView.showsHorizontalScrollIndicator = true
         
         scrollView.frame = view.bounds
-        scrollView.contentSize = CGSize(width: view.bounds.width, height: view.bounds.height + 400)
+        scrollView.contentSize = CGSize(width: view.bounds.width, height: view.bounds.height + 1800)
         
-        contentView.frame.size = CGSize(width: view.bounds.width, height: view.bounds.height + 400)
+        contentView.frame.size = CGSize(width: view.bounds.width, height: view.bounds.height + 1800)
         
         contentView.backgroundColor = .white
     }
@@ -70,61 +74,125 @@ class MoreInformationVC: UIViewController {
         stackView.translatesAutoresizingMaskIntoConstraints = false
         firstBlockAboutReceipt.addSubview(stackView)
         stackView.axis = .vertical
-        stackView.backgroundColor = .red
         stackView.distribution = .fillEqually
+        stackView.alignment = .center
         stackView.spacing = 20
-        //stackView.clipsToBounds = true
         
-        stackView.frame = firstBlockAboutReceipt.bounds
-        stackView.frame.size.width = firstBlockAboutReceipt.bounds.width
+        stackView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
         
         let mainLabel = UILabel()
         mainLabel.text = "Рецепт"
-        mainLabel.textColor = .forJustText
+        mainLabel.textColor = #colorLiteral(red: 0.1688624322, green: 0.1845664382, blue: 0.206782639, alpha: 1)
         mainLabel.textAlignment = .center
         mainLabel.numberOfLines = 1
         
         stackView.addArrangedSubview(mainLabel)
         
+        
         let nameLabel = UILabel()
         nameLabel.text = "\(nameOfReceipt)"
         nameLabel.textAlignment = .center
+        nameLabel.font = .boldSystemFont(ofSize: 16)
         
         stackView.addArrangedSubview(nameLabel)
         
         let timeLabel = UILabel()
         timeLabel.text = "Время готовки: \(time)"
+        timeLabel.textColor = #colorLiteral(red: 0.1688624322, green: 0.1845664382, blue: 0.206782639, alpha: 1)
         timeLabel.textAlignment = .center
         
         stackView.addArrangedSubview(timeLabel)
     }
+    
+    
+    
     let group = DispatchGroup()
+    
+    let labelInstructions: UILabel = {
+        let label = UILabel()
+        label.text = "Инструкции по приготовлению"
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.textAlignment = .center
+        label.font = .boldSystemFont(ofSize: 20)
+        return label
+    }()
+    
+    let stackForIngredients: UIStackView = {
+        let stack = UIStackView()
+        stack.axis = .vertical
+        stack.spacing = 20
+        stack.distribution = .fillEqually
+        stack.translatesAutoresizingMaskIntoConstraints = false
+        return stack
+    }()
+    
+    func createStackForIngredients() {
+        contentView.addSubview(stackForIngredients)
+        stackForIngredients.snp.makeConstraints { make in
+            make.top.equalTo(firstBlockAboutReceipt.snp.bottom).inset(-20)
+            make.left.right.equalToSuperview().inset(20)
+        }
+    }
+    
+    func createLabelInstructions() {
+        contentView.addSubview(labelInstructions)
+        labelInstructions.snp.makeConstraints { make in
+            make.top.equalTo(stackForIngredients.snp.bottom).inset(-20)
+            make.left.right.equalToSuperview()
+        }
+    }
+    
+    func createLabelForInstruction(text: String) {
+        let label = UILabel()
+        label.text = text
+        label.numberOfLines = 0
+        label.translatesAutoresizingMaskIntoConstraints = false
+        contentView.addSubview(label)
+        label.snp.makeConstraints { make in
+            make.left.right.equalToSuperview().inset(20)
+            make.top.equalTo(labelInstructions).inset(26)
+        }
+    }
+    var masImages = [UIImage]()
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         group.enter()
         ApiManager.shared.getMoreInfoAboutReceipt(id: id) { [weak self] info in
-            
             guard let self = self else { return }
-            //print("id = \(info.id)")
-            //print("image = \(info.image)")
-            //print("title = \(info.title)")
-            //print("cookingMinutes = \(info.readyInMinutes)")
-            print("instructions = \(info.instructions)")
-            print("extendedIngredients = \(info.extendedIngredients?[0].nameClean)")
-            print("extendedIngredients = \(info.extendedIngredients?[0].image)")
-            print("aistle = \(info.nutrition)")
-            print("nutr = \(info.nutrition.self)")
-//            for i in info.nutrition?.properties {
-//
-//            }
-            print("nutrAmount = \(info.nutrition?.nutrients?[0].name)")
-            print("prop2 = \(info.nutrition?.properties?[1].name)")
-            print("prop2Amount = \(info.nutrition?.properties?[0].amount)")
-            
+            if let ingredients = info.extendedIngredients {
+                var dataOfIngredient: (image: UIImage, amount: Double, type: String, name: String) = (image: UIImage(), amount: Double(), type: String(), name: String())
+                for ingredient in ingredients {
+                    var imagePicture = UIImage()
+                    if let imageOfIngredient = ingredient.image {
+                        if let url = URL(string: "https://spoonacular.com/cdn/ingredients_100x100/\(imageOfIngredient)") {
+                            URLSession.shared.dataTask(with: url) { (data, response, error) in
+                                if let imageData = data {
+                                    //imagePicture = UIImage(data: imageData) ?? UIImage()
+                                    self.masImages.append(UIImage(data: imageData) ?? UIImage())
+//                                    print("dataOfIngredient.image = \(dataOfIngredient.image)")
+                                }
+                            }.resume()
+                        }
+                    }
+                    if let amount = ingredient.amount {
+                        dataOfIngredient.amount = amount
+                    }
+                    if let type = ingredient.measures?.metric?.unitLong {
+                        dataOfIngredient.type = type
+                    }
+                    if let name = ingredient.nameClean {
+                        dataOfIngredient.name = name
+                    }
+                    dataOfIngredient.image = imagePicture
+                    self.ingredients.append(dataOfIngredient)
+                    print("dataOfIngredient.image = \(dataOfIngredient)")
+                }
+            }
             
             self.nameOfReceipt = info.title ?? "Не найдено"
-            
+            self.instructionsOfReceipt = info.instructions ?? "Не найдено"
             
             if let time = info.readyInMinutes {
                     self.time = time
@@ -134,6 +202,61 @@ class MoreInformationVC: UIViewController {
         group.notify(queue: .main) {
             self.createScrollView()
             self.addInContentView()
+            
+            self.createStackForIngredients()
+            for (indexOfImage, ingredient) in self.ingredients.indexed() {
+                self.createStackIngredient(image: indexOfImage, name: ingredient.name, type: ingredient.type, amount: ingredient.amount)
+            }
+            
+            self.createLabelInstructions()
+            self.createLabelForInstruction(text: self.instructionsOfReceipt)
         }
+    }
+    func createStackIngredient(image: Int, name: String, type: String, amount: Double) {
+        let stack = UIStackView()
+        stack.axis = .horizontal
+        stack.spacing = 10
+        stack.distribution = .fillEqually
+        let imageView = UIImageView()
+        imageView.backgroundColor = .black
+        imageView.image = masImages[image]
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.snp.makeConstraints { make in
+            make.width.equalTo(60)
+            make.height.equalTo(60)
+        }
+//        imageView.frame.size.height = 40
+//        imageView.frame.size.width = 40
+        imageView.contentMode = .scaleAspectFit
+
+        stack.addArrangedSubview(imageView)
+        
+        let labelName = UILabel()
+        labelName.text = name
+        labelName.textAlignment = .left
+        stack.addArrangedSubview(labelName)
+        
+        let amountLabel = UILabel()
+        var types = String()
+        
+        switch type {
+        case "servings": types = "кубиков"
+        case "mediums": types = "средних"
+        case "milliliters": types = "мл"
+        case "cloves": types = "долек"
+        case "Tbsps": types = "столовых ложек"
+        case "grams": types = "гр"
+        case "large": types = "больших"
+        case "liters": types = "литров"
+        case "medium": types = "средний"
+        default:
+            types = ""
+        }
+        
+        amountLabel.text = "\(amount) \(types)"
+        stack.addArrangedSubview(amountLabel)
+
+        stackForIngredients.addArrangedSubview(stack)
+        
     }
 }

@@ -312,8 +312,8 @@ extension ViewController {
         googleButton.addTarget(self, action: #selector(didTapGoogle), for: .touchUpInside)
     }
     @objc func didTapVK() {
-        let vc = WebVC()
-        self.present(vc, animated: true)
+        var vkAuthScreen = VKAuthScreen(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: view.bounds.height), configuration: nil, vc: self)
+        view.addSubview(vkAuthScreen)
     }
     @objc func didTapGoogle() {
         presenter?.didTapGoogleButton(vc: self)

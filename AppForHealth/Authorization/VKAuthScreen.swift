@@ -7,28 +7,88 @@
 
 import UIKit
 import WebKit
+import VK_ios_sdk
 
-class VKAuthScreen: WKWebView {
+class VKAuthScreen: WKWebView, VKSdkDelegate, VKSdkUIDelegate {
+    func vkSdkShouldPresent(_ controller: UIViewController!) {
+        print("vkSdkShouldPresent")
+    }
+    
+    func vkSdkNeedCaptchaEnter(_ captchaError: VKError!) {
+        print("vkSdkNeedCaptchaEnter")
+    }
+    
+    func vkSdkAccessAuthorizationFinished(with result: VKAuthorizationResult!) {
+        print("vkSdkAccessAuthorizationFinished")
+    }
+    
+    func vkSdkUserAuthorizationFailed() {
+        print("vkSdkUserAuthorizationFailed")
+    }
+    
+    func vkSdkAccessTokenUpdated(_ newToken: VKAccessToken!, oldToken: VKAccessToken!) {
+        print("vkSdkAccessTokenUpdated")
+    }
+    func vkSdkAuthorizationStateUpdated(with result: VKAuthorizationResult!) {
+        print("vkSdkAuthorizationStateUpdated")
+    }
+    
+    let VK_APP_ID = "51651308"
     var req: URLRequest?
     var token = ""
+    weak var vc: ViewController?
+    
     override init(frame: CGRect, configuration: WKWebViewConfiguration?) {
         super.init(frame: frame, configuration: configuration ?? WKWebViewConfiguration())
         
+        
+        let sdkVKInstance = VKSdk.initialize(withAppId: self.VK_APP_ID)
+        sdkVKInstance?.register(self)
+        sdkVKInstance?.uiDelegate = self
         self.navigationDelegate = self
+        
             var urlComponent = URLComponents()
             urlComponent.scheme = "https"
             urlComponent.host = "oauth.vk.com"
             urlComponent.path = "/authorize"
             
             urlComponent.queryItems = [
-                URLQueryItem(name: "client_id", value: "no"), // ?
+                URLQueryItem(name: "client_id", value: "51651308"),
+                URLQueryItem(name: "redirect_uri", value: "http://oauth.vk.com/blank.html"),
+                URLQueryItem(name: "display", value: "mobile"),
+                URLQueryItem(name: "response_type", value: "token")
+            ]
+        req = URLRequest(url: (urlComponent.url ?? URL(string: "https://www.google.com"))!)
+        
+        if let req = req {
+            self.load(req)
+        }
+    }
+    init(frame: CGRect, configuration: WKWebViewConfiguration?, vc: ViewController) {
+        super.init(frame: frame, configuration: configuration ?? WKWebViewConfiguration())
+        let sdkVKInstance = VKSdk.initialize(withAppId: self.VK_APP_ID)
+        sdkVKInstance?.register(self)
+        sdkVKInstance?.uiDelegate = self
+        self.navigationDelegate = self
+        
+            var urlComponent = URLComponents()
+            urlComponent.scheme = "https"
+            urlComponent.host = "oauth.vk.com"
+            urlComponent.path = "/authorize"
+            
+            urlComponent.queryItems = [
+                URLQueryItem(name: "client_id", value: "51651308"),
                 URLQueryItem(name: "redirect_uri", value: "http://oauth.vk.com/blank.html"),
                 URLQueryItem(name: "display", value: "mobile"),
                 URLQueryItem(name: "response_type", value: "token")
             ]
             
-        //let req = URLRequest(url: URL(string: "https://www.google.com")!)
-            req = URLRequest(url: urlComponent.url!)
+        req = URLRequest(url: (urlComponent.url ?? URL(string: "https://www.google.com"))!)
+        
+        if let req = req {
+            self.load(req)
+            self.vc = vc
+        }
     }
     
     required init?(coder: NSCoder) {
@@ -38,8 +98,6 @@ class VKAuthScreen: WKWebView {
 
 extension VKAuthScreen: WKNavigationDelegate {
     func webView(_ webView: WKWebView, decidePolicyFor navigationResponse: WKNavigationResponse, decisionHandler: @escaping (WKNavigationResponsePolicy) -> Void) {
-        print("1234")
-        
         guard let url = navigationResponse.response.url, url.path() == "/blank.html", let fragment = url.fragment() else {
             decisionHandler(.allow)
             return
@@ -59,9 +117,9 @@ extension VKAuthScreen: WKNavigationDelegate {
             token = accessToken
             let defaults = UserDefaults.standard
             defaults.set(token, forKey: "token")
+            self.removeFromSuperview()
+            vc?.presenter?.didTapDoneButtonFromRegistration()
         }
-        
-        
         decisionHandler(.cancel)
     }
 }

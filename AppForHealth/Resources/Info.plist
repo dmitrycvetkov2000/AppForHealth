@@ -10,6 +10,7 @@
 			<key>CFBundleURLSchemes</key>
 			<array>
 				<string>com.googleusercontent.apps.154147269434-up7tbkfdd00m02usbe9rrrip74sgb4ep</string>
+                <string>vk51651308</string>
 			</array>
 		</dict>
 	</array>
@@ -19,5 +20,11 @@
 		<string>RubikBubbles-Regular.ttf</string>
 		<string>FiraSans-Bold.ttf</string>
 	</array>
+    <key>LSApplicationQueriesSchemes</key>
+    <array>
+        <string>vk</string>
+        <string>vk-share</string>
+        <string>vkauthorize</string>
+    </array>
 </dict>
 </plist>

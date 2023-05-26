@@ -13,14 +13,19 @@ import VK_ios_sdk
 class FirebaseService {
     
     func signOutFromAcc(presenter: SettingPresenterProtocol?) {
+        let defaults = UserDefaults.standard
         do {
             try Auth.auth().signOut()
             GIDSignIn.sharedInstance.signOut()
             
-            let url = URL(string: "http://api.vk.com/oauth/logout")!
-            let req = URLRequest(url: url)
-            VKAuthScreen().load(req)
-            
+            if let tokenVK = defaults.string(forKey: "token") {
+                let url = URL(string: "http://api.vk.com/oauth/logout")!
+                let req = URLRequest(url: url)
+                VKAuthScreen().load(req)
+                defaults.removeObject(forKey: "token")
+                print("Выход из вк")
+            }
+
             DispatchQueue.main.async {
                 presenter?.didTapOnExitButton()
             }
