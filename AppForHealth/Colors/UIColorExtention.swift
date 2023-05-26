@@ -45,10 +45,10 @@ extension UIColor {
         #colorLiteral(red: 0.3220285177, green: 0.2310446501, blue: 0.6010909677, alpha: 1)
     }
     static var tabBarTintColor: UIColor {
-        #colorLiteral(red: 0, green: 0.4359151125, blue: 0, alpha: 1)
+        #colorLiteral(red: 0.05370242149, green: 0.6980502009, blue: 0.05426506698, alpha: 1)
     }
     static var tabBarHalfTintColor: UIColor {
-        #colorLiteral(red: 0.01797287539, green: 0.2065472007, blue: 0.01784341037, alpha: 0.5)
+        #colorLiteral(red: 0.05370242149, green: 0.6980502009, blue: 0.05426506698, alpha: 0.5)
     }
     
 }
