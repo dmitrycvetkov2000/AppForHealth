@@ -80,9 +80,9 @@ class RecipesVC: UIViewController {
         stackView.distribution = .fillEqually
         stackView.spacing = 20
         
-        addButtonsInStackView(title: "Обеды", button: buttonForBreakfast)
-        addButtonsInStackView(title: "Ужины", button: buttonForLaunch)
-        addButtonsInStackView(title: "Десерты", button: buttonForDesserts)
+        addButtonsInStackView(title: "Обеды".localized(), button: buttonForBreakfast)
+        addButtonsInStackView(title: "Ужины".localized(), button: buttonForLaunch)
+        addButtonsInStackView(title: "Десерты".localized(), button: buttonForDesserts)
         
         buttonForBreakfast.addTarget(self, action: #selector(changeDataCollectViewBreakfast), for: .touchUpInside)
         buttonForLaunch.addTarget(self, action: #selector(changeDataCollectViewLaunch), for: .touchUpInside)

@@ -34,15 +34,15 @@ class ViewController: UIViewController {
     var signup: Bool = true {
         willSet {
             if newValue {
-                labelForMessengersRegistration.text = "Зарегистрироваться с помощью"
-                buttonForEnterOrRegistration.setTitle("Зарегистрироваться", for: .normal)
+                labelForMessengersRegistration.text = "Зарегистрироваться с помощью".localized()
+                buttonForEnterOrRegistration.setTitle("Зарегистрироваться".localized(), for: .normal)
                 registrationLabel.text = "Регистрация".localized()
                 nameTextField.isHidden = false
                 buttonForChangeView.setTitle("Вход".localized(), for: .normal)
                 otherLabel.text = "У вас уже есть аккаунт?".localized()
             } else {
-                labelForMessengersRegistration.text = "Войти с помощью"
-                buttonForEnterOrRegistration.setTitle("Войти", for: .normal)
+                labelForMessengersRegistration.text = "Войти с помощью".localized()
+                buttonForEnterOrRegistration.setTitle("Войти".localized(), for: .normal)
                 registrationLabel.text = "Вход".localized()
                 nameTextField.isHidden = true
                 buttonForChangeView.setTitle("Регистрация".localized(), for: .normal)
@@ -239,7 +239,7 @@ extension ViewController {
     
     func createButtonForEnterOrRegistration() {
         buttonForEnterOrRegistration.translatesAutoresizingMaskIntoConstraints = false
-        buttonForEnterOrRegistration.setTitle("Зарегистрироваться", for: .normal)
+        buttonForEnterOrRegistration.setTitle("Зарегистрироваться".localized(), for: .normal)
         view.addSubview(buttonForEnterOrRegistration)
         buttonForEnterOrRegistration.addTarget(self, action: #selector(EnterOrRegistr), for: .touchUpInside)
     }
@@ -275,7 +275,7 @@ extension ViewController {
         view.addSubview(labelForMessengersRegistration)
         labelForMessengersRegistration.textAlignment = .center
         
-        labelForMessengersRegistration.text = "Зарегистрируйтесь с помощью"
+        labelForMessengersRegistration.text = "Зарегистрируйтесь с помощью".localized()
         
     }
     func createStackForButtons() {

@@ -136,7 +136,7 @@ extension HelperForCollectionViewMain: UICollectionViewDelegate, UICollectionVie
             else {
                 return UICollectionViewCell()
             }
-            cell.configurateCell(imageName: menuButtons[indexPath.row].image, labelText: menuButtons[indexPath.row].title)
+            cell.configurateCell(imageName: menuButtons[indexPath.row].image, labelText: menuButtons[indexPath.row].title.localized())
             return cell
             
         case .menuScrollMain(let menuMain):

@@ -37,7 +37,7 @@ class FirebaseService {
     
     func registration(name: String, email: String, password: String, presenter: AuthorizationPresenterProtocol?, vc: UIViewController, spinner: CustomSpinnerSimple, blurEffectView: UIVisualEffectView) {
         
-        let alert = UIAlertController(title: "Ошибка регистрации", message: "Проверьте корректность email адреса или интернет соединения", preferredStyle: .alert)
+        let alert = UIAlertController(title: "Ошибка регистрации".localized(), message: "Проверьте корректность email адреса или интернет соединения".localized(), preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Ок", style: .default))
         
         let backgroundQueue = DispatchQueue(label: "background_queue",

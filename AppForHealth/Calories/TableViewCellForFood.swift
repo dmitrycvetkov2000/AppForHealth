@@ -65,9 +65,9 @@ class TableViewCellForFood: UITableViewCell {
         stackForPFC.spacing = 10
         stackForPFC.distribution = .equalSpacing
         
-        proteinsLabel.text = "Б: \(proteins)"
-        fatLabel.text = "Ж: \(fat)"
-        carbLabel.text = "У: \(carb)"
+        proteinsLabel.text = "Б:".localized() + " \(proteins)"
+        fatLabel.text = "Ж:".localized() + " \(fat)"
+        carbLabel.text = "У:".localized() + " \(carb)"
         
     }
     
@@ -94,8 +94,8 @@ class TableViewCellForFood: UITableViewCell {
         caloriesLabel.textAlignment = .right
         weightLabel.textAlignment = .right
         
-        caloriesLabel.text = "\(calories) ккал"
-        weightLabel.text = "\(weight) г."
+        caloriesLabel.text = "\(calories) " + "ккал".localized()
+        weightLabel.text = "\(weight) " + "г.".localized()
     }
 }
 extension TableViewCellForFood {    

@@ -114,7 +114,7 @@ extension LaunchScreen {
         textPicture.numberOfLines = 1
         textPicture.adjustsFontSizeToFitWidth = true
         textPicture.textAlignment = .center
-        textPicture.text = "Здоровье"
+        textPicture.text = "Здоровье".localized()
         textPicture.textColor = #colorLiteral(red: 0, green: 0.3431890011, blue: 0, alpha: 1)
         self.view.addSubview(textPicture)
     }

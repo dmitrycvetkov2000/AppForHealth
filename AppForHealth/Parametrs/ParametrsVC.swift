@@ -183,7 +183,7 @@ extension ParametrsVC: ParametrsVCProtocol {
         label.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(label)
 
-        label.text = "Ваши параметры"
+        label.text = "Ваши параметры".localized()
         
         label.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20).isActive = true
         label.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 10).isActive = true
@@ -203,8 +203,8 @@ extension ParametrsVC: ParametrsVCProtocol {
         stackView.spacing = 20
         stackView.axis = .horizontal
         
-        button1.setTitle("Мужчина", for: .normal)
-        button2.setTitle("Женщина", for: .normal)
+        button1.setTitle("Мужчина".localized(), for: .normal)
+        button2.setTitle("Женщина".localized(), for: .normal)
         
         button1.addTarget(self, action: #selector(tapOnMenButton), for: .touchUpInside)
         button2.addTarget(self, action: #selector(tapOnWomanButton), for: .touchUpInside)
@@ -279,7 +279,7 @@ extension ParametrsVC: ParametrsVCProtocol {
         labelOfActivity.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(labelOfActivity)
 
-        labelOfActivity.text = "Уровень активности"
+        labelOfActivity.text = "Уровень активности".localized()
         
         labelOfActivity.topAnchor.constraint(equalTo: secondStackView.bottomAnchor, constant: 40).isActive = true
         labelOfActivity.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 10).isActive = true
@@ -299,9 +299,9 @@ extension ParametrsVC: ParametrsVCProtocol {
         stackView.axis = .horizontal
         stackView.spacing = 10
         
-        button1.setTitle("Низкий", for: .normal)
-        button2.setTitle("Средний", for: .normal)
-        button3.setTitle("Высокий", for: .normal)
+        button1.setTitle("Низкий".localized(), for: .normal)
+        button2.setTitle("Средний".localized(), for: .normal)
+        button3.setTitle("Высокий".localized(), for: .normal)
         
         button1.addTarget(self, action: #selector(tapOnLowActivityButton), for: .touchUpInside)
         button2.addTarget(self, action: #selector(tapOnMiddleActivityButton), for: .touchUpInside)
@@ -328,7 +328,7 @@ extension ParametrsVC: ParametrsVCProtocol {
         label.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(label)
 
-        label.text = "Цель"
+        label.text = "Цель".localized()
         
         label.topAnchor.constraint(equalTo: fourthStackView.bottomAnchor, constant: 40).isActive = true
         label.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 10).isActive = true
@@ -348,9 +348,9 @@ extension ParametrsVC: ParametrsVCProtocol {
         stackView.axis = .horizontal
         stackView.spacing = 10
         
-        button1.setTitle("Похудеть", for: .normal)
-        button2.setTitle("Норма", for: .normal)
-        button3.setTitle("Набрать", for: .normal)
+        button1.setTitle("Похудеть".localized(), for: .normal)
+        button2.setTitle("Норма".localized(), for: .normal)
+        button3.setTitle("Набрать".localized(), for: .normal)
         
         button1.addTarget(self, action: #selector(tapONLoseWeightButton), for: .touchUpInside)
         button2.addTarget(self, action: #selector(tapONNormalWeightButton), for: .touchUpInside)
@@ -377,7 +377,7 @@ extension ParametrsVC: ParametrsVCProtocol {
         button.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(button)
         
-        button.setTitle("Сохранить", for: .normal)
+        button.setTitle("Сохранить".localized(), for: .normal)
         
         button.addTarget(self, action: #selector(tapOnSaveButton), for: .touchUpInside)
         
@@ -421,7 +421,7 @@ extension ParametrsVC: ParametrsVCProtocol {
             
             label.adjustsFontSizeToFitWidth = true
             label.numberOfLines = 2
-            label.text = "Здравствуйте," + " \(nameOfUser)"
+            label.text = "Здравствуйте,".localized() + " \(nameOfUser)"
             label.textColor = .forJustText
             
             NSLayoutConstraint.activate([

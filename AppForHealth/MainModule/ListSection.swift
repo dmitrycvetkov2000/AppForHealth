@@ -28,9 +28,9 @@ enum ListSection {
     var headerTitle: String {
         switch self {
         case .menuScrollMini(_):
-            return "Сведения о Вас"
+            return "Сведения о Вас".localized()
         case .buttons(_):
-            return "Функции приложения"
+            return "Функции приложения".localized()
         case .menuScrollMain(_):
             return ""
         }

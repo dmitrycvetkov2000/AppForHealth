@@ -12,7 +12,7 @@ class MyCollectionViewCellForRecipes: UICollectionViewCell {
     var labelForName = JustText()
     var image = UIImageView()
     
-    let viewModelForButton = ButtonWithImageViewModel(title: "Подробнее о рецепте", imageName: "info.circle")
+    let viewModelForButton = ButtonWithImageViewModel(title: "Подробнее о рецепте".localized(), imageName: "info.circle")
     let buttonForMoreInformation: ButtonWithImage = {
         let button = ButtonWithImage(frame: .zero)
         return button

@@ -247,6 +247,7 @@ extension AddFoodVC {
             break
         case carbLabel:
             carbLabel.text = "Углеводы".localized()
+            carbLabel.adjustsFontSizeToFitWidth = true
             setConstrainsForStackView(stackView: stackForCarb)
             break
         case ccalLabel:

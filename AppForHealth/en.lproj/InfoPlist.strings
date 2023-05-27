@@ -6,4 +6,4 @@
   
 */
 
-NSLocationWhenInUseUsageDescription = "kkjj";
+NSLocationWhenInUseUsageDescription = "Allow us to access your current location so that we can find out your coordinates";

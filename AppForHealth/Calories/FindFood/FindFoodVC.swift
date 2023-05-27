@@ -102,6 +102,7 @@ class FindFoodVC: UIViewController {
         }
         searchBar.backgroundImage = UIImage()
         searchBar.searchTextField.backgroundColor = .white
+        searchBar.searchTextField.textColor = .black
     }
     
     func createTableViewForFind() {

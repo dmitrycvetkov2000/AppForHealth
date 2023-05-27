@@ -108,7 +108,6 @@ class MoreInformationVC: UIViewController {
     
     
     
-    let group = DispatchGroup()
     
     let labelInstructions: UILabel = {
         let label = UILabel()
@@ -132,7 +131,7 @@ class MoreInformationVC: UIViewController {
         contentView.addSubview(stackForIngredients)
         stackForIngredients.snp.makeConstraints { make in
             make.top.equalTo(firstBlockAboutReceipt.snp.bottom).inset(-20)
-            make.left.right.equalToSuperview().inset(20)
+            make.left.right.equalToSuperview().inset(0)
         }
     }
     
@@ -156,6 +155,9 @@ class MoreInformationVC: UIViewController {
         }
     }
     var masImages = [UIImage]()
+    
+    let group = DispatchGroup()
+    let group2 = DispatchGroup()
     override func viewDidLoad() {
         super.viewDidLoad()
         group.enter()
@@ -164,14 +166,12 @@ class MoreInformationVC: UIViewController {
             if let ingredients = info.extendedIngredients {
                 var dataOfIngredient: (image: UIImage, amount: Double, type: String, name: String) = (image: UIImage(), amount: Double(), type: String(), name: String())
                 for ingredient in ingredients {
-                    var imagePicture = UIImage()
                     if let imageOfIngredient = ingredient.image {
                         if let url = URL(string: "https://spoonacular.com/cdn/ingredients_100x100/\(imageOfIngredient)") {
+                            group2.enter()
                             URLSession.shared.dataTask(with: url) { (data, response, error) in
                                 if let imageData = data {
-                                    //imagePicture = UIImage(data: imageData) ?? UIImage()
                                     self.masImages.append(UIImage(data: imageData) ?? UIImage())
-//                                    print("dataOfIngredient.image = \(dataOfIngredient.image)")
                                 }
                             }.resume()
                         }
@@ -185,9 +185,8 @@ class MoreInformationVC: UIViewController {
                     if let name = ingredient.nameClean {
                         dataOfIngredient.name = name
                     }
-                    dataOfIngredient.image = imagePicture
+                    group2.leave()
                     self.ingredients.append(dataOfIngredient)
-                    print("dataOfIngredient.image = \(dataOfIngredient)")
                 }
             }
             
@@ -215,28 +214,23 @@ class MoreInformationVC: UIViewController {
     func createStackIngredient(image: Int, name: String, type: String, amount: Double) {
         let stack = UIStackView()
         stack.axis = .horizontal
-        stack.spacing = 10
-        stack.distribution = .fillEqually
+        stack.spacing = 20
+        //stack.distribution = .equalSpacing
         let imageView = UIImageView()
-        imageView.backgroundColor = .black
         imageView.image = masImages[image]
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.snp.makeConstraints { make in
-            make.width.equalTo(60)
-            make.height.equalTo(60)
+            make.width.equalTo(76)
+            make.height.equalTo(76)
         }
-//        imageView.frame.size.height = 40
-//        imageView.frame.size.width = 40
+        imageView.clipsToBounds = true
         imageView.contentMode = .scaleAspectFit
 
         stack.addArrangedSubview(imageView)
         
-        let labelName = UILabel()
-        labelName.text = name
-        labelName.textAlignment = .left
-        stack.addArrangedSubview(labelName)
-        
         let amountLabel = UILabel()
+        amountLabel.clipsToBounds = true
+        amountLabel.textAlignment = .right
         var types = String()
         
         switch type {
@@ -244,7 +238,7 @@ class MoreInformationVC: UIViewController {
         case "mediums": types = "средних"
         case "milliliters": types = "мл"
         case "cloves": types = "долек"
-        case "Tbsps": types = "столовых ложек"
+        case "Tbsps": types = "ложки"
         case "grams": types = "гр"
         case "large": types = "больших"
         case "liters": types = "литров"
@@ -253,10 +247,19 @@ class MoreInformationVC: UIViewController {
             types = ""
         }
         
+        let labelName = UILabel()
+        labelName.translatesAutoresizingMaskIntoConstraints = false
+        labelName.snp.makeConstraints { make in
+            make.width.equalTo(100)
+            make.height.equalTo(76)
+        }
+        labelName.text = name
+        labelName.textAlignment = .left
+        stack.addArrangedSubview(labelName)
+        
         amountLabel.text = "\(amount) \(types)"
         stack.addArrangedSubview(amountLabel)
 
         stackForIngredients.addArrangedSubview(stack)
-        
     }
 }
