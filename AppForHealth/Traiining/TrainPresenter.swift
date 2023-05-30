@@ -104,7 +104,6 @@ extension TrainPresenter: TrainPresenterProtocol {
     
     func determeGoal() -> String {
         let goal: String? = CoreDataManager.instance.getElementFromBD(find: "goal")
-        print(goal ?? "No")
         return goal ?? ""
     }
     

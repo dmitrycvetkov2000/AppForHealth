@@ -46,24 +46,28 @@ extension HelperForRecipes: UICollectionViewDataSource {
         if modelForReceipts?.nameOfFood.count ?? 0 > indexPath.item {
             cell?.setLabelForName(name: modelForReceipts?.nameOfFood[indexPath.item] ?? "")
         }
+        print("modelForReceipts?.images.count = \(modelForReceipts?.images.count)")
         if modelForReceipts?.images.count ?? 0 > indexPath.item {
                 //cell?.addSubview(self.spinnerOnView)
                 //self.spinnerOnView.startAnimation(delay: 0.04, replicates: 20)
             if let image = self.modelForReceipts?.images[indexPath.item] {
                 cell?.setImage(image: image, completion: {
+                    
                 })
+                //print("DDD картинка установилась")
             }
         }
         
-        cell?.setButton(vc: viewController ?? UIViewController(), index: modelForReceipts?.id[indexPath.item] ?? 0)
+        cell?.setButton(vc: viewController ?? RecipesVC(), index: modelForReceipts?.id[indexPath.item] ?? 0)
         
         cell?.backgroundColor = .brown
+        
         if indexPath.item == 0 {
             DispatchQueue.main.async {
                 collectionView.reloadData()
+                print("SSSSSS Reload Data")
             }
         }
-        
     return cell ?? UICollectionViewCell()
     }
     

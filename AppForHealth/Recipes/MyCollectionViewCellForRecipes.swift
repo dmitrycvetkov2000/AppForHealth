@@ -20,12 +20,12 @@ class MyCollectionViewCellForRecipes: UICollectionViewCell {
     
     var index = 0
     
-    var vc = UIViewController()
+    var vc = RecipesVC()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        self.backgroundColor = .brown
+        self.backgroundColor = .clear
         
         self.addSubview(image)
         self.addSubview(labelForName)
@@ -52,7 +52,7 @@ class MyCollectionViewCellForRecipes: UICollectionViewCell {
         completion()
     }
     
-    func setButton(vc: UIViewController, index: Int) {
+    func setButton(vc: RecipesVC, index: Int) {
         buttonForMoreInformation.configure(with: viewModelForButton)
         
         buttonForMoreInformation.addTarget(self, action: #selector(showMoreAboutReceipts), for: .touchUpInside)
@@ -62,7 +62,7 @@ class MyCollectionViewCellForRecipes: UICollectionViewCell {
     @objc func showMoreAboutReceipts() {
         let vc = MoreInformationVC()
         vc.id = self.index
-        vc.imageView = self.image
+        vc.image = self.image.image ?? UIImage()
         print("index = \(self.index)")
         self.vc.present(vc, animated: true)
     }

@@ -52,17 +52,31 @@ class RecipesVC: UIViewController {
         helper.viewController = self
         presenter?.setNavigationItems()
         
-        createScrollView()
+        
         
         presenter?.setBlurEffect()
         presenter?.setSpinnerAndStart()
         view.backgroundColor = .brown
+
         presenter?.getRequest(helper: helper, type: ApiType.getReceipeForSoup)
+        
+        print("SSSSSIIII = ViewDidLoad")
+        
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        print("SSSSSIIII = ViewWillAppear")
+        createScrollView()
+        self.setCollectView()
+    }
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        self.setCollectView()
+        print("SSSSSIIII = viewDidLayoutSubviews")
+    }
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        print("SSSSSIIII = viewWillDisappear")
     }
     
     func createScrollView() {
@@ -71,10 +85,12 @@ class RecipesVC: UIViewController {
         scrollView.alwaysBounceHorizontal = true
         scrollView.showsHorizontalScrollIndicator = false
         
-        scrollView.frame = CGRect(x: 0, y: navigationController!.navigationBar.frame.maxY * 2, width: view.bounds.width, height: 40)
+        scrollView.frame = CGRect(x: 0, y: navigationController!.navigationBar.frame.height + navigationController!.navigationBar.frame.minY, width: view.bounds.width, height: 40)
+        //scrollView.frame = CGRect(x: 0, y: navigationController!.navigationBar.frame.height + navigationController!.navigationBar.frame.maxY, width: view.bounds.width, height: 40)
         scrollView.contentSize = CGSize(width: view.bounds.width + 60, height: 0)
         
-        stackView.frame = CGRect(origin: CGPoint(x: 10, y: 0), size: CGSize(width: scrollView.bounds.width + 50, height: 40))
+        stackView.frame = scrollView.frame
+        stackView.frame.origin = CGPoint(x: 10, y: 0)
         
         stackView.axis = .horizontal
         stackView.distribution = .fillEqually
@@ -87,6 +103,12 @@ class RecipesVC: UIViewController {
         buttonForBreakfast.addTarget(self, action: #selector(changeDataCollectViewBreakfast), for: .touchUpInside)
         buttonForLaunch.addTarget(self, action: #selector(changeDataCollectViewLaunch), for: .touchUpInside)
         buttonForDesserts.addTarget(self, action: #selector(changeDataCollectViewDeserts), for: .touchUpInside)
+        
+        buttonForBreakfast.clipsToBounds = true
+        buttonForLaunch.clipsToBounds = true
+        buttonForDesserts.clipsToBounds = true
+//        stackView.backgroundColor = .black
+//        scrollView.backgroundColor = .red
     }
     func addButtonsInStackView(title: String, button: UIButton) {
         button.setTitle(title, for: .normal)
@@ -133,12 +155,20 @@ class RecipesVC: UIViewController {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
         layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-        layout.itemSize = CGSize(width: view.bounds.width, height: view.bounds.height - scrollView.frame.height)
-        myCollectionView = UICollectionView(frame: CGRect(x: 0, y: scrollView.frame.maxY + 20, width: view.bounds.width, height: view.bounds.height - scrollView.frame.height), collectionViewLayout: layout)
+        layout.itemSize = CGSize(width: view.bounds.width, height: view.bounds.height - scrollView.frame.height - 10)
+        myCollectionView = UICollectionView(frame: CGRect(x: 0, y: scrollView.frame.maxY + 10, width: view.bounds.width, height: view.bounds.height - scrollView.frame.height - 10), collectionViewLayout: layout)
         view.addSubview(myCollectionView ?? UICollectionView())
         myCollectionView?.backgroundColor = .clear
         myCollectionView?.register(MyCollectionViewCellForRecipes.self, forCellWithReuseIdentifier: helper.identifier)
         myCollectionView?.dataSource = self.helper
+        
+//        myCollectionView?.translatesAutoresizingMaskIntoConstraints = false
+//        NSLayoutConstraint.activate([
+//            myCollectionView!.topAnchor.constraint(equalTo: stackView.bottomAnchor, constant: 0),
+//            myCollectionView!.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 0),
+//            myCollectionView!.rightAnchor.constraint(equalTo: view.rightAnchor, constant: 0),
+//            myCollectionView!.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0)
+//        ])
     }
 }
 

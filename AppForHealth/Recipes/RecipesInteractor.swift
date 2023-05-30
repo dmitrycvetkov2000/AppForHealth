@@ -45,6 +45,8 @@ class RecipesInteractor: RecipesInteractorProtocol {
                 }
             }
         case .getReceipeForDessert:
+            presenter?.setBlurEffect()
+            presenter?.setSpinnerAndStart()
             ApiManager.shared.getReceipeForDeserts { [weak self] receipts in
                 guard let self = self else { return }
                 guard let results = receipts.results else { return }
@@ -74,6 +76,8 @@ class RecipesInteractor: RecipesInteractorProtocol {
         case .getMoreInfoAboutReceipt:
             print("")
         case .getReceipeForSoup:
+            presenter?.setBlurEffect()
+            presenter?.setSpinnerAndStart()
             ApiManager.shared.getReceipeForSoup { [weak self] receipts in
                 guard let self = self else { return }
                 guard let results = receipts.results else { return }
@@ -83,6 +87,7 @@ class RecipesInteractor: RecipesInteractorProtocol {
                             URLSession.shared.dataTask(with: url) { (data, response, error) in
                                 if let imageData = data {
                                     helper.modelForReceipts?.images.append(UIImage(data: imageData))
+                                    print("DDDDD = Добавляется картинка в массив")
                                 }
                             }.resume()
                         }
