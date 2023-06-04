@@ -9,11 +9,11 @@ import Foundation
 import UIKit
 import SnapKit
 import CoreData
+import FSCalendar
+
 
 protocol CaloriesVCProtocol: AnyObject {
     func createButtonForCalendar()
-    func createCalendar()
-    func createButtonForCloseCalendar()
     
     func createStackForStatistics()
     
@@ -28,10 +28,7 @@ class CaloriesVC: UIViewController {
     var tableViewForFood = UITableView()
     var helper = HelperForTableView()
     
-    let buttonForCalend = MainButton()
-    let buttonForCloseCalend = MainButton()
-    let calendarView = UICalendarView()
-    
+    let buttonForCalend = UIButton()
     
     let progressOfProtein = UIProgressView()
     let progressOfFat = UIProgressView()
@@ -67,6 +64,24 @@ class CaloriesVC: UIViewController {
     
     var scrolAllView = UIScrollView()
     var contentView = UIView()
+    
+    var calendar = FSCalendar()
+    
+    func createFSCalendar() {
+        calendar.translatesAutoresizingMaskIntoConstraints = false
+        contentView.addSubview(calendar)
+        
+        calendar.snp.makeConstraints { make in
+            make.left.right.equalToSuperview().inset(10)
+            make.top.equalToSuperview().inset(20)
+            make.height.equalTo(300)
+        }
+        calendar.scrollDirection = .horizontal
+        calendar.locale = .autoupdatingCurrent
+        
+        calendar.scope = .week
+        calendar.delegate = self
+    }
 
     func setupLayout() {
         createScrollView()
@@ -107,6 +122,7 @@ class CaloriesVC: UIViewController {
         
         createLabelForTitle()
         setupLayout()
+        createFSCalendar()
         
         let date = Date()
         let formatter = DateFormatter()
@@ -119,11 +135,7 @@ class CaloriesVC: UIViewController {
         presenter?.viewDidLoaded()
         view.backgroundColor = .brown
         tableViewForFood.backgroundColor = .brown
-        
-        let dateSelection = UICalendarSelectionSingleDate(delegate: self)
-        calendarView.selectionBehavior = dateSelection
-        calendarView.delegate = self
-        
+                
         self.helper.viewController = self
     }
     
@@ -199,66 +211,30 @@ class CaloriesVC: UIViewController {
 
 extension CaloriesVC: CaloriesVCProtocol {
     func createButtonForCalendar() {
-        buttonForCalend.setTitle(self.helper.date, for: .normal)
-        
         contentView.addSubview(buttonForCalend)
         buttonForCalend.snp.makeConstraints { make in
-            make.left.equalTo(contentView.snp.left).inset(20)
-            make.right.equalTo(contentView.snp.right).inset(20)
-            make.top.equalTo(contentView.snp.top).inset(0)
+            make.centerX.equalToSuperview()
+            make.width.height.equalTo(30)
+            make.top.equalTo(calendar.snp.bottom).inset(0)
         }
+        buttonForCalend.setImage(UIImage(systemName: "chevron.down"), for: .normal)
+        buttonForCalend.tintColor = .tabBarMainColor
         buttonForCalend.addTarget(self, action: #selector(didTapCalendar), for: .touchUpInside)
     }
     @objc func didTapCalendar() {
-        buttonForCalend.isHidden = true
-        
-        calendarView.isHidden = false
-        buttonForCloseCalend.isHidden = false
-        
-        stackForStatistics.snp.makeConstraints { make in
-            make.left.right.equalToSuperview().inset(20)
-            make.top.equalTo(buttonForCloseCalend.snp.bottom).inset(-20)
+        switch calendar.scope {
+        case .month:
+            calendar.scope = .week
+            buttonForCalend.setImage(UIImage(systemName: "chevron.down"), for: .normal)
+            break
+        case .week:
+            calendar.scope = .month
+            buttonForCalend.setImage(UIImage(systemName: "chevron.up"), for: .normal)
+            
+            break
+        @unknown default:
+            fatalError()
         }
-    }
-    
-    
-    func createButtonForCloseCalendar() {
-        buttonForCloseCalend.isHidden = true
-        
-        buttonForCloseCalend.setTitle("Свернуть календарь".localized(), for: .normal)
-        
-        contentView.addSubview(buttonForCloseCalend)
-        buttonForCloseCalend.snp.makeConstraints { make in
-            make.left.right.equalToSuperview().inset(20)
-            make.top.equalTo(calendarView.snp.bottom).inset(0)
-        }
-        buttonForCloseCalend.addTarget(self, action: #selector(didTapCloseCalendar), for: .touchUpInside)
-    }
-    @objc func didTapCloseCalendar() {
-        calendarView.isHidden = true
-        
-        buttonForCloseCalend.isHidden = true
-        buttonForCalend.isHidden = false
-        
-        stackForStatistics.snp.remakeConstraints { make in
-            make.left.right.equalToSuperview().inset(20)
-            make.height.equalTo(250)
-            make.top.equalTo(buttonForCalend.snp.bottom).inset(-20)
-        }
-    }
-    
-    func createCalendar() {
-        calendarView.calendar = .current
-        calendarView.locale = .current
-        contentView.addSubview(calendarView)
-        
-        calendarView.snp.makeConstraints { make in
-            make.left.right.equalToSuperview().inset(20)
-            make.top.equalTo(contentView.snp.top).inset(0)
-        }
-        calendarView.tintColor = .buttonBackColor
-        
-        calendarView.isHidden = true
     }
     
     func createStackForStatistics() {
@@ -366,59 +342,57 @@ extension CaloriesVC: CaloriesVCProtocol {
     }
     @objc func addFood() {
         presenter?.didTapFindFoodVCButton()
-//        let vc = FindFoodVC()
-//        navigationController?.pushViewController(vc, animated: true)
     }
 }
 
-extension CaloriesVC: UICalendarViewDelegate, UICalendarSelectionSingleDateDelegate {
-    func calendarView(_ calendarView: UICalendarView, decorationFor dateComponents: DateComponents) -> UICalendarView.Decoration? {
-        UICalendarView.Decoration.default()
+extension CaloriesVC: FSCalendarDelegate {
+    func calendar(_ calendar: FSCalendar, boundingRectWillChange bounds: CGRect, animated: Bool) {
+        calendar.snp.updateConstraints { (make) in
+            make.height.equalTo(bounds.height)
+        }
+        self.view.layoutIfNeeded()
     }
-    
-    func dateSelection(_ selection: UICalendarSelectionSingleDate, didSelectDate dateComponents: DateComponents?) {
-        let date = dateComponents?.date
+    func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
+        let date = date
         let formatter = DateFormatter()
         formatter.dateFormat = "dd.MM.YYYY"
         formatter.timeZone = TimeZone(secondsFromGMT: 10800)            // указатель временной зоны относительно гринвича
         
-        if let date = date {
-            let formatteddate = formatter.string(from: date as Date)
-            self.helper.date = formatteddate
-            buttonForCalend.setTitle(formatteddate, for: .normal)
-            print("self.helper.date   \(self.helper.date)")
-            
-            if let products = self.helper.products {
-                self.helper.arraysForDate.removeAll()
-                for prod in products {
-                    print("prod.date = \(prod.date)")
-                    print("self.helper.date = \(self.helper.date)")
-                    if prod.date == self.helper.date {
-                            self.helper.arraysForDate.append(prod)
-                            print("array = \(self.helper.arraysForDate)")
-                    }
+        let formatteddate = formatter.string(from: date as Date)
+        self.helper.date = formatteddate
+        print("self.helper.date   \(self.helper.date)")
+        
+        if let products = self.helper.products {
+            self.helper.arraysForDate.removeAll()
+            for prod in products {
+                print("prod.date = \(prod.date)")
+                print("self.helper.date = \(self.helper.date)")
+                if prod.date == self.helper.date {
+                    self.helper.arraysForDate.append(prod)
+                    print("array = \(self.helper.arraysForDate)")
                 }
-                print("self.helper.arraysForDate.count = \(self.helper.arraysForDate.count)")
             }
-            updateProgressView()
-            self.tableViewForFood.reloadData()
+            print("self.helper.arraysForDate.count = \(self.helper.arraysForDate.count)")
         }
+        updateProgressView()
+        self.tableViewForFood.reloadData()
     }
 }
+
 extension CaloriesVC {
     func updateProgressView() {
         self.progressOfProtein.progress = 0
         self.progressOfFat.progress = 0
         self.progressOfCarbonates.progress = 0
         self.progressOfCalories.progress = 0
-        
+
         var maxCcal = 0
         var goal: String = ""
         var gender: String = ""
         var multiForProt: Double = 0.0
         var multiForFats: Double = 0.0
         var multiForCarb: Double = 0.0
-        
+
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Person")
         do {
             let results = try CoreDataManager.instance.context.fetch(fetchRequest)
@@ -430,7 +404,7 @@ extension CaloriesVC {
         } catch {
             print(error)
         }
-        
+
         switch goal {
         case Goals.norma.rawValue:
             if gender == Genders.man.rawValue {
@@ -466,42 +440,42 @@ extension CaloriesVC {
         default:
             print("error")
         }
-        
+
         let maxProt = multiForProt * Double(maxCcal)
         let maxFats = multiForFats * Double(maxCcal)
         let maxCarb = multiForCarb * Double(maxCcal)
-        
+
         var countProt = 0.0
         var countFats = 0.0
         var countCarb = 0.0
         var countCcal = 0.0
-        
+
         for product in self.helper.arraysForDate {
             countProt += product.proteins
             countFats += product.fats
             countCarb += product.carb
             countCcal += Double(product.ccal)
         }
-        
+
         let percentOfProt = countProt / maxProt
         let percentOfFats = countFats / maxFats
         let percentOfCarb = countCarb / maxCarb
         let percentOfCcal: Float = Float(countCcal) / Float(maxCcal)
-        
+
         self.progressOfProtein.progress += Float(percentOfProt)
         self.progressOfFat.progress += Float(percentOfFats)
         self.progressOfCarbonates.progress += Float(percentOfCarb)
         self.progressOfCalories.progress += percentOfCcal
-        
+
         labelProtein.adjustsFontSizeToFitWidth = true
         labelFat.adjustsFontSizeToFitWidth = true
         labelCarbonates.adjustsFontSizeToFitWidth = true
-        
+
         labelProtein.text = "Лимит белков на сегодня".localized() + " \(Int(Double(maxProt)))" + "(ккал)".localized() + ", \(Int(Double(maxProt) * 0.4))" + "(г.)".localized()
         labelFat.text = "Лимит жиров на сегодня".localized() + " \(Int(Double(maxFats)))" + "(ккал)".localized() + ", \(Int(Double(maxFats) * 0.9))" + "(г.)".localized()
         labelCarbonates.text = "Лимит углеводов на сегодня".localized() + " \(Int(Double(maxCarb)))" + "(ккал)".localized() + ", \(Int(Double(maxCarb) * 0.4))" + "(г.)".localized()
         labelCalories.text = "Лимит калорий на сегодня".localized() + " \(maxCcal)" + "(ккал)".localized()
-        
+
         labelForProtein.text = "\(String(NSString(format:"%.2f", percentOfProt)))% (\(countProt) " + "ккал".localized() + ", \(String(NSString(format:"%.2f", countProt * 0.4)))" + "г.)".localized()
         labelForFat.text = "\(String(NSString(format:"%.2f", percentOfFats)))% (\(String(NSString(format:"%.2f", countFats * 0.9)))" + "г.)".localized()
         labelForCarbonates.text = "\(String(NSString(format:"%.2f", percentOfCarb)))% (\(countCarb) " + "ккал".localized() + ", \(String(NSString(format:"%.2f", countCarb * 0.4)))" + "г.)".localized()

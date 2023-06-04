@@ -84,7 +84,8 @@ class TrainVC: UIViewController {
     func getPlayer() {
         let path = Bundle.main.path(forResource: "Отжимания", ofType: "mov")
         guard let path = path else { return }
-        let url = URL(filePath: path)
+        //let url = URL(filePath: path)
+        let url = URL(fileURLWithPath: path)
 
         player = AVPlayer(url: url)
     }
@@ -326,7 +327,8 @@ extension TrainVC: TrainVCProtocol {
         
         let path = Bundle.main.path(forResource: name, ofType: "mov")
         guard let path = path else { return }
-        let url = URL(filePath: path)
+        //let url = URL(filePath: path)
+        let url = URL(fileURLWithPath: path)
         
         player = AVPlayer(url: url)
         layer = AVPlayerLayer(player: player)

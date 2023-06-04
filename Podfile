@@ -15,7 +15,9 @@ pod 'Charts'
 
 pod 'GoogleSignIn'
 pod 'AppAuth'
-pod "VK-ios-sdk"
+pod 'VK-ios-sdk'
+
+pod 'FSCalendar'
 
   # Pods for AppForHealth
 
