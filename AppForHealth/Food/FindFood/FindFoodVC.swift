@@ -9,10 +9,14 @@ import UIKit
 import SnapKit
 import RealmSwift
 
-
+protocol FindFoodVCProtocol: AnyObject {
+    
+}
 
 class FindFoodVC: UIViewController {
-
+    
+    var presenter: FindFoodVCPresenterProtocol?
+    
     var helper = HelperForTableAndSearchBar()
     
     let labelFindFood = UILabel()
@@ -78,7 +82,8 @@ class FindFoodVC: UIViewController {
         navigationItem.rightBarButtonItem = rightBarButtonItem
     }
     @objc func openMenu() {
-        navigationController?.popViewController(animated: true)
+        //navigationController?.popViewController(animated: true)
+        presenter?.didTapReturnButton()
     }
     
     func createLabelForTitle() -> UILabel {
@@ -129,8 +134,7 @@ class FindFoodVC: UIViewController {
         buttonForAdd.addTarget(self, action: #selector(addNewFood), for: .touchUpInside)
     }
     @objc func addNewFood() {
-        let vc = AddFoodVC()
-        navigationController?.pushViewController(vc, animated: true)
+        presenter?.didTapAddButton()
     }
 }
 
@@ -155,4 +159,8 @@ extension FindFoodVC: ChangeVCDelegate {
         
         navigationController?.pushViewController(vc, animated: true)
     }
+}
+
+extension FindFoodVC: FindFoodVCProtocol {
+    
 }

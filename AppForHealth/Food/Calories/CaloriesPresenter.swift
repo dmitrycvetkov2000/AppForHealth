@@ -9,6 +9,7 @@ import Foundation
 
 protocol CaloriesPresenterProtocol: AnyObject {
     func viewDidLoaded()
+    func didTapFindFoodVCButton()
 }
 
 class CaloriesPresenter {
@@ -29,5 +30,9 @@ extension CaloriesPresenter: CaloriesPresenterProtocol {
         view?.createStackForStatistics()
         view?.createTableViewForFood()
         view?.createButtonForAddFood()
+    }
+    
+    func didTapFindFoodVCButton() {
+        router.openFindFoodVC()
     }
 }

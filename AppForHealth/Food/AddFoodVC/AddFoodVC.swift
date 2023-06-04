@@ -8,7 +8,13 @@
 import UIKit
 import RealmSwift
 
+protocol AddFoodVCProtocol: AnyObject {
+    
+}
+
 class AddFoodVC: UIViewController {
+    var presenter: AddFoodPresenterProtocol?
+    
     let labelForTitle = UILabel()
     
     let timeLabel = UILabel()
@@ -113,7 +119,6 @@ class AddFoodVC: UIViewController {
         }
 }
 extension AddFoodVC {
-    
     func configureNavigationItems() {
         returLeftBarButton.translatesAutoresizingMaskIntoConstraints = false
         returLeftBarButton.clipsToBounds = true
@@ -154,7 +159,7 @@ extension AddFoodVC {
     }
 
     @objc func comeback() {
-        navigationController?.popViewController(animated: true)
+        presenter?.didTapBackButton()
     }
     
     @objc func accept() {
@@ -346,7 +351,8 @@ extension AddFoodVC {
         buttonForCancel.addTarget(self, action: #selector(cancel), for: .touchUpInside)
     }
     @objc func cancel() {
-        navigationController?.popToRootViewController(animated: true)
+        presenter?.didTapCancelButton()
+        //navigationController?.popToRootViewController(animated: true)
     }
     
     func createButtonForAccept() {
@@ -437,4 +443,8 @@ extension AddFoodVC: UITextFieldDelegate {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
     }
+}
+
+extension AddFoodVC: AddFoodVCProtocol {
+    
 }

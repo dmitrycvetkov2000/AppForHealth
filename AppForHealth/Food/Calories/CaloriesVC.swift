@@ -248,14 +248,14 @@ extension CaloriesVC: CaloriesVCProtocol {
     }
     
     func createCalendar() {
-            calendarView.calendar = .current
-            calendarView.locale = .current
+        calendarView.calendar = .current
+        calendarView.locale = .current
         contentView.addSubview(calendarView)
-            
-            calendarView.snp.makeConstraints { make in
-                make.left.right.equalToSuperview().inset(20)
-                make.top.equalTo(contentView.snp.top).inset(0)
-            }
+        
+        calendarView.snp.makeConstraints { make in
+            make.left.right.equalToSuperview().inset(20)
+            make.top.equalTo(contentView.snp.top).inset(0)
+        }
         calendarView.tintColor = .buttonBackColor
         
         calendarView.isHidden = true
@@ -365,8 +365,9 @@ extension CaloriesVC: CaloriesVCProtocol {
         buttonForAddFood.addTarget(self, action: #selector(addFood), for: .touchUpInside)
     }
     @objc func addFood() {
-        let vc = FindFoodVC()
-        navigationController?.pushViewController(vc, animated: true)
+        presenter?.didTapFindFoodVCButton()
+//        let vc = FindFoodVC()
+//        navigationController?.pushViewController(vc, animated: true)
     }
 }
 

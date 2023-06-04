@@ -55,6 +55,14 @@
 		0A7F0BDD296C478300327875 /* SettingRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7F0BDC296C478300327875 /* SettingRouter.swift */; };
 		0A7F0BDF296C47E400327875 /* SettingInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7F0BDE296C47E400327875 /* SettingInteractor.swift */; };
 		0A7F0BE1296C484800327875 /* SettingModuleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7F0BE0296C484800327875 /* SettingModuleBuilder.swift */; };
+		0A8324D92A2CB2FC001612D4 /* FindFoodVCPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8324D82A2CB2FC001612D4 /* FindFoodVCPresenter.swift */; };
+		0A8324DB2A2CB318001612D4 /* FindFoodRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8324DA2A2CB318001612D4 /* FindFoodRouter.swift */; };
+		0A8324DD2A2CB343001612D4 /* FindFoodInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8324DC2A2CB343001612D4 /* FindFoodInteractor.swift */; };
+		0A8324DF2A2CB35F001612D4 /* FindFoodModuleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8324DE2A2CB35F001612D4 /* FindFoodModuleBuilder.swift */; };
+		0A8324E32A2CB9D8001612D4 /* AddFoodPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8324E22A2CB9D8001612D4 /* AddFoodPresenter.swift */; };
+		0A8324E52A2CB9E7001612D4 /* AddFoodInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8324E42A2CB9E7001612D4 /* AddFoodInteractor.swift */; };
+		0A8324E72A2CB9F8001612D4 /* AddFoodRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8324E62A2CB9F8001612D4 /* AddFoodRouter.swift */; };
+		0A8324E92A2CBA0D001612D4 /* AddFoodModuleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8324E82A2CBA0D001612D4 /* AddFoodModuleBuilder.swift */; };
 		0A903E2529B6B53500799A0A /* AddFoodVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A903E2429B6B53500799A0A /* AddFoodVC.swift */; };
 		0A903E2729B6E9BB00799A0A /* ModelOfBD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A903E2629B6E9BB00799A0A /* ModelOfBD.swift */; };
 		0A9F2AB3294A044C004662F7 /* AuthorizationPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9F2AB2294A044C004662F7 /* AuthorizationPresenter.swift */; };
@@ -218,6 +226,14 @@
 		0A7F0BDC296C478300327875 /* SettingRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingRouter.swift; sourceTree = "<group>"; };
 		0A7F0BDE296C47E400327875 /* SettingInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingInteractor.swift; sourceTree = "<group>"; };
 		0A7F0BE0296C484800327875 /* SettingModuleBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingModuleBuilder.swift; sourceTree = "<group>"; };
+		0A8324D82A2CB2FC001612D4 /* FindFoodVCPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindFoodVCPresenter.swift; sourceTree = "<group>"; };
+		0A8324DA2A2CB318001612D4 /* FindFoodRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindFoodRouter.swift; sourceTree = "<group>"; };
+		0A8324DC2A2CB343001612D4 /* FindFoodInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindFoodInteractor.swift; sourceTree = "<group>"; };
+		0A8324DE2A2CB35F001612D4 /* FindFoodModuleBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindFoodModuleBuilder.swift; sourceTree = "<group>"; };
+		0A8324E22A2CB9D8001612D4 /* AddFoodPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFoodPresenter.swift; sourceTree = "<group>"; };
+		0A8324E42A2CB9E7001612D4 /* AddFoodInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFoodInteractor.swift; sourceTree = "<group>"; };
+		0A8324E62A2CB9F8001612D4 /* AddFoodRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFoodRouter.swift; sourceTree = "<group>"; };
+		0A8324E82A2CBA0D001612D4 /* AddFoodModuleBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFoodModuleBuilder.swift; sourceTree = "<group>"; };
 		0A903E2429B6B53500799A0A /* AddFoodVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFoodVC.swift; sourceTree = "<group>"; };
 		0A903E2629B6E9BB00799A0A /* ModelOfBD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelOfBD.swift; sourceTree = "<group>"; };
 		0A9F2AB2294A044C004662F7 /* AuthorizationPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationPresenter.swift; sourceTree = "<group>"; };
@@ -430,7 +446,7 @@
 				0ADBAB1A29E0717200E03300 /* Map */,
 				0AE866A129C435F8009F6BA9 /* Enums */,
 				0AE8669E29C3241A009F6BA9 /* Navigation */,
-				0A46439929AA334A002B6519 /* Calories */,
+				0A8324E02A2CB953001612D4 /* Food */,
 				0A7F0BD7296C466400327875 /* Settings */,
 				0A7F0BC9296B50F900327875 /* Water */,
 				0AD06144295BED6700B67453 /* Recipes */,
@@ -490,9 +506,6 @@
 				0A4643A229AA397D002B6519 /* CaloriesModuleBuilder.swift */,
 				0A3C1FBD29AC227E0079913B /* HelperForTableView.swift */,
 				0A3C1FBF29AC23AA0079913B /* TableViewCellForFood.swift */,
-				0A903E2329B6B4C200799A0A /* FindFood */,
-				0A903E2429B6B53500799A0A /* AddFoodVC.swift */,
-				0A903E2629B6E9BB00799A0A /* ModelOfBD.swift */,
 			);
 			path = Calories;
 			sourceTree = "<group>";
@@ -533,6 +546,29 @@
 			path = Settings;
 			sourceTree = "<group>";
 		};
+		0A8324E02A2CB953001612D4 /* Food */ = {
+			isa = PBXGroup;
+			children = (
+				0A903E2629B6E9BB00799A0A /* ModelOfBD.swift */,
+				0A46439929AA334A002B6519 /* Calories */,
+				0A903E2329B6B4C200799A0A /* FindFood */,
+				0A8324E12A2CB973001612D4 /* AddFoodVC */,
+			);
+			path = Food;
+			sourceTree = "<group>";
+		};
+		0A8324E12A2CB973001612D4 /* AddFoodVC */ = {
+			isa = PBXGroup;
+			children = (
+				0A903E2429B6B53500799A0A /* AddFoodVC.swift */,
+				0A8324E22A2CB9D8001612D4 /* AddFoodPresenter.swift */,
+				0A8324E42A2CB9E7001612D4 /* AddFoodInteractor.swift */,
+				0A8324E62A2CB9F8001612D4 /* AddFoodRouter.swift */,
+				0A8324E82A2CBA0D001612D4 /* AddFoodModuleBuilder.swift */,
+			);
+			path = AddFoodVC;
+			sourceTree = "<group>";
+		};
 		0A903E2329B6B4C200799A0A /* FindFood */ = {
 			isa = PBXGroup;
 			children = (
@@ -540,6 +576,10 @@
 				0A1A993629B19F3F00F0BDF1 /* ModelOfDataForFindTable.swift */,
 				0A1A993229B19C5B00F0BDF1 /* CellForFindFood.swift */,
 				0A1A993029B1897E00F0BDF1 /* FindFoodVC.swift */,
+				0A8324D82A2CB2FC001612D4 /* FindFoodVCPresenter.swift */,
+				0A8324DA2A2CB318001612D4 /* FindFoodRouter.swift */,
+				0A8324DC2A2CB343001612D4 /* FindFoodInteractor.swift */,
+				0A8324DE2A2CB35F001612D4 /* FindFoodModuleBuilder.swift */,
 			);
 			path = FindFood;
 			sourceTree = "<group>";
@@ -1043,8 +1083,10 @@
 				0A9F2AB9294A06D4004662F7 /* AuthorizationModuleBuilder.swift in Sources */,
 				0AFE8DD329F0ACB100102258 /* JustText.swift in Sources */,
 				0AB8EE372A038EF800FF0E3C /* Header.swift in Sources */,
+				0A8324D92A2CB2FC001612D4 /* FindFoodVCPresenter.swift in Sources */,
 				0A7D6BC5294FD98500E50542 /* Person+CoreDataProperties copy.swift in Sources */,
 				0ADBAB1629E04A4F00E03300 /* ThirdInteractor.swift in Sources */,
+				0A8324E52A2CB9E7001612D4 /* AddFoodInteractor.swift in Sources */,
 				0A1EDA882A13D09C00CECF79 /* MoreInfoAboutReceipt.swift in Sources */,
 				0AD027BB2A0D09B000F02362 /* VKAuthScreen.swift in Sources */,
 				0AE52FC3294AA8ED00915663 /* MainRouter.swift in Sources */,
@@ -1056,7 +1098,9 @@
 				0ADBAAFC29E01E8500E03300 /* MainTabBarRouter.swift in Sources */,
 				0A46439F29AA38AC002B6519 /* CaloriesRouter.swift in Sources */,
 				0AFE8DDA29F1DFBA00102258 /* OnboardHelper.swift in Sources */,
+				0A8324DF2A2CB35F001612D4 /* FindFoodModuleBuilder.swift in Sources */,
 				0AB8EE2C2A02DA8400FF0E3C /* HelperForCollectionViewMain.swift in Sources */,
+				0A8324E32A2CB9D8001612D4 /* AddFoodPresenter.swift in Sources */,
 				0A7F0BD9296C467B00327875 /* SettingVC.swift in Sources */,
 				0AB8EE2F2A02DE6800FF0E3C /* CellForMiniSection.swift in Sources */,
 				0AD06146295BED9E00B67453 /* RecipesVC.swift in Sources */,
@@ -1070,6 +1114,7 @@
 				0A7F0BD3296B53C300327875 /* WaterModuleBuilder.swift in Sources */,
 				0AE52FC7294AA9A400915663 /* MainModuleBuilder.swift in Sources */,
 				0A7F0BCB296B511900327875 /* WaterVC.swift in Sources */,
+				0A8324DB2A2CB318001612D4 /* FindFoodRouter.swift in Sources */,
 				0ADBAB0029E01F8100E03300 /* MainTabBarModuleBuilder.swift in Sources */,
 				0AFE8DCB29F09EB500102258 /* MainButton.swift in Sources */,
 				0AE52FBF294AA77F00915663 /* MainViewController.swift in Sources */,
@@ -1082,6 +1127,7 @@
 				0AFE8DA929E9817000102258 /* TrainVC.swift in Sources */,
 				0AFE8DDC29F222B800102258 /* MyTextField.swift in Sources */,
 				0A1A993729B19F3F00F0BDF1 /* ModelOfDataForFindTable.swift in Sources */,
+				0A8324E72A2CB9F8001612D4 /* AddFoodRouter.swift in Sources */,
 				0AFE8DDF29F3834E00102258 /* RealmManager.swift in Sources */,
 				0ADBAB1029E0493300E03300 /* ThirdVC.swift in Sources */,
 				0ADBAB0D29E03B7100E03300 /* UIColorExtention.swift in Sources */,
@@ -1100,6 +1146,7 @@
 				0AE52FD0294BC0C800915663 /* OnboardRouter.swift in Sources */,
 				0A3CA82A293E4F2000EDBFF9 /* ViewController.swift in Sources */,
 				0ABF6D332A10044200C396CB /* ModelForReceipts.swift in Sources */,
+				0A8324E92A2CBA0D001612D4 /* AddFoodModuleBuilder.swift in Sources */,
 				0ADBAB1E29E071F900E03300 /* MapPresenter.swift in Sources */,
 				0AFE8DD829F1CD8F00102258 /* OnboardPageVC.swift in Sources */,
 				0ADBAB2029E0724D00E03300 /* MapRouter.swift in Sources */,
@@ -1146,6 +1193,7 @@
 				0AD0614A295BEEB400B67453 /* RecipesRouter.swift in Sources */,
 				0AB8EE282A02D48F00FF0E3C /* ListSection.swift in Sources */,
 				0ADBAB0329E029F200E03300 /* SecondVC.swift in Sources */,
+				0A8324DD2A2CB343001612D4 /* FindFoodInteractor.swift in Sources */,
 				0AFE8DB129E982D300102258 /* TrainModuleBuilder.swift in Sources */,
 				0AE8669D29C2BBDC009F6BA9 /* MenuVC.swift in Sources */,
 				0ADBAB1229E0498800E03300 /* ThirdPresenter.swift in Sources */,
