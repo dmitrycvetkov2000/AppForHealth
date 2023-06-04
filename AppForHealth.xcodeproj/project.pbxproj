@@ -24,7 +24,6 @@
 		0A3CA830293E4F2000EDBFF9 /* AppForHealth.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0A3CA82E293E4F2000EDBFF9 /* AppForHealth.xcdatamodeld */; };
 		0A3CA832293E4F2400EDBFF9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0A3CA831293E4F2400EDBFF9 /* Assets.xcassets */; };
 		0A3CA835293E4F2400EDBFF9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0A3CA833293E4F2400EDBFF9 /* LaunchScreen.storyboard */; };
-		0A3CA840293E4F2400EDBFF9 /* AppForHealthTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3CA83F293E4F2400EDBFF9 /* AppForHealthTests.swift */; };
 		0A3CA84A293E4F2400EDBFF9 /* AppForHealthUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3CA849293E4F2400EDBFF9 /* AppForHealthUITests.swift */; };
 		0A3CA84C293E4F2400EDBFF9 /* AppForHealthUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3CA84B293E4F2400EDBFF9 /* AppForHealthUITestsLaunchTests.swift */; };
 		0A3CA859293E5C7500EDBFF9 /* SplashScreenPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3CA858293E5C7500EDBFF9 /* SplashScreenPresenter.swift */; };
@@ -63,6 +62,11 @@
 		0A8324E52A2CB9E7001612D4 /* AddFoodInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8324E42A2CB9E7001612D4 /* AddFoodInteractor.swift */; };
 		0A8324E72A2CB9F8001612D4 /* AddFoodRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8324E62A2CB9F8001612D4 /* AddFoodRouter.swift */; };
 		0A8324E92A2CBA0D001612D4 /* AddFoodModuleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8324E82A2CBA0D001612D4 /* AddFoodModuleBuilder.swift */; };
+		0A8324EC2A2CDBF6001612D4 /* WaterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8324EB2A2CDBF6001612D4 /* WaterTests.swift */; };
+		0A8324EF2A2CE45F001612D4 /* ThirdTabBarModuleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8324EE2A2CE45F001612D4 /* ThirdTabBarModuleTests.swift */; };
+		0A8324F22A2CE613001612D4 /* MainModuleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8324F12A2CE613001612D4 /* MainModuleTests.swift */; };
+		0A8324F52A2CF612001612D4 /* ParametrsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8324F42A2CF612001612D4 /* ParametrsTests.swift */; };
+		0A8324F82A2CF94C001612D4 /* SettingsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8324F72A2CF94C001612D4 /* SettingsTests.swift */; };
 		0A903E2529B6B53500799A0A /* AddFoodVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A903E2429B6B53500799A0A /* AddFoodVC.swift */; };
 		0A903E2729B6E9BB00799A0A /* ModelOfBD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A903E2629B6E9BB00799A0A /* ModelOfBD.swift */; };
 		0A9F2AB3294A044C004662F7 /* AuthorizationPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9F2AB2294A044C004662F7 /* AuthorizationPresenter.swift */; };
@@ -194,7 +198,6 @@
 		0A3CA834293E4F2400EDBFF9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0A3CA836293E4F2400EDBFF9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0A3CA83B293E4F2400EDBFF9 /* AppForHealthTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AppForHealthTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		0A3CA83F293E4F2400EDBFF9 /* AppForHealthTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppForHealthTests.swift; sourceTree = "<group>"; };
 		0A3CA845293E4F2400EDBFF9 /* AppForHealthUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AppForHealthUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A3CA849293E4F2400EDBFF9 /* AppForHealthUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppForHealthUITests.swift; sourceTree = "<group>"; };
 		0A3CA84B293E4F2400EDBFF9 /* AppForHealthUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppForHealthUITestsLaunchTests.swift; sourceTree = "<group>"; };
@@ -234,6 +237,11 @@
 		0A8324E42A2CB9E7001612D4 /* AddFoodInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFoodInteractor.swift; sourceTree = "<group>"; };
 		0A8324E62A2CB9F8001612D4 /* AddFoodRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFoodRouter.swift; sourceTree = "<group>"; };
 		0A8324E82A2CBA0D001612D4 /* AddFoodModuleBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFoodModuleBuilder.swift; sourceTree = "<group>"; };
+		0A8324EB2A2CDBF6001612D4 /* WaterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaterTests.swift; sourceTree = "<group>"; };
+		0A8324EE2A2CE45F001612D4 /* ThirdTabBarModuleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdTabBarModuleTests.swift; sourceTree = "<group>"; };
+		0A8324F12A2CE613001612D4 /* MainModuleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainModuleTests.swift; sourceTree = "<group>"; };
+		0A8324F42A2CF612001612D4 /* ParametrsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParametrsTests.swift; sourceTree = "<group>"; };
+		0A8324F72A2CF94C001612D4 /* SettingsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTests.swift; sourceTree = "<group>"; };
 		0A903E2429B6B53500799A0A /* AddFoodVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFoodVC.swift; sourceTree = "<group>"; };
 		0A903E2629B6E9BB00799A0A /* ModelOfBD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelOfBD.swift; sourceTree = "<group>"; };
 		0A9F2AB2294A044C004662F7 /* AuthorizationPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationPresenter.swift; sourceTree = "<group>"; };
@@ -482,7 +490,11 @@
 		0A3CA83E293E4F2400EDBFF9 /* AppForHealthTests */ = {
 			isa = PBXGroup;
 			children = (
-				0A3CA83F293E4F2400EDBFF9 /* AppForHealthTests.swift */,
+				0A8324F62A2CF92C001612D4 /* SettingTests */,
+				0A8324F32A2CF5F8001612D4 /* ParametrsTests */,
+				0A8324F02A2CE5ED001612D4 /* MainModuleTests */,
+				0A8324ED2A2CE43B001612D4 /* ThirdTabBarModuleTests */,
+				0A8324EA2A2CDBC1001612D4 /* WaterTests */,
 			);
 			path = AppForHealthTests;
 			sourceTree = "<group>";
@@ -567,6 +579,46 @@
 				0A8324E82A2CBA0D001612D4 /* AddFoodModuleBuilder.swift */,
 			);
 			path = AddFoodVC;
+			sourceTree = "<group>";
+		};
+		0A8324EA2A2CDBC1001612D4 /* WaterTests */ = {
+			isa = PBXGroup;
+			children = (
+				0A8324EB2A2CDBF6001612D4 /* WaterTests.swift */,
+			);
+			path = WaterTests;
+			sourceTree = "<group>";
+		};
+		0A8324ED2A2CE43B001612D4 /* ThirdTabBarModuleTests */ = {
+			isa = PBXGroup;
+			children = (
+				0A8324EE2A2CE45F001612D4 /* ThirdTabBarModuleTests.swift */,
+			);
+			path = ThirdTabBarModuleTests;
+			sourceTree = "<group>";
+		};
+		0A8324F02A2CE5ED001612D4 /* MainModuleTests */ = {
+			isa = PBXGroup;
+			children = (
+				0A8324F12A2CE613001612D4 /* MainModuleTests.swift */,
+			);
+			path = MainModuleTests;
+			sourceTree = "<group>";
+		};
+		0A8324F32A2CF5F8001612D4 /* ParametrsTests */ = {
+			isa = PBXGroup;
+			children = (
+				0A8324F42A2CF612001612D4 /* ParametrsTests.swift */,
+			);
+			path = ParametrsTests;
+			sourceTree = "<group>";
+		};
+		0A8324F62A2CF92C001612D4 /* SettingTests */ = {
+			isa = PBXGroup;
+			children = (
+				0A8324F72A2CF94C001612D4 /* SettingsTests.swift */,
+			);
+			path = SettingTests;
 			sourceTree = "<group>";
 		};
 		0A903E2329B6B4C200799A0A /* FindFood */ = {
@@ -1211,7 +1263,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0A3CA840293E4F2400EDBFF9 /* AppForHealthTests.swift in Sources */,
+				0A8324F82A2CF94C001612D4 /* SettingsTests.swift in Sources */,
+				0A8324F52A2CF612001612D4 /* ParametrsTests.swift in Sources */,
+				0A8324EF2A2CE45F001612D4 /* ThirdTabBarModuleTests.swift in Sources */,
+				0A8324F22A2CE613001612D4 /* MainModuleTests.swift in Sources */,
+				0A8324EC2A2CDBF6001612D4 /* WaterTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

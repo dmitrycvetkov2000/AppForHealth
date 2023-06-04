@@ -25,8 +25,6 @@ class MoreInformationVC: UIViewController {
     
     var ingredients = [(image: UIImage, amount: Double, type: String, name: String)]()
     
-    
-    
     func createScrollView() {
         view.addSubview(scrollView)
         scrollView.addSubview(contentView)
@@ -41,7 +39,6 @@ class MoreInformationVC: UIViewController {
         contentView.backgroundColor = .white
     }
     func addInContentView() {
-        //contentView.addSubview(imageView)
         imageView = UIImageView(image: self.image)
         contentView.addSubview(imageView)
         contentView.insertSubview(firstBlockAboutReceipt, at: 1)

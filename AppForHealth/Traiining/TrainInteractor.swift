@@ -6,7 +6,6 @@
 //
 
 import Foundation
-//import AVFoundation
 
 protocol TrainInteractorProtocol: AnyObject {
     func decrementDurationTime()
@@ -25,7 +24,6 @@ class TrainInteractor: TrainInteractorProtocol {
         if presenter?.returnCurrentDurationTime() ?? 15 < 0 {
             score += 1
             presenter?.determDurationTime()
-            //let durationTimer = (presenter?.determDurationTimeForGoal() ?? 15) + 1
             presenter?.setTimerLabelText(text: "\(presenter?.returnCurrentDurationTime() ?? 15)")
 
             if score <= masVideos.count - 1 {
