@@ -7,7 +7,13 @@
 
 import UIKit
 
+protocol MoreInformationVCProtocol: AnyObject {
+    
+}
+
 class MoreInformationVC: UIViewController {
+    var presenter: MoreInformationPresenterProtocol?
+    
     var id = 0
     
     var scrollView = UIScrollView()
@@ -278,4 +284,8 @@ class MoreInformationVC: UIViewController {
 
         stackForIngredients.addArrangedSubview(stack)
     }
+}
+
+extension MoreInformationVC: MoreInformationVCProtocol {
+
 }

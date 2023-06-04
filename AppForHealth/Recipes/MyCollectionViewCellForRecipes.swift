@@ -60,7 +60,8 @@ class MyCollectionViewCellForRecipes: UICollectionViewCell {
         self.index = index
     }
     @objc func showMoreAboutReceipts() {
-        let vc = MoreInformationVC()
+        let vc = MoreInformationModuleBuilder.build()
+        
         vc.id = self.index
         vc.image = self.image.image ?? UIImage()
         print("index = \(self.index)")

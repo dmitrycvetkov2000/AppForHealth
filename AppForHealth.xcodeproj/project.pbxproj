@@ -67,6 +67,10 @@
 		0A8324F22A2CE613001612D4 /* MainModuleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8324F12A2CE613001612D4 /* MainModuleTests.swift */; };
 		0A8324F52A2CF612001612D4 /* ParametrsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8324F42A2CF612001612D4 /* ParametrsTests.swift */; };
 		0A8324F82A2CF94C001612D4 /* SettingsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8324F72A2CF94C001612D4 /* SettingsTests.swift */; };
+		0A8324FE2A2D0BA0001612D4 /* MoreInformationPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8324FD2A2D0BA0001612D4 /* MoreInformationPresenter.swift */; };
+		0A8325002A2D0BFF001612D4 /* MoreInformationInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8324FF2A2D0BFF001612D4 /* MoreInformationInteractor.swift */; };
+		0A8325022A2D0C5F001612D4 /* MoreInformationRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8325012A2D0C5F001612D4 /* MoreInformationRouter.swift */; };
+		0A8325042A2D0C9D001612D4 /* MoreInformationModuleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8325032A2D0C9D001612D4 /* MoreInformationModuleBuilder.swift */; };
 		0A903E2529B6B53500799A0A /* AddFoodVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A903E2429B6B53500799A0A /* AddFoodVC.swift */; };
 		0A903E2729B6E9BB00799A0A /* ModelOfBD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A903E2629B6E9BB00799A0A /* ModelOfBD.swift */; };
 		0A9F2AB3294A044C004662F7 /* AuthorizationPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9F2AB2294A044C004662F7 /* AuthorizationPresenter.swift */; };
@@ -242,6 +246,10 @@
 		0A8324F12A2CE613001612D4 /* MainModuleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainModuleTests.swift; sourceTree = "<group>"; };
 		0A8324F42A2CF612001612D4 /* ParametrsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParametrsTests.swift; sourceTree = "<group>"; };
 		0A8324F72A2CF94C001612D4 /* SettingsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTests.swift; sourceTree = "<group>"; };
+		0A8324FD2A2D0BA0001612D4 /* MoreInformationPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreInformationPresenter.swift; sourceTree = "<group>"; };
+		0A8324FF2A2D0BFF001612D4 /* MoreInformationInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreInformationInteractor.swift; sourceTree = "<group>"; };
+		0A8325012A2D0C5F001612D4 /* MoreInformationRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreInformationRouter.swift; sourceTree = "<group>"; };
+		0A8325032A2D0C9D001612D4 /* MoreInformationModuleBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreInformationModuleBuilder.swift; sourceTree = "<group>"; };
 		0A903E2429B6B53500799A0A /* AddFoodVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFoodVC.swift; sourceTree = "<group>"; };
 		0A903E2629B6E9BB00799A0A /* ModelOfBD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelOfBD.swift; sourceTree = "<group>"; };
 		0A9F2AB2294A044C004662F7 /* AuthorizationPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationPresenter.swift; sourceTree = "<group>"; };
@@ -458,6 +466,7 @@
 				0A7F0BD7296C466400327875 /* Settings */,
 				0A7F0BC9296B50F900327875 /* Water */,
 				0AD06144295BED6700B67453 /* Recipes */,
+				0A8324FC2A2D0B1E001612D4 /* MoreInfoAboutReceipts */,
 				0A7D6BB8294E808500E50542 /* Parametrs */,
 				0AE52FCA294BBF3700915663 /* OnBoardModule */,
 				0ADBAAF829E01D0B00E03300 /* TabBarModule */,
@@ -621,6 +630,18 @@
 			path = SettingTests;
 			sourceTree = "<group>";
 		};
+		0A8324FC2A2D0B1E001612D4 /* MoreInfoAboutReceipts */ = {
+			isa = PBXGroup;
+			children = (
+				0A1EDA852A13C13D00CECF79 /* MoreInformationVC.swift */,
+				0A8324FD2A2D0BA0001612D4 /* MoreInformationPresenter.swift */,
+				0A8324FF2A2D0BFF001612D4 /* MoreInformationInteractor.swift */,
+				0A8325012A2D0C5F001612D4 /* MoreInformationRouter.swift */,
+				0A8325032A2D0C9D001612D4 /* MoreInformationModuleBuilder.swift */,
+			);
+			path = MoreInfoAboutReceipts;
+			sourceTree = "<group>";
+		};
 		0A903E2329B6B4C200799A0A /* FindFood */ = {
 			isa = PBXGroup;
 			children = (
@@ -682,7 +703,6 @@
 				0AD06149295BEEB400B67453 /* RecipesRouter.swift */,
 				0AD0614B295BEF0F00B67453 /* RecipesInteractor.swift */,
 				0AD0614D295BEF8600B67453 /* RecipesModuleBuilder.swift */,
-				0A1EDA852A13C13D00CECF79 /* MoreInformationVC.swift */,
 				0ABF6D312A0FDF2000C396CB /* Models */,
 				0AC71117295D274C00BD18EA /* MyCollectionViewCellForRecipes.swift */,
 				0AC71119295D2B0D00BD18EA /* HelperForRecipes.swift */,
@@ -1170,6 +1190,7 @@
 				0ADBAB0029E01F8100E03300 /* MainTabBarModuleBuilder.swift in Sources */,
 				0AFE8DCB29F09EB500102258 /* MainButton.swift in Sources */,
 				0AE52FBF294AA77F00915663 /* MainViewController.swift in Sources */,
+				0A8325002A2D0BFF001612D4 /* MoreInformationInteractor.swift in Sources */,
 				0AD06143295BC6B500B67453 /* ModelOfDataForCollectionView.swift in Sources */,
 				0AE52FD4294BC1D900915663 /* OnboardModuleBuilder.swift in Sources */,
 				0A4F79BB29F96FBA00A825F9 /* MiniButton.swift in Sources */,
@@ -1203,6 +1224,7 @@
 				0AFE8DD829F1CD8F00102258 /* OnboardPageVC.swift in Sources */,
 				0ADBAB2029E0724D00E03300 /* MapRouter.swift in Sources */,
 				0AE52FC1294AA82D00915663 /* MainPresenter.swift in Sources */,
+				0A8324FE2A2D0BA0001612D4 /* MoreInformationPresenter.swift in Sources */,
 				0AD0613F295BC62C00B67453 /* Helper.swift in Sources */,
 				0AB8EE352A038AA400FF0E3C /* CellForButtons.swift in Sources */,
 				0AC7111A295D2B0D00BD18EA /* HelperForRecipes.swift in Sources */,
@@ -1223,7 +1245,9 @@
 				0ADBAB0729E02ABC00E03300 /* SecondRouter.swift in Sources */,
 				0A1DA6A12A0FA01600091139 /* Receipts.swift in Sources */,
 				0A9F2ABE294A6963004662F7 /* ConstrainsOfAuth.swift in Sources */,
+				0A8325022A2D0C5F001612D4 /* MoreInformationRouter.swift in Sources */,
 				0AFE8DAD29E9825400102258 /* TrainRouter.swift in Sources */,
+				0A8325042A2D0C9D001612D4 /* MoreInformationModuleBuilder.swift in Sources */,
 				0A3CA826293E4F2000EDBFF9 /* AppDelegate.swift in Sources */,
 				0AE52FCE294BBFF700915663 /* OnboardPresenter.swift in Sources */,
 				0AF9519429F3C11800ABF30E /* ChartStringFormatter.swift in Sources */,
