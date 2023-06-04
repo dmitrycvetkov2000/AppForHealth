@@ -45,11 +45,6 @@
 		0A7D6BC5294FD98500E50542 /* Person+CoreDataProperties copy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7D6BC3294FD98500E50542 /* Person+CoreDataProperties copy.swift */; };
 		0A7D6BC6294FD98500E50542 /* Person+CoreDataClass copy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7D6BC4294FD98500E50542 /* Person+CoreDataClass copy.swift */; };
 		0A7D6BC8294FDC9D00E50542 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7D6BC7294FDC9D00E50542 /* CoreDataManager.swift */; };
-		0A7D6BCB294FE24700E50542 /* ResultVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7D6BCA294FE24700E50542 /* ResultVC.swift */; };
-		0A7D6BCD294FE2D600E50542 /* ResultPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7D6BCC294FE2D600E50542 /* ResultPresenter.swift */; };
-		0A7D6BCF294FE3CD00E50542 /* ResultRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7D6BCE294FE3CD00E50542 /* ResultRouter.swift */; };
-		0A7D6BD1294FE45700E50542 /* ResultInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7D6BD0294FE45700E50542 /* ResultInteractor.swift */; };
-		0A7D6BD3294FE4B000E50542 /* ResultModuleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7D6BD2294FE4B000E50542 /* ResultModuleBuilder.swift */; };
 		0A7F0BCB296B511900327875 /* WaterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7F0BCA296B511900327875 /* WaterVC.swift */; };
 		0A7F0BCD296B522600327875 /* WaterPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7F0BCC296B522600327875 /* WaterPresenter.swift */; };
 		0A7F0BCF296B52FE00327875 /* WaterRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7F0BCE296B52FE00327875 /* WaterRouter.swift */; };
@@ -213,11 +208,6 @@
 		0A7D6BC3294FD98500E50542 /* Person+CoreDataProperties copy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Person+CoreDataProperties copy.swift"; sourceTree = "<group>"; };
 		0A7D6BC4294FD98500E50542 /* Person+CoreDataClass copy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Person+CoreDataClass copy.swift"; sourceTree = "<group>"; };
 		0A7D6BC7294FDC9D00E50542 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
-		0A7D6BCA294FE24700E50542 /* ResultVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultVC.swift; sourceTree = "<group>"; };
-		0A7D6BCC294FE2D600E50542 /* ResultPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultPresenter.swift; sourceTree = "<group>"; };
-		0A7D6BCE294FE3CD00E50542 /* ResultRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultRouter.swift; sourceTree = "<group>"; };
-		0A7D6BD0294FE45700E50542 /* ResultInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultInteractor.swift; sourceTree = "<group>"; };
-		0A7D6BD2294FE4B000E50542 /* ResultModuleBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultModuleBuilder.swift; sourceTree = "<group>"; };
 		0A7F0BCA296B511900327875 /* WaterVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaterVC.swift; sourceTree = "<group>"; };
 		0A7F0BCC296B522600327875 /* WaterPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaterPresenter.swift; sourceTree = "<group>"; };
 		0A7F0BCE296B52FE00327875 /* WaterRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaterRouter.swift; sourceTree = "<group>"; };
@@ -444,7 +434,6 @@
 				0A7F0BD7296C466400327875 /* Settings */,
 				0A7F0BC9296B50F900327875 /* Water */,
 				0AD06144295BED6700B67453 /* Recipes */,
-				0A7D6BC9294FE22B00E50542 /* ResultScreen */,
 				0A7D6BB8294E808500E50542 /* Parametrs */,
 				0AE52FCA294BBF3700915663 /* OnBoardModule */,
 				0ADBAAF829E01D0B00E03300 /* TabBarModule */,
@@ -518,18 +507,6 @@
 				0A7D6BC1294E82F500E50542 /* ParametrsModuleBuilder.swift */,
 			);
 			path = Parametrs;
-			sourceTree = "<group>";
-		};
-		0A7D6BC9294FE22B00E50542 /* ResultScreen */ = {
-			isa = PBXGroup;
-			children = (
-				0A7D6BCA294FE24700E50542 /* ResultVC.swift */,
-				0A7D6BCC294FE2D600E50542 /* ResultPresenter.swift */,
-				0A7D6BCE294FE3CD00E50542 /* ResultRouter.swift */,
-				0A7D6BD0294FE45700E50542 /* ResultInteractor.swift */,
-				0A7D6BD2294FE4B000E50542 /* ResultModuleBuilder.swift */,
-			);
-			path = ResultScreen;
 			sourceTree = "<group>";
 		};
 		0A7F0BC9296B50F900327875 /* Water */ = {
@@ -1066,7 +1043,6 @@
 				0A9F2AB9294A06D4004662F7 /* AuthorizationModuleBuilder.swift in Sources */,
 				0AFE8DD329F0ACB100102258 /* JustText.swift in Sources */,
 				0AB8EE372A038EF800FF0E3C /* Header.swift in Sources */,
-				0A7D6BCB294FE24700E50542 /* ResultVC.swift in Sources */,
 				0A7D6BC5294FD98500E50542 /* Person+CoreDataProperties copy.swift in Sources */,
 				0ADBAB1629E04A4F00E03300 /* ThirdInteractor.swift in Sources */,
 				0A1EDA882A13D09C00CECF79 /* MoreInfoAboutReceipt.swift in Sources */,
@@ -1104,7 +1080,6 @@
 				0A7D6BC0294E829800E50542 /* ParametrsInteractor.swift in Sources */,
 				0AE52FD2294BC18500915663 /* OnboardInteractor.swift in Sources */,
 				0AFE8DA929E9817000102258 /* TrainVC.swift in Sources */,
-				0A7D6BD1294FE45700E50542 /* ResultInteractor.swift in Sources */,
 				0AFE8DDC29F222B800102258 /* MyTextField.swift in Sources */,
 				0A1A993729B19F3F00F0BDF1 /* ModelOfDataForFindTable.swift in Sources */,
 				0AFE8DDF29F3834E00102258 /* RealmManager.swift in Sources */,
@@ -1114,7 +1089,6 @@
 				0A46439B29AA3756002B6519 /* CaloriesVC.swift in Sources */,
 				0AFE8DAF29E9828F00102258 /* TrainInteractor.swift in Sources */,
 				0A4643A129AA391C002B6519 /* CaloriesInteractor.swift in Sources */,
-				0A7D6BD3294FE4B000E50542 /* ResultModuleBuilder.swift in Sources */,
 				0ADBAAF129E0133900E03300 /* MainTabBarVC.swift in Sources */,
 				0AE52FD6294BF5B400915663 /* CustomSpinnerSimple.swift in Sources */,
 				0A7F0BE1296C484800327875 /* SettingModuleBuilder.swift in Sources */,
@@ -1126,7 +1100,6 @@
 				0AE52FD0294BC0C800915663 /* OnboardRouter.swift in Sources */,
 				0A3CA82A293E4F2000EDBFF9 /* ViewController.swift in Sources */,
 				0ABF6D332A10044200C396CB /* ModelForReceipts.swift in Sources */,
-				0A7D6BCD294FE2D600E50542 /* ResultPresenter.swift in Sources */,
 				0ADBAB1E29E071F900E03300 /* MapPresenter.swift in Sources */,
 				0AFE8DD829F1CD8F00102258 /* OnboardPageVC.swift in Sources */,
 				0ADBAB2029E0724D00E03300 /* MapRouter.swift in Sources */,
@@ -1183,7 +1156,6 @@
 				0ADBAB2429E072B700E03300 /* MapModuleBuilder.swift in Sources */,
 				0A7F0BD1296B536300327875 /* WaterInteractor.swift in Sources */,
 				0ADBAB2229E0727F00E03300 /* MapInteractor.swift in Sources */,
-				0A7D6BCF294FE3CD00E50542 /* ResultRouter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
