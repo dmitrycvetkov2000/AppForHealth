@@ -283,70 +283,23 @@ extension CaloriesVC: CaloriesVCProtocol {
         stackForFat.axis = .vertical
         stackForCarbonates.axis = .vertical
         stackForCalories.axis = .vertical
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
         progressOfProtein.snp.makeConstraints { make in
             make.height.equalTo(10)
-            //make.top.equalTo(0)
             make.left.right.equalToSuperview().inset(6)
         }
         progressOfFat.snp.makeConstraints { make in
             make.height.equalTo(10)
-            //make.centerY.equalTo(stackForFat)
             make.left.right.equalToSuperview().inset(6)
         }
         progressOfCarbonates.snp.makeConstraints { make in
             make.height.equalTo(10)
-            //make.centerY.equalTo(stackForCarbonates)
             make.left.right.equalToSuperview().inset(6)
         }
         progressOfCalories.snp.makeConstraints { make in
             make.height.equalTo(10)
-            //make.centerY.equalTo(stackForCalories)
             make.left.right.equalToSuperview().inset(6)
         }
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//        labelProtein.snp.makeConstraints { make in
-//
-//            make.height.equalTo(20)
-//
-////            make.top.equalTo(progressOfProtein.snp.bottom).inset(-60)
-////            make.centerY.equalTo(progressOfProtein)
-//            make.left.right.equalTo(0)
-//        }
-//        labelFat.snp.makeConstraints { make in
-//            make.height.equalTo(20)
-//            make.left.right.equalTo(0)
-//        }
-//        labelCarbonates.snp.makeConstraints { make in
-//            make.height.equalTo(20)
-//            make.left.right.equalTo(0)
-//        }
-//        labelCalories.snp.makeConstraints { make in
-//            make.height.equalTo(20)
-//            make.left.right.equalTo(0)
-//        }
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//        labelForProtein.snp.makeConstraints { make in
-//            //make.height.equalTo(20)
-//            make.top.equalTo(labelProtein.snp.bottom).inset(-10)
-//            make.left.right.equalTo(0)
-//        }
-//        labelForFat.snp.makeConstraints { make in
-//            make.height.equalTo(20)
-//            make.top.equalTo(labelFat.snp.bottom).inset(-10)
-//            make.left.right.equalTo(0)
-//        }
-//        labelForCarbonates.snp.makeConstraints { make in
-//            make.height.equalTo(20)
-//            make.top.equalTo(labelCarbonates.snp.bottom).inset(-10)
-//            make.left.right.equalTo(0)
-//        }
-//        labelForCalories.snp.makeConstraints { make in
-//            make.height.equalTo(20)
-//            make.top.equalTo(labelCalories.snp.bottom).inset(-10)
-//            make.left.right.equalTo(0)
-//        }
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         
         stackForStatistics.addArrangedSubview(stackForProtein)
         stackForStatistics.addArrangedSubview(stackForFat)
@@ -513,9 +466,9 @@ extension CaloriesVC {
             print("error")
         }
         
-        let maxProt = multiForProt * Double(maxCcal)      // ?
-        let maxFats = multiForFats * Double(maxCcal)     // ?
-        let maxCarb = multiForCarb * Double(maxCcal)      // ?
+        let maxProt = multiForProt * Double(maxCcal)
+        let maxFats = multiForFats * Double(maxCcal)
+        let maxCarb = multiForCarb * Double(maxCcal)
         
         var countProt = 0.0
         var countFats = 0.0
