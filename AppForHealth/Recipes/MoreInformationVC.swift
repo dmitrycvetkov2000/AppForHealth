@@ -185,7 +185,6 @@ class MoreInformationVC: UIViewController {
                                 }
                                 if let imageData = data {
                                     self.masImages.append(UIImage(data: imageData) ?? UIImage())
-                                    print("GGGG добавляется картинка в массив")
                                 }
                             }.resume()
                         }
@@ -203,7 +202,6 @@ class MoreInformationVC: UIViewController {
                     
                     
                         self.ingredients.append(dataOfIngredient)
-                        print("GGGG заполняются ингридиенты")
                     group.leave()
                 }
             }
@@ -218,7 +216,6 @@ class MoreInformationVC: UIViewController {
         }
        
         group.notify(queue: .main) {
-            print("GGGG notify group")
             self.createScrollView()
             self.addInContentView()
 
@@ -240,7 +237,6 @@ class MoreInformationVC: UIViewController {
         //stack.distribution = .equalSpacing
         let imageView = UIImageView()
         imageView.image = masImages[image]
-        print("GGGG ставится картинка")
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.snp.makeConstraints { make in
             make.width.equalTo(76)

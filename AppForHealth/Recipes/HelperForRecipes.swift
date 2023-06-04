@@ -46,7 +46,7 @@ extension HelperForRecipes: UICollectionViewDataSource {
         if modelForReceipts?.nameOfFood.count ?? 0 > indexPath.item {
             cell?.setLabelForName(name: modelForReceipts?.nameOfFood[indexPath.item] ?? "")
         }
-        print("modelForReceipts?.images.count = \(modelForReceipts?.images.count)")
+        print("modelForReceipts?.images.count = \(String(describing: modelForReceipts?.images.count))")
         if modelForReceipts?.images.count ?? 0 > indexPath.item {
                 //cell?.addSubview(self.spinnerOnView)
                 //self.spinnerOnView.startAnimation(delay: 0.04, replicates: 20)
@@ -54,7 +54,6 @@ extension HelperForRecipes: UICollectionViewDataSource {
                 cell?.setImage(image: image, completion: {
                     
                 })
-                //print("DDD картинка установилась")
             }
         }
         
@@ -62,12 +61,6 @@ extension HelperForRecipes: UICollectionViewDataSource {
         
         cell?.backgroundColor = .brown
         
-        if indexPath.item == 0 {
-            DispatchQueue.main.async {
-                collectionView.reloadData()
-                print("SSSSSS Reload Data")
-            }
-        }
     return cell ?? UICollectionViewCell()
     }
     

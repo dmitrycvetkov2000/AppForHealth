@@ -312,7 +312,7 @@ extension ViewController {
         googleButton.addTarget(self, action: #selector(didTapGoogle), for: .touchUpInside)
     }
     @objc func didTapVK() {
-        var vkAuthScreen = VKAuthScreen(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: view.bounds.height), configuration: nil, vc: self)
+        let vkAuthScreen = VKAuthScreen(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: view.bounds.height), configuration: nil, vc: self)
         view.addSubview(vkAuthScreen)
     }
     @objc func didTapGoogle() {

@@ -59,24 +59,12 @@ class RecipesVC: UIViewController {
         view.backgroundColor = .brown
 
         presenter?.getRequest(helper: helper, type: ApiType.getReceipeForSoup)
-        
-        print("SSSSSIIII = ViewDidLoad")
-        
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        print("SSSSSIIII = ViewWillAppear")
         createScrollView()
         self.setCollectView()
-    }
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        print("SSSSSIIII = viewDidLayoutSubviews")
-    }
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        print("SSSSSIIII = viewWillDisappear")
     }
     
     func createScrollView() {
@@ -86,7 +74,6 @@ class RecipesVC: UIViewController {
         scrollView.showsHorizontalScrollIndicator = false
         
         scrollView.frame = CGRect(x: 0, y: navigationController!.navigationBar.frame.height + navigationController!.navigationBar.frame.minY, width: view.bounds.width, height: 40)
-        //scrollView.frame = CGRect(x: 0, y: navigationController!.navigationBar.frame.height + navigationController!.navigationBar.frame.maxY, width: view.bounds.width, height: 40)
         scrollView.contentSize = CGSize(width: view.bounds.width + 60, height: 0)
         
         stackView.frame = scrollView.frame
@@ -107,8 +94,6 @@ class RecipesVC: UIViewController {
         buttonForBreakfast.clipsToBounds = true
         buttonForLaunch.clipsToBounds = true
         buttonForDesserts.clipsToBounds = true
-//        stackView.backgroundColor = .black
-//        scrollView.backgroundColor = .red
     }
     func addButtonsInStackView(title: String, button: UIButton) {
         button.setTitle(title, for: .normal)
