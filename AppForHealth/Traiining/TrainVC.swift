@@ -8,7 +8,6 @@
 import UIKit
 import AVFoundation
 
-
 protocol TrainVCProtocol: AnyObject {
     func configureNavifationItems()
     func createLabelForTitle()
@@ -77,21 +76,17 @@ class TrainVC: UIViewController {
     
     let shapeLayer = CAShapeLayer()
     
-    
     var player: AVPlayer?
     var layer = AVPlayerLayer()
     
     func getPlayer() {
         let path = Bundle.main.path(forResource: "Отжимания", ofType: "mov")
         guard let path = path else { return }
-        //let url = URL(filePath: path)
         let url = URL(fileURLWithPath: path)
 
         player = AVPlayer(url: url)
     }
 
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .brown
@@ -207,7 +202,6 @@ extension TrainVC: TrainVCProtocol {
         imageView.snp.makeConstraints { make in
             make.left.right.equalToSuperview().inset(0)
             make.top.equalTo(labelForTitle.snp.bottom).inset(0)
-            //make.height.lessThanOrEqualTo(300)
             make.bottom.equalTo(viewForTimer.snp.top).inset(0)
         }
     }
@@ -281,13 +275,9 @@ extension TrainVC: TrainVCProtocol {
         
         viewForTimer.snp.makeConstraints { view in
             view.bottom.equalTo(buttonForStartTrain.snp.top).inset(-30)
-            //
             view.centerX.equalTo(self.view.snp.centerX)
             view.width.equalTo(100)
             view.height.equalTo(100)
-            //
-            //view.left.right.equalToSuperview().inset(40)
-            //view.height.equalTo(self.view.snp.width).inset(80)
         }
     }
     
@@ -398,6 +388,5 @@ extension TrainVC: TrainVCProtocol {
         default:
             print("error")
         }
-        //durationTime = presenter?.determDurationTimeForGoal() ?? 15 + 1
     }
 }

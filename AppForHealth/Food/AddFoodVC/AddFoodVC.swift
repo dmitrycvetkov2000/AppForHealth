@@ -170,6 +170,7 @@ extension AddFoodVC {
         let weight: Int? = Int(weightTextField.text!)
         let ccal: Int? = Int(ccalTextField.text!)
         let time: String = timeTextField.text!
+        let token: String? = DefaultsManager.instance.defaults.string(forKey: "token")
         
         let date = Date()
         let formatter = DateFormatter()
@@ -178,13 +179,13 @@ extension AddFoodVC {
         let formatteddate = formatter.string(from: date as Date)
         let dateNow = formatteddate
         
-        if let name = name, let proteins = proteins, let fats = fats, let carb = carb, let ccal = ccal, weight != nil, timeTextField.text != "" {
-            let value = ProductToday(value: [name, weight as Any, proteins, fats, carb, ccal, time, dateNow])
+        if let name = name, let proteins = proteins, let fats = fats, let carb = carb, let ccal = ccal, weight != nil, timeTextField.text != "", let token = token {
+            let value = ProductToday(value: [name, weight as Any, proteins, fats, carb, ccal, time, dateNow, token])
             try! realm.write {
                     realm.add(value)
             }
             if !searchObjectsInBD(nameFood: name) {
-                let value = Product(value: [name, proteins, fats, carb, ccal] as [Any])
+                let value = Product(value: [name, proteins, fats, carb, ccal, token] as [Any])
                 try! realm.write {
                     realm.add(value)
                 }
@@ -378,6 +379,7 @@ extension AddFoodVC {
         let weight: Int? = Int(weightTextField.text!)
         let ccal: Int? = Int(ccalTextField.text!)
         let time: String = timeTextField.text!
+        let token: String? = DefaultsManager.instance.defaults.string(forKey: "token")
         
         let date = Date()
         let formatter = DateFormatter()
@@ -388,13 +390,13 @@ extension AddFoodVC {
         
 
         
-        if let name = name, let proteins = proteins, let fats = fats, let carb = carb, let ccal = ccal, weight != nil, timeTextField.text != "" {
-            let value = ProductToday(value: [name, weight as Any, proteins, fats, carb, ccal, time, dateNow])
+        if let name = name, let proteins = proteins, let fats = fats, let carb = carb, let ccal = ccal, weight != nil, timeTextField.text != "", let token = token {
+            let value = ProductToday(value: [name, weight as Any, proteins, fats, carb, ccal, time, dateNow, token])
             try! realm.write {
                     realm.add(value)
             }
             if !searchObjectsInBD(nameFood: name) {
-                let value = Product(value: [name, proteins, fats, carb, ccal] as [Any])
+                let value = Product(value: [name, proteins, fats, carb, ccal, token] as [Any])
                 try! realm.write {
                     realm.add(value)
                 }
@@ -410,8 +412,10 @@ extension AddFoodVC {
     func searchObjectsInBD(nameFood: String) -> Bool {
         let namesOfFood = realm.objects(Product.self)
         for name in namesOfFood {
-            if nameFood == name.name {
-                return true
+            if DefaultsManager.instance.defaults.string(forKey: "token") == name.token {
+                if nameFood == name.name {
+                    return true
+                }
             }
         }
         return false

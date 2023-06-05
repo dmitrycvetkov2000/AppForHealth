@@ -45,8 +45,10 @@ class WaterInteractor: WaterInteractorProtocol {
             do {
                 let results = try CoreDataManager.instance.context.fetch(fetchRequest)
                 for result in results as! [Person] {
-                    result.numberOfWater = numberML ?? 0
-                    result.date = self.date
+                    if DefaultsManager.instance.defaults.string(forKey: "token") == result.token {
+                        result.numberOfWater = numberML ?? 0
+                        result.date = self.date
+                    }
                 }
             } catch {
                 print(error)
@@ -71,12 +73,14 @@ class WaterInteractor: WaterInteractorProtocol {
         do {
             let results = try CoreDataManager.instance.context.fetch(fetchRequest)
             for result in results as! [Person] {
-                result.numberOfWater = numberML ?? 0
-                if (result.date?[curDate]) != nil {
-                    date?[curDate] = numberML
-                    result.date?[curDate]! = numberML ?? 0
-                } else {
-                    result.date = date
+                if DefaultsManager.instance.defaults.string(forKey: "token") == result.token {
+                    result.numberOfWater = numberML ?? 0
+                    if (result.date?[curDate]) != nil {
+                        date?[curDate] = numberML
+                        result.date?[curDate]! = numberML ?? 0
+                    } else {
+                        result.date = date
+                    }
                 }
             }
         } catch {

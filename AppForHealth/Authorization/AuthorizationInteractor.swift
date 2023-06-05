@@ -45,15 +45,13 @@ class AuthorizationInteractor: AuthorizationInteractorProtocol {
     }
     
     func registrationVK(vc: ViewController, result: VKAuthorizationResult) {
-//        let sdkInstance = VKSdk.initialize(withAppId: "") // ?
-//        sdkInstance?.register(vc)
         guard let idToken = result.token.userId, let accessToken = result.token.accessToken else { return }
         let credential = GoogleAuthProvider.credential(withIDToken: idToken, accessToken: accessToken)
-        //Auth.auth().signIn
+        
         Auth.auth().signIn(with: credential) { (result, error) in
             if error == nil{
                 print(result?.user.uid as Any)
-                //self.dismiss(animated: true, completion: nil)
+                self.presenter?.saveTokenInUD(tokenString: idToken)
                 self.presenter?.didTapDoneButtonFromRegistration()
             }else{
                 print(error as Any)
@@ -71,7 +69,7 @@ class AuthorizationInteractor: AuthorizationInteractorProtocol {
             Auth.auth().signIn(with: credential) { (result, error) in
                 if error == nil{
                     print(result?.user.uid as Any)
-                    //self.dismiss(animated: true, completion: nil)
+                    self.presenter?.saveTokenInUD(tokenString: idToken ?? "")
                     self.presenter?.didTapDoneButtonFromRegistration()
                 }else{
                     print(error as Any)

@@ -35,6 +35,7 @@
 		0A4643A329AA397D002B6519 /* CaloriesModuleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4643A229AA397D002B6519 /* CaloriesModuleBuilder.swift */; };
 		0A4F79BB29F96FBA00A825F9 /* MiniButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4F79BA29F96FBA00A825F9 /* MiniButton.swift */; };
 		0A4F79BD29F9C20D00A825F9 /* MainScreenLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4F79BC29F9C20D00A825F9 /* MainScreenLabel.swift */; };
+		0A70B9C62A2D975E008F805D /* DefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A70B9C52A2D975E008F805D /* DefaultsManager.swift */; };
 		0A7D6BB7294E685D00E50542 /* FirebaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7D6BB6294E685D00E50542 /* FirebaseService.swift */; };
 		0A7D6BBA294E80AE00E50542 /* ParametrsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7D6BB9294E80AE00E50542 /* ParametrsVC.swift */; };
 		0A7D6BBC294E812300E50542 /* ParametrsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7D6BBB294E812300E50542 /* ParametrsPresenter.swift */; };
@@ -214,6 +215,7 @@
 		0A4643A229AA397D002B6519 /* CaloriesModuleBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaloriesModuleBuilder.swift; sourceTree = "<group>"; };
 		0A4F79BA29F96FBA00A825F9 /* MiniButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiniButton.swift; sourceTree = "<group>"; };
 		0A4F79BC29F9C20D00A825F9 /* MainScreenLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenLabel.swift; sourceTree = "<group>"; };
+		0A70B9C52A2D975E008F805D /* DefaultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultsManager.swift; sourceTree = "<group>"; };
 		0A7D6BB6294E685D00E50542 /* FirebaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseService.swift; sourceTree = "<group>"; };
 		0A7D6BB9294E80AE00E50542 /* ParametrsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParametrsVC.swift; sourceTree = "<group>"; };
 		0A7D6BBB294E812300E50542 /* ParametrsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParametrsPresenter.swift; sourceTree = "<group>"; };
@@ -462,7 +464,6 @@
 				0ADBAB1A29E0717200E03300 /* Map */,
 				0AE866A129C435F8009F6BA9 /* Enums */,
 				0AE8669E29C3241A009F6BA9 /* Navigation */,
-				0A8324E02A2CB953001612D4 /* Food */,
 				0A7F0BD7296C466400327875 /* Settings */,
 				0A7F0BC9296B50F900327875 /* Water */,
 				0AD06144295BED6700B67453 /* Recipes */,
@@ -473,6 +474,7 @@
 				0AE52FBD294AA73F00915663 /* MainModule */,
 				0ADBAB0129E0299E00E03300 /* SecondTabBarModule */,
 				0ADBAB0E29E048DB00E03300 /* ThirdTabBarModule */,
+				0A8324E02A2CB953001612D4 /* Food */,
 				0A0F0C222948ACD100666ECF /* Authorization */,
 				0A0F0C212948AC6300666ECF /* API */,
 				0A0F0C202948AA7200666ECF /* Resources */,
@@ -483,11 +485,9 @@
 				0A3CA85A293E61D900EDBFF9 /* LaunchScreen.swift */,
 				0A3CA82E293E4F2000EDBFF9 /* AppForHealth.xcdatamodeld */,
 				0AE52FD5294BF5B400915663 /* CustomSpinnerSimple.swift */,
-				0A7D6BC7294FDC9D00E50542 /* CoreDataManager.swift */,
 				0AFE8DCC29F09EC200102258 /* Buttons */,
 				0AFE8DCD29F0A93B00102258 /* Labels */,
 				0AFE8DDD29F222BC00102258 /* TextFields */,
-				0AFE8DDE29F3834E00102258 /* RealmManager.swift */,
 				0AF9519329F3C11800ABF30E /* ChartStringFormatter.swift */,
 				0AA2E5C629FF6820006B3FE8 /* Extention+String.swift */,
 				0AA2E5CC29FF696F006B3FE8 /* Localizable.strings */,
@@ -715,6 +715,9 @@
 			children = (
 				0A7D6BB6294E685D00E50542 /* FirebaseService.swift */,
 				0A1DA69E2A0F93CD00091139 /* ApiManager2.swift */,
+				0A70B9C52A2D975E008F805D /* DefaultsManager.swift */,
+				0A7D6BC7294FDC9D00E50542 /* CoreDataManager.swift */,
+				0AFE8DDE29F3834E00102258 /* RealmManager.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -1168,6 +1171,7 @@
 				0A9F2AB3294A044C004662F7 /* AuthorizationPresenter.swift in Sources */,
 				0A7F0BDB296C46F000327875 /* SettingPresenter.swift in Sources */,
 				0ADBAAFC29E01E8500E03300 /* MainTabBarRouter.swift in Sources */,
+				0A70B9C62A2D975E008F805D /* DefaultsManager.swift in Sources */,
 				0A46439F29AA38AC002B6519 /* CaloriesRouter.swift in Sources */,
 				0AFE8DDA29F1DFBA00102258 /* OnboardHelper.swift in Sources */,
 				0A8324DF2A2CB35F001612D4 /* FindFoodModuleBuilder.swift in Sources */,

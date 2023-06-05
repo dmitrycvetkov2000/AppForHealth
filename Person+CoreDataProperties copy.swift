@@ -27,4 +27,5 @@ extension Person {
     @NSManaged public var reccomendWater: Int16
     @NSManaged public var imt: String
     @NSManaged public var date: [String: Int16]?
+    @NSManaged public var token: String
 }

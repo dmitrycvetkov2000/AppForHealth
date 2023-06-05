@@ -82,7 +82,6 @@ class FindFoodVC: UIViewController {
         navigationItem.rightBarButtonItem = rightBarButtonItem
     }
     @objc func openMenu() {
-        //navigationController?.popViewController(animated: true)
         presenter?.didTapReturnButton()
     }
     
@@ -150,14 +149,15 @@ extension FindFoodVC: UITextFieldDelegate {
 
 extension FindFoodVC: ChangeVCDelegate {
     func changeVC(name: String, proteins: Double, fats: Double, carb: Double, ccal: Int) {
-        let vc = AddFoodVC()
+        let vc = AddFoodModuleBuilder.build()
+        
         vc.productTextField.text = name.localized()
         vc.proteinsTextField.text = String(proteins)
         vc.fatsTextField.text = String(fats)
         vc.carbTextField.text = String(carb)
         vc.ccalTextField.text = String(ccal)
         
-        navigationController?.pushViewController(vc, animated: true)
+        self.navigationController?.pushViewController(vc, animated: true)
     }
 }
 

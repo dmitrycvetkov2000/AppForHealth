@@ -35,7 +35,9 @@ class SettingInteractor: SettingInteractorProtocol {
         do {
             let results = try CoreDataManager.instance.context.fetch(fetchRequest)
             for result in results as! [Person] {
-                return result.numberOfWater
+                if DefaultsManager.instance.defaults.string(forKey: "token") == result.token {
+                    return result.numberOfWater
+                }
             }
         } catch {
             print(error)
@@ -227,15 +229,18 @@ class SettingInteractor: SettingInteractorProtocol {
         do {
             let results = try CoreDataManager.instance.context.fetch(fetchRequest)
             for result in results as! [Person] {
-                result.gender = gender
-                result.goal = goal
-                result.age = Int16(age) ?? 0
-                result.height = Int16(height) ?? 0
-                result.weight = Int16(weight) ?? 0
-                result.levelOfActivity = levelOfActivity
-                result.imt = self.reloadIMT(height: Int16(height) ?? 0, weight: Int16(weight) ?? 0, gender: gender, age: Int16(age) ?? 0)
-                result.reccomendWater = self.reloadNumberOfWater(gender: gender, weight: Int16(weight) ?? 0)
-                result.reccomendCcal = self.reloadNumberOfCcal(gender: gender, weight: Int16(weight) ?? 0, height: Int16(height) ?? 0, age: Int16(age) ?? 0, levelOfActivity: levelOfActivity)
+                if DefaultsManager.instance.defaults.string(forKey: "token") == result.token {
+                    result.gender = gender
+                    result.goal = goal
+                    result.age = Int16(age) ?? 0
+                    result.height = Int16(height) ?? 0
+                    result.weight = Int16(weight) ?? 0
+                    result.levelOfActivity = levelOfActivity
+                    result.imt = self.reloadIMT(height: Int16(height) ?? 0, weight: Int16(weight) ?? 0, gender: gender, age: Int16(age) ?? 0)
+                    result.reccomendWater = self.reloadNumberOfWater(gender: gender, weight: Int16(weight) ?? 0)
+                    result.reccomendCcal = self.reloadNumberOfCcal(gender: gender, weight: Int16(weight) ?? 0, height: Int16(height) ?? 0, age: Int16(age) ?? 0, levelOfActivity: levelOfActivity)
+                    result.token = result.token
+                }
             }
         } catch {
             print(error)

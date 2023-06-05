@@ -189,11 +189,13 @@ class CaloriesVC: UIViewController {
         
         if let products = self.helper.products {
             for prod in products {
-                print("prod.date = \(prod.date)")
-                print("self.helper.date = \(self.helper.date)")
-                if prod.date == self.helper.date {
-                        self.helper.arraysForDate.append(prod)
-                        print("array = \(self.helper.arraysForDate)")
+                if DefaultsManager.instance.defaults.string(forKey: "token") == prod.token {
+                    print("prod.date = \(prod.date)")
+                    print("self.helper.date = \(self.helper.date)")
+                    if prod.date == self.helper.date {
+                            self.helper.arraysForDate.append(prod)
+                            print("array = \(self.helper.arraysForDate)")
+                    }
                 }
             }
             print(self.helper.arraysForDate.count)
@@ -365,11 +367,13 @@ extension CaloriesVC: FSCalendarDelegate {
         if let products = self.helper.products {
             self.helper.arraysForDate.removeAll()
             for prod in products {
-                print("prod.date = \(prod.date)")
-                print("self.helper.date = \(self.helper.date)")
-                if prod.date == self.helper.date {
-                    self.helper.arraysForDate.append(prod)
-                    print("array = \(self.helper.arraysForDate)")
+                if DefaultsManager.instance.defaults.string(forKey: "token") == prod.token {
+                    print("prod.date = \(prod.date)")
+                    print("self.helper.date = \(self.helper.date)")
+                    if prod.date == self.helper.date {
+                        self.helper.arraysForDate.append(prod)
+                        print("array = \(self.helper.arraysForDate)")
+                    }
                 }
             }
             print("self.helper.arraysForDate.count = \(self.helper.arraysForDate.count)")
@@ -397,9 +401,11 @@ extension CaloriesVC {
         do {
             let results = try CoreDataManager.instance.context.fetch(fetchRequest)
             for result in results as! [Person] {
-                maxCcal = Int(result.reccomendCcal)
-                goal = result.goal ?? ""
-                gender = result.gender ?? ""
+                if DefaultsManager.instance.defaults.string(forKey: "token") == result.token {
+                    maxCcal = Int(result.reccomendCcal)
+                    goal = result.goal ?? ""
+                    gender = result.gender ?? ""
+                }
             }
         } catch {
             print(error)

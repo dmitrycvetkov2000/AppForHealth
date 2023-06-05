@@ -13,6 +13,7 @@ class RealmManager {
     
     var realm = try! Realm()
     var products: Results<ProductToday>?
+    var product: Results<Product>?
     var userRealm: Results<UserRealm>?
     
     func fillProducts() {

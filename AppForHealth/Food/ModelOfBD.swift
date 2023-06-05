@@ -13,6 +13,7 @@ class Product: Object {
     @objc dynamic var fats = 0.0
     @objc dynamic var carb = 0.0
     @objc dynamic var ccal: Int = 0
+    @objc dynamic var token: String = ""
 }
 
 class ProductToday: Object {
@@ -24,8 +25,10 @@ class ProductToday: Object {
     @objc dynamic var ccal: Int = 0
     @objc dynamic var time = ""
     @objc dynamic var date: String = ""
+    @objc dynamic var token: String = ""
 }
 
 class UserRealm: Object {
     @objc dynamic var nameOfUser = ""
+    @objc dynamic var token = ""
 }

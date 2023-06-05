@@ -10,6 +10,7 @@ import CoreData
 
 class CoreDataManager {
     static let instance = CoreDataManager()
+    let defaults = UserDefaults.standard
     
     private init() {}
     
@@ -29,17 +30,20 @@ class CoreDataManager {
             let results = try CoreDataManager.instance.context.fetch(fetchRequest)
             
             for result in results as! [Person] {
-                print("В базе данных:  Возраст - \(result.age), Пол - \(String(describing: result.gender)), Цель - \(String(describing: result.goal)), Рост - \(result.height), Активность - \(String(describing: result.levelOfActivity)), Вес - \(result.weight), Рек воды - \(result.reccomendWater), Рек ккал - \(result.reccomendCcal)")
+                if defaults.string(forKey: "token") == result.token {
+                    print("В базе данных:  Возраст - \(result.age), Пол - \(String(describing: result.gender)), Цель - \(String(describing: result.goal)), Рост - \(result.height), Активность - \(String(describing: result.levelOfActivity)), Вес - \(result.weight), Рек воды - \(result.reccomendWater), Рек ккал - \(result.reccomendCcal)")
+                    return false
+                }
             }
-            
-            if results.isEmpty {
-                print("База данных пустая")
-                return true
-            } else {
-                print("База данных не пустая")
-                print(results.count)
-                return false
-            }
+            return true
+//            if results.isEmpty {
+//                print("База данных пустая")
+//                return true
+//            } else {
+//                print("База данных не пустая")
+//                print(results.count)
+//
+//            }
             
         } catch {
             print(error)
@@ -80,19 +84,21 @@ class CoreDataManager {
         do {
             let results = try CoreDataManager.instance.context.fetch(fetchRequest)
             for result in results as! [Person] {
-                searchElement = result.value(forKey: find) as? T
-                intValue = result.value(forKey: find) as? Int16
-                dict = result.value(forKey: find) as? [String: Int16]
-                
-                if let searchElement = searchElement {
-                    return searchElement
-                }
-                if let dict = dict {
-                    searchElement = dict as? T
-                    return searchElement
-                } else if let intValue = intValue {
-                    searchElement = intValue as? T
-                    return searchElement
+                if defaults.string(forKey: "token") == result.token {
+                    searchElement = result.value(forKey: find) as? T
+                    intValue = result.value(forKey: find) as? Int16
+                    dict = result.value(forKey: find) as? [String: Int16]
+                    
+                    if let searchElement = searchElement {
+                        return searchElement
+                    }
+                    if let dict = dict {
+                        searchElement = dict as? T
+                        return searchElement
+                    } else if let intValue = intValue {
+                        searchElement = intValue as? T
+                        return searchElement
+                    }
                 }
             }
         } catch {

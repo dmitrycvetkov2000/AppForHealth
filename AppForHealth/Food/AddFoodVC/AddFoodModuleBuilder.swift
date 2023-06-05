@@ -8,7 +8,7 @@
 import UIKit
 
 class AddFoodModuleBuilder: UIViewController {
-    static func build() -> UIViewController {
+    static func build() -> AddFoodVC {
         let interactor = AddFoodInteractor()
         let router = AddFoodRouter()
         let presenter = AddFoodPresenter(interactor: interactor, router: router)

@@ -18,13 +18,13 @@ class FirebaseService {
             try Auth.auth().signOut()
             GIDSignIn.sharedInstance.signOut()
             
-            if let tokenVK = defaults.string(forKey: "token") {
+            //if let tokenVK = defaults.string(forKey: "token") {
                 let url = URL(string: "http://api.vk.com/oauth/logout")!
                 let req = URLRequest(url: url)
                 VKAuthScreen().load(req)
                 defaults.removeObject(forKey: "token")
                 print("Выход из вк")
-            }
+            //}
 
             DispatchQueue.main.async {
                 presenter?.didTapOnExitButton()
@@ -54,6 +54,7 @@ class FirebaseService {
                             
                         }
                         //Переход на другой экран
+                        presenter?.saveTokenInUD(tokenString: email)
                         presenter?.saveNameForUser(name: name)
                         presenter?.didTapDoneButtonFromRegistration()
                     }
@@ -79,7 +80,8 @@ class FirebaseService {
         Auth.auth().signIn(withEmail: email, password: password) { result, error in
             if error == nil {
                 print("Выполняется вход")
-                //Переход на другой экран 
+                //Переход на другой экран
+                DefaultsManager.instance.setValue(value: email, key: "token")
                 presenter?.didTapDoneButtonFromRegistration()
             } else {
                 blurEffectView.isHidden = true

@@ -401,7 +401,9 @@ extension ParametrsVC: ParametrsVCProtocol {
         RealmManager.instance.fillUserRealm()
         if let users = RealmManager.instance.userRealm {
             for user in users {
-                nameForUser = user.nameOfUser
+                if DefaultsManager.instance.defaults.string(forKey: "token") == user.token {
+                    nameForUser = user.nameOfUser
+                }
             }
         }
         

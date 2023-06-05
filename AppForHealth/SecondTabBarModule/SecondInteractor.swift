@@ -50,8 +50,10 @@ extension SecondInteractor: SecondInteractorProtocol {
             for (i, date) in weekMas.indexed() {
                 var sumCcal = 0
                 for prod in products {
-                    if prod.date == date {
-                        sumCcal += prod.ccal
+                    if DefaultsManager.instance.defaults.string(forKey: "token") == prod.token {
+                        if prod.date == date {
+                            sumCcal += prod.ccal
+                        }
                     }
                 }
                 presenter?.dateFormate(i: i)
@@ -68,9 +70,11 @@ extension SecondInteractor: SecondInteractorProtocol {
             var sumCarb: Double = 0
             for prod in products {
                 if prod.date == curDate {
-                    sumProteins += prod.proteins
-                    sumFats += prod.fats
-                    sumCarb += prod.carb
+                    if DefaultsManager.instance.defaults.string(forKey: "token") == prod.token {
+                        sumProteins += prod.proteins
+                        sumFats += prod.fats
+                        sumCarb += prod.carb
+                    }
                 }
             }
             

@@ -29,6 +29,8 @@ protocol AuthorizationPresenterProtocol: AnyObject {
     func didTapGoogleButton(vc: ViewController)
     
     func didTapVKButton(vc: ViewController, result: VKAuthorizationResult)
+    
+    func saveTokenInUD(tokenString: String)
 }
 
 class AuthorizationPresenter {
@@ -109,5 +111,10 @@ extension AuthorizationPresenter: AuthorizationPresenterProtocol {
     
     func didTapVKButton(vc: ViewController, result: VKAuthorizationResult) {
         interactor.registrationVK(vc: vc, result: result)
+    }
+    
+    func saveTokenInUD(tokenString: String) {
+        let defaults = UserDefaults.standard
+        defaults.set(tokenString, forKey: "token")
     }
 }

@@ -13,6 +13,8 @@ protocol ChangeVCDelegate: AnyObject {
 }
 
 class HelperForTableAndSearchBar: NSObject {
+    
+    let token = DefaultsManager.instance.defaults.string(forKey: "token")
 
     var isSearching: Bool = false
     
@@ -49,9 +51,9 @@ extension HelperForTableAndSearchBar: UITableViewDataSource, UITableViewDelegate
             
             if let products = products {
                 for product in products {
-                    if product.name.lowercased().contains(searchBar.text?.lowercased() ?? "") {
-                        self.model.filteredData.append(product.name.localized())
-                    }
+                        if product.name.lowercased().contains(searchBar.text?.lowercased() ?? "") {
+                            self.model.filteredData.append(product.name.localized())
+                        }
                 }
                 tableViewForFind.reloadData()
             }
@@ -86,12 +88,12 @@ extension HelperForTableAndSearchBar: UITableViewDataSource, UITableViewDelegate
             cell.createLabelForNameOfFood(nameOfFindFood: name)
             cell.createStackForPFC(proteins: product?.proteins ?? 0.0, fat: product?.fats ?? 0.0, carb: product?.carb ?? 0.0)
         } else {
-            if let name = products?[indexPath.row].name {
-                cell.createLabelForNameOfFood(nameOfFindFood: name)
-            }
-            if let proteins = products?[indexPath.row].proteins, let fats = products?[indexPath.row].fats, let carb = products?[indexPath.row].carb {
-                cell.createStackForPFC(proteins: proteins, fat: fats, carb: carb)
-            }
+                if let name = products?[indexPath.row].name {
+                    cell.createLabelForNameOfFood(nameOfFindFood: name)
+                }
+                if let proteins = products?[indexPath.row].proteins, let fats = products?[indexPath.row].fats, let carb = products?[indexPath.row].carb {
+                    cell.createStackForPFC(proteins: proteins, fat: fats, carb: carb)
+                }
         }
         return cell
     }
