@@ -53,7 +53,7 @@ class CaloriesVC: UIViewController {
     let stackForStatistics = UIStackView()
     
     
-    let buttonForAddFood = UIButton()
+    let buttonForAddFood = MainButton()
     
     let foodVc = AddFoodVC()
     
@@ -78,6 +78,10 @@ class CaloriesVC: UIViewController {
         }
         calendar.scrollDirection = .horizontal
         calendar.locale = .autoupdatingCurrent
+        calendar.backgroundColor = #colorLiteral(red: 0.4841106534, green: 0.3266872168, blue: 0.1711469293, alpha: 1)
+        calendar.layer.cornerRadius = 10
+        calendar.clipsToBounds = true
+        calendar.appearance.headerTitleColor = #colorLiteral(red: 0, green: 0.3486712575, blue: 0, alpha: 1)
         
         calendar.scope = .week
         calendar.delegate = self
@@ -307,8 +311,14 @@ extension CaloriesVC: CaloriesVCProtocol {
         let viewForTableView = UIView()
         viewForTableView.backgroundColor = .brown
         contentView.addSubview(viewForTableView)
+//        viewForTableView.snp.makeConstraints { make in
+//            make.top.equalTo(stackForStatistics.snp.bottom).inset(-20)
+//            make.left.right.equalToSuperview()
+//            make.height.equalTo(contentView.snp.width)
+//            make.bottom.equalToSuperview().inset(20)
+//        }
         viewForTableView.snp.makeConstraints { make in
-            make.top.equalTo(stackForStatistics.snp.bottom).inset(-20)
+            make.top.equalTo(buttonForAddFood.snp.bottom).inset(-20)
             make.left.right.equalToSuperview()
             make.height.equalTo(contentView.snp.width)
             make.bottom.equalToSuperview().inset(20)
@@ -326,19 +336,14 @@ extension CaloriesVC: CaloriesVCProtocol {
     }
     
     func createButtonForAddFood() {
-        view.addSubview(buttonForAddFood)
+        contentView.addSubview(buttonForAddFood)
         
         buttonForAddFood.snp.makeConstraints { make in
-            make.bottom.equalToSuperview().inset(90)
-            make.right.equalToSuperview().inset(20)
-            make.width.height.equalTo(64)
+            make.top.equalTo(stackForStatistics.snp.bottom).inset(-20)
+            make.left.right.equalToSuperview().inset(40)
+            make.height.equalTo(40)
         }
-        
-        buttonForAddFood.layer.cornerRadius = 0.5 * buttonForAddFood.bounds.size.width
-        buttonForAddFood.clipsToBounds = true
-        
-        buttonForAddFood.setBackgroundImage(UIImage(systemName: "text.badge.plus"), for: .normal)
-        buttonForAddFood.tintColor = .titleColor
+        buttonForAddFood.setTitle("Добавить еду в статистику", for: .normal)
         
         buttonForAddFood.addTarget(self, action: #selector(addFood), for: .touchUpInside)
     }

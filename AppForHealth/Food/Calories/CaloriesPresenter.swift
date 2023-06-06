@@ -26,8 +26,8 @@ extension CaloriesPresenter: CaloriesPresenterProtocol {
     func viewDidLoaded() {
         view?.createButtonForCalendar()
         view?.createStackForStatistics()
-        view?.createTableViewForFood()
         view?.createButtonForAddFood()
+        view?.createTableViewForFood()
     }
     
     func didTapFindFoodVCButton() {
