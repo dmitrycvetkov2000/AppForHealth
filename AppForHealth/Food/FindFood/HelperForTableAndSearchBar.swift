@@ -18,13 +18,15 @@ class HelperForTableAndSearchBar: NSObject {
 
     var isSearching: Bool = false
     
-    var model = ModelOfDataForFindTable()
+    var model: ModelOfDataForFindTable?
     
     let tableViewForFind = UITableView()
     
     let realm = try! Realm()
     
     var products: Results<Product>?
+    
+    var arraysForDate = [Product]()
     
     weak var delegateForTransition: ChangeVCDelegate?
     
@@ -37,7 +39,7 @@ class HelperForTableAndSearchBar: NSObject {
 extension HelperForTableAndSearchBar: UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate {
 
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        self.model.filteredData.removeAll()
+        self.model = ModelOfDataForFindTable()
         guard searchText != "" || searchText != " " else {
             print("empty search")
             return
@@ -49,23 +51,25 @@ extension HelperForTableAndSearchBar: UITableViewDataSource, UITableViewDelegate
         } else {
             self.isSearching = true
             
-            if let products = products {
-                for product in products {
-                        if product.name.lowercased().contains(searchBar.text?.lowercased() ?? "") {
-                            self.model.filteredData.append(product.name.localized())
-                        }
+            for product in arraysForDate {
+                if product.name.lowercased().contains(searchBar.text?.lowercased() ?? "") {
+                    self.model?.name.append(product.name.localized())
+                    self.model?.proteins.append(product.proteins)
+                    self.model?.fats.append(product.fats)
+                    self.model?.carb.append(product.carb)
+                    self.model?.ccal.append(product.ccal)
                 }
-                tableViewForFind.reloadData()
             }
+            tableViewForFind.reloadData()
         }
     }
 
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if self.isSearching {
-            return model.filteredData.count
+            return model?.name.count ?? 0
         } else {
-            return products?.count ?? 0
+            return arraysForDate.count
         }
     }
     
@@ -75,9 +79,9 @@ extension HelperForTableAndSearchBar: UITableViewDataSource, UITableViewDelegate
             fatalError()
         }
         if self.isSearching {
-            let name = model.filteredData[indexPath.row]
+            let name = model?.name[indexPath.row]
 
-            let product = products?.first { prod in
+            let product = arraysForDate.first { prod in
                 if prod.name == name {
                     return true
                 } else {
@@ -85,20 +89,20 @@ extension HelperForTableAndSearchBar: UITableViewDataSource, UITableViewDelegate
                 }
             }
  
-            cell.createLabelForNameOfFood(nameOfFindFood: name)
+            cell.createLabelForNameOfFood(nameOfFindFood: name ?? "")
             cell.createStackForPFC(proteins: product?.proteins ?? 0.0, fat: product?.fats ?? 0.0, carb: product?.carb ?? 0.0)
         } else {
-                if let name = products?[indexPath.row].name {
-                    cell.createLabelForNameOfFood(nameOfFindFood: name)
-                }
-                if let proteins = products?[indexPath.row].proteins, let fats = products?[indexPath.row].fats, let carb = products?[indexPath.row].carb {
-                    cell.createStackForPFC(proteins: proteins, fat: fats, carb: carb)
-                }
+            cell.createLabelForNameOfFood(nameOfFindFood: arraysForDate[indexPath.row].name)
+            cell.createStackForPFC(proteins: arraysForDate[indexPath.row].proteins, fat: arraysForDate[indexPath.row].fats, carb: arraysForDate[indexPath.row].carb)
         }
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        transitionOnAddFoodVC(name: products?[indexPath.row].name ?? "", proteins: products?[indexPath.row].proteins ?? 0.0, fats: products?[indexPath.row].fats ?? 0.0, carb: products?[indexPath.row].carb ?? 0.0, ccal: products?[indexPath.row].ccal ?? 0)
+        if isSearching {
+            transitionOnAddFoodVC(name: self.model?.name[indexPath.row] ?? "", proteins: self.model?.proteins[indexPath.row] ?? 0, fats: self.model?.fats[indexPath.row] ?? 0, carb: self.model?.carb[indexPath.row] ?? 0, ccal: self.model?.ccal[indexPath.row] ?? 0)
+        } else {
+            transitionOnAddFoodVC(name: arraysForDate[indexPath.row].name, proteins: arraysForDate[indexPath.row].proteins, fats: arraysForDate[indexPath.row].fats, carb: arraysForDate[indexPath.row].carb, ccal: arraysForDate[indexPath.row].ccal)
+        }
     }
 }

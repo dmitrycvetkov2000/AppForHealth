@@ -17,15 +17,17 @@ protocol ParametrsInteractorProtocol: AnyObject {
     func culculationCalories()
     
     func saveAllResults()
+    
+    func createFodsForBD()
 }
 
 class ParametrsInteractor: ParametrsInteractorProtocol {
     
     weak var presenter: ParametrsPresenterProtocol?
     let defaults = UserDefaults.standard
-    let token = DefaultsManager.instance.defaults.string(forKey: "token")
+    let token: String = DefaultsManager.instance.defaults.string(forKey: "token") ?? ""
     
-    func writeParametersToBD(age: String, gender: String, goal: String, height: String, levelOfActivity: String, weight: String) -> String {
+    @discardableResult func writeParametersToBD(age: String, gender: String, goal: String, height: String, levelOfActivity: String, weight: String) -> String {
         let managedObject = Person()
         
         managedObject.age = Int16(age) ?? 0
@@ -37,6 +39,25 @@ class ParametrsInteractor: ParametrsInteractorProtocol {
         managedObject.token = defaults.string(forKey: "token") ?? ""
         
         return gender
+    }
+    
+    func createFodsForBD() {
+        let value1 = Product(value: ["Банан".localized(), 42.5, 12.5, 23.4, 10, token] as [Any])
+        let value2 = Product(value: ["Апельсин".localized(), 4.5, 2.5, 3.4, 20, token] as [Any])
+        let value3 = Product(value: ["Яблоко".localized(), 2.5, 1.5, 2.4, 30, token] as [Any])
+        let value4 = Product(value: ["Киви".localized(), 10.5, 6.9, 2.1, 40, token] as [Any])
+        let value5 = Product(value: ["Мороженное".localized(), 23, 14.5, 53.4, 50, token] as [Any])
+        let value6 = Product(value: ["Ананас".localized(), 0.5, 6.5, 8.4, 60, token] as [Any])
+        let value7 = Product(value: ["Арбуз".localized(), 40.5, 32.5, 3.4, 70, token] as [Any])
+        let value8 = Product(value: ["Дыня".localized(), 5.5, 5.5, 5.4, 80, token] as [Any])
+        
+        let values = [value1, value2, value3, value4, value5, value6, value7, value8]
+        
+        try! RealmManager.instance.realm.write {
+            for val in values {
+                RealmManager.instance.realm.add(val)
+            }
+        }
     }
     
     func calculateAndSaveNumberOfWater() {

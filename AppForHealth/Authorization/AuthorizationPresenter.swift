@@ -114,7 +114,6 @@ extension AuthorizationPresenter: AuthorizationPresenterProtocol {
     }
     
     func saveTokenInUD(tokenString: String) {
-        let defaults = UserDefaults.standard
-        defaults.set(tokenString, forKey: "token")
+        DefaultsManager.instance.setValue(value: tokenString, key: "token")
     }
 }

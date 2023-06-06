@@ -9,6 +9,10 @@ import Foundation
 import RealmSwift
 
 struct ModelOfDataForFindTable {
-    var filteredData = [String]()
+    var name = [String]()
+    var proteins = [Double]()
+    var fats = [Double]()
+    var carb = [Double]()
+    var ccal = [Int]()
     var isSearching: Bool = true
 }

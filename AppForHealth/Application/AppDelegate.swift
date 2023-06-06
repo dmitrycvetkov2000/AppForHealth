@@ -32,7 +32,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     DispatchQueue.global().async {
                         DispatchQueue.main.async {
                             FirebaseApp.configure()
-                            self.createFodsForBD()
                         }
                     }
                 }
@@ -72,27 +71,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
     
-    func createFodsForBD() {
-        let realm = try! Realm()
-        if realm.isEmpty {
-            let value1 = Product(value: ["Банан".localized(), 42.5, 12.5, 23.4, 10] as [Any])
-            let value2 = Product(value: ["Апельсин".localized(), 4.5, 2.5, 3.4, 20] as [Any])
-            let value3 = Product(value: ["Яблоко".localized(), 2.5, 1.5, 2.4, 30] as [Any])
-            let value4 = Product(value: ["Киви".localized(), 10.5, 6.9, 2.1, 40] as [Any])
-            let value5 = Product(value: ["Мороженное".localized(), 23, 14.5, 53.4, 50] as [Any])
-            let value6 = Product(value: ["Ананас".localized(), 0.5, 6.5, 8.4, 60] as [Any])
-            let value7 = Product(value: ["Арбуз".localized(), 40.5, 32.5, 3.4, 70] as [Any])
-            let value8 = Product(value: ["Дыня".localized(), 5.5, 5.5, 5.4, 80] as [Any])
-            
-            let values = [value1, value2, value3, value4, value5, value6, value7, value8]
-            
-            try! realm.write {
-                for val in values {
-                    realm.add(val)
-                }
-            }
-        }
-    }
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
         guard let sourceApplication = options[UIApplication.OpenURLOptionsKey.sourceApplication] as? String else {
             return true
@@ -111,7 +89,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return false
     }
     private func application(application: UIApplication, openURL url: NSURL, sourceApplication: NSString?, annotation: AnyObject) -> Bool {
-        var wasHandled:Bool = VKSdk.processOpen(url as URL, fromApplication: sourceApplication as String?)
+        let wasHandled:Bool = VKSdk.processOpen(url as URL, fromApplication: sourceApplication as String?)
         print("url: \(url)")
         return wasHandled
     }

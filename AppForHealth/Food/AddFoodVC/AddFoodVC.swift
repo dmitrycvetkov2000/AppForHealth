@@ -353,7 +353,6 @@ extension AddFoodVC {
     }
     @objc func cancel() {
         presenter?.didTapCancelButton()
-        //navigationController?.popToRootViewController(animated: true)
     }
     
     func createButtonForAccept() {

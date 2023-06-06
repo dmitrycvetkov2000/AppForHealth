@@ -36,8 +36,6 @@ class FindFoodVC: UIViewController {
         helper.tableViewForFind.backgroundColor = .brown
         helper.tableViewForFind.separatorColor = .black
         configureNavigationItems()
-        
-        self.helper.products = self.helper.realm.objects(Product.self) // Заполняем массив базы данных
        
         self.searchBar.delegate = self.helper
         
@@ -55,7 +53,19 @@ class FindFoodVC: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        helper.tableViewForFind.reloadData()
+        self.helper.products = nil
+        self.helper.arraysForDate.removeAll()
+        self.helper.products = self.helper.realm.objects(Product.self) // Заполняем массив базы данных
+        
+        if let products = self.helper.products {
+            for prod in products {
+                if DefaultsManager.instance.defaults.string(forKey: "token") == prod.token {
+                    self.helper.arraysForDate.append(prod)
+                }
+            }
+            print(self.helper.arraysForDate.count)
+        }
+        self.helper.tableViewForFind.reloadData()
     }
     
     func configureNavigationItems() {

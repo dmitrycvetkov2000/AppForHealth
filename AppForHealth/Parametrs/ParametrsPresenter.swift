@@ -34,6 +34,8 @@ extension ParametrsPresenter: ParametrsPresenterProtocol {
         interactor.culculationAndSaveIMT()
         interactor.culculationCalories()
         
+        interactor.createFodsForBD()
+        
         interactor.saveAllResults()
         
         router.openMain()
