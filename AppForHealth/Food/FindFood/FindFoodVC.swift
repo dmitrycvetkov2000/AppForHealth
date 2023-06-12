@@ -29,9 +29,21 @@ class FindFoodVC: UIViewController {
     var labelForStatisticFood = UILabel()
     
     var realm = try! Realm()
+    
+    var swipeRecognizer: UISwipeGestureRecognizer?
+    
+    func setSwipeRecognizer() {
+        swipeRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(swipeGesture))
+        swipeRecognizer!.direction = .right
+        view.addGestureRecognizer(swipeRecognizer!)
+    }
+    @objc func swipeGesture(sender: UISwipeGestureRecognizer) {
+        presenter?.didTapReturnButton()
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        setSwipeRecognizer()
         view.backgroundColor = .brown
         helper.tableViewForFind.backgroundColor = .brown
         helper.tableViewForFind.separatorColor = .black
@@ -49,6 +61,8 @@ class FindFoodVC: UIViewController {
         createTableViewForFind()
         
         createButtonForAdd()
+        
+        self.helper.tableViewForFind.keyboardDismissMode = .onDrag // Скрывать клавиатуру при работе с таблицей
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -102,6 +116,7 @@ class FindFoodVC: UIViewController {
         labelFindFood.text = "Поиск продукта".localized()
         labelFindFood.font = UIFont.systemFont(ofSize: 1000)
         labelFindFood.textAlignment = .center
+        labelFindFood.textColor = .black
         
         return labelFindFood
     }
@@ -117,6 +132,7 @@ class FindFoodVC: UIViewController {
         searchBar.backgroundImage = UIImage()
         searchBar.searchTextField.backgroundColor = .white
         searchBar.searchTextField.textColor = .black
+        searchBar.searchTextField.leftView?.tintColor = .black
     }
     
     func createTableViewForFind() {

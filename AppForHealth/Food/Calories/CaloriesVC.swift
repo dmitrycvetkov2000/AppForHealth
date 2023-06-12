@@ -20,6 +20,14 @@ protocol CaloriesVCProtocol: AnyObject {
     func createTableViewForFood()
     
     func createButtonForAddFood()
+    
+    func updateProgressView()
+    
+    func increaseProgres(percentOfProt: Double, percentOfFats: Double, percentOfCarb: Double, percentOfCcal: Float)
+    
+    func setLimitLabelsTexts(maxProt: Double, maxFats: Double, maxCarb: Double, maxCcal: Double)
+    
+    func setLabelsTexts(percentOfProt: Double, percentOfFats: Double, percentOfCarb: Double, percentOfCcal: Float, countProt: Double, countFats: Double, countCarb: Double, countCcal: Double)
 }
 
 class CaloriesVC: UIViewController {
@@ -66,6 +74,17 @@ class CaloriesVC: UIViewController {
     var contentView = UIView()
     
     var calendar = FSCalendar()
+    
+    var swipeRecognizer: UISwipeGestureRecognizer?
+    
+    func setSwipeRecognizer() {
+        swipeRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(swipeGesture))
+        swipeRecognizer!.direction = .right
+        view.addGestureRecognizer(swipeRecognizer!)
+    }
+    @objc func swipeGesture(sender: UISwipeGestureRecognizer) {
+        dismiss(animated: true)
+    }
     
     func createFSCalendar() {
         calendar.translatesAutoresizingMaskIntoConstraints = false
@@ -121,6 +140,7 @@ class CaloriesVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setSwipeRecognizer()
         tableViewForFood.separatorColor = .black
         configureNavigationItems()
         
@@ -251,6 +271,11 @@ extension CaloriesVC: CaloriesVCProtocol {
         stackForCarbonates.addArrangedSubview(labelCarbonates)
         stackForCalories.addArrangedSubview(labelCalories)
         
+        labelProtein.textColor = #colorLiteral(red: 0.6512740254, green: 0.6678940058, blue: 0.6676040292, alpha: 1)
+        labelFat.textColor = #colorLiteral(red: 0.6512740254, green: 0.6678940058, blue: 0.6676040292, alpha: 1)
+        labelCarbonates.textColor = #colorLiteral(red: 0.6512740254, green: 0.6678940058, blue: 0.6676040292, alpha: 1)
+        labelCalories.textColor = #colorLiteral(red: 0.6512740254, green: 0.6678940058, blue: 0.6676040292, alpha: 1)
+        
         stackForProtein.addArrangedSubview(progressOfProtein)
         stackForFat.addArrangedSubview(progressOfFat)
         stackForCarbonates.addArrangedSubview(progressOfCarbonates)
@@ -260,6 +285,11 @@ extension CaloriesVC: CaloriesVCProtocol {
         stackForFat.addArrangedSubview(labelForFat)
         stackForCarbonates.addArrangedSubview(labelForCarbonates)
         stackForCalories.addArrangedSubview(labelForCalories)
+        
+        labelForProtein.textColor = #colorLiteral(red: 0.6512740254, green: 0.6678940058, blue: 0.6676040292, alpha: 1)
+        labelForFat.textColor = #colorLiteral(red: 0.6512740254, green: 0.6678940058, blue: 0.6676040292, alpha: 1)
+        labelForCarbonates.textColor = #colorLiteral(red: 0.6512740254, green: 0.6678940058, blue: 0.6676040292, alpha: 1)
+        labelForCalories.textColor = #colorLiteral(red: 0.6512740254, green: 0.6678940058, blue: 0.6676040292, alpha: 1)
     
         stackForProtein.axis = .vertical
         stackForFat.axis = .vertical
@@ -311,12 +341,6 @@ extension CaloriesVC: CaloriesVCProtocol {
         let viewForTableView = UIView()
         viewForTableView.backgroundColor = .brown
         contentView.addSubview(viewForTableView)
-//        viewForTableView.snp.makeConstraints { make in
-//            make.top.equalTo(stackForStatistics.snp.bottom).inset(-20)
-//            make.left.right.equalToSuperview()
-//            make.height.equalTo(contentView.snp.width)
-//            make.bottom.equalToSuperview().inset(20)
-//        }
         viewForTableView.snp.makeConstraints { make in
             make.top.equalTo(buttonForAddFood.snp.bottom).inset(-20)
             make.left.right.equalToSuperview()
@@ -343,7 +367,7 @@ extension CaloriesVC: CaloriesVCProtocol {
             make.left.right.equalToSuperview().inset(40)
             make.height.equalTo(40)
         }
-        buttonForAddFood.setTitle("Добавить еду в статистику", for: .normal)
+        buttonForAddFood.setTitle("Добавить еду в статистику".localized(), for: .normal)
         
         buttonForAddFood.addTarget(self, action: #selector(addFood), for: .touchUpInside)
     }
@@ -394,90 +418,116 @@ extension CaloriesVC {
         self.progressOfFat.progress = 0
         self.progressOfCarbonates.progress = 0
         self.progressOfCalories.progress = 0
+        
+        presenter?.determeMaxValuesProtFatsCarbs(array: self.helper.arraysForDate)
 
-        var maxCcal = 0
-        var goal: String = ""
-        var gender: String = ""
-        var multiForProt: Double = 0.0
-        var multiForFats: Double = 0.0
-        var multiForCarb: Double = 0.0
+//        var maxCcal = 0
+//        var goal: String = ""
+//        var gender: String = ""
+//        var multiForProt: Double = 0.0
+//        var multiForFats: Double = 0.0
+//        var multiForCarb: Double = 0.0
+//
+//        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Person")
+//        do {
+//            let results = try CoreDataManager.instance.context.fetch(fetchRequest)
+//            for result in results as! [Person] {
+//                if DefaultsManager.instance.defaults.string(forKey: "token") == result.token {
+//                    maxCcal = Int(result.reccomendCcal)
+//                    goal = result.goal ?? ""
+//                    gender = result.gender ?? ""
+//                }
+//            }
+//        } catch {
+//            print(error)
+//        }
+//
+//        switch goal {
+//        case Goals.norma.rawValue:
+//            if gender == Genders.man.rawValue {
+//                    multiForProt = 0.3
+//                    multiForFats = 0.3
+//                    multiForCarb = 0.4
+//            } else if gender == Genders.woman.rawValue {
+//                    multiForProt = 0.3
+//                    multiForFats = 0.3
+//                    multiForCarb = 0.4
+//                }
+//                break
+//        case Goals.weightUp.rawValue:
+//                if gender == Genders.man.rawValue {
+//                    multiForProt = 0.2
+//                    multiForFats = 0.2
+//                    multiForCarb = 0.6
+//                } else if gender == Genders.woman.rawValue {
+//                    multiForProt = 0.3
+//                    multiForFats = 0.2
+//                    multiForCarb = 0.5
+//                }
+//        case Goals.leaveWeight.rawValue:
+//                if gender == Genders.man.rawValue {
+//                    multiForProt = 0.6
+//                    multiForFats = 0.1
+//                    multiForCarb = 0.3
+//                } else if gender == Genders.woman.rawValue {
+//                    multiForProt = 0.5
+//                    multiForFats = 0.2
+//                    multiForCarb = 0.3
+//                }
+//        default:
+//            print("error")
+//        }
+//
+//        let maxProt = multiForProt * Double(maxCcal)
+//        let maxFats = multiForFats * Double(maxCcal)
+//        let maxCarb = multiForCarb * Double(maxCcal)
+////
+//        var countProt = 0.0
+//        var countFats = 0.0
+//        var countCarb = 0.0
+//        var countCcal = 0.0
 
-        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Person")
-        do {
-            let results = try CoreDataManager.instance.context.fetch(fetchRequest)
-            for result in results as! [Person] {
-                if DefaultsManager.instance.defaults.string(forKey: "token") == result.token {
-                    maxCcal = Int(result.reccomendCcal)
-                    goal = result.goal ?? ""
-                    gender = result.gender ?? ""
-                }
-            }
-        } catch {
-            print(error)
-        }
+//        for product in self.helper.arraysForDate {
+//            countProt += product.proteins
+//            countFats += product.fats
+//            countCarb += product.carb
+//            countCcal += Double(product.ccal)
+//        }
 
-        switch goal {
-        case Goals.norma.rawValue:
-            if gender == Genders.man.rawValue {
-                    multiForProt = 0.3
-                    multiForFats = 0.3
-                    multiForCarb = 0.4
-            } else if gender == Genders.woman.rawValue {
-                    multiForProt = 0.3
-                    multiForFats = 0.3
-                    multiForCarb = 0.4
-                }
-                break
-        case Goals.weightUp.rawValue:
-                if gender == Genders.man.rawValue {
-                    multiForProt = 0.2
-                    multiForFats = 0.2
-                    multiForCarb = 0.6
-                } else if gender == Genders.woman.rawValue {
-                    multiForProt = 0.3
-                    multiForFats = 0.2
-                    multiForCarb = 0.5
-                }
-        case Goals.leaveWeight.rawValue:
-                if gender == Genders.man.rawValue {
-                    multiForProt = 0.6
-                    multiForFats = 0.1
-                    multiForCarb = 0.3
-                } else if gender == Genders.woman.rawValue {
-                    multiForProt = 0.5
-                    multiForFats = 0.2
-                    multiForCarb = 0.3
-                }
-        default:
-            print("error")
-        }
+//        let percentOfProt = countProt / maxProt
+//        let percentOfFats = countFats / maxFats
+//        let percentOfCarb = countCarb / maxCarb
+//        let percentOfCcal: Float = Float(countCcal) / Float(maxCcal)
 
-        let maxProt = multiForProt * Double(maxCcal)
-        let maxFats = multiForFats * Double(maxCcal)
-        let maxCarb = multiForCarb * Double(maxCcal)
+//        self.progressOfProtein.progress += Float(percentOfProt)
+//        self.progressOfFat.progress += Float(percentOfFats)
+//        self.progressOfCarbonates.progress += Float(percentOfCarb)
+//        self.progressOfCalories.progress += percentOfCcal
+        //increaseProgres(percentOfProt: percentOfProt, percentOfFats: percentOfFats, percentOfCarb: percentOfCarb, percentOfCcal: percentOfCcal)
 
-        var countProt = 0.0
-        var countFats = 0.0
-        var countCarb = 0.0
-        var countCcal = 0.0
-
-        for product in self.helper.arraysForDate {
-            countProt += product.proteins
-            countFats += product.fats
-            countCarb += product.carb
-            countCcal += Double(product.ccal)
-        }
-
-        let percentOfProt = countProt / maxProt
-        let percentOfFats = countFats / maxFats
-        let percentOfCarb = countCarb / maxCarb
-        let percentOfCcal: Float = Float(countCcal) / Float(maxCcal)
-
+//        labelProtein.adjustsFontSizeToFitWidth = true
+//        labelFat.adjustsFontSizeToFitWidth = true
+//        labelCarbonates.adjustsFontSizeToFitWidth = true
+//
+//        labelProtein.text = "Лимит белков на сегодня".localized() + " \(Int(Double(maxProt)))" + "(ккал)".localized() + ", \(Int(Double(maxProt) * 0.4))" + "(г.)".localized()
+//        labelFat.text = "Лимит жиров на сегодня".localized() + " \(Int(Double(maxFats)))" + "(ккал)".localized() + ", \(Int(Double(maxFats) * 0.9))" + "(г.)".localized()
+//        labelCarbonates.text = "Лимит углеводов на сегодня".localized() + " \(Int(Double(maxCarb)))" + "(ккал)".localized() + ", \(Int(Double(maxCarb) * 0.4))" + "(г.)".localized()
+//        labelCalories.text = "Лимит калорий на сегодня".localized() + " \(maxCcal)" + "(ккал)".localized()
+//
+//        labelForProtein.text = "\(String(NSString(format:"%.2f", percentOfProt)))% (\(countProt) " + "ккал".localized() + ", \(String(NSString(format:"%.2f", countProt * 0.4)))" + "г.)".localized()
+//        labelForFat.text = "\(String(NSString(format:"%.2f", percentOfFats)))% (\(String(NSString(format:"%.2f", countFats * 0.9)))" + "г.)".localized()
+//        labelForCarbonates.text = "\(String(NSString(format:"%.2f", percentOfCarb)))% (\(countCarb) " + "ккал".localized() + ", \(String(NSString(format:"%.2f", countCarb * 0.4)))" + "г.)".localized()
+//        labelForCalories.text = "\(String(NSString(format:"%.2f", percentOfCcal)))% (\(String(NSString(format:"%.1f", countCcal))) " + "ккал)".localized()
+    }
+    
+    func increaseProgres(percentOfProt: Double, percentOfFats: Double, percentOfCarb: Double, percentOfCcal: Float) {
         self.progressOfProtein.progress += Float(percentOfProt)
         self.progressOfFat.progress += Float(percentOfFats)
         self.progressOfCarbonates.progress += Float(percentOfCarb)
         self.progressOfCalories.progress += percentOfCcal
-
+    }
+    
+    func setLimitLabelsTexts(maxProt: Double, maxFats: Double, maxCarb: Double, maxCcal: Double) {
         labelProtein.adjustsFontSizeToFitWidth = true
         labelFat.adjustsFontSizeToFitWidth = true
         labelCarbonates.adjustsFontSizeToFitWidth = true
@@ -486,9 +536,12 @@ extension CaloriesVC {
         labelFat.text = "Лимит жиров на сегодня".localized() + " \(Int(Double(maxFats)))" + "(ккал)".localized() + ", \(Int(Double(maxFats) * 0.9))" + "(г.)".localized()
         labelCarbonates.text = "Лимит углеводов на сегодня".localized() + " \(Int(Double(maxCarb)))" + "(ккал)".localized() + ", \(Int(Double(maxCarb) * 0.4))" + "(г.)".localized()
         labelCalories.text = "Лимит калорий на сегодня".localized() + " \(maxCcal)" + "(ккал)".localized()
-
+    }
+    
+    func setLabelsTexts(percentOfProt: Double, percentOfFats: Double, percentOfCarb: Double, percentOfCcal: Float, countProt: Double, countFats: Double, countCarb: Double, countCcal: Double) {
         labelForProtein.text = "\(String(NSString(format:"%.2f", percentOfProt)))% (\(countProt) " + "ккал".localized() + ", \(String(NSString(format:"%.2f", countProt * 0.4)))" + "г.)".localized()
-        labelForFat.text = "\(String(NSString(format:"%.2f", percentOfFats)))% (\(String(NSString(format:"%.2f", countFats * 0.9)))" + "г.)".localized()
+        //labelForFat.text = "\(String(NSString(format:"%.2f", percentOfFats)))% (\(String(NSString(format:"%.2f", countFats * 0.9)))" + "г.)".localized()
+        labelForFat.text = "\(String(NSString(format:"%.2f", percentOfFats)))% (\(countFats) " + "ккал".localized() + ", \(String(NSString(format:"%.2f", countFats * 0.9)))" + "г.)".localized()
         labelForCarbonates.text = "\(String(NSString(format:"%.2f", percentOfCarb)))% (\(countCarb) " + "ккал".localized() + ", \(String(NSString(format:"%.2f", countCarb * 0.4)))" + "г.)".localized()
         labelForCalories.text = "\(String(NSString(format:"%.2f", percentOfCcal)))% (\(String(NSString(format:"%.1f", countCcal))) " + "ккал)".localized()
     }

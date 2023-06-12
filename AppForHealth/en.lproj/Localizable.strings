@@ -184,3 +184,20 @@
 
 // MARK: - Launch
 "Здоровье" = "Health";
+
+// MARK: - StatisticsFood
+"Добавить еду в статистику" = "Add food in statistics";
+
+// MARK: = MoreInfoAboutReceipts
+"Рецепт" = "Receipt";
+"Время готовки:" = "Cooking time:";
+"Инструкции по приготовлению" = "Cooking instructions";
+"кубиков" = "cubes";
+"средних" = "average";
+"мл" = "ml";
+"долек" = "a piece";
+"ложки" = "spoons";
+"гр" = "gr";
+"больших" = "big";
+"литров" = "liters";
+"средний" = "middle";

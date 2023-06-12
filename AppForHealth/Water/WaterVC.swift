@@ -31,8 +31,20 @@ class WaterVC: UIViewController {
     
     var viewForAnimation = UIView()
     
+    var swipeRecognizer: UISwipeGestureRecognizer?
+    
+    func setSwipeRecognizer() {
+        swipeRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(swipeGesture))
+        swipeRecognizer!.direction = .right
+        view.addGestureRecognizer(swipeRecognizer!)
+    }
+    @objc func swipeGesture(sender: UISwipeGestureRecognizer) {
+        presenter?.didTapLeftButton()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        setSwipeRecognizer()
         view.backgroundColor = .brown
         presenter?.configureNavigationItems()
         presenter?.getCurDate()

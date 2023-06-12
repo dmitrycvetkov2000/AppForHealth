@@ -32,7 +32,7 @@ class HelperForRecipes: NSObject {
 }
 
 
-extension HelperForRecipes: UICollectionViewDataSource {
+extension HelperForRecipes: UICollectionViewDataSource, UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         modelForReceipts?.id.count ?? 0
@@ -56,12 +56,10 @@ extension HelperForRecipes: UICollectionViewDataSource {
                 })
             }
         }
-        
         cell?.setButton(vc: viewController ?? RecipesVC(), index: modelForReceipts?.id[indexPath.item] ?? 0)
         
         cell?.backgroundColor = .brown
         
     return cell ?? UICollectionViewCell()
     }
-    
 }

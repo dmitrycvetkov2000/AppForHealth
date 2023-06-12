@@ -69,6 +69,9 @@ class TableViewCellForFood: UITableViewCell {
         fatLabel.text = "Ж:".localized() + " \(fat)"
         carbLabel.text = "У:".localized() + " \(carb)"
         
+        proteinsLabel.textColor = #colorLiteral(red: 0.1821803749, green: 0.1844733059, blue: 0.184432894, alpha: 1)
+        fatLabel.textColor = #colorLiteral(red: 0.1821803749, green: 0.1844733059, blue: 0.184432894, alpha: 1)
+        carbLabel.textColor = #colorLiteral(red: 0.1821803749, green: 0.1844733059, blue: 0.184432894, alpha: 1)
     }
     
     func createLabelForTime(time: String) {
@@ -96,6 +99,9 @@ class TableViewCellForFood: UITableViewCell {
         
         caloriesLabel.text = "\(calories) " + "ккал".localized()
         weightLabel.text = "\(weight) " + "г.".localized()
+        
+        caloriesLabel.textColor = #colorLiteral(red: 0.1821803749, green: 0.1844733059, blue: 0.184432894, alpha: 1)
+        weightLabel.textColor = #colorLiteral(red: 0.1821803749, green: 0.1844733059, blue: 0.184432894, alpha: 1)
     }
 }
 extension TableViewCellForFood {    

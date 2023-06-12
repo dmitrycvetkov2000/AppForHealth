@@ -9,7 +9,7 @@ import UIKit
 import RealmSwift
 
 protocol AddFoodVCProtocol: AnyObject {
-    
+    func fillTextFields(res: Double, prot: Double, fat: Double, carb: Double, ccal: Double)
 }
 
 class AddFoodVC: UIViewController {
@@ -57,8 +57,20 @@ class AddFoodVC: UIViewController {
     
     var labelEating = UILabel()
     
+    var swipeRecognizer: UISwipeGestureRecognizer?
+    
+    func setSwipeRecognizer() {
+        swipeRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(swipeGesture))
+        swipeRecognizer!.direction = .right
+        view.addGestureRecognizer(swipeRecognizer!)
+    }
+    @objc func swipeGesture(sender: UISwipeGestureRecognizer) {
+        presenter?.didTapBackButton()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        setSwipeRecognizer()
         view.backgroundColor = .brown
         
         weightTextField.delegate = self
@@ -88,35 +100,11 @@ class AddFoodVC: UIViewController {
         weightTextField.addTarget(self, action: #selector(findMultiple), for: .editingChanged)
     }
         @objc func findMultiple() {
-            var result: Double? = nil
-            if let weight = Double(weightTextField.text ?? "0.0") {
-                result = weight / 100
-                    
-                let prot = defaults.string(forKey: KeysForPFCC.proteins.rawValue)
-                let fats = defaults.string(forKey: KeysForPFCC.fats.rawValue)
-                let carb = defaults.string(forKey: KeysForPFCC.carb.rawValue)
-                let ccal = defaults.string(forKey: KeysForPFCC.ccal.rawValue)
-                
-                if let prot = Double(prot ?? "0.0"), let fats = Double(fats ?? "0.0"), let carb = Double(carb ?? "0.0"), let ccal = Double(ccal ?? "0.0") {
-                    let p = prot * result!
-                    let f = fats * result!
-                    let c = carb * result!
-                    let cc = ccal * result!
-                    
-                    if result! == 1.0 {
-                        proteinsTextField.text = String(p)
-                        fatsTextField.text = String(f)
-                        carbTextField.text = String(c)
-                        ccalTextField.text = String(Int(cc))
-                    } else {
-                        proteinsTextField.text = String(NSString(format:"%.4f", p))
-                        fatsTextField.text = String(NSString(format:"%.4f", f))
-                        carbTextField.text = String(NSString(format:"%.4f", c))
-                        ccalTextField.text = String(Int(cc))
-                    }
-                }
+            if let text = weightTextField.text, let weight = Double(text) {
+                presenter?.findMultiple(weight: weight)
             }
         }
+    
 }
 extension AddFoodVC {
     func configureNavigationItems() {
@@ -154,6 +142,7 @@ extension AddFoodVC {
         labelEating.text = "Съесть".localized()
         labelEating.font = UIFont.systemFont(ofSize: 1000)
         labelEating.textAlignment = .center
+        labelEating.textColor = .black
         
         return labelEating
     }
@@ -221,12 +210,14 @@ extension AddFoodVC {
 
         label.font = UIFont.systemFont(ofSize: 16)
         label.textAlignment = .left
+        label.textColor = .black
 
         textField.textColor = .blue
         textField.layer.borderWidth = 1
         textField.borderStyle = .roundedRect
         textField.layer.cornerRadius = 5
         textField.layer.borderColor = UIColor.green.cgColor
+        textField.backgroundColor = .white
         
         switch label {
         case timeLabel:
@@ -449,5 +440,17 @@ extension AddFoodVC: UITextFieldDelegate {
 }
 
 extension AddFoodVC: AddFoodVCProtocol {
-    
+    func fillTextFields(res: Double, prot: Double, fat: Double, carb: Double, ccal: Double) {
+        if res == 1.0 {
+            proteinsTextField.text = String(prot)
+            fatsTextField.text = String(fat)
+            carbTextField.text = String(carb)
+            ccalTextField.text = String(Int(ccal))
+        } else {
+            proteinsTextField.text = String(NSString(format:"%.4f", prot))
+            fatsTextField.text = String(NSString(format:"%.4f", fat))
+            carbTextField.text = String(NSString(format:"%.4f", carb))
+            ccalTextField.text = String(Int(ccal))
+        }
+    }
 }

@@ -87,8 +87,20 @@ class TrainVC: UIViewController {
         player = AVPlayer(url: url)
     }
 
+    var swipeRecognizer: UISwipeGestureRecognizer?
+    
+    func setSwipeRecognizer() {
+        swipeRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(swipeGesture))
+        swipeRecognizer!.direction = .right
+        view.addGestureRecognizer(swipeRecognizer!)
+    }
+    @objc func swipeGesture(sender: UISwipeGestureRecognizer) {
+        presenter?.didTapBack()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        setSwipeRecognizer()
         view.backgroundColor = .brown
         presenter?.determDurationTime()
         timerLabel.text = "\(durationTime ?? 15)"

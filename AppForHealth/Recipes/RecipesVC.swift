@@ -14,6 +14,8 @@ protocol RecipesVCProtocol: AnyObject {
     
     func setSpinnerOnView()
     func reloadCollectView()
+    
+    func setupCollectViewOnFirstCell()
 }
 
 class RecipesVC: UIViewController {
@@ -52,8 +54,6 @@ class RecipesVC: UIViewController {
         helper.viewController = self
         presenter?.setNavigationItems()
         
-        
-        
         presenter?.setBlurEffect()
         presenter?.setSpinnerAndStart()
         view.backgroundColor = .brown
@@ -73,7 +73,7 @@ class RecipesVC: UIViewController {
         scrollView.alwaysBounceHorizontal = true
         scrollView.showsHorizontalScrollIndicator = false
         
-        scrollView.frame = CGRect(x: 0, y: navigationController!.navigationBar.frame.height + navigationController!.navigationBar.frame.minY, width: view.bounds.width, height: 40)
+        scrollView.frame = CGRect(x: 0, y: navigationController!.navigationBar.frame.height + navigationController!.navigationBar.frame.minY + 10, width: view.bounds.width, height: 40)
         scrollView.contentSize = CGSize(width: view.bounds.width + 60, height: 0)
         
         stackView.frame = scrollView.frame
@@ -146,18 +146,21 @@ class RecipesVC: UIViewController {
         myCollectionView?.backgroundColor = .clear
         myCollectionView?.register(MyCollectionViewCellForRecipes.self, forCellWithReuseIdentifier: helper.identifier)
         myCollectionView?.dataSource = self.helper
-        
-//        myCollectionView?.translatesAutoresizingMaskIntoConstraints = false
-//        NSLayoutConstraint.activate([
-//            myCollectionView!.topAnchor.constraint(equalTo: stackView.bottomAnchor, constant: 0),
-//            myCollectionView!.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 0),
-//            myCollectionView!.rightAnchor.constraint(equalTo: view.rightAnchor, constant: 0),
-//            myCollectionView!.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0)
-//        ])
+        myCollectionView?.delegate = self.helper
+        myCollectionView?.bounces = false
     }
 }
 
+
+
 extension RecipesVC: RecipesVCProtocol {
+    func setupCollectViewOnFirstCell() {
+        self.myCollectionView?.scrollToItem(at: IndexPath(row: 0, section: 0),
+                                            at: .left,
+                                            animated: true)
+    }
+    
+    
     func configureNavigationItems() {
         leftButton.translatesAutoresizingMaskIntoConstraints = false
         leftButton.clipsToBounds = true

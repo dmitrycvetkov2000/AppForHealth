@@ -79,8 +79,8 @@ class MyCollectionViewCellForRecipes: UICollectionViewCell {
     func setConstrainsForNameLabel() {
         labelForName.translatesAutoresizingMaskIntoConstraints = false
         
-        labelForName.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 0).isActive = true
-        labelForName.rightAnchor.constraint(equalTo: self.rightAnchor, constant: 0).isActive = true
+        labelForName.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 10).isActive = true
+        labelForName.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -10).isActive = true
         labelForName.topAnchor.constraint(equalTo: image.bottomAnchor, constant: 10).isActive = true
     }
     

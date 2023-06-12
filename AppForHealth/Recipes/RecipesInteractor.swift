@@ -51,6 +51,7 @@ class RecipesInteractor: RecipesInteractorProtocol {
             group.notify(queue: .main) {
                 self.presenter?.reloadCollectView()
                 self.presenter?.removeSpinnerAndBlurEffect()
+                self.presenter?.setupCollectViewOnFirstCell()
             }
         case .getReceipeForDessert:
             presenter?.setBlurEffect()
@@ -87,6 +88,7 @@ class RecipesInteractor: RecipesInteractorProtocol {
             group.notify(queue: .main) {
                 self.presenter?.reloadCollectView()
                 self.presenter?.removeSpinnerAndBlurEffect()
+                self.presenter?.setupCollectViewOnFirstCell()
             }
         case .getMoreInfoAboutReceipt:
             print("")
@@ -125,6 +127,7 @@ class RecipesInteractor: RecipesInteractorProtocol {
             group.notify(queue: .main) {
                 self.presenter?.reloadCollectView()
                 self.presenter?.removeSpinnerAndBlurEffect()
+                self.presenter?.setupCollectViewOnFirstCell()
             }
         }
     }

@@ -18,6 +18,8 @@ protocol RecipesPresenterProtocol: AnyObject {
     func getRequest(helper: HelperForRecipes, type: ApiType)
     
     func reloadCollectView()
+    
+    func setupCollectViewOnFirstCell()
 }
 
 class RecipesPresenter {
@@ -58,5 +60,9 @@ extension RecipesPresenter: RecipesPresenterProtocol {
     
     func reloadCollectView() {
         view?.reloadCollectView()
+    }
+    
+    func setupCollectViewOnFirstCell() {
+        view?.setupCollectViewOnFirstCell()
     }
 }

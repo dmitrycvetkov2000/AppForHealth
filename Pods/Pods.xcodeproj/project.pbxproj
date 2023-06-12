@@ -1364,7 +1364,7 @@
 		BC98305E73847BF1B3646E256305534E /* FWriteTree.h in Headers */ = {isa = PBXBuildFile; fileRef = 3419D71B9DA959B5FD2B4274AD1355DB /* FWriteTree.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		BCDADCE739F880A5DB6413AC24FD0F74 /* FIRGameCenterAuthProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 337F068348447B7633D619289BC82086 /* FIRGameCenterAuthProvider.m */; };
 		BCE81D2F763B001709F5EAF1EC01B43B /* GDTCORPlatform.m in Sources */ = {isa = PBXBuildFile; fileRef = F47CBBADAE90E0D6DB2A7685165C50B2 /* GDTCORPlatform.m */; };
-		BD10C19FD5D362E66C8AFA43272443F3 /* VK-ios-sdk-VKSdkResources in Resources */ = {isa = PBXBuildFile; fileRef = 8E2C55AC27D81E0DC33F9E0C23A40E5E /* VK-ios-sdk-VKSdkResources */; };
+		BD10C19FD5D362E66C8AFA43272443F3 /* VKSdkResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 8E2C55AC27D81E0DC33F9E0C23A40E5E /* VKSdkResources.bundle */; };
 		BD11DB9EC671A2A0FFAD4694DBB027C7 /* FIRAuthCredential.m in Sources */ = {isa = PBXBuildFile; fileRef = 38C353B616528DE1BB2782B75A7998D6 /* FIRAuthCredential.m */; };
 		BD16EC70345314A310FF00596ADAED6D /* FRangeMerge.m in Sources */ = {isa = PBXBuildFile; fileRef = B012D8DCECD90DB4CADA7C2C407F6D1C /* FRangeMerge.m */; };
 		BD1881F08FD33D43826AF7F37CB73E26 /* GDTCOREventDataObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 130325BEC6097EBB359495E14C7D9267 /* GDTCOREventDataObject.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -1583,7 +1583,7 @@
 		DF035279E713FDA8F7FA55C1EE2DE81C /* OIDGrantTypes.m in Sources */ = {isa = PBXBuildFile; fileRef = BC661B4C917C1036D80ABA3DBBC78703 /* OIDGrantTypes.m */; };
 		DF03D01A6F107F918AAC4BF901E8CC43 /* RLMProviderClient.h in Copy . Public Headers */ = {isa = PBXBuildFile; fileRef = 35712D249DEE948E7DC0A035EC8F20C8 /* RLMProviderClient.h */; };
 		DF32418B4CDFD5661AF7B2D9314F17EE /* RLMAPIKeyAuth.mm in Sources */ = {isa = PBXBuildFile; fileRef = 78DB0DC178CB86F676B786B4471D8772 /* RLMAPIKeyAuth.mm */; settings = {COMPILER_FLAGS = "-DREALM_HAVE_CONFIG -DREALM_COCOA_VERSION='@\"10.36.0\"' -D__ASSERTMACROS__ -DREALM_ENABLE_SYNC"; }; };
-		DF52D786A8770CCB89E0DB063D82E522 /* GoogleSignIn-GoogleSignIn in Resources */ = {isa = PBXBuildFile; fileRef = E5BA41B7F2E1FE47F9ABCAC27C9E4281 /* GoogleSignIn-GoogleSignIn */; };
+		DF52D786A8770CCB89E0DB063D82E522 /* GoogleSignIn.bundle in Resources */ = {isa = PBXBuildFile; fileRef = E5BA41B7F2E1FE47F9ABCAC27C9E4281 /* GoogleSignIn.bundle */; };
 		DF832F21CD07E05DE0BEA31524DF5B81 /* RLMCollection.h in Headers */ = {isa = PBXBuildFile; fileRef = 50ACEF04C58A0DF65C37DE0B8414DA25 /* RLMCollection.h */; };
 		DF8AB0A9BA057F4DFD0743DB54DA199F /* merger.cc in Sources */ = {isa = PBXBuildFile; fileRef = C4031AE6770184CE2BA4735F7C9C6490 /* merger.cc */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		DFCEB8CD6BA8C97FDB127610C1F86BA8 /* FIRMultiFactorSession.h in Headers */ = {isa = PBXBuildFile; fileRef = 379596AFA2F61212E91ECC6FF20C2AD3 /* FIRMultiFactorSession.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -3509,7 +3509,7 @@
 		8DC6F93053ECAE13F0CDFBBCF5233EEE /* Util.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Util.swift; path = RealmSwift/Util.swift; sourceTree = "<group>"; };
 		8DE8B39D80DB1241A04C07DF726E26DB /* FIRDiagnosticsData.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FIRDiagnosticsData.m; path = FirebaseCore/Sources/FIRDiagnosticsData.m; sourceTree = "<group>"; };
 		8E059B25214ECBC525E3FDA2C84C1E5A /* VKAuthorizeController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = VKAuthorizeController.h; path = library/Source/Views/VKAuthorizeController.h; sourceTree = "<group>"; };
-		8E2C55AC27D81E0DC33F9E0C23A40E5E /* VK-ios-sdk-VKSdkResources */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = "VK-ios-sdk-VKSdkResources"; path = VKSdkResources.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
+		8E2C55AC27D81E0DC33F9E0C23A40E5E /* VKSdkResources.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VKSdkResources.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 		8EA86B3B4704180B86ACF094A5F4BB1E /* FRepoManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FRepoManager.h; path = FirebaseDatabase/Sources/Core/FRepoManager.h; sourceTree = "<group>"; };
 		8EDCD6E6740EADF80D256438315C7E71 /* FIRAuthCredential.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FIRAuthCredential.h; path = FirebaseAuth/Sources/Public/FirebaseAuth/FIRAuthCredential.h; sourceTree = "<group>"; };
 		8F4413B6495E1ACE2DF00D28CB6A1333 /* Intersperse.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Intersperse.swift; path = Sources/Algorithms/Intersperse.swift; sourceTree = "<group>"; };
@@ -4134,7 +4134,7 @@
 		E56B2C8C3AE3157780A9D4C5C7B45B14 /* crc32c.cc */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.cpp; name = crc32c.cc; path = util/crc32c.cc; sourceTree = "<group>"; };
 		E57C8A861ECA249E9566E07934C37E67 /* FIREmailPasswordAuthCredential.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FIREmailPasswordAuthCredential.m; path = FirebaseAuth/Sources/AuthProvider/Email/FIREmailPasswordAuthCredential.m; sourceTree = "<group>"; };
 		E5B7685AD9D804ECDBD7A996FB48B5A9 /* Aliases.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Aliases.swift; path = RealmSwift/Aliases.swift; sourceTree = "<group>"; };
-		E5BA41B7F2E1FE47F9ABCAC27C9E4281 /* GoogleSignIn-GoogleSignIn */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = "GoogleSignIn-GoogleSignIn"; path = GoogleSignIn.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
+		E5BA41B7F2E1FE47F9ABCAC27C9E4281 /* GoogleSignIn.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GoogleSignIn.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 		E5D909BAA7098763C8E8EBBA2642F883 /* GDTCORTargets.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GDTCORTargets.h; path = GoogleDataTransport/GDTCORLibrary/Public/GoogleDataTransport/GDTCORTargets.h; sourceTree = "<group>"; };
 		E5FA7E32D5484977C60FC0C8AAAAA420 /* FViewProcessorResult.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FViewProcessorResult.m; path = FirebaseDatabase/Sources/FViewProcessorResult.m; sourceTree = "<group>"; };
 		E61496FA5380A4E212134C6BF6048658 /* version_set.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = version_set.h; path = db/version_set.h; sourceTree = "<group>"; };
@@ -4666,7 +4666,7 @@
 				95209B8BB966524BC76543F99C75F5FE /* FSCalendar.framework */,
 				856B5CD56F194FAD26EA91620B66D614 /* GoogleDataTransport.framework */,
 				FD56AB51475BC5F592781EE2692D1412 /* GoogleSignIn.framework */,
-				E5BA41B7F2E1FE47F9ABCAC27C9E4281 /* GoogleSignIn-GoogleSignIn */,
+				E5BA41B7F2E1FE47F9ABCAC27C9E4281 /* GoogleSignIn.bundle */,
 				B43874C6CBB50E7134FBEC24BABFE14F /* GoogleUtilities.framework */,
 				6FD122EA0AB9AB2A8FFA5F676C795DF0 /* GTMAppAuth.framework */,
 				C1998E0D8085221AD87F89B614C10E52 /* GTMSessionFetcher.framework */,
@@ -4681,7 +4681,7 @@
 				979486118B3E90C08386079D57962701 /* SnapKit.framework */,
 				F3E7458F7D38C89A9DE4BBACD3450C88 /* Algorithms.framework */,
 				35C9726CC8FB79290FD3FC7C32D305A6 /* VK_ios_sdk.framework */,
-				8E2C55AC27D81E0DC33F9E0C23A40E5E /* VK-ios-sdk-VKSdkResources */,
+				8E2C55AC27D81E0DC33F9E0C23A40E5E /* VKSdkResources.bundle */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -8118,7 +8118,7 @@
 			);
 			name = "VK-ios-sdk-VKSdkResources";
 			productName = VKSdkResources;
-			productReference = 8E2C55AC27D81E0DC33F9E0C23A40E5E /* VK-ios-sdk-VKSdkResources */;
+			productReference = 8E2C55AC27D81E0DC33F9E0C23A40E5E /* VKSdkResources.bundle */;
 			productType = "com.apple.product-type.bundle";
 		};
 		5C0371EE948D0357B8EE0E34ABB44BF0 /* GoogleDataTransport */ = {
@@ -8277,7 +8277,7 @@
 			);
 			name = "GoogleSignIn-GoogleSignIn";
 			productName = GoogleSignIn;
-			productReference = E5BA41B7F2E1FE47F9ABCAC27C9E4281 /* GoogleSignIn-GoogleSignIn */;
+			productReference = E5BA41B7F2E1FE47F9ABCAC27C9E4281 /* GoogleSignIn.bundle */;
 			productType = "com.apple.product-type.bundle";
 		};
 		8627999EF1D5E93E13DAFF580DA8CDCF /* GTMAppAuth */ = {
@@ -8715,7 +8715,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DF52D786A8770CCB89E0DB063D82E522 /* GoogleSignIn-GoogleSignIn in Resources */,
+				DF52D786A8770CCB89E0DB063D82E522 /* GoogleSignIn.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -8765,7 +8765,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BD10C19FD5D362E66C8AFA43272443F3 /* VK-ios-sdk-VKSdkResources in Resources */,
+				BD10C19FD5D362E66C8AFA43272443F3 /* VKSdkResources.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -10898,7 +10898,9 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 8216BF3E4E7778105B988810D2FAE1F1 /* GoogleSignIn.release.xcconfig */;
 			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/GoogleSignIn";
+				DEVELOPMENT_TEAM = 4N684VBLPX;
 				IBSC_MODULE = GoogleSignIn;
 				INFOPLIST_FILE = "Target Support Files/GoogleSignIn/ResourceBundle-GoogleSignIn-GoogleSignIn-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
@@ -11629,6 +11631,7 @@
 			baseConfigurationReference = D905FEA2CA60794932046786CD9927BF /* VK-ios-sdk.debug.xcconfig */;
 			buildSettings = {
 				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/VK-ios-sdk";
+				DEVELOPMENT_TEAM = 4N684VBLPX;
 				IBSC_MODULE = VK_ios_sdk;
 				INFOPLIST_FILE = "Target Support Files/VK-ios-sdk/ResourceBundle-VKSdkResources-VK-ios-sdk-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
@@ -11933,7 +11936,9 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = D24D617C045D35A9558A157E9816D7FF /* GoogleSignIn.debug.xcconfig */;
 			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/GoogleSignIn";
+				DEVELOPMENT_TEAM = 4N684VBLPX;
 				IBSC_MODULE = GoogleSignIn;
 				INFOPLIST_FILE = "Target Support Files/GoogleSignIn/ResourceBundle-GoogleSignIn-GoogleSignIn-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
@@ -12268,6 +12273,7 @@
 			baseConfigurationReference = 2A91046760815E73E850ED2BC5A4D8DA /* VK-ios-sdk.release.xcconfig */;
 			buildSettings = {
 				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/VK-ios-sdk";
+				DEVELOPMENT_TEAM = 4N684VBLPX;
 				IBSC_MODULE = VK_ios_sdk;
 				INFOPLIST_FILE = "Target Support Files/VK-ios-sdk/ResourceBundle-VKSdkResources-VK-ios-sdk-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;

@@ -78,8 +78,8 @@ class ApiManager { // Реализует запросы
         
     func getReceipeForBreakfast(completion: @escaping (Receipts) -> Void) {
         let request = ApiType.getReceipeForLaunch.request
-        
-        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+        let req =  URLRequest(url: URL(string: "https://api.spoonacular.com/recipes/complexSearch?apiKey=43f6d16cffc1409c97fbbb9311653c80&type=breakfast&fillIngredients=true")!)
+        let task = URLSession.shared.dataTask(with: req) { data, response, error in
             if let data = data, let receipts = try? JSONDecoder().decode(Receipts.self, from: data) {
                 completion(receipts)
             } 

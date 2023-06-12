@@ -81,10 +81,21 @@ class SettingVC: UIViewController {
     var goal: String = ""
     
     var tapRecognizer: UITapGestureRecognizer?
+    var swipeRecognizer: UISwipeGestureRecognizer?
+    
+    func setSwipeRecognizer() {
+        swipeRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(swipeGesture))
+        swipeRecognizer!.direction = .right
+        view.addGestureRecognizer(swipeRecognizer!)
+    }
+    @objc func swipeGesture(sender: UISwipeGestureRecognizer) {
+        presenter?.didTapOnBackButton()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .brown
+        setSwipeRecognizer()
         setTapRecognizer()
         presenter?.viewDidLoaded()
     }

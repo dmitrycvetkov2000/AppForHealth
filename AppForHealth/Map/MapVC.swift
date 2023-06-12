@@ -13,6 +13,8 @@ protocol MapVCProtocol: AnyObject {
     func setMap()
     func configureNavigationItems()
     func checkLocationEnabled()
+    
+    func showAlert(title: String, message: String?, url: URL?)
 }
 
 class MapVC: UIViewController {
@@ -43,41 +45,6 @@ class MapVC: UIViewController {
 
 
 extension MapVC: MapVCProtocol {
-    
-    func fetchPlaces(location: CLLocationCoordinate2D) { // Поиск ближайших спортивных залов
-        let searchSpan = MKCoordinateSpan(latitudeDelta: 0.5, longitudeDelta: 0.5)
-        let searchRegion = MKCoordinateRegion(center: location, span: searchSpan)
-        
-        let searchRequest = MKLocalSearch.Request()
-        searchRequest.region = searchRegion
-        searchRequest.resultTypes = .pointOfInterest
-        searchRequest.naturalLanguageQuery = "Fitness"
-        
-        let search = MKLocalSearch(request: searchRequest)
-        
-        
-        var annotations = [MKAnnotation]()
-        
-        search.start { response, error in
-            guard let mapItems = response?.mapItems else {
-                return
-            }
-            
-            let results = mapItems.map({$0.name ?? "No name Found"})
-            
-            mapItems.forEach { mapItem in
-                let annotation = MKPointAnnotation()
-                annotation.title = mapItem.placemark.name
-                annotation.subtitle = mapItem.placemark.title
-                annotation.coordinate = mapItem.placemark.location!.coordinate
-                annotations.append(annotation)
-            }
-            self.mapView.addAnnotations(annotations)
-            print(results)
-        }
-        
-    }
-    
     func setMap() {
         view.addSubview(mapView)
         mapView.snp.makeConstraints { make in
@@ -90,7 +57,14 @@ extension MapVC: MapVCProtocol {
             if CLLocationManager.locationServicesEnabled() {
                 DispatchQueue.main.async {
                     self.setupLocationManager()
-                    self.checkAuthorizationLocation()
+                    self.presenter?.checkAuthorizationLocation(locationManager: self.locationManager, closure: { [weak self] in
+                        guard let self = self else { return }
+                        self.mapView.showsUserLocation = true
+                        self.locationManager.startUpdatingLocation()
+                        self.presenter?.fetchPlaces(location: self.locationManager.location!.coordinate, closure: { annotations in
+                            self.mapView.addAnnotations(annotations)
+                        })
+                    })
                 }
             } else {
                 DispatchQueue.main.async {
@@ -103,34 +77,6 @@ extension MapVC: MapVCProtocol {
     func setupLocationManager() {
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
-    }
-    
-    func checkAuthorizationLocation() {
-        let status: CLAuthorizationStatus
-        if #available(iOS 14, *) {
-            status = locationManager.authorizationStatus
-        } else {
-            status = CLLocationManager.authorizationStatus()
-        }
-        
-        switch status {
-        case .authorizedAlways:
-            break
-        case .authorizedWhenInUse:
-            mapView.showsUserLocation = true
-            locationManager.startUpdatingLocation()
-            fetchPlaces(location: locationManager.location!.coordinate)
-            break
-        case .denied:
-            showAlert(title: "Вы запретили использовать ваше местоположение".localized(), message: "Хотите разрешить?".localized(), url: URL(string: UIApplication.openSettingsURLString))
-            break
-        case .restricted:
-            break
-        case .notDetermined:
-            locationManager.requestWhenInUseAuthorization()
-        @unknown default:
-            print("default")
-        }
     }
     
     func showAlert(title: String, message: String?, url: URL?) {
@@ -179,7 +125,13 @@ extension MapVC: CLLocationManagerDelegate {
     }
     
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
-        checkAuthorizationLocation()
+        presenter?.checkAuthorizationLocation(locationManager: locationManager, closure: {
+            mapView.showsUserLocation = true
+            locationManager.startUpdatingLocation()
+            presenter?.fetchPlaces(location: locationManager.location!.coordinate, closure: { annotations in
+                self.mapView.addAnnotations(annotations)
+            })
+        })
     }
 }
 

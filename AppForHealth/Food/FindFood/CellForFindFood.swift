@@ -63,6 +63,10 @@ class CellForFindFood: UITableViewCell {
         labelForProteins.text = "Б:".localized() + " \(proteins)"
         labelForFat.text = "Ж:".localized() + " \(fat)"
         labelForCarb.text = "У:".localized() + " \(carb)"
+        
+        labelForProteins.textColor = #colorLiteral(red: 0.180952996, green: 0.1860721707, blue: 0.1879442632, alpha: 1)
+        labelForFat.textColor = #colorLiteral(red: 0.180952996, green: 0.1860721707, blue: 0.1879442632, alpha: 1)
+        labelForCarb.textColor = #colorLiteral(red: 0.180952996, green: 0.1860721707, blue: 0.1879442632, alpha: 1)
     }
     
 }

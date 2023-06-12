@@ -9,6 +9,9 @@ import Foundation
 protocol AddFoodPresenterProtocol: AnyObject {
     func didTapBackButton()
     func didTapCancelButton()
+    
+    func fillTextFields(res: Double, prot: Double, fat: Double, carb: Double, ccal: Double)
+    func findMultiple(weight: Double)
 }
 class AddFoodPresenter {
     weak var view: AddFoodVCProtocol?
@@ -28,5 +31,13 @@ extension AddFoodPresenter: AddFoodPresenterProtocol {
     
     func didTapCancelButton() {
         router.openCaloriesVC()
+    }
+    
+    func fillTextFields(res: Double, prot: Double, fat: Double, carb: Double, ccal: Double) {
+        view?.fillTextFields(res: res, prot: prot, fat: fat, carb: carb, ccal: ccal)
+    }
+    
+    func findMultiple(weight: Double) {
+        interactor.findMultiple(weight: weight)
     }
 }
