@@ -33,6 +33,7 @@
 		0A46439F29AA38AC002B6519 /* CaloriesRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A46439E29AA38AC002B6519 /* CaloriesRouter.swift */; };
 		0A4643A129AA391C002B6519 /* CaloriesInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4643A029AA391C002B6519 /* CaloriesInteractor.swift */; };
 		0A4643A329AA397D002B6519 /* CaloriesModuleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4643A229AA397D002B6519 /* CaloriesModuleBuilder.swift */; };
+		0A49C1212A3C68A500B9349B /* CaloriesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A49C1202A3C68A500B9349B /* CaloriesTests.swift */; };
 		0A4F79BB29F96FBA00A825F9 /* MiniButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4F79BA29F96FBA00A825F9 /* MiniButton.swift */; };
 		0A4F79BD29F9C20D00A825F9 /* MainScreenLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4F79BC29F9C20D00A825F9 /* MainScreenLabel.swift */; };
 		0A70B9C62A2D975E008F805D /* DefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A70B9C52A2D975E008F805D /* DefaultsManager.swift */; };
@@ -86,6 +87,8 @@
 		0AA2E5C729FF6820006B3FE8 /* Extention+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA2E5C629FF6820006B3FE8 /* Extention+String.swift */; };
 		0AA2E5CA29FF696F006B3FE8 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0AA2E5CC29FF696F006B3FE8 /* Localizable.strings */; };
 		0AA2E5D029FF8525006B3FE8 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0AA2E5D229FF8525006B3FE8 /* InfoPlist.strings */; };
+		0AA5B4182A36DFC2007EE450 /* SecondModuleTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA5B4172A36DFC2007EE450 /* SecondModuleTest.swift */; };
+		0AA5B41E2A37027D007EE450 /* TrainTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA5B41D2A37027D007EE450 /* TrainTest.swift */; };
 		0AB8EE242A010C5500FF0E3C /* FiraSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0AB8EE232A010C5500FF0E3C /* FiraSans-Bold.ttf */; };
 		0AB8EE262A02D42D00FF0E3C /* ListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB8EE252A02D42D00FF0E3C /* ListItem.swift */; };
 		0AB8EE282A02D48F00FF0E3C /* ListSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB8EE272A02D48F00FF0E3C /* ListSection.swift */; };
@@ -213,6 +216,7 @@
 		0A46439E29AA38AC002B6519 /* CaloriesRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaloriesRouter.swift; sourceTree = "<group>"; };
 		0A4643A029AA391C002B6519 /* CaloriesInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaloriesInteractor.swift; sourceTree = "<group>"; };
 		0A4643A229AA397D002B6519 /* CaloriesModuleBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaloriesModuleBuilder.swift; sourceTree = "<group>"; };
+		0A49C1202A3C68A500B9349B /* CaloriesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaloriesTests.swift; sourceTree = "<group>"; };
 		0A4F79BA29F96FBA00A825F9 /* MiniButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiniButton.swift; sourceTree = "<group>"; };
 		0A4F79BC29F9C20D00A825F9 /* MainScreenLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenLabel.swift; sourceTree = "<group>"; };
 		0A70B9C52A2D975E008F805D /* DefaultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultsManager.swift; sourceTree = "<group>"; };
@@ -268,6 +272,8 @@
 		0AA2E5CD29FF6A0A006B3FE8 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
 		0AA2E5D129FF8525006B3FE8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		0AA2E5D329FF852A006B3FE8 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		0AA5B4172A36DFC2007EE450 /* SecondModuleTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondModuleTest.swift; sourceTree = "<group>"; };
+		0AA5B41D2A37027D007EE450 /* TrainTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainTest.swift; sourceTree = "<group>"; };
 		0AB8EE232A010C5500FF0E3C /* FiraSans-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "FiraSans-Bold.ttf"; sourceTree = "<group>"; };
 		0AB8EE252A02D42D00FF0E3C /* ListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListItem.swift; sourceTree = "<group>"; };
 		0AB8EE272A02D48F00FF0E3C /* ListSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListSection.swift; sourceTree = "<group>"; };
@@ -499,6 +505,9 @@
 		0A3CA83E293E4F2400EDBFF9 /* AppForHealthTests */ = {
 			isa = PBXGroup;
 			children = (
+				0A49C11F2A3C688E00B9349B /* CaloriesModule */,
+				0AA5B41C2A370267007EE450 /* TrainModuleTest */,
+				0AA5B4162A36DFA3007EE450 /* SecondModuleTests */,
 				0A8324F62A2CF92C001612D4 /* SettingTests */,
 				0A8324F32A2CF5F8001612D4 /* ParametrsTests */,
 				0A8324F02A2CE5ED001612D4 /* MainModuleTests */,
@@ -529,6 +538,14 @@
 				0A3C1FBF29AC23AA0079913B /* TableViewCellForFood.swift */,
 			);
 			path = Calories;
+			sourceTree = "<group>";
+		};
+		0A49C11F2A3C688E00B9349B /* CaloriesModule */ = {
+			isa = PBXGroup;
+			children = (
+				0A49C1202A3C68A500B9349B /* CaloriesTests.swift */,
+			);
+			path = CaloriesModule;
 			sourceTree = "<group>";
 		};
 		0A7D6BB8294E808500E50542 /* Parametrs */ = {
@@ -674,6 +691,22 @@
 				0AA2E5C429FF67D6006B3FE8 /* Пресс.mov */,
 			);
 			path = Videos;
+			sourceTree = "<group>";
+		};
+		0AA5B4162A36DFA3007EE450 /* SecondModuleTests */ = {
+			isa = PBXGroup;
+			children = (
+				0AA5B4172A36DFC2007EE450 /* SecondModuleTest.swift */,
+			);
+			path = SecondModuleTests;
+			sourceTree = "<group>";
+		};
+		0AA5B41C2A370267007EE450 /* TrainModuleTest */ = {
+			isa = PBXGroup;
+			children = (
+				0AA5B41D2A37027D007EE450 /* TrainTest.swift */,
+			);
+			path = TrainModuleTest;
 			sourceTree = "<group>";
 		};
 		0AB8EE2D2A02DE4400FF0E3C /* Cells */ = {
@@ -1294,8 +1327,11 @@
 				0A8324F82A2CF94C001612D4 /* SettingsTests.swift in Sources */,
 				0A8324F52A2CF612001612D4 /* ParametrsTests.swift in Sources */,
 				0A8324EF2A2CE45F001612D4 /* ThirdTabBarModuleTests.swift in Sources */,
+				0A49C1212A3C68A500B9349B /* CaloriesTests.swift in Sources */,
 				0A8324F22A2CE613001612D4 /* MainModuleTests.swift in Sources */,
 				0A8324EC2A2CDBF6001612D4 /* WaterTests.swift in Sources */,
+				0AA5B4182A36DFC2007EE450 /* SecondModuleTest.swift in Sources */,
+				0AA5B41E2A37027D007EE450 /* TrainTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

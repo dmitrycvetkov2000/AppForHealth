@@ -27,4 +27,13 @@ final class ThirdTabBarModuleTests: XCTestCase {
         // Then
         XCTAssertEqual("11.07", thirdInteractor.weekMas[0])
     }
+    
+    func testShowMasOfWeek() {
+        // Given
+        thirdInteractor.weekMas = ["11.07.2000", "15.07.2000", "18.07.2000"]
+        // When
+        let res = thirdInteractor.showMasOfWeek()
+        // Then
+        XCTAssertEqual(res, thirdInteractor.weekMas)
+    }
 }
